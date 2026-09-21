@@ -1,0 +1,233 @@
+% ---------------------------------------------------------------------------
+% references.bib  ---  ICITS (Springer LNNS, estilo splncs04)
+% Entradas conferidas contra os PDFs enviados (Artigos.zip) e a web (set/2026).
+% Campos ainda a confirmar contra o editor no camera-ready: % CONFERIR.
+% ---------------------------------------------------------------------------
+
+% ===== Referencias de dominio (redes viarias) ==============================
+
+% Construcao/simplificacao de grafos de ruas a partir do OSM
+@article{boeing,
+  author  = {Boeing, Geoff},
+  title   = {{OSMnx}: New methods for acquiring, constructing, analyzing, and
+             visualizing complex street networks},
+  journal = {Computers, Environment and Urban Systems},
+  volume  = {65},
+  pages   = {126--139},
+  year    = {2017},
+  doi     = {10.1016/j.compenvurbsys.2017.05.004}
+}
+
+% Betweenness em redes de ruas (invariancia da distribuicao, 97 cidades)
+@article{kirkley2018betweenness,
+  author  = {Kirkley, Alec and Barbosa, Hugo and Barthelemy, Marc and
+             Ghoshal, Gourab},
+  title   = {From the betweenness centrality in street networks to structural
+             invariants in random planar graphs},
+  journal = {Nature Communications},
+  volume  = {9},
+  number  = {1},
+  pages   = {2501},
+  year    = {2018},
+  doi     = {10.1038/s41467-018-04978-z}
+}
+
+% Centralidade da rede viaria x mobilidade humana
+@article{halavachou2021uncovering,
+  author  = {Halavachou, Yury and Li, Jinwei},
+  title   = {Uncovering correlations between urban road network centrality and
+             human mobility},
+  journal = {International Journal of Advanced Network, Monitoring and Controls},
+  volume  = {6},
+  number  = {4},
+  pages   = {99--112},                 % CONFERIR pagina final
+  year    = {2021},
+  doi     = {10.21307/ijanmc-2021-039}
+}
+
+% Gargalos e rotas alternativas na malha viaria (modelo de Kyiv)
+@inproceedings{stepanchuk2020modelling,
+  author    = {Stepanchuk, Oleksandr and Bieliatynskyi, Andrii and
+               Pylypenko, Oleksandr},
+  title     = {Modelling the bottlenecks interconnection on the city street
+               network},
+  booktitle = {VIII International Scientific Siberian Transport Forum
+               (TransSiberia 2019)},
+  series    = {Advances in Intelligent Systems and Computing},
+  volume    = {1116},
+  publisher = {Springer},
+  year      = {2020},
+  doi       = {10.1007/978-3-030-37919-3_88}
+}
+
+% Rotas alternativas por comunicabilidade em trafego urbano
+@article{silver2018tuned,
+  author  = {Silver, Grant and Akbarzadeh, Meisam and Estrada, Ernesto},
+  title   = {Tuned communicability metrics in networks. The case of alternative
+             routes for urban traffic},
+  journal = {Chaos, Solitons \& Fractals},
+  volume  = {116},
+  pages   = {402--413},
+  year    = {2018},
+  doi     = {10.1016/j.chaos.2018.09.044}
+}
+
+% Resiliencia vs eficiencia (40 areas urbanas dos EUA)
+@article{ganin2017resilience,
+  author  = {Ganin, Alexander A. and Kitsak, Maksim and Marchese, Dayton and
+             Keisler, Jeffrey M. and Seager, Thomas and Linkov, Igor},
+  title   = {Resilience and efficiency in transportation networks},
+  journal = {Science Advances},
+  volume  = {3},
+  number  = {12},
+  pages   = {e1701079},
+  year    = {2017},
+  doi     = {10.1126/sciadv.1701079}
+}
+
+% Resiliencia por topologia, falhas aleatorias/direcionadas (Beirute)
+@article{rouhana2020,
+  author  = {Rouhana, Francesco and Jawad, Dima},
+  title   = {Transportation network resilience against failures: {GIS}-based
+             assessment of network topology role},
+  journal = {International Journal of Disaster Resilience in the Built
+             Environment},
+  year    = {2021},                    % CONFERIR ano do fasciculo (online 2020)
+  doi     = {10.1108/IJDRBE-06-2020-0064}
+}
+
+% Robustez/vulnerabilidade de redes urbanas densas
+@article{alatristasalas2019,
+  author  = {Alatrista-Salas, Hugo and N\'u\~nez del Prado Cortez, Miguel and
+             Rodr\'iguez-L\'opez, Guillermo},
+  title   = {Robustness of densely populated urban networks in relation to the
+             spread of traffic},
+  journal = {Revista Internacional de Tecnolog\'ia, Ciencia y Sociedad},
+  volume  = {8},
+  number  = {1},
+  pages   = {1--10},
+  year    = {2019}
+}
+
+% Indice de perda de serviceabilidade
+@article{ientile2022measuring,
+  author  = {Ientile, Silvia and Bianne, Guillaume and Chevalier, Christophe
+             and Schmidt, Franziska and Rasol, Mezgeen and Orcesi, Andr\'e
+             and Adelaide, Lucas and Nedjar, Boumediene},
+  title   = {Measuring road network resilience by loss of serviceability index
+             for critical road links},
+  journal = {Proceedings of the Institution of Civil Engineers -- Bridge
+             Engineering},
+  volume  = {175},
+  number  = {3},
+  pages   = {160--173},                % CONFERIR intervalo de paginas
+  year    = {2022},
+  doi     = {10.1680/jbren.21.00108}   % CONFERIR DOI
+}
+
+% Topologia da conectividade viaria (homologia persistente)
+@article{corcoran2021persistent,
+  author  = {Corcoran, Padraig and Jones, Christopher B.},
+  title   = {A persistent homology model of street network connectivity},
+  journal = {Transactions in GIS},
+  year    = {2021},
+  doi     = {10.1111/tgis.12844}       % volume/paginas do fasciculo: CONFERIR
+}
+
+% ===== Sintaxe espacial e dados administrativos ============================
+
+% Fundacao da sintaxe espacial (integration/choice sobre mapa axial) -- unica
+% citacao de space syntax do artigo (Secao 2), acrescentada para responder ao
+% ponto 6 do Fernando ("falta a literatura obvia do campo").
+@book{hillier1984social,
+  author    = {Hillier, Bill and Hanson, Julienne},
+  title     = {The Social Logic of Space},
+  publisher = {Cambridge University Press},
+  address   = {Cambridge},
+  year      = {1984},
+  isbn      = {978-0-521-36784-4},     % CONFERIR ISBN (paperback vs. hardback)
+  doi       = {10.1017/CBO9780511597237}
+}
+
+% Poligono administrativo oficial de bairro, usado para corrigir o bbox
+% manual de Copacabana (Secao 3.1) -- dataset vivo, sem ano de publicacao
+% fixo; citado como acessado durante a pesquisa (set/2026).
+@misc{ipp_bairros,
+  author       = {{Instituto Pereira Passos (IPP) / Prefeitura da Cidade do
+                   Rio de Janeiro}},
+  title        = {Limite de Bairros},
+  howpublished = {Data.Rio -- Portal de Dados Abertos, camada ArcGIS REST
+                  \emph{Cartografia/Limites\_administrativos}},
+  year         = {2024},               % CONFERIR ano da versao do dataset
+  note         = {Acessado em setembro de 2026},
+  url          = {https://www.data.rio/datasets/PCRJ::limite-de-bairros/about}
+}
+
+% ===== Algoritmos classicos ================================================
+
+% Pontes/articulacoes fortes (conexidade dirigida) em tempo linear
+@article{italiano2012finding,
+  author  = {Italiano, Giuseppe F. and Laura, Luigi and Santaroni, Federico},
+  title   = {Finding strong bridges and strong articulation points in linear
+             time},
+  journal = {Theoretical Computer Science},
+  volume  = {447},
+  pages   = {74--84},
+  year    = {2012},
+  doi     = {10.1016/j.tcs.2011.11.011}
+}
+
+% Pontes/articulacoes (nao dirigidas) por busca em profundidade
+@article{tarjan1972depth,
+  author  = {Tarjan, Robert},
+  title   = {Depth-first search and linear graph algorithms},
+  journal = {SIAM Journal on Computing},
+  volume  = {1},
+  number  = {2},
+  pages   = {146--160},
+  year    = {1972},
+  doi     = {10.1137/0201010}
+}
+
+% Algoritmo de betweenness
+@article{brandes2001faster,
+  author  = {Brandes, Ulrik},
+  title   = {A faster algorithm for betweenness centrality},
+  journal = {The Journal of Mathematical Sociology},
+  volume  = {25},
+  number  = {2},
+  pages   = {163--177},
+  year    = {2001},
+  doi     = {10.1080/0022250X.2001.9990249}
+}
+
+@article{dijkstra1959note,
+  author  = {Dijkstra, Edsger W.},
+  title   = {A note on two problems in connexion with graphs},
+  journal = {Numerische Mathematik},
+  volume  = {1},
+  pages   = {269--271},
+  year    = {1959},
+  doi     = {10.1007/BF01386390}
+}
+
+@article{bellman1958routing,
+  author  = {Bellman, Richard},
+  title   = {On a routing problem},
+  journal = {Quarterly of Applied Mathematics},
+  volume  = {16},
+  pages   = {87--90},
+  year    = {1958}
+}
+
+@article{edmonds1972theoretical,
+  author  = {Edmonds, Jack and Karp, Richard M.},
+  title   = {Theoretical improvements in algorithmic efficiency for network
+             flow problems},
+  journal = {Journal of the ACM},
+  volume  = {19},
+  number  = {2},
+  pages   = {248--264},
+  year    = {1972},
+  doi     = {10.1145/321694.321699}
+}

@@ -1,0 +1,570 @@
+% =====================================================================
+% ICITS'27 — Springer LNNS (Lecture Notes in Networks and Systems)
+% Classe: llncs (Overleaf: "Springer Lecture Notes in Computer Science").
+% Idioma: inglês.  Limite: 12 páginas.  Revisão: DOUBLE-BLIND (anônimo).
+% =====================================================================
+\documentclass[runningheads]{llncs}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage[hidelinks]{hyperref}
+\usepackage{placeins} % \FloatBarrier: evita que figuras pendentes sejam
+                       % empurradas para depois das Referências (Fernando, "ajustes menores")
+
+\begin{document}
+
+% --- DOUBLE-BLIND: sem nomes/afiliações na submissão ------------------
+\title{Directed Structure Reveals an Access Bottleneck that
+Undirected Analysis Misses: A Graph Study of Three Rio de Janeiro
+Neighbourhoods}
+
+\titlerunning{Directed Structure and Access Bottlenecks in Street Networks}
+
+\author{Anonymous Author(s)}
+\authorrunning{Anonymous}
+\institute{Affiliation withheld for double-blind review}
+
+\maketitle
+
+% =====================================================================
+\begin{abstract}
+This exploratory study models the street networks of three Rio de Janeiro
+neighbourhoods as directed, weighted graphs from OpenStreetMap, asking
+whether \emph{directed} structure reveals an access bottleneck that
+undirected analysis misses, and whether it reflects geography rather than
+size. The resulting route count could help a mobility or civil-defence
+authority flag a neighbourhood with only one way out. Using classical
+algorithms (connectivity, Dijkstra,
+Bellman--Ford, betweenness centrality, Edmonds--Karp maximum flow), we
+compare a compact peninsula (Urca) with two large, open beachfront grids
+(Copacabana and Botafogo). Structural indicators separate both grids from
+Urca but, once a bounding-box error that misattributed part of Botafogo to
+Copacabana is corrected, no longer resemble each other closely.
+Node-to-node minimum cut saturates at one everywhere; a maximum flow from
+each core to its real administrative gateways instead orders the cases:
+one gateway for Urca, eighteen for Copacabana, sixteen for Botafogo. The
+bottleneck is thus specific to the peninsula's geography, not its size,
+and does \emph{not} generalise to large neighbourhoods. All code and data
+are open and reproducible.
+
+\keywords{Urban mobility \and Directed graphs \and Strong connectivity
+\and Betweenness centrality \and Maximum flow \and Street networks
+\and OpenStreetMap.}
+\end{abstract}
+
+% =====================================================================
+\section{Introduction}
+\label{sec:intro}
+
+Street networks are naturally modelled as graphs whose vertices are
+intersections and whose edges are street segments. Whether the model is
+\emph{directed} matters: one-way regulation can leave an intersection
+reachable but offer no way back, a distinction that an undirected model
+cannot express. This paper is an exploratory study that characterises the
+street networks of three neighbourhoods of Rio de Janeiro and tests one
+guiding question: does the directed structure reveal an access bottleneck
+that the undirected view misses, and is that bottleneck a property of the
+neighbourhood's \emph{geography} rather than of its \emph{size}?
+
+To separate geography from size we compare a compact, geographically
+constrained neighbourhood, Urca (a peninsula reached from the rest of the
+city through a single corridor), against two large, open beachfront grids,
+Copacabana and Botafogo. The two large grids act as comparison cases: if
+Urca's pattern were merely an artefact of small scale, the metrics would
+line up with size; if it is geographic, Urca should stand apart from both
+large grids. Copacabana is of particular interest because its access to
+the rest of the city is popularly associated with a small number of
+tunnels, which makes it a plausible candidate for a severe structural
+bottleneck.
+
+Beyond the algorithmic question, the access flow has a direct practical
+reading: the number of independent routes a neighbourhood would lose
+before becoming unreachable by street, useful when planning around a
+flood, a landslide, or a tunnel closure.
+
+The contributions are: (i) a fully reproducible pipeline that builds
+directed, weighted street graphs from OpenStreetMap, cross-checks their
+extent against official administrative boundaries, and analyses their
+connectivity, centrality and flow; (ii) a comparative characterisation of
+three real neighbourhoods showing that the standard structural indicators
+do \emph{not} distinguish them along a bottleneck axis; and (iii) the
+observation that a maximum flow from each neighbourhood's core to its real
+administrative gateways \emph{does} distinguish them, unlike node-to-node
+minimum cut. We deliberately keep the analysis to $n=3$ contrasting cases and read
+the results as illustrative, not as a statistically generalisable claim.
+
+% =====================================================================
+\section{Related Work}
+\label{sec:related}
+
+Extracting a routable graph from OpenStreetMap and simplifying its
+topology (contracting the shape points that are mere bends of a street into
+single edges between true intersections) is standard practice, popularised
+by tools such as OSMnx~\cite{boeing}; we follow the same construction and
+simplification in a compact, reproducible pipeline, verified against the
+\texttt{networkx} library.
+
+Connectivity has a classical toolkit for \emph{undirected} graphs: bridges and
+articulation points, computed in linear time by Tarjan's depth-first
+search~\cite{tarjan1972depth}, identify the edges and vertices whose removal
+disconnects the network. These primitives answer whether two points remain
+\emph{mutually reachable} when a street closes, but they are blind to
+direction. Italiano et al.~\cite{italiano2012finding} generalised them to
+directed graphs as \emph{strong} bridges and \emph{strong} articulation
+points, whose removal increases the number of strongly connected components,
+and gave linear-time algorithms; the strong notions capture whether one can
+travel \emph{and return}, not merely reach.
+
+The distinction is not academic for street networks, where one-way regulation
+is pervasive (74--93\% of segments in our cases). Tools such as
+OSMnx~\cite{boeing} build directed street graphs, yet connectivity and
+resilience studies commonly reduce them to the undirected graph or to aggregate
+topological summaries~\cite{corcoran2021persistent}, conflating ``reachable''
+with ``reachable and returnable'' and hiding the effect of direction. We apply
+the strong notions to real neighbourhoods, report the weak (undirected) and
+strong pictures side by side, and quantify how much the strongly connected core
+shrinks under directedness --- a gap the undirected analysis cannot see. We
+favour transparency over asymptotics: rather than Italiano's linear-time
+algorithm, we recompute strong components after removing each candidate
+element, restricted to the giant strong core, which runs in seconds at
+this scale (tens to a few hundred intersections), a simplicity choice, not
+a scalability claim.
+
+A large body of work locates critical points in street networks through
+centrality, especially betweenness~\cite{kirkley2018betweenness,halavachou2021uncovering},
+and through models of street bottlenecks~\cite{stepanchuk2020modelling}. A
+much older tradition, space syntax, reads accessibility from configurational
+measures such as integration and choice computed on the axial or segment
+map of a settlement~\cite{hillier1984social}. Both traditions summarise a
+network into a single score per vertex; neither directly answers how many
+\emph{independent} routes connect two regions, the question that matters
+before closing a street. We
+instead read bottlenecks through maximum flow / minimum cut, which counts
+street-disjoint routes explicitly and is comparable in spirit to, but
+coarser-grained than, either aggregate approach.
+
+Resilience of urban networks has been studied as the degradation of
+service under failure. Ganin et al.~\cite{ganin2017resilience}, across
+forty US urban areas, find that efficiency and resilience vary
+independently; our comparison cannot test that claim directly, but is
+consistent with it, since Urca is not inefficient yet is by far the most
+structurally fragile of the three cases. Topology-based assessments simulate random and
+targeted failures to rank critical elements~\cite{rouhana2020,alatristasalas2019};
+Ientile et al.~\cite{ientile2022measuring} formalise a loss-of-serviceability
+index; and a topological approach~\cite{corcoran2021persistent} describes the
+shape of road networks. We measure resilience concretely, as the number
+of origin--destination pairs that lose all connection when a single strong
+element is removed, and we relate the cost of a forced detour to the
+alternative-route literature~\cite{silver2018tuned}. Against this
+background, most analyses either treat the network as undirected or
+summarise it through an aggregate score; few isolate the effect of
+\emph{directedness} on access connectivity and contrast it across
+neighbourhoods of distinct geography, which is the gap this paper explores.
+
+% =====================================================================
+\section{Methodology}
+\label{sec:method}
+
+\subsection{Data and Graph Construction}
+\label{sec:data}
+
+For each neighbourhood we query the drivable ways (\texttt{highway} of
+motorway to residential classes) inside a bounding box from the
+OpenStreetMap Overpass API, and cache the raw response so that the analysis
+is reproducible offline. Each street segment becomes a directed arc
+respecting its \texttt{oneway} tag: a two-way street yields two opposite
+arcs, a one-way street a single arc. Degree-two shape points are contracted,
+so that vertices are true intersections and edges are the streets between
+them; without this step every bend of a street would become a spurious
+articulation point. Coordinates are projected to metres and each edge is
+weighted by its travel time, computed from its length and a default speed
+per road class when OpenStreetMap gives no \texttt{maxspeed}. Figure~%
+\ref{fig:construction} illustrates the conversion from map to directed
+graph.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{Figures/fig_construction.png}
+\caption{From map to directed graph: intersections become vertices and
+street segments become arcs; a one-way street yields a single arc (arrow),
+a two-way street two opposite arcs.}
+\label{fig:construction}
+\end{figure}
+
+A hand-drawn bounding box is a modelling choice, and we found it to be a
+consequential one. Copacabana's box was originally drawn to keep its two
+road tunnels as internal edges, extending north past the administrative
+border with Botafogo. Cross-checking every intersection against the
+official neighbourhood polygon (Instituto Pereira Passos / Data.Rio,
+``Limite de Bairros''~\cite{ipp_bairros}) showed that 158 of its 496
+intersections, and 155 of its street segments, in fact lay inside
+Botafogo's own territory: the two published networks shared 143
+identical OpenStreetMap intersections. We therefore use the hand-drawn box
+only as a search envelope, unioned with the official polygon's own bounding
+box to guarantee full coverage, and clip the resulting graph to the
+official polygon before any analysis. Urca and Botafogo needed no such
+correction: at most four of their intersections fall outside their own
+polygon, and none of their published numbers change. Every Copacabana
+figure and table in this paper reflects the corrected, polygon-clipped
+network of 345 intersections (Table~\ref{tab:redes}), not the original 496.
+
+\begin{table}[t]
+\centering
+\caption{Networks after topological simplification (OpenStreetMap);
+Copacabana is clipped to its official administrative polygon.}
+\label{tab:redes}
+\begin{tabular}{lrrr}
+\toprule
+ & Urca & Copacabana & Botafogo \\
+\midrule
+Intersections ($V$)                & 60   & 345  & 398 \\
+Street segments                    & 89   & 494  & 500 \\
+One-way segments (\%)              & 93.3 & 74.9 & 76.4 \\
+Strongly connected core ($V$)      & 37   & 331  & 341 \\
+Outside the giant core (\% of $V$) & 38.3 & 4.1  & 14.3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Figure~\ref{fig:networks} shows the three networks after simplification, with
+one-way and two-way segments distinguished. Urca's two residential grids,
+joined by a single two-way corridor, are visible against the large open grids
+of Copacabana and Botafogo; this corridor is the access constriction analysed
+in Section~\ref{sec:results}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{Figures/fig_networks.png}
+\caption{The three neighbourhood networks after topological simplification
+(one-way in dark, two-way in orange). Urca is a compact peninsula whose two
+grids meet at a single two-way corridor; Copacabana and Botafogo are large
+open grids. The Copacabana panel reflects the corrected, polygon-clipped
+network.}
+\label{fig:networks}
+\end{figure}
+
+\subsection{Connectivity, Shortest Paths, and Flow}
+\label{sec:algos}
+
+All analyses run over a directed, weighted adjacency-list graph, and our
+implementations were verified against the \texttt{networkx} library.
+Undirected connected components and directed strongly connected components
+(SCC) are found with breadth-first search, the latter by intersecting the
+reachable set in the graph with the reachable set in its reverse.
+\emph{Weak} bridges and articulation points are computed directly from
+their definition, removing the element and recounting undirected
+components. \emph{Strong} bridges and articulation points are obtained
+analogously in the directed setting: an element is strong when its removal
+splits the giant strongly connected core into more than one SCC, following
+the definitions of Italiano et al.~\cite{italiano2012finding}. Shortest
+paths use Dijkstra~\cite{dijkstra1959note} with a binary heap, independently
+verified by Bellman--Ford~\cite{bellman1958routing}; an alternative route
+is the shortest path recomputed after blocking one segment
+(Section~\ref{sec:res-resil}). Maximum
+flow and minimum cut use Edmonds--Karp~\cite{edmonds1972theoretical} with
+unit capacity per street, so that the maximum flow between two points
+equals the number of street-disjoint routes between them and the minimum
+cut is the smallest set of streets whose closure separates them.
+Betweenness centrality is computed with Brandes'
+algorithm~\cite{brandes2001faster} on the directed graph, weighting
+shortest paths by travel time, so that a vertex's score is the fraction of
+minimum-time origin--destination pairs routed through it.
+
+\subsection{Gateway Access Flow}
+\label{sec:access-flow}
+
+The minimum cut between two single intersections turns out to saturate
+at one in all three networks (Section~\ref{sec:results}): because
+one-way-dense grids contain undirected bridges almost everywhere, nearly
+every origin--destination pair is separated by a single edge close to an
+endpoint, long before any geographic constriction.
+
+To measure access to the rest of the city, rather than an arbitrary
+internal crossing, we distinguish a neighbourhood's \emph{interior} from
+its \emph{gateways}. Each street network is extracted with a small buffer
+beyond the neighbourhood's own boundary (its official polygon for
+Copacabana, its query bounding box for Urca and Botafogo), large enough to
+include the first intersection beyond the boundary on every street that
+crosses it. A vertex is a \emph{gateway} if at least one of its incident
+edges crosses that boundary; every other vertex is \emph{interior}. The
+gateway set is therefore the set of points through which one can
+physically leave the neighbourhood, not an internal landmark chosen by a
+distance heuristic. Because a gateway may admit traffic in only one
+direction, we restrict the interior and the gateway set to the
+neighbourhood's largest \emph{undirected} component, not its strongly
+connected core: a one-way exit is still a real way out.
+
+The source region is the fraction $f$ ($f=0.2$) of interior intersections
+farthest, in number of edges, from the nearest gateway, that is, the
+neighbourhood's core. A super-source feeds the source region and the full
+gateway set feeds a super-sink, both with infinite capacity, and
+Edmonds--Karp is run between them over the unit-capacity network. The
+resulting value, which we call the \emph{access flow}, is the number of
+street-disjoint routes between the neighbourhood's core and its actual
+exits to the rest of the city (Section~\ref{sec:res-access}); it is stable
+under $f \in [0.15, 0.25]$ for all three neighbourhoods, and, for Urca, under
+a boundary search margin between 200 and 800\,m.
+
+This replaces an earlier definition built from two internal poles found by
+a graph double sweep, which measured the narrowest crossing along the
+neighbourhood's longest axis but never referenced its actual boundary; we
+keep that construction only as an internal cross-check that the source
+region and gateway set never overlap.
+
+% =====================================================================
+\section{Results}
+\label{sec:results}
+
+\subsection{Structural Indicators Do Not Separate the Cases}
+\label{sec:res-struct}
+
+Table~\ref{tab:estrutural} reports the directed structural indicators as
+proportions, since the raw counts are not comparable across such different
+sizes. Both large grids remain far from Urca's regime, but they no longer
+track each other closely once Copacabana is corrected to its official
+boundary (Section~\ref{sec:data}): Botafogo has considerably more strong
+bridges (70.4\% of its core streets) and strong articulations (63.9\%) than
+Copacabana (45.3\% and 54.1\%). Urca does not stand out decisively on these
+proportions either (67.3\% strong bridges, 75.7\% strong articulations).
+Figure~\ref{fig:urca-strong} shows, for Urca, that the strong elements
+concentrate inside the residential grid rather than on a single access
+point. The proportions therefore separate Urca from both open grids, but
+not the two open grids from each other, a contrast developed further in
+Section~\ref{sec:discussion}.
+
+\begin{table}[t]
+\centering
+\caption{Directed structural indicators (normalised); Copacabana values
+are for the corrected, polygon-clipped network.}
+\label{tab:estrutural}
+\begin{tabular}{lrrr}
+\toprule
+ & Urca & Copacabana & Botafogo \\
+\midrule
+Weak bridges (\% of segments)       & 10.1 & 15.8 & 25.2 \\
+Strong bridges (\% of core streets) & 67.3 & 45.3 & 70.4 \\
+Strong articulations (\% of core)   & 75.7 & 54.1 & 63.9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.72\textwidth]{Figures/fig_urca_strong.png}
+\caption{Directed structural bottlenecks in Urca: streets whose removal
+fragments the strongly connected core (strong bridges) and intersections
+with the same property (strong articulation points). They lie mostly inside
+the residential grid, not at a single access point.}
+\label{fig:urca-strong}
+\end{figure}
+
+\subsection{Node-to-Node Minimum Cut Saturates}
+\label{sec:res-mincut}
+
+For a well-connected origin and destination inside the strong core, the
+Edmonds--Karp minimum cut equals one in all three neighbourhoods. The single
+cut edge lies near one endpoint rather than at any geographic narrowing:
+because the undirected network has bridges throughout, an origin--destination
+pair almost always has a single separating street close to it. Node-to-node
+minimum cut is therefore uninformative about access; it measures a local
+bridge, not the neighbourhood's connection to the rest of the city.
+
+\subsection{Gateway Access Flow Separates the Cases}
+\label{sec:res-access}
+
+The gateway access flow of Section~\ref{sec:access-flow} does order the
+cases (Table~\ref{tab:acesso}). Urca has a single street-disjoint route
+between its core and its four real gateways to the rest of the city, and
+this value is stable for $f \in [0.15,0.25]$ and for a boundary search
+margin between 200 and 800\,m. Copacabana offers eighteen such routes
+through twenty-one gateways, stable across the same range of $f$; Botafogo
+offers fifteen to sixteen through twenty-eight, the only one of the three
+values with any sensitivity to $f$ at all, and still an order of magnitude
+above Urca throughout. This is the only indicator that isolates an access
+bottleneck, and it does not follow size: Botafogo (6--8 times larger than
+Urca) and the now much smaller, post-correction Copacabana both offer an
+order of magnitude more gateway routes than Urca. Copacabana's access is
+not reduced to its two tunnels: they are only two of its twenty-one
+gateways, so surface streets carry most of its eighteen disjoint routes.
+
+\begin{table}[t]
+\centering
+\caption{Gateway access flow: street-disjoint routes from each
+neighbourhood's core to its real administrative gateways ($f=0.2$; see
+Section~\ref{sec:access-flow} for the range of $f$ and, for Urca, of the
+boundary search margin).}
+\label{tab:acesso}
+\begin{tabular}{lrrr}
+\toprule
+ & Urca & Copacabana & Botafogo \\
+\midrule
+Gateways identified              & 4    & 21             & 28 \\
+Access flow (routes)             & 1    & 18             & 16 \\
+Max betweenness (\% of pairs)    & 52.2 & 27.8 & 22.5 \\
+Interpretation                   & single corridor & open grid & open grid \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Betweenness Concentrates on One Intersection in Urca}
+\label{sec:res-betweenness}
+
+Directed betweenness centrality, weighted by travel time, is consistent
+with the access-flow reading across all three neighbourhoods
+(Figure~\ref{fig:betweenness}). In Urca a single intersection lies on 52\%
+of all minimum-time origin--destination pairs, the one at the neck of the
+access corridor. Copacabana and Botafogo have no such dominant vertex:
+their most central intersections reach 27.8\% and 22.5\% respectively,
+with the load spread along a Y-shaped arterial spine in Copacabana and
+along parallel spines in Botafogo. Copacabana's figure sits somewhat above
+Botafogo's, one more indicator on which the two open grids no longer track
+each other exactly once Copacabana is corrected
+(Section~\ref{sec:discussion}). We report the maximum rather than a
+concentration index because the latter is confounded by core size (a small
+core raises the median and lowers inequality regardless of geography); the
+maximum, already normalised by the number of pairs, is comparable across
+sizes and again isolates Urca.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{Figures/fig_betweenness.png}
+\caption{Directed betweenness centrality (shortest-time paths, strong
+core). Urca's access corridor is a single hotspot; Copacabana's load
+concentrates along a Y-shaped arterial spine and Botafogo's along parallel
+spines, both with a markedly lower maximum than Urca's.}
+\label{fig:betweenness}
+\end{figure}
+
+\subsection{Resilience of the Strong Core}
+\label{sec:res-resil}
+
+We measure resilience exhaustively, closing each strong bridge or strong
+articulation in turn and counting, over all ordered pairs of the core, how
+many lose all connection. In Urca (1\,332 core pairs), the median strong
+bridge disconnects 138 pairs and the worst 644; the median strong
+articulation disconnects 219 and the worst 694. In Copacabana (109\,230
+pairs on the corrected network) the median strong bridge disconnects 660
+pairs and the worst 14\,280; in Botafogo (115\,940 pairs), 1\,016 and
+18\,122. The \emph{fraction} of the core isolated is much higher in Urca
+(a median of 10.4\% for strong bridges against 0.6\% and 0.9\% in the large
+grids), but this is partly a size effect: a single removed element cuts a
+larger share of a small core, so the absolute counts and the core size in
+Table~\ref{tab:redes} should be read together. The qualitative point is
+robust: in every neighbourhood no strong bridge is harmless, the least
+damaging one still isolates a non-trivial number of pairs, and the impact
+of an element is not a fixed property but depends on which pair is
+considered.
+
+Beyond binary connectivity, a forced detour has a measurable cost.
+Recomputing the shortest route after blocking one non-bridge segment on it
+increases travel time by 13.6\% in Urca, 5.1\% in Copacabana, and 6.0\% in
+Botafogo. The same routes also cross segments that are themselves strong
+bridges (3, 4, and 1 respectively): closing any of those admits no detour
+at all, only the disconnection already quantified above.
+
+% =====================================================================
+\section{Discussion}
+\label{sec:discussion}
+
+Read together, the indicators still separate Urca from both open grids, but
+no longer group Copacabana and Botafogo as closely as an uncorrected
+reading would suggest. Urca is the \emph{constrained} case: 93.3\% of its
+segments are one-way, this directedness removes 38.3\% of its intersections
+from the strong core, and a single gateway-disjoint route connects its core
+to the rest of the city, one intersection lying on 52\% of its minimum-time
+routes. Copacabana and Botafogo are both \emph{open} cases in the sense
+that matters for access: neither shows anything resembling Urca's
+single-gateway pattern, offering eighteen and sixteen gateway-disjoint
+routes respectively, and both have a similarly high share of one-way
+segments (74.9\% and 76.4\%). They are not, however, structural twins:
+once Copacabana's network is corrected to its official administrative
+boundary, its strong-bridge and strong-articulation proportions (45.3\%
+and 54.1\%) fall well below Botafogo's (70.4\% and 63.9\%,
+Table~\ref{tab:estrutural}), even though the raw one-way share barely
+moved. The access bottleneck remains a property of Urca's
+geography, a peninsula with one corridor, and does not generalise to a
+large neighbourhood of either profile.
+
+The most counter-intuitive result concerns Copacabana. Its access is
+popularly associated with a few tunnels, which made it a plausible
+candidate for a severe structural bottleneck. Yet at this resolution the
+tunnel reputation does not translate into a measurable one: of the
+twenty-one gateways found on its corrected boundary, the two tunnels are
+only part of the count, and surface streets carry the rest of its eighteen
+gateway-disjoint routes to the rest of the city. A three-step reading of
+small, large, and no bottleneck is therefore not supported by the data; a
+two-way contrast of constrained versus open is.
+
+Several threats to validity temper these observations. The study rests on
+$n=3$ contrasting cases and is illustrative, not statistically general.
+Comparing neighbourhoods of distinct geography requires a spatial extent
+that is itself a modelling choice, and that choice is not free of risk: a
+hand-drawn bounding box for Copacabana placed 158 of its 496 intersections
+inside Botafogo's official territory (Section~\ref{sec:data}); every
+Copacabana number here reflects the corrected network, and we regard the
+discrepancy as a caution for any study that defines a neighbourhood by a
+hand-drawn box near a shared border. Urca and Botafogo needed no such
+correction. The gateway definition depends on a fixed boundary search
+margin, tested from 200 to 800\,m around Urca without any change in its
+access flow but not yet repeated on the corrected Copacabana network. Unit
+capacity treats every street alike, ignoring width and number of lanes;
+travel times rest on default speeds where OpenStreetMap gives none; the
+connectivity results depend directly on the quality of the \texttt{oneway}
+tags, which are dense in these neighbourhoods (up to 93.3\% of Urca's
+segments) and therefore consequential; and the betweenness maximum in
+Table~\ref{tab:acesso} is not yet checked against a null model, so we
+cannot rule out that part of the gap between Urca and the two open grids
+reflects core size rather than geography alone
+(Section~\ref{sec:res-betweenness}). Figure~\ref{fig:comparison} summarises the normalised
+indicators, updated for the corrected Copacabana network.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{Figures/fig_comparison.png}
+\caption{Normalised structural indicators per neighbourhood, updated for
+the corrected Copacabana network. The structural proportions separate Urca
+from both open grids but no longer equate the two open grids; the access
+flow of Table~\ref{tab:acesso} is what isolates Urca's single gateway.}
+\label{fig:comparison}
+\end{figure}
+\FloatBarrier
+
+% =====================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+The standard structural indicators, strong bridges and strong articulation
+points, do not separate the cases along a bottleneck axis: both open grids remain far
+from Urca's regime, but, once Copacabana's network is corrected to its
+official administrative boundary, the two open grids no longer resemble
+each other as closely as an uncorrected reading would suggest. Node-to-node
+minimum cut is uninformative here, saturating at one because one-way-dense
+grids contain undirected bridges almost everywhere. The distinguishing
+signal comes from a maximum flow between each neighbourhood's core and its
+real administrative gateways: the peninsula connects to the rest of the
+city through a single street-disjoint gateway, whereas Copacabana offers
+eighteen and Botafogo sixteen. A forced detour around a closed street also
+costs more in Urca (13.6\% extra travel time) than in either open grid
+(5.1\% and 6.0\%). The access bottleneck is thus a property of the
+peninsula's geography and does not generalise to large neighbourhoods, not
+even to one reputed for tunnel-constrained access. These observations rest
+on $n=3$ contrasting cases and are illustrative, not statistically general;
+extending the comparison to more neighbourhoods, correlating access flow
+with a geometric shape index, and checking the betweenness maximum against
+a null model (Section~\ref{sec:discussion}) are left for future work.
+
+\subsubsection*{Reproducibility.} All source code and data are openly
+available (repository withheld for double-blind review).
+
+% =====================================================================
+\bibliographystyle{splncs04}
+\bibliography{references}
+% Bibliografia em references.bib. NOVAS entradas a acrescentar (ver aviso
+% no final da resposta): hillier1984social, ipp_bairros.
+
+\end{document}
