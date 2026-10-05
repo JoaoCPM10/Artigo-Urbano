@@ -1,0 +1,80 @@
+[
+  {
+    "bairro": "Urca",
+    "recorte": "retangulo manual",
+    "V": 60,
+    "trechos": 89,
+    "nucleo": 37,
+    "fora_nucleo_pct": 38.3,
+    "pontes_fortes_pct": 67.3,
+    "articulacoes_fortes_pct": 75.7,
+    "portas": 4,
+    "fluxo": 1,
+    "intermediacao_max_pct": 52.2
+  },
+  {
+    "bairro": "Urca",
+    "recorte": "poligono oficial",
+    "V": 70,
+    "trechos": 104,
+    "nucleo": 65,
+    "fora_nucleo_pct": 7.1,
+    "pontes_fortes_pct": 61.5,
+    "articulacoes_fortes_pct": 73.8,
+    "portas": 3,
+    "fluxo": 1,
+    "intermediacao_max_pct": 54.2
+  },
+  {
+    "bairro": "Copacabana",
+    "recorte": "retangulo manual",
+    "V": 496,
+    "trechos": 661,
+    "nucleo": 399,
+    "fora_nucleo_pct": 19.6,
+    "pontes_fortes_pct": 53.1,
+    "articulacoes_fortes_pct": 58.1,
+    "portas": 45,
+    "fluxo": 13,
+    "intermediacao_max_pct": 30.2
+  },
+  {
+    "bairro": "Copacabana",
+    "recorte": "poligono oficial",
+    "V": 345,
+    "trechos": 494,
+    "nucleo": 331,
+    "fora_nucleo_pct": 4.1,
+    "pontes_fortes_pct": 45.3,
+    "articulacoes_fortes_pct": 54.1,
+    "portas": 21,
+    "fluxo": 18,
+    "intermediacao_max_pct": 27.8
+  },
+  {
+    "bairro": "Botafogo",
+    "recorte": "retangulo manual",
+    "V": 398,
+    "trechos": 500,
+    "nucleo": 341,
+    "fora_nucleo_pct": 14.3,
+    "pontes_fortes_pct": 70.4,
+    "articulacoes_fortes_pct": 63.9,
+    "portas": 28,
+    "fluxo": 16,
+    "intermediacao_max_pct": 22.5
+  },
+  {
+    "bairro": "Botafogo",
+    "recorte": "poligono oficial",
+    "V": 434,
+    "trechos": 563,
+    "nucleo": 392,
+    "fora_nucleo_pct": 9.7,
+    "pontes_fortes_pct": 68.4,
+    "articulacoes_fortes_pct": 63.5,
+    "portas": 31,
+    "fluxo": 15,
+    "intermediacao_max_pct": 22.4
+  }
+]

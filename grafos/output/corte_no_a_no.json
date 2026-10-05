@@ -1,0 +1,37 @@
+{
+  "n_pares": 300,
+  "semente": 5,
+  "bairros": {
+    "Urca": {
+      "distribuicao": {
+        "1": 210,
+        "2": 34,
+        "3": 56
+      },
+      "pct_corte_1": 70.0,
+      "media": 1.49,
+      "maximo": 3
+    },
+    "Copacabana": {
+      "distribuicao": {
+        "1": 122,
+        "2": 80,
+        "3": 80,
+        "4": 18
+      },
+      "pct_corte_1": 40.7,
+      "media": 1.98,
+      "maximo": 4
+    },
+    "Botafogo": {
+      "distribuicao": {
+        "1": 156,
+        "2": 80,
+        "3": 64
+      },
+      "pct_corte_1": 52.0,
+      "media": 1.69,
+      "maximo": 3
+    }
+  }
+}

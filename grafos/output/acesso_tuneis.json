@@ -1,0 +1,35 @@
+[
+  {
+    "bairro": "Urca",
+    "portas": 3,
+    "portas_de_tunel": 0,
+    "tuneis": [],
+    "fluxo": 1,
+    "fluxo_sem_portas_de_tunel": 1,
+    "portas_restantes": 3
+  },
+  {
+    "bairro": "Copacabana",
+    "portas": 21,
+    "portas_de_tunel": 4,
+    "tuneis": [
+      "Túnel Novo",
+      "Túnel Velho"
+    ],
+    "fluxo": 18,
+    "fluxo_sem_portas_de_tunel": 15,
+    "portas_restantes": 17
+  },
+  {
+    "bairro": "Botafogo",
+    "portas": 31,
+    "portas_de_tunel": 4,
+    "tuneis": [
+      "Túnel Novo",
+      "Túnel Velho"
+    ],
+    "fluxo": 15,
+    "fluxo_sem_portas_de_tunel": 15,
+    "portas_restantes": 27
+  }
+]

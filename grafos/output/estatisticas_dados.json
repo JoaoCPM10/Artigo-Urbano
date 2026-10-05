@@ -1,0 +1,72 @@
+{
+  "classes_de_via": [
+    "motorway",
+    "trunk",
+    "primary",
+    "secondary",
+    "tertiary",
+    "unclassified",
+    "residential",
+    "living_street",
+    "road",
+    "motorway_link",
+    "trunk_link",
+    "primary_link",
+    "secondary_link",
+    "tertiary_link"
+  ],
+  "velocidade_padrao_kmh": {
+    "motorway": 90,
+    "trunk": 80,
+    "primary": 60,
+    "secondary": 50,
+    "tertiary": 40,
+    "unclassified": 40,
+    "residential": 30,
+    "living_street": 20,
+    "road": 30,
+    "motorway_link": 60,
+    "trunk_link": 50,
+    "primary_link": 40,
+    "secondary_link": 40,
+    "tertiary_link": 30
+  },
+  "bairros": {
+    "Urca": {
+      "osm_timestamp": "2026-09-23T23:19:35Z",
+      "overpass": "Overpass API 0.7.62.11 87bfad18",
+      "vias": 355,
+      "vias_com_maxspeed": 120,
+      "cadeias_mantidas": 370,
+      "lacos_descartados": 0,
+      "cadeias_mistas_descartadas": 3,
+      "pares_com_rua_paralela_na_rede_recortada": 3,
+      "pct_vias_com_maxspeed": 33.8,
+      "pct_cadeias_descartadas": 0.8
+    },
+    "Copacabana": {
+      "osm_timestamp": "2026-09-21T00:50:50Z",
+      "overpass": "Overpass API 0.7.62.11 87bfad18",
+      "vias": 609,
+      "vias_com_maxspeed": 192,
+      "cadeias_mantidas": 793,
+      "lacos_descartados": 1,
+      "cadeias_mistas_descartadas": 1,
+      "pares_com_rua_paralela_na_rede_recortada": 2,
+      "pct_vias_com_maxspeed": 31.5,
+      "pct_cadeias_descartadas": 0.25
+    },
+    "Botafogo": {
+      "osm_timestamp": "2026-09-23T23:25:35Z",
+      "overpass": "Overpass API 0.7.62.11 87bfad18",
+      "vias": 811,
+      "vias_com_maxspeed": 142,
+      "cadeias_mantidas": 891,
+      "lacos_descartados": 0,
+      "cadeias_mistas_descartadas": 3,
+      "pares_com_rua_paralela_na_rede_recortada": 4,
+      "pct_vias_com_maxspeed": 17.5,
+      "pct_cadeias_descartadas": 0.34
+    }
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "rede": {
+    "fonte": "OpenStreetMap (Overpass API)",
+    "bairro": "Copacabana, Rio de Janeiro",
+    "bairro_slug": "copacabana",
+    "bbox": "-22.988,-43.19796554808961,-22.955,-43.16961466565091",
+    "bbox_recortado_por_poligono_oficial": true,
+    "n_removidos_fora_do_poligono": 249,
+    "pontos_osm": 3337,
+    "vias_osm": 609,
+    "V_intersecoes": 345,
+    "E_arcos": 618,
+    "trechos": 494
+  },
+  "conectividade": {
+    "componentes": 2,
+    "maior_componente": 344,
+    "scc": 9,
+    "maior_scc": 331,
+    "fora_da_scc_gigante": 14,
+    "ruas_sem_saida": 62,
+    "tempo_ms": 3.65
+  },
+  "gargalos_estruturais": {
+    "articulacoes": 68,
+    "pontes": 78,
+    "tempo_ms": 204.79
+  },
+  "gargalos_estruturais_dirigidos": {
+    "nucleo_n": 331,
+    "pares_nucleo": 477,
+    "pontes_fortes": 216,
+    "articulacoes_fortes": 179,
+    "pontes_fraca_e_forte": 69,
+    "pontes_so_forte": 147,
+    "pontes_so_fraca_fora_do_nucleo": 9,
+    "articulacoes_fraca_e_forte": 61,
+    "articulacoes_so_forte": 118,
+    "tempo_ms": 4150.47
+  },
+  "gargalo_corte_minimo": {
+    "origem": 524693757,
+    "destino": 4804748027,
+    "fluxo_maximo": 1,
+    "corte_minimo": 1,
+    "ruas_do_corte": [
+      [
+        524693757,
+        524693739
+      ]
+    ],
+    "outros_pontos_unicos_de_falha_na_rota": [
+      [
+        524693739,
+        524693796
+      ],
+      [
+        2296665236,
+        4804746218
+      ],
+      [
+        4804746218,
+        4804748027
+      ]
+    ],
+    "tempo_ms": 2.06
+  },
+  "travessia_interna_polos": {
+    "polo1": 4148200541,
+    "polo2": 885782026,
+    "fluxo": 6,
+    "corte": 6,
+    "n_origem": 66,
+    "n_destino": 66,
+    "frac": 0.2
+  },
+  "gargalo_acesso_gateway": {
+    "gateways": [
+      142149151,
+      142189206,
+      142195201,
+      146369486,
+      148199735,
+      198137895,
+      250025266,
+      326223777,
+      326224438,
+      378676491,
+      468169877,
+      468170508,
+      524693739,
+      1402823582,
+      1802229131,
+      2112929403,
+      2296665223,
+      4804746218,
+      8165792947,
+      12468325580,
+      12488758575
+    ],
+    "fluxo": 18,
+    "corte": 18,
+    "n_origem": 69,
+    "n_gateways": 21,
+    "frac": 0.2
+  },
+  "intermediacao": {
+    "max_pct_pares": 27.78,
+    "no_max": 146377309,
+    "n_nucleo": 331
+  },
+  "rotas_alternativas": {
+    "origem": 524693757,
+    "destino": 4804748027,
+    "rota_principal_min": 7.24,
+    "intersecoes_rota": 31,
+    "bellman_ford_confere": true,
+    "tempo_dijkstra_ms": 0.77,
+    "tempo_bellman_ford_ms": 2.29,
+    "trecho_bloqueado": [
+      148824290,
+      148824289
+    ],
+    "rota_alternativa_min": 7.61,
+    "acrescimo_pct": 5.1,
+    "pontes_na_rota": 4
+  },
+  "resiliencia": {
+    "n_pares_nucleo": 109230,
+    "pontes_fortes": {
+      "n": 216,
+      "pares_desconectados": {
+        "min": 330,
+        "mediana": 660.0,
+        "max": 14280
+      },
+      "binarias": 76,
+      "com_desvio_parcial": 140,
+      "n_pares_com_desvio_parcial": 576377,
+      "acrescimo_min": {
+        "min": 0.0011833203504020655,
+        "mediana": 0.32579813592504553,
+        "max": 3.757273523863197
+      }
+    },
+    "articulacoes_fortes": {
+      "n": 179,
+      "pares_desconectados": {
+        "min": 659,
+        "mediana": 1314,
+        "max": 15389
+      }
+    },
+    "tempo_ms": 142413.23
+  },
+  "tempo_total_s": 150.4
+}

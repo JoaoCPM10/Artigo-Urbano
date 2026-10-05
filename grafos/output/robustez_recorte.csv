@@ -1,0 +1,7 @@
+bairro,recorte,V,trechos,nucleo,fora_nucleo_pct,pontes_fortes_pct,articulacoes_fortes_pct,portas,fluxo,intermediacao_max_pct
+Urca,retangulo manual,60,89,37,38.3,67.3,75.7,4,1,52.2
+Urca,poligono oficial,70,104,65,7.1,61.5,73.8,3,1,54.2
+Copacabana,retangulo manual,496,661,399,19.6,53.1,58.1,45,13,30.2
+Copacabana,poligono oficial,345,494,331,4.1,45.3,54.1,21,18,27.8
+Botafogo,retangulo manual,398,500,341,14.3,70.4,63.9,28,16,22.5
+Botafogo,poligono oficial,434,563,392,9.7,68.4,63.5,31,15,22.4

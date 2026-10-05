@@ -1,0 +1,135 @@
+{
+  "rede": {
+    "fonte": "OpenStreetMap (Overpass API)",
+    "bairro": "Urca, Rio de Janeiro",
+    "bairro_slug": "urca",
+    "bbox": "-22.961575812597264,-43.1807369532586,-22.93418726549848,-43.146141889328916",
+    "bbox_recortado_por_poligono_oficial": true,
+    "n_removidos_fora_do_poligono": 212,
+    "pontos_osm": 1904,
+    "vias_osm": 355,
+    "V_intersecoes": 70,
+    "E_arcos": 113,
+    "trechos": 104
+  },
+  "conectividade": {
+    "componentes": 1,
+    "maior_componente": 70,
+    "scc": 3,
+    "maior_scc": 65,
+    "fora_da_scc_gigante": 5,
+    "ruas_sem_saida": 5,
+    "tempo_ms": 0.55
+  },
+  "gargalos_estruturais": {
+    "articulacoes": 10,
+    "pontes": 11,
+    "tempo_ms": 6.09
+  },
+  "gargalos_estruturais_dirigidos": {
+    "nucleo_n": 65,
+    "pares_nucleo": 96,
+    "pontes_fortes": 59,
+    "articulacoes_fortes": 48,
+    "pontes_fraca_e_forte": 6,
+    "pontes_so_forte": 53,
+    "pontes_so_fraca_fora_do_nucleo": 5,
+    "articulacoes_fraca_e_forte": 8,
+    "articulacoes_so_forte": 40,
+    "tempo_ms": 95.03
+  },
+  "gargalo_corte_minimo": {
+    "origem": 8843073457,
+    "destino": 6378543788,
+    "fluxo_maximo": 1,
+    "corte_minimo": 1,
+    "ruas_do_corte": [
+      [
+        186319664,
+        186319672
+      ]
+    ],
+    "outros_pontos_unicos_de_falha_na_rota": [
+      [
+        186319672,
+        186314402
+      ],
+      [
+        671070124,
+        186310957
+      ]
+    ],
+    "tempo_ms": 0.61
+  },
+  "travessia_interna_polos": {
+    "polo1": 6378543789,
+    "polo2": 186319653,
+    "fluxo": 1,
+    "corte": 1,
+    "n_origem": 13,
+    "n_destino": 13,
+    "frac": 0.2
+  },
+  "gargalo_acesso_gateway": {
+    "gateways": [
+      146168901,
+      524685163,
+      6378543789
+    ],
+    "fluxo": 1,
+    "corte": 1,
+    "n_origem": 14,
+    "n_gateways": 3,
+    "frac": 0.2
+  },
+  "intermediacao": {
+    "max_pct_pares": 54.24,
+    "no_max": 186310957,
+    "n_nucleo": 65
+  },
+  "rotas_alternativas": {
+    "origem": 186317743,
+    "destino": 186319657,
+    "rota_principal_min": 2.77,
+    "intersecoes_rota": 11,
+    "bellman_ford_confere": true,
+    "tempo_dijkstra_ms": 0.06,
+    "tempo_bellman_ford_ms": 0.18,
+    "trecho_bloqueado": [
+      186323950,
+      366724452
+    ],
+    "rota_alternativa_min": 3.15,
+    "acrescimo_pct": 13.6,
+    "pontes_na_rota": 3
+  },
+  "resiliencia": {
+    "n_pares_nucleo": 4160,
+    "pontes_fortes": {
+      "n": 59,
+      "pares_desconectados": {
+        "min": 64,
+        "mediana": 250,
+        "max": 2112
+      },
+      "binarias": 32,
+      "com_desvio_parcial": 27,
+      "n_pares_com_desvio_parcial": 7249,
+      "acrescimo_min": {
+        "min": 0.0019712791985199373,
+        "mediana": 0.26810537799945944,
+        "max": 2.4384287380861056
+      }
+    },
+    "articulacoes_fortes": {
+      "n": 48,
+      "pares_desconectados": {
+        "min": 127,
+        "mediana": 341.5,
+        "max": 2251
+      }
+    },
+    "tempo_ms": 1233.13
+  },
+  "tempo_total_s": 3.07
+}

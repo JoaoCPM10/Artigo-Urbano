@@ -1,0 +1,297 @@
+[
+  {
+    "bairro": "Urca",
+    "V": 70,
+    "portas": 3,
+    "origem": 14,
+    "fluxo": 1,
+    "corte_edmonds_karp": [
+      {
+        "ruas": [
+          [
+            186319664,
+            186319672
+          ]
+        ],
+        "n_ruas": 1,
+        "nos_lado_origem": 23
+      }
+    ],
+    "cortes_de_uma_rua": [
+      {
+        "rua": [
+          186314402,
+          186319672
+        ],
+        "coords": [
+          [
+            -22.94833,
+            -43.16392
+          ],
+          [
+            -22.9485,
+            -43.16367
+          ]
+        ],
+        "comprimento_m": 32,
+        "nos_lado_origem": 27,
+        "pct_lado_origem": 38.6
+      },
+      {
+        "rua": [
+          186310957,
+          671070124
+        ],
+        "coords": [
+          [
+            -22.95101,
+            -43.1682
+          ],
+          [
+            -22.95081,
+            -43.16797
+          ]
+        ],
+        "comprimento_m": 33,
+        "nos_lado_origem": 33,
+        "pct_lado_origem": 47.1
+      },
+      {
+        "rua": [
+          186319664,
+          186319672
+        ],
+        "coords": [
+          [
+            -22.94781,
+            -43.16265
+          ],
+          [
+            -22.9485,
+            -43.16367
+          ]
+        ],
+        "comprimento_m": 165,
+        "nos_lado_origem": 23,
+        "pct_lado_origem": 32.9
+      }
+    ],
+    "extremos_dos_cortes_sao_as_5_mais_centrais": true,
+    "varredura_f": [
+      {
+        "f": 0.05,
+        "n_origem": 4,
+        "cortes_de_uma_rua": 3,
+        "extremos_entre_as_5_mais_centrais": true
+      },
+      {
+        "f": 0.1,
+        "n_origem": 7,
+        "cortes_de_uma_rua": 3,
+        "extremos_entre_as_5_mais_centrais": true
+      },
+      {
+        "f": 0.15,
+        "n_origem": 10,
+        "cortes_de_uma_rua": 3,
+        "extremos_entre_as_5_mais_centrais": true
+      },
+      {
+        "f": 0.2,
+        "n_origem": 14,
+        "cortes_de_uma_rua": 3,
+        "extremos_entre_as_5_mais_centrais": true
+      },
+      {
+        "f": 0.25,
+        "n_origem": 18,
+        "cortes_de_uma_rua": 3,
+        "extremos_entre_as_5_mais_centrais": true
+      },
+      {
+        "f": 0.3,
+        "n_origem": 21,
+        "cortes_de_uma_rua": 2,
+        "extremos_entre_as_5_mais_centrais": true
+      },
+      {
+        "f": 0.4,
+        "n_origem": 28,
+        "cortes_de_uma_rua": 1,
+        "extremos_entre_as_5_mais_centrais": true
+      },
+      {
+        "f": 0.5,
+        "n_origem": 35,
+        "cortes_de_uma_rua": 0,
+        "extremos_entre_as_5_mais_centrais": true
+      }
+    ]
+  },
+  {
+    "bairro": "Copacabana",
+    "V": 344,
+    "portas": 21,
+    "origem": 69,
+    "fluxo": 18,
+    "corte_edmonds_karp": [
+      {
+        "ruas": [
+          [
+            157865036,
+            332238848
+          ],
+          [
+            378689620,
+            326216318
+          ],
+          [
+            857747567,
+            1147821342
+          ],
+          [
+            1212100948,
+            332238424
+          ],
+          [
+            148201837,
+            326215371
+          ],
+          [
+            146369495,
+            7819416062
+          ],
+          [
+            243948936,
+            5358139912
+          ],
+          [
+            151478846,
+            3358848721
+          ],
+          [
+            146377311,
+            506682774
+          ],
+          [
+            148824697,
+            2112929497
+          ],
+          [
+            153805505,
+            2112929497
+          ],
+          [
+            340478710,
+            332238427
+          ],
+          [
+            12560591727,
+            13277742788
+          ],
+          [
+            2283566033,
+            506682762
+          ],
+          [
+            4148200442,
+            4148200447
+          ],
+          [
+            4148200542,
+            4148200539
+          ],
+          [
+            148823581,
+            326215369
+          ],
+          [
+            148823594,
+            148823595
+          ]
+        ],
+        "n_ruas": 18,
+        "nos_lado_origem": 191
+      }
+    ],
+    "cortes_de_uma_rua": [],
+    "extremos_dos_cortes_sao_as_5_mais_centrais": false
+  },
+  {
+    "bairro": "Botafogo",
+    "V": 433,
+    "portas": 31,
+    "origem": 87,
+    "fluxo": 15,
+    "corte_edmonds_karp": [
+      {
+        "ruas": [
+          [
+            12479952934,
+            12479952911
+          ],
+          [
+            454457495,
+            38658108
+          ],
+          [
+            568894982,
+            142776477
+          ],
+          [
+            142838875,
+            142778668
+          ],
+          [
+            142777217,
+            142848382
+          ],
+          [
+            1745064528,
+            1081135535
+          ],
+          [
+            896732364,
+            142875251
+          ],
+          [
+            2407056926,
+            7984839335
+          ],
+          [
+            142879474,
+            9300145933
+          ],
+          [
+            142777214,
+            5303888649
+          ],
+          [
+            142834579,
+            142834580
+          ],
+          [
+            142841507,
+            476480550
+          ],
+          [
+            142879875,
+            344917902
+          ],
+          [
+            248454462,
+            2407056893
+          ],
+          [
+            148377115,
+            148377114
+          ]
+        ],
+        "n_ruas": 15,
+        "nos_lado_origem": 189
+      }
+    ],
+    "cortes_de_uma_rua": [],
+    "extremos_dos_cortes_sao_as_5_mais_centrais": false
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "categoria": "Pontes: fraca e forte",
+    "Urca": 6,
+    "Copacabana": 69,
+    "Botafogo": 102
+  },
+  {
+    "categoria": "Pontes: só forte",
+    "Urca": 53,
+    "Copacabana": 147,
+    "Botafogo": 240
+  },
+  {
+    "categoria": "Pontes: só fraca (fora do núcleo)",
+    "Urca": 5,
+    "Copacabana": 9,
+    "Botafogo": 12
+  },
+  {
+    "categoria": "Articulações: fraca e forte",
+    "Urca": 8,
+    "Copacabana": 61,
+    "Botafogo": 100
+  },
+  {
+    "categoria": "Articulações: só forte",
+    "Urca": 40,
+    "Copacabana": 118,
+    "Botafogo": 149
+  }
+]

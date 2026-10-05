@@ -1,0 +1,80 @@
+[
+  {
+    "indicador": "Interseções (V)",
+    "Urca": 70,
+    "Copacabana": 345,
+    "Botafogo": 434
+  },
+  {
+    "indicador": "Trechos de rua",
+    "Urca": 104,
+    "Copacabana": 494,
+    "Botafogo": 563
+  },
+  {
+    "indicador": "Mão única (% dos trechos)",
+    "Urca": 91.3,
+    "Copacabana": 74.9,
+    "Botafogo": 76.2
+  },
+  {
+    "indicador": "Núcleo fortemente conexo (V)",
+    "Urca": 65,
+    "Copacabana": 331,
+    "Botafogo": 392
+  },
+  {
+    "indicador": "Portas de acesso identificadas",
+    "Urca": 3,
+    "Copacabana": 21,
+    "Botafogo": 31
+  },
+  {
+    "indicador": "Fluxo de acesso: rotas por ruas distintas do núcleo às portas",
+    "Urca": 1,
+    "Copacabana": 18,
+    "Botafogo": 15
+  },
+  {
+    "indicador": "Intermediação máxima (% dos pares)",
+    "Urca": 54.24,
+    "Copacabana": 27.78,
+    "Botafogo": 22.37
+  },
+  {
+    "indicador": "Fora da CFC gigante (% de V)",
+    "Urca": 7.1,
+    "Copacabana": 4.1,
+    "Botafogo": 9.7
+  },
+  {
+    "indicador": "Pontes fracas (% dos trechos)",
+    "Urca": 10.6,
+    "Copacabana": 15.8,
+    "Botafogo": 20.2
+  },
+  {
+    "indicador": "Pontes fortes (% das ruas do núcleo)",
+    "Urca": 61.5,
+    "Copacabana": 45.3,
+    "Botafogo": 68.4
+  },
+  {
+    "indicador": "Articulações fortes (% do núcleo)",
+    "Urca": 73.8,
+    "Copacabana": 54.1,
+    "Botafogo": 63.5
+  },
+  {
+    "indicador": "Mediana de pares desconectados por ponte forte (% do núcleo)",
+    "Urca": 6.0,
+    "Copacabana": 0.6,
+    "Botafogo": 0.5
+  },
+  {
+    "indicador": "Mediana de pares desconectados por articulação forte (% do núcleo)",
+    "Urca": 8.2,
+    "Copacabana": 1.2,
+    "Botafogo": 1.5
+  }
+]

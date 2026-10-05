@@ -1,0 +1,218 @@
+[
+  {
+    "bairro": "Urca",
+    "margem_m": 200,
+    "f": 0.15,
+    "portas": 3,
+    "fluxo": 1,
+    "n_origem": 10
+  },
+  {
+    "bairro": "Urca",
+    "margem_m": 200,
+    "f": 0.2,
+    "portas": 3,
+    "fluxo": 1,
+    "n_origem": 14
+  },
+  {
+    "bairro": "Urca",
+    "margem_m": 200,
+    "f": 0.25,
+    "portas": 3,
+    "fluxo": 1,
+    "n_origem": 18
+  },
+  {
+    "bairro": "Urca",
+    "margem_m": 400,
+    "f": 0.15,
+    "portas": 3,
+    "fluxo": 1,
+    "n_origem": 10
+  },
+  {
+    "bairro": "Urca",
+    "margem_m": 400,
+    "f": 0.2,
+    "portas": 3,
+    "fluxo": 1,
+    "n_origem": 14
+  },
+  {
+    "bairro": "Urca",
+    "margem_m": 400,
+    "f": 0.25,
+    "portas": 3,
+    "fluxo": 1,
+    "n_origem": 18
+  },
+  {
+    "bairro": "Urca",
+    "margem_m": 800,
+    "f": 0.15,
+    "portas": 3,
+    "fluxo": 1,
+    "n_origem": 10
+  },
+  {
+    "bairro": "Urca",
+    "margem_m": 800,
+    "f": 0.2,
+    "portas": 3,
+    "fluxo": 1,
+    "n_origem": 14
+  },
+  {
+    "bairro": "Urca",
+    "margem_m": 800,
+    "f": 0.25,
+    "portas": 3,
+    "fluxo": 1,
+    "n_origem": 18
+  },
+  {
+    "bairro": "Copacabana",
+    "margem_m": 200,
+    "f": 0.15,
+    "portas": 21,
+    "fluxo": 18,
+    "n_origem": 52
+  },
+  {
+    "bairro": "Copacabana",
+    "margem_m": 200,
+    "f": 0.2,
+    "portas": 21,
+    "fluxo": 18,
+    "n_origem": 69
+  },
+  {
+    "bairro": "Copacabana",
+    "margem_m": 200,
+    "f": 0.25,
+    "portas": 21,
+    "fluxo": 18,
+    "n_origem": 86
+  },
+  {
+    "bairro": "Copacabana",
+    "margem_m": 400,
+    "f": 0.15,
+    "portas": 21,
+    "fluxo": 18,
+    "n_origem": 52
+  },
+  {
+    "bairro": "Copacabana",
+    "margem_m": 400,
+    "f": 0.2,
+    "portas": 21,
+    "fluxo": 18,
+    "n_origem": 69
+  },
+  {
+    "bairro": "Copacabana",
+    "margem_m": 400,
+    "f": 0.25,
+    "portas": 21,
+    "fluxo": 18,
+    "n_origem": 86
+  },
+  {
+    "bairro": "Copacabana",
+    "margem_m": 800,
+    "f": 0.15,
+    "portas": 21,
+    "fluxo": 18,
+    "n_origem": 52
+  },
+  {
+    "bairro": "Copacabana",
+    "margem_m": 800,
+    "f": 0.2,
+    "portas": 21,
+    "fluxo": 18,
+    "n_origem": 69
+  },
+  {
+    "bairro": "Copacabana",
+    "margem_m": 800,
+    "f": 0.25,
+    "portas": 21,
+    "fluxo": 18,
+    "n_origem": 86
+  },
+  {
+    "bairro": "Botafogo",
+    "margem_m": 200,
+    "f": 0.15,
+    "portas": 31,
+    "fluxo": 15,
+    "n_origem": 65
+  },
+  {
+    "bairro": "Botafogo",
+    "margem_m": 200,
+    "f": 0.2,
+    "portas": 31,
+    "fluxo": 15,
+    "n_origem": 87
+  },
+  {
+    "bairro": "Botafogo",
+    "margem_m": 200,
+    "f": 0.25,
+    "portas": 31,
+    "fluxo": 15,
+    "n_origem": 108
+  },
+  {
+    "bairro": "Botafogo",
+    "margem_m": 400,
+    "f": 0.15,
+    "portas": 31,
+    "fluxo": 15,
+    "n_origem": 65
+  },
+  {
+    "bairro": "Botafogo",
+    "margem_m": 400,
+    "f": 0.2,
+    "portas": 31,
+    "fluxo": 15,
+    "n_origem": 87
+  },
+  {
+    "bairro": "Botafogo",
+    "margem_m": 400,
+    "f": 0.25,
+    "portas": 31,
+    "fluxo": 15,
+    "n_origem": 108
+  },
+  {
+    "bairro": "Botafogo",
+    "margem_m": 800,
+    "f": 0.15,
+    "portas": 31,
+    "fluxo": 15,
+    "n_origem": 65
+  },
+  {
+    "bairro": "Botafogo",
+    "margem_m": 800,
+    "f": 0.2,
+    "portas": 31,
+    "fluxo": 15,
+    "n_origem": 87
+  },
+  {
+    "bairro": "Botafogo",
+    "margem_m": 800,
+    "f": 0.25,
+    "portas": 31,
+    "fluxo": 15,
+    "n_origem": 108
+  }
+]

@@ -1,0 +1,14 @@
+indicador,Urca,Copacabana,Botafogo
+Interseções (V),70,345,434
+Trechos de rua,104,494,563
+Mão única (% dos trechos),"91,3","74,9","76,2"
+Núcleo fortemente conexo (V),65,331,392
+Portas de acesso identificadas,3,21,31
+Fluxo de acesso: rotas por ruas distintas do núcleo às portas,1,18,15
+Intermediação máxima (% dos pares),"54,24","27,78","22,37"
+Fora da CFC gigante (% de V),"7,1","4,1","9,7"
+Pontes fracas (% dos trechos),"10,6","15,8","20,2"
+Pontes fortes (% das ruas do núcleo),"61,5","45,3","68,4"
+Articulações fortes (% do núcleo),"73,8","54,1","63,5"
+Mediana de pares desconectados por ponte forte (% do núcleo),"6,0","0,6","0,5"
+Mediana de pares desconectados por articulação forte (% do núcleo),"8,2","1,2","1,5"
