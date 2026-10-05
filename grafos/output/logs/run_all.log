@@ -1,0 +1,258 @@
+
+================================================================
+ REDE DE RUAS — URCA, OpenStreetMap
+================================================================
+Pontos OSM brutos: 1904 | vias OSM: 355
+Apos simplificacao: 70 intersecoes (V), 113 arcos (E), 104 trechos de rua
+
+================================================================
+ (A) CONECTIVIDADE
+================================================================
+Componentes (nao-dirigido): 1 (maior = 70)
+Componentes fortemente conexas: 3 (maior = 65)
+Intersecoes fora da CFC gigante: 5 (efeito das mãos únicas)
+Ruas sem saida (cul-de-sac, grau 1): 5
+Tempo: 0.5 ms
+
+================================================================
+ (C.1) GARGALOS ESTRUTURAIS: pontes e articulacoes (definicao)
+================================================================
+Pontos de articulacao: 10 de 70 intersecoes
+Pontes (cut-edges): 11 de 104 trechos
+Tempo: 6.1 ms
+
+================================================================
+ (C.1.5) GARGALOS ESTRUTURAIS DIRIGIDOS: pontes/articulacoes FORTES restritas ao nucleo
+================================================================
+Nucleo fortemente conexo: 65 intersecoes
+Pontes fortes (fragmentam o nucleo): 59 de 96 pares de rua do nucleo
+Articulacoes fortes (fragmentam o nucleo): 48 de 65 intersecoes do nucleo
+  cruzamento pontes:       fraca+forte=6  so forte=53  so fraca=5
+  cruzamento articulacoes: fraca+forte=8  so forte=40
+Tempo: 95.0 ms
+
+================================================================
+ (C.2) GARGALOS POR FLUXO MAXIMO / CORTE MINIMO (Edmonds-Karp)
+================================================================
+Origem O=8843073457  Destino D=6378543788
+Fluxo maximo (rotas por ruas distintas): 1
+Corte minimo (ruas que isolam O de D): 1
+  -> [(186319664, 186319672)]
+Tempo Edmonds-Karp: 0.6 ms
+Rota fisica O->D: 20 rua(s); outros pontos unicos de falha na mesma rota: [(186319672, 186314402), (671070124, 186310957)]
+
+================================================================
+ (C.2.5) ACESSO: fluxo maximo REGIAO-a-REGIAO (eixo do bairro) [verificacao de sanidade -- ver C.2.6 para a metrica de acesso real]
+================================================================
+Polos p1=6378543789 p2=186319653 | regioes de 13/13 nos (frac=0.2)
+Rotas por ruas distintas entre os DOIS EXTREMOS INTERNOS do bairro (nao e' acesso ao resto da cidade): 1 (corte = 1 ruas)
+
+================================================================
+ (C.2.6) ACESSO REAL: fluxo maximo NUCLEO -> GATEWAYS do bairro
+================================================================
+[nota] gateways dentro do nucleo fortemente conexo: 1 de 3 (mao unica pode deixar um gateway fora do nucleo forte)
+Gateways identificados (ruas que cruzam o poligono oficial, margem=400m): 3
+Rotas por ruas distintas do nucleo ate qualquer gateway (acesso ao resto da cidade): 1 (corte = 1 ruas, nucleo=14 nos)
+
+================================================================
+ (C.4) INTERMEDIACAO dirigida ponderada por tempo (nucleo forte)
+================================================================
+Intermediacao maxima: 54.2% dos pares (no 186310957; nucleo de 65 nos); 15 ms
+
+================================================================
+ (B) ROTAS ALTERNATIVAS (Dijkstra)
+================================================================
+Rota principal: 2.77 min, 11 intersecoes
+Verificacao Bellman-Ford: 2.77 min (confere); Dijkstra 0.1 ms vs Bellman-Ford 0.2 ms
+Origem Or=186317743  Destino Dr=186319657  (dentro da grade residencial)
+Trecho (nao-ponte) bloqueado: (186323950, 366724452)
+Rota alternativa: 3.15 min  (+13.6% vs principal)
+A rota atravessa 3 ponte(s) — trechos SEM alternativa (fechá-los desconecta a rota).
+
+================================================================
+ (C.3) RESILIENCIA: impacto EXAUSTIVO de cada ponte/articulacao forte sobre o nucleo
+================================================================
+Pares origem-destino exaustivos no nucleo: 4160
+Pontes fortes, pares desconectados: min=64 mediana=250 max=2112
+  binarias (sem desvio parcial): 32  com desvio parcial: 27
+  desvio parcial (7249 pares): min=0.00 min mediana=0.27 min max=2.44 min
+Articulacoes fortes, pares desconectados: min=127 mediana=341.5 max=2251
+Tempo: 1233.1 ms
+
+================================================================
+ CONCLUIDO
+================================================================
+Figuras e metricas em: C:\Users\joaop\Artigo-Urbano\grafos\output\urca
+Tempo total: 3.07 s
+
+================================================================
+ REDE DE RUAS — COPACABANA, OpenStreetMap
+================================================================
+Pontos OSM brutos: 3337 | vias OSM: 609
+Apos simplificacao: 345 intersecoes (V), 618 arcos (E), 494 trechos de rua
+
+================================================================
+ (A) CONECTIVIDADE
+================================================================
+Componentes (nao-dirigido): 2 (maior = 344)
+Componentes fortemente conexas: 9 (maior = 331)
+Intersecoes fora da CFC gigante: 14 (efeito das mãos únicas)
+Ruas sem saida (cul-de-sac, grau 1): 62
+Tempo: 3.6 ms
+
+================================================================
+ (C.1) GARGALOS ESTRUTURAIS: pontes e articulacoes (definicao)
+================================================================
+Pontos de articulacao: 68 de 345 intersecoes
+Pontes (cut-edges): 78 de 494 trechos
+Tempo: 204.8 ms
+
+================================================================
+ (C.1.5) GARGALOS ESTRUTURAIS DIRIGIDOS: pontes/articulacoes FORTES restritas ao nucleo
+================================================================
+Nucleo fortemente conexo: 331 intersecoes
+Pontes fortes (fragmentam o nucleo): 216 de 477 pares de rua do nucleo
+Articulacoes fortes (fragmentam o nucleo): 179 de 331 intersecoes do nucleo
+  cruzamento pontes:       fraca+forte=69  so forte=147  so fraca=9
+  cruzamento articulacoes: fraca+forte=61  so forte=118
+Tempo: 4150.5 ms
+
+================================================================
+ (C.2) GARGALOS POR FLUXO MAXIMO / CORTE MINIMO (Edmonds-Karp)
+================================================================
+Origem O=524693757  Destino D=4804748027
+Fluxo maximo (rotas por ruas distintas): 1
+Corte minimo (ruas que isolam O de D): 1
+  -> [(524693757, 524693739)]
+Tempo Edmonds-Karp: 2.1 ms
+Rota fisica O->D: 30 rua(s); outros pontos unicos de falha na mesma rota: [(524693739, 524693796), (2296665236, 4804746218), (4804746218, 4804748027)]
+
+================================================================
+ (C.2.5) ACESSO: fluxo maximo REGIAO-a-REGIAO (eixo do bairro) [verificacao de sanidade -- ver C.2.6 para a metrica de acesso real]
+================================================================
+Polos p1=4148200541 p2=885782026 | regioes de 66/66 nos (frac=0.2)
+Rotas por ruas distintas entre os DOIS EXTREMOS INTERNOS do bairro (nao e' acesso ao resto da cidade): 6 (corte = 6 ruas)
+
+================================================================
+ (C.2.6) ACESSO REAL: fluxo maximo NUCLEO -> GATEWAYS do bairro
+================================================================
+[nota] gateways dentro do nucleo fortemente conexo: 16 de 21 (mao unica pode deixar um gateway fora do nucleo forte)
+Gateways identificados (ruas que cruzam o poligono oficial, margem=400m): 21
+Rotas por ruas distintas do nucleo ate qualquer gateway (acesso ao resto da cidade): 18 (corte = 18 ruas, nucleo=69 nos)
+
+================================================================
+ (C.4) INTERMEDIACAO dirigida ponderada por tempo (nucleo forte)
+================================================================
+Intermediacao maxima: 27.8% dos pares (no 146377309; nucleo de 331 nos); 286 ms
+
+================================================================
+ (B) ROTAS ALTERNATIVAS (Dijkstra)
+================================================================
+Rota principal: 7.24 min, 31 intersecoes
+Verificacao Bellman-Ford: 7.24 min (confere); Dijkstra 0.8 ms vs Bellman-Ford 2.3 ms
+Origem Or=524693757  Destino Dr=4804748027  (dentro da grade residencial)
+Trecho (nao-ponte) bloqueado: (148824290, 148824289)
+Rota alternativa: 7.61 min  (+5.1% vs principal)
+A rota atravessa 4 ponte(s) — trechos SEM alternativa (fechá-los desconecta a rota).
+
+================================================================
+ (C.3) RESILIENCIA: impacto EXAUSTIVO de cada ponte/articulacao forte sobre o nucleo
+================================================================
+Pares origem-destino exaustivos no nucleo: 109230
+Pontes fortes, pares desconectados: min=330 mediana=660.0 max=14280
+  binarias (sem desvio parcial): 76  com desvio parcial: 140
+  desvio parcial (576377 pares): min=0.00 min mediana=0.33 min max=3.76 min
+Articulacoes fortes, pares desconectados: min=659 mediana=1314 max=15389
+Tempo: 142413.2 ms
+
+================================================================
+ CONCLUIDO
+================================================================
+Figuras e metricas em: C:\Users\joaop\Artigo-Urbano\grafos\output\copacabana
+Tempo total: 150.4 s
+
+================================================================
+ REDE DE RUAS — BOTAFOGO, OpenStreetMap
+================================================================
+Pontos OSM brutos: 5041 | vias OSM: 811
+Apos simplificacao: 434 intersecoes (V), 697 arcos (E), 563 trechos de rua
+
+================================================================
+ (A) CONECTIVIDADE
+================================================================
+Componentes (nao-dirigido): 2 (maior = 433)
+Componentes fortemente conexas: 36 (maior = 392)
+Intersecoes fora da CFC gigante: 42 (efeito das mãos únicas)
+Ruas sem saida (cul-de-sac, grau 1): 96
+Tempo: 9.6 ms
+
+================================================================
+ (C.1) GARGALOS ESTRUTURAIS: pontes e articulacoes (definicao)
+================================================================
+Pontos de articulacao: 112 de 434 intersecoes
+Pontes (cut-edges): 114 de 563 trechos
+Tempo: 239.0 ms
+
+================================================================
+ (C.1.5) GARGALOS ESTRUTURAIS DIRIGIDOS: pontes/articulacoes FORTES restritas ao nucleo
+================================================================
+Nucleo fortemente conexo: 392 intersecoes
+Pontes fortes (fragmentam o nucleo): 342 de 500 pares de rua do nucleo
+Articulacoes fortes (fragmentam o nucleo): 249 de 392 intersecoes do nucleo
+  cruzamento pontes:       fraca+forte=102  so forte=240  so fraca=12
+  cruzamento articulacoes: fraca+forte=100  so forte=149
+Tempo: 10181.2 ms
+
+================================================================
+ (C.2) GARGALOS POR FLUXO MAXIMO / CORTE MINIMO (Edmonds-Karp)
+================================================================
+Origem O=9217502699  Destino D=5192513211
+Fluxo maximo (rotas por ruas distintas): 1
+Corte minimo (ruas que isolam O de D): 1
+  -> [(9217502693, 343995102)]
+Tempo Edmonds-Karp: 1.4 ms
+Rota fisica O->D: 39 rua(s); outros pontos unicos de falha na mesma rota: [(9217502699, 9217502693), (343995102, 142850040), (524693734, 524693733), (524693733, 524693758), (524693758, 524693715), (524693715, 5192513211)]
+
+================================================================
+ (C.2.5) ACESSO: fluxo maximo REGIAO-a-REGIAO (eixo do bairro) [verificacao de sanidade -- ver C.2.6 para a metrica de acesso real]
+================================================================
+Polos p1=13277703131 p2=3766700575 | regioes de 78/78 nos (frac=0.2)
+Rotas por ruas distintas entre os DOIS EXTREMOS INTERNOS do bairro (nao e' acesso ao resto da cidade): 4 (corte = 4 ruas)
+
+================================================================
+ (C.2.6) ACESSO REAL: fluxo maximo NUCLEO -> GATEWAYS do bairro
+================================================================
+[nota] gateways dentro do nucleo fortemente conexo: 16 de 31 (mao unica pode deixar um gateway fora do nucleo forte)
+Gateways identificados (ruas que cruzam o poligono oficial, margem=400m): 31
+Rotas por ruas distintas do nucleo ate qualquer gateway (acesso ao resto da cidade): 15 (corte = 15 ruas, nucleo=87 nos)
+
+================================================================
+ (C.4) INTERMEDIACAO dirigida ponderada por tempo (nucleo forte)
+================================================================
+Intermediacao maxima: 22.4% dos pares (no 418044506; nucleo de 392 nos); 391 ms
+
+================================================================
+ (B) ROTAS ALTERNATIVAS (Dijkstra)
+================================================================
+Rota principal: 10.58 min, 40 intersecoes
+Verificacao Bellman-Ford: 10.58 min (confere); Dijkstra 0.7 ms vs Bellman-Ford 4.9 ms
+Origem Or=9217502699  Destino Dr=5192513211  (dentro da grade residencial)
+Trecho (nao-ponte) bloqueado: (142778727, 142834579)
+Rota alternativa: 10.78 min  (+1.8% vs principal)
+A rota atravessa 6 ponte(s) — trechos SEM alternativa (fechá-los desconecta a rota).
+
+================================================================
+ (C.3) RESILIENCIA: impacto EXAUSTIVO de cada ponte/articulacao forte sobre o nucleo
+================================================================
+Pares origem-destino exaustivos no nucleo: 153272
+Pontes fortes, pares desconectados: min=391 mediana=782.0 max=12818
+  binarias (sem desvio parcial): 122  com desvio parcial: 220
+  desvio parcial (1726154 pares): min=0.00 min mediana=0.54 min max=6.28 min
+Articulacoes fortes, pares desconectados: min=781 mediana=2334 max=18256
+Tempo: 318463.9 ms
+
+================================================================
+ CONCLUIDO
+================================================================
+Figuras e metricas em: C:\Users\joaop\Artigo-Urbano\grafos\output\botafogo
+Tempo total: 332.71 s

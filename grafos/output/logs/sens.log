@@ -1,0 +1,32 @@
+Urca        margem=200 m f=0.15 portas= 3 fluxo=1
+Urca        margem=200 m f=0.20 portas= 3 fluxo=1
+Urca        margem=200 m f=0.25 portas= 3 fluxo=1
+Urca        margem=400 m f=0.15 portas= 3 fluxo=1
+Urca        margem=400 m f=0.20 portas= 3 fluxo=1
+Urca        margem=400 m f=0.25 portas= 3 fluxo=1
+Urca        margem=800 m f=0.15 portas= 3 fluxo=1
+Urca        margem=800 m f=0.20 portas= 3 fluxo=1
+Urca        margem=800 m f=0.25 portas= 3 fluxo=1
+Copacabana  margem=200 m f=0.15 portas=21 fluxo=18
+Copacabana  margem=200 m f=0.20 portas=21 fluxo=18
+Copacabana  margem=200 m f=0.25 portas=21 fluxo=18
+Copacabana  margem=400 m f=0.15 portas=21 fluxo=18
+Copacabana  margem=400 m f=0.20 portas=21 fluxo=18
+Copacabana  margem=400 m f=0.25 portas=21 fluxo=18
+Copacabana  margem=800 m f=0.15 portas=21 fluxo=18
+Copacabana  margem=800 m f=0.20 portas=21 fluxo=18
+Copacabana  margem=800 m f=0.25 portas=21 fluxo=18
+Botafogo    margem=200 m f=0.15 portas=31 fluxo=15
+Botafogo    margem=200 m f=0.20 portas=31 fluxo=15
+Botafogo    margem=200 m f=0.25 portas=31 fluxo=15
+Botafogo    margem=400 m f=0.15 portas=31 fluxo=15
+Botafogo    margem=400 m f=0.20 portas=31 fluxo=15
+Botafogo    margem=400 m f=0.25 portas=31 fluxo=15
+Botafogo    margem=800 m f=0.15 portas=31 fluxo=15
+Botafogo    margem=800 m f=0.20 portas=31 fluxo=15
+Botafogo    margem=800 m f=0.25 portas=31 fluxo=15
+
+Resumo (faixa do fluxo de acesso sobre margem x f):
+  Urca        fluxo 1-1  portas 3-3
+  Copacabana  fluxo 18-18  portas 21-21
+  Botafogo    fluxo 15-15  portas 31-31
