@@ -248,3 +248,116 @@ def gateway_access_flow(node_list, undirected_edges, gateway_nodes, frac=0.2,
         out["corte_arestas"] = cut_real
         out["lado_origem"] = len(reach) - 1     # nos do lado da origem (sem a super-fonte)
     return out
+
+
+def _core_and_gateways(node_list, undirected_edges, gateway_nodes, frac):
+    """Mesma regiao de origem (nucleo) e mesmo conjunto de gateways usados por
+    gateway_access_flow, para que as variantes por NO e DIRIGIDA sejam
+    diretamente comparaveis com a por aresta. Retorna (S, adj, edges_in, gw,
+    src)."""
+    S = set(node_list)
+    adj = {u: set() for u in S}
+    edges_in = []
+    for e in undirected_edges:
+        u, v = e[0], e[1]
+        if u in S and v in S:
+            adj[u].add(v); adj[v].add(u)
+            edges_in.append((u, v))
+    gw = set(gateway_nodes) & S
+    if not gw or len(S) < 2:
+        return S, adj, edges_in, gw, set()
+    dist = {g: 0 for g in gw}
+    q = deque(gw)
+    while q:
+        u = q.popleft()
+        for v in adj[u]:
+            if v not in dist:
+                dist[v] = dist[u] + 1
+                q.append(v)
+    interior_only = [u for u in S if u not in gw]
+    k = max(1, int(round(frac * len(S))))
+    src = set(sorted(interior_only, key=lambda u: -dist.get(u, 0))[:k])
+    return S, adj, edges_in, gw, src
+
+
+def gateway_access_flow_nodes(node_list, undirected_edges, gateway_nodes,
+                              frac=0.2, details=False):
+    """Versao por INTERSECCOES (vertices) do fluxo de acesso: quantas rotas
+    internamente disjuntas por INTERSECCOES (teorema de Menger) ligam o nucleo
+    do bairro as suas portas de acesso.
+
+    Complementa gateway_access_flow (que conta rotas disjuntas por RUAS). Usa a
+    transformacao padrao de divisao de nos: cada vertice vira v_in -> v_out.
+    So os vertices INTERIORES (nao sao nem nucleo de origem nem porta de
+    acesso) recebem capacidade 1 nessa aresta interna; o nucleo de origem e as
+    portas ficam INCORTAVEIS (capacidade infinita). Sem isso, o valor ficaria
+    trivialmente limitado pelo numero de portas, medindo duas vezes a mesma
+    coisa; com portas incortaveis, a medida isola o afunilamento interno ate a
+    fronteira. As arestas de rua ficam com capacidade infinita.
+
+    Retorna o numero de rotas disjuntas por interseccoes e, se details=True, as
+    interseccoes do corte minimo (para marcar na figura)."""
+    S, adj, edges_in, gw, src = _core_and_gateways(
+        node_list, undirected_edges, gateway_nodes, frac)
+    if not gw or not src:
+        return {"gateways": sorted(gw), "fluxo": 0, "corte": 0,
+                "n_origem": 0, "n_gateways": len(gw), "frac": frac}
+
+    BIG = 10 ** 9
+    uncortavel = src | gw                     # nucleo e portas sao incortaveis
+    cap = {}
+    for w in S:                               # aresta interna v_in -> v_out
+        cap[((w, "i"), (w, "o"))] = BIG if w in uncortavel else 1
+    for (u, v) in edges_in:                   # ruas: capacidade infinita
+        cap[((u, "o"), (v, "i"))] = BIG
+        cap[((v, "o"), (u, "i"))] = BIG
+    SS, TT = "__S__", "__T__"
+    for u in src:
+        cap[(SS, (u, "i"))] = BIG
+    for g in gw:
+        cap[((g, "o"), TT)] = BIG
+    nodes = [SS, TT] + [(w, s) for w in S for s in ("i", "o")]
+    fmax, flow, reach, cut = edmonds_karp(nodes, cap, SS, TT)
+    # um arco (w_in -> w_out) no corte minimo = a interseccao w e' um ponto de
+    # corte por vertices; vertices incortaveis nunca entram num corte finito.
+    cut_nodes = sorted({a[0] for (a, b) in cut
+                        if isinstance(a, tuple) and isinstance(b, tuple)
+                        and a[0] == b[0]})
+    out = {"gateways": sorted(gw), "fluxo": int(fmax), "corte": len(cut_nodes),
+           "n_origem": len(src), "n_gateways": len(gw), "frac": frac}
+    if details:
+        out["intersecoes_de_corte"] = cut_nodes
+    return out
+
+
+def gateway_access_flow_directed(node_list, directed_arcs, undirected_edges,
+                                 gateway_nodes, frac=0.2):
+    """Versao DIRIGIDA do fluxo de acesso: respeita o sentido das vias. Mesma
+    regiao de origem (nucleo) e mesmas portas da versao por aresta, mas a
+    capacidade unitaria e' atribuida por ARCO (so no sentido real da via), e
+    nao nos dois sentidos de cada rua. Uma saida de mao unica so conta no
+    sentido que de fato permite deixar o bairro, de modo que o fluxo dirigido
+    e' menor ou igual ao nao dirigido; se for menor, a direcao tem efeito
+    proprio sobre o acesso.
+
+    directed_arcs: iteravel de (u, v) (arcos dirigidos de G.edges)."""
+    S, adj, edges_in, gw, src = _core_and_gateways(
+        node_list, undirected_edges, gateway_nodes, frac)
+    if not gw or not src:
+        return {"gateways": sorted(gw), "fluxo": 0, "corte": 0,
+                "n_origem": 0, "n_gateways": len(gw), "frac": frac}
+
+    cap = {}
+    for (u, v) in directed_arcs:              # capacidade 1 por arco, no sentido real
+        if u in S and v in S:
+            cap[(u, v)] = cap.get((u, v), 0) + 1
+    SS, TT = "__S__", "__T__"
+    BIG = 10 ** 9
+    for u in src:
+        cap[(SS, u)] = BIG
+    for g in gw:
+        cap[(g, TT)] = BIG
+    fmax, flow, reach, cut = edmonds_karp(list(S) + [SS, TT], cap, SS, TT)
+    cut_real = [(u, v) for (u, v) in cut if u not in (SS, TT) and v not in (SS, TT)]
+    return {"gateways": sorted(gw), "fluxo": int(fmax), "corte": len(cut_real),
+            "n_origem": len(src), "n_gateways": len(gw), "frac": frac}

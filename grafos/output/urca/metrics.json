@@ -19,12 +19,12 @@
     "maior_scc": 65,
     "fora_da_scc_gigante": 5,
     "ruas_sem_saida": 5,
-    "tempo_ms": 0.55
+    "tempo_ms": 0.38
   },
   "gargalos_estruturais": {
     "articulacoes": 10,
     "pontes": 11,
-    "tempo_ms": 6.09
+    "tempo_ms": 6.13
   },
   "gargalos_estruturais_dirigidos": {
     "nucleo_n": 65,
@@ -36,7 +36,7 @@
     "pontes_so_fraca_fora_do_nucleo": 5,
     "articulacoes_fraca_e_forte": 8,
     "articulacoes_so_forte": 40,
-    "tempo_ms": 95.03
+    "tempo_ms": 91.29
   },
   "gargalo_corte_minimo": {
     "origem": 8843073457,
@@ -59,7 +59,7 @@
         186310957
       ]
     ],
-    "tempo_ms": 0.61
+    "tempo_ms": 0.42
   },
   "travessia_interna_polos": {
     "polo1": 6378543789,
@@ -82,6 +82,33 @@
     "n_gateways": 3,
     "frac": 0.2
   },
+  "gargalo_acesso_gateway_vertices": {
+    "gateways": [
+      146168901,
+      524685163,
+      6378543789
+    ],
+    "fluxo": 1,
+    "corte": 1,
+    "n_origem": 14,
+    "n_gateways": 3,
+    "frac": 0.2,
+    "intersecoes_de_corte": [
+      186319664
+    ]
+  },
+  "gargalo_acesso_gateway_dirigido": {
+    "gateways": [
+      146168901,
+      524685163,
+      6378543789
+    ],
+    "fluxo": 1,
+    "corte": 1,
+    "n_origem": 14,
+    "n_gateways": 3,
+    "frac": 0.2
+  },
   "intermediacao": {
     "max_pct_pares": 54.24,
     "no_max": 186310957,
@@ -93,8 +120,8 @@
     "rota_principal_min": 2.77,
     "intersecoes_rota": 11,
     "bellman_ford_confere": true,
-    "tempo_dijkstra_ms": 0.06,
-    "tempo_bellman_ford_ms": 0.18,
+    "tempo_dijkstra_ms": 0.13,
+    "tempo_bellman_ford_ms": 0.28,
     "trecho_bloqueado": [
       186323950,
       366724452
@@ -129,7 +156,7 @@
         "max": 2251
       }
     },
-    "tempo_ms": 1233.13
+    "tempo_ms": 967.06
   },
-  "tempo_total_s": 3.07
+  "tempo_total_s": 3.2
 }

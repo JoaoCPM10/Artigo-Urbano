@@ -81,6 +81,9 @@ def analisa(key: str) -> dict:
     acc = mf.gateway_access_flow(list(uset), data["undirected_edges"], gw, frac=0.2, details=True)
     src = set(acc["origem"])
     cuts = cortes_de_uma_rua(edges_in, adj, src, gw)
+    acc_v = mf.gateway_access_flow_nodes(list(uset), data["undirected_edges"],
+                                         gw, frac=0.2, details=True)
+    cut_nodes = acc_v.get("intersecoes_de_corte", [])
 
     core = set(max(cc.strongly_connected_components(G), key=len))
     b = bt.betweenness(G, core)
@@ -89,7 +92,7 @@ def analisa(key: str) -> dict:
 
     res = {
         "bairro": cfg.display_name, "V": len(uset), "portas": len(gw),
-        "origem": len(src), "fluxo": acc["fluxo"],
+        "origem": len(src), "fluxo": acc["fluxo"], "fluxo_vertices": acc_v["fluxo"],
         "corte_edmonds_karp": [
             {"ruas": [list(e) for e in acc["corte_arestas"]][:40],
              "n_ruas": len(acc["corte_arestas"]), "nos_lado_origem": acc["lado_origem"]}],
@@ -111,14 +114,14 @@ def analisa(key: str) -> dict:
             varredura.append({"f": f, "n_origem": len(s2), "cortes_de_uma_rua": len(c2),
                               "extremos_entre_as_5_mais_centrais": ext2 <= top5})
         res["varredura_f"] = varredura
-    res["_objs"] = (data, src, gw, [edges_in[i] for i, _ in cuts], acc["corte_arestas"])
+    res["_objs"] = (data, src, gw, [edges_in[i] for i, _ in cuts], acc["corte_arestas"], cut_nodes)
     return res
 
 
 def figura(resultados):
     fig, axes = plt.subplots(1, 3, figsize=(15, 5.6))
     for ax, r in zip(axes, resultados):
-        data, src, gw, um_corte, ek_cut = r["_objs"]
+        data, src, gw, um_corte, ek_cut, cut_nodes = r["_objs"]
         G = data["graph"]
         lut = viz._geom_lookup(data)
         viz.draw_base(data, ax, color="#dfe3ea")
@@ -130,6 +133,10 @@ def figura(resultados):
         ax.scatter([G.coords[g][0] for g in gw], [G.coords[g][1] for g in gw],
                    s=60, marker="^", color="#2f855a", edgecolors="#1c4532",
                    linewidths=0.6, zorder=6)
+        if cut_nodes:
+            ax.scatter([G.coords[u][0] for u in cut_nodes],
+                       [G.coords[u][1] for u in cut_nodes],
+                       s=95, marker="x", color="#d97706", linewidths=2.2, zorder=7)
         n = len(um_corte) if um_corte else len(ek_cut)
         sub = f"{n} single-street cuts" if um_corte else f"minimum cut of {n} streets"
         ax.set_aspect("equal"); ax.set_xticks([]); ax.set_yticks([])
@@ -139,8 +146,10 @@ def figura(resultados):
         plt.Line2D([], [], marker="^", ls="", color="#2f855a", markeredgecolor="#1c4532",
                    markersize=8, label="gateways"),
         plt.Line2D([], [], color="#c0392b", lw=3.4, label="cut streets"),
+        plt.Line2D([], [], marker="x", ls="", color="#d97706",
+                   label="cut intersections (vertex-disjoint)"),
     ]
-    fig.legend(handles=handles, loc="lower center", ncol=3, fontsize=10, frameon=False)
+    fig.legend(handles=handles, loc="lower center", ncol=4, fontsize=10, frameon=False)
     fig.tight_layout(rect=(0, 0.05, 1, 1))
     p = os.path.join(OUT, "fig_cut.png")
     fig.savefig(p, dpi=140, bbox_inches="tight"); plt.close(fig)
