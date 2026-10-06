@@ -5,6 +5,7 @@
     "portas": 3,
     "origem": 14,
     "fluxo": 1,
+    "fluxo_vertices": 1,
     "corte_edmonds_karp": [
       {
         "ruas": [
@@ -134,6 +135,7 @@
     "portas": 21,
     "origem": 69,
     "fluxo": 18,
+    "fluxo_vertices": 17,
     "corte_edmonds_karp": [
       {
         "ruas": [
@@ -223,6 +225,7 @@
     "portas": 31,
     "origem": 87,
     "fluxo": 15,
+    "fluxo_vertices": 14,
     "corte_edmonds_karp": [
       {
         "ruas": [

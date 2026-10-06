@@ -335,6 +335,24 @@ def main(cfg):
           f"(corte = {acc_gw['corte']} ruas, nucleo={acc_gw['n_origem']} nos)")
     metrics["gargalo_acesso_gateway"] = acc_gw
 
+    # variante por INTERSECCOES (Menger): rotas internamente disjuntas por
+    # vertices; so interiores sao cortaveis, nucleo e portas incortaveis.
+    acc_gw_v = mf.gateway_access_flow_nodes(ul, data["undirected_edges"],
+                                            gw_nodes, frac=0.2, details=True)
+    print(f"Rotas disjuntas por INTERSECCOES (nucleo->gateways): "
+          f"{acc_gw_v['fluxo']} (corte = {acc_gw_v['corte']} interseccoes)")
+    # variante DIRIGIDA: capacidade 1 por arco (respeita mao unica).
+    acc_gw_d = mf.gateway_access_flow_directed(
+        ul, [(e.u, e.v) for e in G.edges], data["undirected_edges"],
+        gw_nodes, frac=0.2)
+    print(f"Rotas disjuntas por ruas DIRIGIDAS (nucleo->gateways, saida): "
+          f"{acc_gw_d['fluxo']} (corte = {acc_gw_d['corte']} arcos)")
+    metrics["gargalo_acesso_gateway_vertices"] = {
+        k: v for k, v in acc_gw_v.items() if k != "intersecoes_de_corte"}
+    metrics["gargalo_acesso_gateway_vertices"]["intersecoes_de_corte"] = \
+        acc_gw_v.get("intersecoes_de_corte", [])
+    metrics["gargalo_acesso_gateway_dirigido"] = acc_gw_d
+
     # ------------------------------------------------ intermediacao (Brandes)
     banner("(C.4) INTERMEDIACAO dirigida ponderada por tempo (nucleo forte)")
     t0 = time.perf_counter()

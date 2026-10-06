@@ -19,12 +19,12 @@
     "maior_scc": 331,
     "fora_da_scc_gigante": 14,
     "ruas_sem_saida": 62,
-    "tempo_ms": 3.65
+    "tempo_ms": 3.06
   },
   "gargalos_estruturais": {
     "articulacoes": 68,
     "pontes": 78,
-    "tempo_ms": 204.79
+    "tempo_ms": 151.03
   },
   "gargalos_estruturais_dirigidos": {
     "nucleo_n": 331,
@@ -36,7 +36,7 @@
     "pontes_so_fraca_fora_do_nucleo": 9,
     "articulacoes_fraca_e_forte": 61,
     "articulacoes_so_forte": 118,
-    "tempo_ms": 4150.47
+    "tempo_ms": 2790.5
   },
   "gargalo_corte_minimo": {
     "origem": 524693757,
@@ -63,7 +63,7 @@
         4804748027
       ]
     ],
-    "tempo_ms": 2.06
+    "tempo_ms": 1.13
   },
   "travessia_interna_polos": {
     "polo1": 4148200541,
@@ -104,6 +104,85 @@
     "n_gateways": 21,
     "frac": 0.2
   },
+  "gargalo_acesso_gateway_vertices": {
+    "gateways": [
+      142149151,
+      142189206,
+      142195201,
+      146369486,
+      148199735,
+      198137895,
+      250025266,
+      326223777,
+      326224438,
+      378676491,
+      468169877,
+      468170508,
+      524693739,
+      1402823582,
+      1802229131,
+      2112929403,
+      2296665223,
+      4804746218,
+      8165792947,
+      12468325580,
+      12488758575
+    ],
+    "fluxo": 17,
+    "corte": 17,
+    "n_origem": 69,
+    "n_gateways": 21,
+    "frac": 0.2,
+    "intersecoes_de_corte": [
+      148199726,
+      148201829,
+      148201837,
+      148823581,
+      148823591,
+      151478846,
+      243948936,
+      378689620,
+      857747567,
+      857747612,
+      885782011,
+      2112929497,
+      2283566033,
+      4148200442,
+      4148200542,
+      5341541149,
+      12468325573
+    ]
+  },
+  "gargalo_acesso_gateway_dirigido": {
+    "gateways": [
+      142149151,
+      142189206,
+      142195201,
+      146369486,
+      148199735,
+      198137895,
+      250025266,
+      326223777,
+      326224438,
+      378676491,
+      468169877,
+      468170508,
+      524693739,
+      1402823582,
+      1802229131,
+      2112929403,
+      2296665223,
+      4804746218,
+      8165792947,
+      12468325580,
+      12488758575
+    ],
+    "fluxo": 8,
+    "corte": 8,
+    "n_origem": 69,
+    "n_gateways": 21,
+    "frac": 0.2
+  },
   "intermediacao": {
     "max_pct_pares": 27.78,
     "no_max": 146377309,
@@ -115,8 +194,8 @@
     "rota_principal_min": 7.24,
     "intersecoes_rota": 31,
     "bellman_ford_confere": true,
-    "tempo_dijkstra_ms": 0.77,
-    "tempo_bellman_ford_ms": 2.29,
+    "tempo_dijkstra_ms": 0.52,
+    "tempo_bellman_ford_ms": 1.96,
     "trecho_bloqueado": [
       148824290,
       148824289
@@ -151,7 +230,7 @@
         "max": 15389
       }
     },
-    "tempo_ms": 142413.23
+    "tempo_ms": 117378.27
   },
-  "tempo_total_s": 150.4
+  "tempo_total_s": 123.23
 }
