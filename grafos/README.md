@@ -27,6 +27,7 @@ verificação; o `matplotlib`, apenas nas figuras.
 | `py localiza_corte.py` | `output/localizacao_corte.json`, `fig_cut.png` | 4.4 |
 | `py nulo_fluxo.py` | `output/nulo_fluxo.json` | 4.4 |
 | `py nulo_intermediacao.py` | `output/nulo_intermediacao.json` | 4.5 |
+| `py ruas_vs_intersecoes.py --verifica` | `output/ruas_vs_intersecoes.json` (fluxo de acesso por ruas e por interseções, com e sem o sentido das vias; confere com o `networkx`) | 4.4 |
 | `py acesso_tuneis.py` | `output/acesso_tuneis.json` | 4.3 |
 | `py make_en_figures.py` | figuras em `output/` | 3, 4 |
 | `py test_vs_networkx.py`, `py test_betweenness.py` | verificação contra o `networkx` | 3.2 |
