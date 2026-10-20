@@ -1,0 +1,152 @@
+{
+  "urca": {
+    "bairro": "Urca",
+    "k": 14,
+    "n_componente": 70,
+    "portas": 3,
+    "dist_corte": 17,
+    "empatados_na_dist_corte": 6,
+    "acima_da_dist_corte": 8,
+    "vagas_no_empate": 6,
+    "n_sorteios": 200,
+    "nucleos_distintos": 1,
+    "valor_artigo": {
+      "nao_dirigido_ruas": 1,
+      "nao_dirigido_intersecoes": 1,
+      "dirigido_ruas": 1,
+      "dirigido_intersecoes": 1
+    },
+    "distribuicao": {
+      "nao_dirigido_ruas": {
+        "1": 200
+      },
+      "nao_dirigido_intersecoes": {
+        "1": 200
+      },
+      "dirigido_ruas": {
+        "1": 200
+      },
+      "dirigido_intersecoes": {
+        "1": 200
+      }
+    },
+    "min_max": {
+      "nao_dirigido_ruas": [
+        1,
+        1
+      ],
+      "nao_dirigido_intersecoes": [
+        1,
+        1
+      ],
+      "dirigido_ruas": [
+        1,
+        1
+      ],
+      "dirigido_intersecoes": [
+        1,
+        1
+      ]
+    }
+  },
+  "copacabana": {
+    "bairro": "Copacabana",
+    "k": 69,
+    "n_componente": 344,
+    "portas": 21,
+    "dist_corte": 7,
+    "empatados_na_dist_corte": 40,
+    "acima_da_dist_corte": 43,
+    "vagas_no_empate": 26,
+    "n_sorteios": 200,
+    "nucleos_distintos": 200,
+    "valor_artigo": {
+      "nao_dirigido_ruas": 18,
+      "nao_dirigido_intersecoes": 17,
+      "dirigido_ruas": 8,
+      "dirigido_intersecoes": 8
+    },
+    "distribuicao": {
+      "nao_dirigido_ruas": {
+        "18": 200
+      },
+      "nao_dirigido_intersecoes": {
+        "17": 200
+      },
+      "dirigido_ruas": {
+        "8": 200
+      },
+      "dirigido_intersecoes": {
+        "8": 200
+      }
+    },
+    "min_max": {
+      "nao_dirigido_ruas": [
+        18,
+        18
+      ],
+      "nao_dirigido_intersecoes": [
+        17,
+        17
+      ],
+      "dirigido_ruas": [
+        8,
+        8
+      ],
+      "dirigido_intersecoes": [
+        8,
+        8
+      ]
+    }
+  },
+  "botafogo": {
+    "bairro": "Botafogo",
+    "k": 87,
+    "n_componente": 433,
+    "portas": 31,
+    "dist_corte": 8,
+    "empatados_na_dist_corte": 37,
+    "acima_da_dist_corte": 86,
+    "vagas_no_empate": 1,
+    "n_sorteios": 200,
+    "nucleos_distintos": 36,
+    "valor_artigo": {
+      "nao_dirigido_ruas": 15,
+      "nao_dirigido_intersecoes": 14,
+      "dirigido_ruas": 7,
+      "dirigido_intersecoes": 6
+    },
+    "distribuicao": {
+      "nao_dirigido_ruas": {
+        "15": 200
+      },
+      "nao_dirigido_intersecoes": {
+        "14": 200
+      },
+      "dirigido_ruas": {
+        "7": 200
+      },
+      "dirigido_intersecoes": {
+        "6": 200
+      }
+    },
+    "min_max": {
+      "nao_dirigido_ruas": [
+        15,
+        15
+      ],
+      "nao_dirigido_intersecoes": [
+        14,
+        14
+      ],
+      "dirigido_ruas": [
+        7,
+        7
+      ],
+      "dirigido_intersecoes": [
+        6,
+        6
+      ]
+    }
+  }
+}

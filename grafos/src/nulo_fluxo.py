@@ -12,9 +12,11 @@ de acesso ate a fronteira de cada uma:
   - regiao de origem e fluxo exatamente como no artigo (maxflow.gateway_access_flow,
     f = 0,2, capacidade 1 por rua, rede nao dirigida).
 
-Tres geradores de pedacos: bola por BFS, crescimento aleatorio (Eden) e uma BUSCA
-ADVERSARIA (subida de encosta que troca nos do pedaco para MINIMIZAR o fluxo),
-que estima o menor fluxo que um pedaco de uma malha aberta desse tamanho pode ter.
+Tres geradores de pedacos: bola por BFS, crescimento aleatorio (do tipo Eden) e uma
+BUSCA ADVERSARIA: subida de encosta que parte dos N_INICIOS pedacos sorteados de
+MENOR fluxo e troca uma interseccao por vez (aceita se o fluxo nao aumenta), para
+tentar reduzi-lo. O menor fluxo que ela encontra e' um limite superior do minimo
+possivel; o menor valor ja' observado nos sorteios tambem e' registrado.
 
 Escreve output/nulo_fluxo.json.  Uso:  py nulo_fluxo.py
 """
@@ -35,7 +37,7 @@ from osm_loader import load_neighborhood, expand_bbox
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "output")
 SEED = 7
 N_PIECES = 500            # pedacos por bairro e por gerador
-N_RESTARTS, N_ITERS = 8, 1500
+N_INICIOS, N_ITERS = 25, 3000   # busca adversaria: inicios nos pedacos mais frageis
 
 
 class Rede:
@@ -98,14 +100,17 @@ class Rede:
                     vis.add(v); q.append(v)
         return len(vis) == len(S)
 
-    def adversaria(self, m, rng):
-        """Subida de encosta: troca 1 no do pedaco por um vizinho, aceita se o
+    def adversaria(self, inicios, rng):
+        """Subida de encosta a partir de `inicios` (lista de (fluxo, pedaco), os de menor
+        fluxo entre os sorteados): troca 1 no do pedaco por um vizinho, aceita se o
         fluxo nao aumenta. Devolve o menor fluxo encontrado."""
         melhor = None
-        for _ in range(N_RESTARTS):
-            S = self.eden(m, rng)
+        for f0, S0 in inicios:
+            S = set(S0)
             f, g = self.fluxo(S)
             for _ in range(N_ITERS):
+                if f <= 1:
+                    break
                 fora = {v for u in S for v in self.adj[u]} - S
                 if not fora:
                     break
@@ -136,17 +141,23 @@ def main():
         rede = Rede(key)
         rng = random.Random(SEED)
         bloco = {}
+        sorteados = []                       # (fluxo, pedaco) de todos os sorteios
         for nome, gera in (("bola", rede.bola), ("eden", rede.eden)):
             fl, gw = [], []
             for _ in range(N_PIECES):
-                f, g = rede.fluxo(gera(m, rng))
-                fl.append(f); gw.append(g)
+                S = gera(m, rng)
+                f, g = rede.fluxo(S)
+                fl.append(f); gw.append(g); sorteados.append((f, S))
             bloco[nome] = {"fluxo": resumo(fl), "portas": resumo(gw), "valores_fluxo": fl,
                            "frac_fluxo_le_3": round(sum(x <= 3 for x in fl) / len(fl), 3),
                            "frac_fluxo_le_1": round(sum(x <= 1 for x in fl) / len(fl), 3)}
-        f_min, g_min, S_min = rede.adversaria(m, rng)
+        sorteados.sort(key=lambda x: x[0])
+        f_min, g_min, S_min = rede.adversaria(sorteados[:N_INICIOS], rng)
         bloco["adversaria"] = {"menor_fluxo": f_min, "portas_do_pedaco": g_min,
-                               "n_nos": len(S_min)}
+                               "n_nos": len(S_min),
+                               "menor_fluxo_nos_sorteios": sorteados[0][0],
+                               "n_pedacos_com_o_menor_fluxo": sum(f == sorteados[0][0] for f, _ in sorteados),
+                               "n_inicios": N_INICIOS, "n_iteracoes": N_ITERS}
         res["pedacos"][key] = bloco
         print(key, json.dumps(bloco, ensure_ascii=False))
     print("Urca:", res["referencia_urca"])

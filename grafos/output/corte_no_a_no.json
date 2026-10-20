@@ -1,37 +1,97 @@
 {
-  "n_pares": 300,
-  "semente": 5,
+  "metodo": "todos os pares",
   "bairros": {
     "Urca": {
-      "distribuicao": {
-        "1": 210,
-        "2": 34,
-        "3": 56
+      "nao_dirigido": {
+        "n_pares": 2415,
+        "distribuicao": {
+          "1": 1651,
+          "2": 351,
+          "3": 404,
+          "4": 9
+        },
+        "pct_corte_1": 68.4,
+        "media": 1.49,
+        "minimo": 1,
+        "maximo": 4,
+        "pct_pares_com_no_de_grau_1": 13.9,
+        "pct_cortes_1_explicados_por_grau_1": 20.3
       },
-      "pct_corte_1": 70.0,
-      "media": 1.49,
-      "maximo": 3
+      "dirigido": {
+        "n_pares": 4160,
+        "distribuicao": {
+          "1": 3977,
+          "2": 183
+        },
+        "pct_corte_1": 95.6,
+        "media": 1.04,
+        "minimo": 1,
+        "maximo": 2,
+        "pct_pares_com_no_de_grau_1": 68.3,
+        "pct_cortes_1_explicados_por_grau_1": 71.5
+      }
     },
     "Copacabana": {
-      "distribuicao": {
-        "1": 122,
-        "2": 80,
-        "3": 80,
-        "4": 18
+      "nao_dirigido": {
+        "n_pares": 58996,
+        "distribuicao": {
+          "1": 24015,
+          "2": 17562,
+          "3": 14179,
+          "4": 3240
+        },
+        "pct_corte_1": 40.7,
+        "media": 1.94,
+        "minimo": 1,
+        "maximo": 4,
+        "pct_pares_com_no_de_grau_1": 32.8,
+        "pct_cortes_1_explicados_por_grau_1": 80.7
       },
-      "pct_corte_1": 40.7,
-      "media": 1.98,
-      "maximo": 4
+      "dirigido": {
+        "n_pares": 109230,
+        "distribuicao": {
+          "1": 88987,
+          "2": 20211,
+          "3": 32
+        },
+        "pct_corte_1": 81.5,
+        "media": 1.19,
+        "minimo": 1,
+        "maximo": 3,
+        "pct_pares_com_no_de_grau_1": 59.8,
+        "pct_cortes_1_explicados_por_grau_1": 73.4
+      }
     },
     "Botafogo": {
-      "distribuicao": {
-        "1": 156,
-        "2": 80,
-        "3": 64
+      "nao_dirigido": {
+        "n_pares": 93528,
+        "distribuicao": {
+          "1": 48327,
+          "2": 27609,
+          "3": 17214,
+          "4": 378
+        },
+        "pct_corte_1": 51.7,
+        "media": 1.68,
+        "minimo": 1,
+        "maximo": 4,
+        "pct_pares_com_no_de_grau_1": 39.5,
+        "pct_cortes_1_explicados_por_grau_1": 76.4
       },
-      "pct_corte_1": 52.0,
-      "media": 1.69,
-      "maximo": 3
+      "dirigido": {
+        "n_pares": 153272,
+        "distribuicao": {
+          "1": 142627,
+          "2": 10640,
+          "3": 5
+        },
+        "pct_corte_1": 93.1,
+        "media": 1.07,
+        "minimo": 1,
+        "maximo": 3,
+        "pct_pares_com_no_de_grau_1": 70.6,
+        "pct_cortes_1_explicados_por_grau_1": 75.9
+      }
     }
   }
 }

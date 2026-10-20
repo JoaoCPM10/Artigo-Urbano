@@ -1051,9 +1051,13 @@
         "frac_fluxo_le_1": 0.0
       },
       "adversaria": {
-        "menor_fluxo": 3,
-        "portas_do_pedaco": 53,
-        "n_nos": 70
+        "menor_fluxo": 2,
+        "portas_do_pedaco": 40,
+        "n_nos": 70,
+        "menor_fluxo_nos_sorteios": 2,
+        "n_pedacos_com_o_menor_fluxo": 72,
+        "n_inicios": 25,
+        "n_iteracoes": 3000
       }
     },
     "botafogo": {
@@ -2103,8 +2107,12 @@
       },
       "adversaria": {
         "menor_fluxo": 3,
-        "portas_do_pedaco": 45,
-        "n_nos": 70
+        "portas_do_pedaco": 42,
+        "n_nos": 70,
+        "menor_fluxo_nos_sorteios": 3,
+        "n_pedacos_com_o_menor_fluxo": 1,
+        "n_inicios": 25,
+        "n_iteracoes": 3000
       }
     }
   }

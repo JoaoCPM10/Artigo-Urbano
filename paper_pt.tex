@@ -41,11 +41,11 @@ João Carlos Pereira de Melo\inst{1}}
 Modelamos as redes viárias de Urca, Copacabana e Botafogo como grafos
 dirigidos do OpenStreetMap. Perguntamos se indicadores estruturais ou um
 fluxo de acesso identificam um bairro com uma única rota de saída, e se
-isso reflete a geografia ou o tamanho. Pontes e articulações fortes e o
-corte mínimo entre dois nós não ordenam os bairros. O fluxo máximo do
-núcleo do bairro até as portas administrativas ordena: uma rota disjunta por ruas
-na Urca, dezoito em Copacabana e quinze em Botafogo, estável sob
-variações de recorte e margem. Contar interseções em vez de ruas quase
+isso reflete a geografia ou o tamanho. Pontes e articulações fortes não ordenam os bairros, e o
+corte mínimo entre dois nós os separa pouco. O fluxo máximo do
+núcleo do bairro até as portas administrativas separa a Urca das malhas abertas:
+uma rota disjunta por ruas na Urca, dezoito em Copacabana e quinze em Botafogo, estável sob
+variações da fração de origem e da margem. Contar interseções em vez de ruas quase
 não muda os valores, e respeitar o sentido das vias reduz o acesso das
 malhas abertas a menos da metade, sem alterar a Urca. Pedaços das malhas
 abertas do tamanho da Urca não reproduzem o padrão, associado à geografia
@@ -85,10 +85,7 @@ cruza a fronteira. Pelo teorema do fluxo máximo e corte mínimo~\cite{ford1956m
 fluxo é o menor número de ruas cujo fechamento isola o núcleo do bairro; contamos
 também as interseções que precisam falhar, com e sem o sentido das vias.
 A Urca é também a menor das três redes, e por
-isso controlamos o tamanho com pedaços das malhas abertas e com modelos
-nulos pareados por tamanho. Copacabana entra porque os dados do
-OpenStreetMap trazem dois túneis rodoviários, Velho e Novo, em sua saída,
-o que permite testar o quanto seu acesso depende deles.
+isso controlamos o tamanho com pedaços das malhas abertas.
 
 O objetivo deste estudo exploratório é testar, em três bairros
 contrastantes, se os indicadores estruturais dirigidos ou o fluxo de
@@ -107,56 +104,68 @@ trazem a discussão e a conclusão.
 \label{sec:related}
 
 Pontes e pontos de articulação, cuja remoção desconecta um grafo, são
-encontrados em tempo linear pela busca em profundidade~\cite{tarjan1972depth}.
-Eles ignoram a direção. Italiano et al.~\cite{italiano2012finding} os
+encontrados em tempo linear pela busca em profundidade~\cite{tarjan1972depth}
+e ignoram a direção. Italiano et al.~\cite{italiano2012finding} os
 generalizaram para grafos dirigidos como pontes \emph{fortes} e pontos de
 articulação \emph{fortes}, cuja remoção aumenta o número de componentes
-fortemente conexas, e propuseram algoritmos de tempo linear. Essas
-noções descrevem o grafo como um todo e não se referem a uma origem ou a
-um destino.
+fortemente conexas. Essas noções descrevem o grafo como um todo e não se
+referem a uma origem ou a um destino.
 
 A centralidade de intermediação identifica interseções e trechos de rua
 críticos em cidades densamente povoadas~\cite{alatristasalas2019}, e
 Kirkley et al.~\cite{kirkley2018betweenness} a estudam em redes viárias.
-A sintaxe espacial calcula integração e escolha sobre o mapa axial ou de
-segmentos de um assentamento~\cite{hillier1984social}. Essas abordagens
-ordenam vértices ou segmentos e não contam as rotas independentes que
-ligam uma região ao exterior.
+Essas abordagens ordenam vértices ou trechos e não contam as rotas
+independentes que ligam uma região ao exterior.
 
 Outros estudos tratam da direção das vias e da redundância de rotas. Yu e
-Gayah~\cite{yu2020resilience} comparam três configurações de rede viária,
-entre elas a de mão única, sob falhas de trechos e encontram uma troca
-entre eficiência e resiliência nas redes com restrições de movimento.
-El-Rashidy e Grant-Muller~\cite{elrashidy2016redundancy} propõem índices
-de redundância de cruzamentos e da rede que incluem o número de rotas
-alternativas. Esses trabalhos avaliam a redundância de interseções ou da
-rede inteira, sem tratar o acesso de um bairro ao restante da cidade.
+Gayah~\cite{yu2020resilience} comparam configurações de rede viária, entre
+elas a de mão única, sob falhas de trechos. El-Rashidy e
+Grant-Muller~\cite{elrashidy2016redundancy} propõem índices de redundância
+que incluem o número de rotas alternativas. Carmona et
+al.~\cite{carmona2020cracking} mostram que a fração de trechos de mão
+única altera a vulnerabilidade a congestionamentos, e Xing et
+al.~\cite{xing2025strong} medem a conectividade forte sob restrições de
+manobra e de acesso. Esses trabalhos avaliam interseções, trechos ou a rede
+inteira, sem tratar o acesso de um bairro ao restante da cidade.
 
-Estudos de resiliência medem como o serviço se degrada sob falha. Rouhana
-e Jawad~\cite{rouhana2020} avaliam com SIG o papel da topologia da rede,
-Alatrista-Salas et al. simulam falhas aleatórias e direcionadas, Ientile
-et al.~\cite{ientile2022measuring} propõem um índice de perda de
-capacidade de serviço, e Ganin et al.~\cite{ganin2017resilience} comparam
-eficiência e resiliência em 40 áreas urbanas dos EUA. Em geral, esses
-estudos tomam a rede inteira como unidade de análise, sem isolar o acesso
-de uma região específica.
+Estudos de resiliência medem como o serviço se degrada sob falha.
+Alatrista-Salas et al. simulam falhas aleatórias e direcionadas, Ganin et
+al.~\cite{ganin2017resilience} comparam eficiência e resiliência em 40
+áreas urbanas dos EUA, e Chalkiadakis et
+al.~\cite{chalkiadakis2022resilience} relacionam eficiência e criticidade,
+medidas pela remoção de um elo por vez, ao fluxo de tráfego em Atenas.
+Loreti et al.~\cite{loreti2022local} mostram, em uma simulação de enchente,
+que a componente gigante descreve mal o impacto local e partem a rede pela
+acessibilidade de cidades. Em geral, esses estudos tomam a rede inteira
+como unidade de análise ou medem a acessibilidade a locais, sem contar as
+rotas independentes que ligam uma região específica ao exterior.
 
 Fluxo máximo e corte mínimo, ligados pelo teorema de Ford e
 Fulkerson~\cite{ford1956maximal}, são os instrumentos mais próximos dos
-que usamos e têm sido aplicados a redes viárias para estudar isolamento e
-falha geográfica. Sugiura e Kurauchi~\cite{sugiura2023isolation} definem
-um índice de vulnerabilidade de isolamento como a solução de um problema
-de fluxo máximo entre bases de apoio e de recepção e propõem um método
-para encontrar todos os conjuntos de elos que geram isolamento. Otsuki et
-al.~\cite{otsuki2016improved} propõem algoritmos mais rápidos de fluxo
-máximo e corte mínimo sob falhas geográficas modeladas como discos
-circulares e os aplicam a uma rede viária de Nova York. Seguimos essa
-dualidade, com a região de origem e o sumidouro definidos pelo próprio
-bairro: seu núcleo e as ruas que cruzam sua fronteira oficial. Nos
-trabalhos revistos, não encontramos a contagem de rotas disjuntas entre o
-núcleo de um bairro e suas portas administrativas, nem a comparação
-dessa contagem entre bairros de geografia distinta com controle de
-tamanho.
+que usamos e têm sido aplicados a redes viárias para estudar isolamento,
+interceptação de rotas e falha geográfica. Atwell et
+al.~\cite{atwell2007maxflow} aplicam o corte mínimo à rede viária da
+região metropolitana de Nova York para achar o menor conjunto de trechos
+que intercepta todas as rotas de entrada na cidade, e Cuellar-Hengartner
+et al.~\cite{cuellar2015checkpoints} fazem o mesmo com fluxo máximo em um
+anel ao redor das 50 maiores áreas urbanas dos EUA, variando a largura do
+anel. Sipos et al.~\cite{sipos2023disaster} usam fluxo máximo em Budapeste
+para achar gargalos de equipes de resgate, e Behrooz e
+Ilbeigi~\cite{behrooz2025adaptive} ajustam a direção das ruas para
+maximizar o fluxo de zonas perigosas a zonas seguras em uma evacuação.
+Sugiura e Kurauchi~\cite{sugiura2023isolation} definem um índice de
+vulnerabilidade de isolamento como a solução de um problema de fluxo máximo
+entre bases de apoio e de recepção e propõem um método para encontrar todos
+os conjuntos de elos que geram isolamento. Otsuki et
+al.~\cite{otsuki2016improved} tratam falhas geográficas modeladas como
+discos circulares. Seguimos essa dualidade, com a região de origem e o
+sumidouro definidos pelo próprio bairro: seu núcleo e as ruas que cruzam
+sua fronteira oficial. A variação da largura do anel na
+Seção~\ref{sec:external-conn} segue a de Cuellar-Hengartner et al., aqui em
+escala de bairro. Nos trabalhos revistos, não encontramos a contagem de
+rotas disjuntas entre o núcleo de um bairro e suas saídas, nem a comparação
+dessa contagem entre bairros de geografia distinta, com controle de tamanho
+e contra indicadores convencionais sob falhas simuladas.
 
 % =====================================================================
 \section{Metodologia}
@@ -181,14 +190,12 @@ demais trechos são de mão dupla. Pontos de forma de grau dois são
 contraídos, como no OSMnx~\cite{boeing}, de modo que os vértices sejam
 interseções verdadeiras; sem essa etapa, cada curva de uma rua seria um
 falso ponto de articulação. Cadeias que retornam ao próprio vértice ou
-cujos trechos não compartilham um sentido são descartadas (0,25\% a
-0,8\% das cadeias), e ruas paralelas entre o mesmo par de interseções
-são mantidas (3, 2 e 4 pares). As coordenadas são projetadas em metros, e
+cujos trechos não compartilham um sentido são descartadas, e ruas paralelas entre o mesmo par de interseções são
+mantidas. As coordenadas são projetadas em metros, e
 cada aresta é ponderada por seu tempo de percurso, a soma dos
 comprimentos de seus trechos sobre a velocidade. A velocidade é a
 \emph{tag} \texttt{maxspeed} quando existe, e um padrão por classe de
-via caso contrário (ver o README); apenas 34\%, 32\% e 18\% das vias na
-Urca, em Copacabana e em Botafogo trazem \texttt{maxspeed}. A
+via caso contrário (ver o README). A
 Figura~\ref{fig:construction} ilustra a conversão do mapa para o grafo
 dirigido.
 
@@ -209,9 +216,11 @@ busca, unido ao retângulo delimitador do próprio polígono, e o grafo é
 recortado pelo polígono antes de qualquer análise, de modo que nenhuma
 diferença entre os bairros decorra de um pré-processamento desigual.
 Ruas que cruzam a fronteira são cortadas ali e servem apenas para
-identificar as portas de acesso (Seção~\ref{sec:access-flow}). A
-Seção~\ref{sec:res-clip} compara o resultado com o retângulo manual
-isolado. A Tabela~\ref{tab:redes} e a Figura~\ref{fig:networks} descrevem as
+identificar as portas de acesso (Seção~\ref{sec:access-flow}). O
+polígono não depende de traçado manual, ao contrário de um retângulo, que
+pode incluir território de outro bairro: o retângulo de Copacabana tinha
+496 interseções, 158 delas no território oficial de Botafogo. A
+Tabela~\ref{tab:redes} e a Figura~\ref{fig:networks} descrevem as
 redes resultantes: de 75\% a 91\% dos trechos de rua são de mão única, e
 de 4\% a 10\% das interseções ficam fora do núcleo fortemente conexo (ou
 núcleo forte), a maior componente fortemente conexa (CFC) do grafo
@@ -267,8 +276,7 @@ largura, as CFC pela interseção da alcançabilidade direta com a reversa,
 e as pontes e articulações fracas, diretamente a partir de sua
 definição. Pontes e articulações fortes são encontradas recalculando as
 CFC após cada remoção, e não com o algoritmo de tempo linear de Italiano
-et al.~\cite{italiano2012finding}; isso levou 0,1\,s, 4,2\,s e 10,2\,s para Urca, Copacabana e
-Botafogo. O fluxo máximo e o corte mínimo, o menor conjunto de ruas cujo
+et al.~\cite{italiano2012finding}. O fluxo máximo e o corte mínimo, o menor conjunto de ruas cujo
 fechamento separa a origem do destino, usam
 Edmonds--Karp~\cite{edmonds1972theoretical} com capacidade unitária por
 rua em ambos os sentidos, de modo que o fluxo seja igual ao número de
@@ -277,128 +285,221 @@ de Dijkstra~\cite{dijkstra1959note} para os pesos de tempo de percurso.
 A intermediação de uma interseção é a fração dos pares ordenados do
 núcleo fortemente conexo cujo caminho de tempo mínimo passa por ela; o
 cálculo divide empates, exclui os extremos e normaliza por $(n-1)(n-2)$.
+Como resumo por bairro, usamos o máximo dessa intermediação entre as
+interseções do núcleo.
 
-Conferimos as implementações contra o \texttt{networkx} nas três redes
-(\texttt{test\_vs\_networkx.py}, \texttt{test\_betweenness.py}).
+Conferimos as implementações contra o \texttt{networkx} nas três redes.
 Componentes, CFC, pontes e articulações fracas, caminhos mínimos, fluxo
 máximo e intermediação conferem. Pontes e articulações fortes, que o
 \texttt{networkx} não calcula, conferem com uma recontagem independente
 das CFC após cada remoção.
+O mesmo vale para os fluxos e a componente gigante da
+Seção~\ref{sec:external-conn} e para a intermediação de aresta e a
+alcançabilidade da Seção~\ref{sec:sim-method}.
 
 \subsection{Fluxo de acesso por portas}
 \label{sec:access-flow}
 
 Para medir o acesso ao restante da cidade, em vez da separação entre
 duas interseções escolhidas, distinguimos o \emph{interior} de um bairro
-de suas \emph{portas de acesso}. A rede viária também é extraída com uma
-margem de 400\,m além do polígono oficial, de modo que a primeira
-interseção além da fronteira esteja presente em toda rua que a cruze.
-Um vértice da rede recortada é uma \emph{porta de acesso} se ao menos
-uma de suas ruas incidentes cruza a fronteira; todo outro vértice é
-\emph{interior}. Como uma porta de acesso pode admitir tráfego em apenas
-um sentido, restringimos os dois conjuntos ao maior componente
-\emph{não dirigido}, e não ao núcleo fortemente conexo: uma saída de mão
-única ainda é uma saída real.
+de suas \emph{portas de acesso}. A rede é extraída com uma margem de
+400\,m além do polígono oficial, de modo que a primeira interseção além
+da fronteira esteja presente em toda rua que a cruza; depois da
+identificação das portas, a rede é recortada pelo polígono e a margem não
+entra na análise. Um vértice é uma \emph{porta de acesso} se ao menos uma
+de suas ruas incidentes cruza a fronteira, e todo outro vértice é
+\emph{interior}. Restringimos os dois conjuntos ao maior componente
+\emph{não dirigido}, e não ao núcleo fortemente conexo, porque uma saída
+de mão única ainda é uma saída real.
 
-A região de origem é formada pelas $k=\mathrm{round}(f\,n)$ interseções
-interiores mais distantes, em número de arestas, da porta de acesso mais
-próxima, com $n$ o tamanho desse componente e $f=0{,}2$; ela é o núcleo
-do bairro. Uma superfonte alimenta a região de origem, e o conjunto de
-portas de acesso alimenta um superssumidouro, ambos com capacidade
-infinita, e o Edmonds--Karp é executado entre eles. O valor resultante,
-o \emph{fluxo de acesso}, é o número de rotas disjuntas por ruas entre o
-núcleo do bairro e as saídas para o restante da cidade.
+A região de origem, o núcleo do bairro, reúne as $k=\mathrm{round}(f\,n)$
+interseções interiores mais distantes da porta de acesso mais próxima,
+com $n$ o tamanho desse componente, portas incluídas, e $f=0{,}2$. A
+distância é o número de arestas, obtido por uma busca em largura que
+parte de todas as portas ao mesmo tempo, e os empates na distância de
+corte são resolvidos pela ordem em que o programa armazena os vértices
+(Seção~\ref{sec:controls}). A fração $f$ é uma escolha de modelagem: um
+núcleo muito pequeno mede o acaso do ponto escolhido, e um muito grande
+se aproxima das portas. Uma superfonte alimenta o núcleo e as portas
+alimentam um supersumidouro, ambos com capacidade infinita, o que reduz o
+problema entre dois conjuntos ao de um único par de pontos, e o
+Edmonds--Karp é executado entre eles. O valor resultante, o \emph{fluxo
+de acesso}, é o número de rotas disjuntas por ruas entre o núcleo e as
+saídas para o restante da cidade. Ele mede apenas a saída do bairro, do
+núcleo para fora.
 
-Com a mesma origem e as mesmas portas, calculamos duas variantes e sua
-combinação. A primeira conta rotas disjuntas por \emph{interseções}
-(teorema de Menger~\cite{menger1927}): dividindo cada vértice em $v_{\text{ent}}\to
-v_{\text{sai}}$, só as interseções interiores recebem capacidade~1,
-enquanto o núcleo do bairro e as portas ficam incortáveis (capacidade
-infinita) e as ruas têm capacidade infinita; sem essa distinção, o valor
-ficaria limitado trivialmente pelo número de portas. A segunda respeita o
-\emph{sentido} das vias, atribuindo capacidade unitária por arco, e não
-nos dois sentidos de cada rua: uma saída de mão única só conta no sentido
-que de fato permite deixar o bairro, de modo que o fluxo de acesso
-dirigido é menor ou igual ao não dirigido. A combinação divide os
-vértices e mantém apenas os arcos que existem, e conta as interseções
-que precisam falhar quando o sentido das vias é respeitado.
-As duas contagens correspondem a eventos diferentes: o fechamento de
-ruas, como numa interdição ou num deslizamento, e a falha de
-interseções, como num alagamento ou no bloqueio de um cruzamento. Em
-ambos os casos, o valor do fluxo é o menor número de falhas que isolam
-o núcleo do bairro de todas as portas. As quatro contagens de rotas (por ruas e por interseções, sem e
-com o sentido das vias) conferem com o \texttt{networkx}
-(\texttt{ruas\_vs\_intersecoes.py}).
+Com a mesma origem e as mesmas portas, variamos duas coisas: o que conta
+como falha e se o sentido das vias é respeitado, o que dá quatro
+contagens. Por \emph{ruas}, cada rua tem capacidade unitária. Por
+\emph{interseções} (teorema de Menger~\cite{menger1927}), dividimos cada
+vértice em $v_{\text{ent}}\to v_{\text{sai}}$ e só as interseções
+interiores recebem capacidade~1; o núcleo e as portas ficam incortáveis e
+as ruas têm capacidade infinita, pois sem essa distinção o valor ficaria
+limitado trivialmente pelo número de portas. Sem o sentido das vias, toda
+rua vale nos dois sentidos; com o sentido, mantemos só os arcos que
+existem, e uma saída de mão única só conta no sentido que permite deixar
+o bairro. Assim, o fluxo dirigido é menor ou igual ao não dirigido, e o
+fluxo por interseções é menor ou igual ao por ruas, porque rotas sem
+interseção interior em comum também não repartem rua. As duas contagens
+correspondem a eventos diferentes: o fechamento de ruas, como numa
+interdição ou num deslizamento, e a falha de interseções, como num
+alagamento ou no bloqueio de um cruzamento. Em ambos os casos, o valor é
+o menor número de falhas que isolam o núcleo de todas as portas. As
+quatro contagens conferem com o \texttt{networkx}.
 
 \subsection{Controles e análises de sensibilidade}
 \label{sec:controls}
 
-\emph{Corte mínimo entre dois nós.} Como referência, calculamos o corte
-mínimo entre 300 pares aleatórios de interseções no maior componente não
-dirigido de cada rede.
+\emph{Corte mínimo entre dois nós.} Como referência convencional,
+calculamos o corte mínimo entre todos os pares de interseções do maior
+componente não dirigido de cada rede e, com o sentido das vias, entre
+todos os pares ordenados do núcleo fortemente conexo. Esse corte não
+depende de núcleo nem de portas, e contrasta com o fluxo de acesso.
 
-\emph{Localização do corte de acesso.} Um corte mínimo não é único, e o
-que o Edmonds--Karp devolve é o mais próximo da origem. Por isso,
-também enumeramos toda rua cujo fechamento sozinho separa a região de
-origem de todas as portas, contamos as interseções de cada lado, e
-conferimos se suas interseções extremas coincidem com as cinco mais
-centrais por intermediação. Repetimos isso para $f$ de 0,05 a 0,5.
+\emph{Localização do corte de acesso.} Para saber se o fluxo de um da Urca
+vem de um gargalo do bairro ou de uma rua próxima ao núcleo, observamos que
+um corte mínimo não é único e que o Edmonds--Karp devolve o mais próximo da
+origem. Por isso, enumeramos toda rua cujo fechamento sozinho separa o
+núcleo de todas as portas, contamos as interseções de cada lado e
+conferimos se os extremos dessas ruas coincidem com as cinco interseções de
+maior intermediação. Na Urca, repetimos isso para $f$ de 0,05 a 0,5.
 
-\emph{Controle de tamanho do fluxo de acesso.} Sorteamos pedaços conexos
-de 70 interseções, o tamanho da Urca, dentro de Copacabana e de Botafogo,
-tratamos cada um como um bairro e calculamos seu fluxo de acesso; as
-portas de um pedaço são suas interseções ligadas por uma rua a uma
-interseção fora dele. Sorteamos 500 pedaços por bairro por crescimento em
-busca em largura e 500 por crescimento aleatório (modelo de Eden), e
-acrescentamos uma busca de subida de encosta que troca uma interseção por
-vez para minimizar o fluxo (8 reinícios de 1.500 iterações).
+\emph{Controle de tamanho do fluxo de acesso.} Para separar o efeito do
+tamanho do da geografia, sorteamos pedaços conexos de 70 interseções, o
+tamanho da Urca, dentro de Copacabana e de Botafogo e tratamos cada um
+como um bairro. O fluxo é o da Seção~\ref{sec:access-flow}, por ruas e
+sem o sentido das vias, com $f=0{,}2$, e as portas de um pedaço são suas
+interseções ligadas por uma rua a uma interseção fora dele, na rede com
+margem de 400\,m. Sorteamos 500 pedaços por bairro por crescimento em
+busca em largura e 500 por crescimento aleatório do tipo
+Eden~\cite{eden1961}, em que a cada passo se acrescenta ao pedaço uma
+interseção vizinha escolhida ao acaso. Acrescentamos uma busca de subida
+de encosta que parte dos 25 pedaços sorteados de menor fluxo, troca uma
+interseção por vez e aceita a troca se o fluxo não aumenta, para tentar
+reduzi-lo (3.000 trocas por início).
 
-\emph{Controle de tamanho da intermediação.} Sorteamos 300 pedaços
-conexos de 65 a 78 interseções por bairro e por modo de crescimento,
-mantemos os cujo núcleo fortemente conexo tem de 60 a 70 vértices (o da
-Urca tem 65), e comparamos o máximo da Urca com o deles. Também
-calculamos o produto do máximo por $\sqrt{n}$ e religamos as arestas de cada núcleo forte preservando os graus (50 religações por rede, não dirigida e
-sem peso). Em cada nulo, o escore $z$ é a diferença entre o valor
-observado e a média do nulo, dividida pelo desvio padrão do nulo. A
-religação destrói a planaridade, e por isso qualquer rede viária real
-aparece como extrema diante desse nulo; o nulo informativo é o pareado
-por tamanho, e a religação serve como verificação.
+\emph{Controle de tamanho da intermediação.} Para a intermediação máxima,
+sorteamos sub-redes das malhas abertas pelos dois tipos de crescimento e
+mantemos as cujo núcleo fortemente conexo tem 65 $\pm$ 5 interseções, o da
+Urca (300 por bairro e tipo), pois a intermediação é definida nesse núcleo e
+pedaços de 70 interseções costumam ter um núcleo menor.
 
-\emph{Extensão, fração de origem, margem e túneis.} Repetimos a análise
-com o retângulo manual, sem recorte e com as portas de acesso na borda
-do retângulo, e variamos $f$ (0,15, 0,20, 0,25) e a margem (200, 400 e
-800\,m). Uma porta é uma saída de túnel quando a rua que sai por ela
-passa a até 2\,m de um nó de uma via marcada \texttt{tunnel=yes} ou
-\texttt{building\_passage}; recalculamos o fluxo sem essas portas. Todos
-os procedimentos aleatórios usam sementes fixas, e o README do
+\emph{Fração de origem e margem.} Para saber se o fluxo de acesso depende
+dessas escolhas, repetimos a análise com $f$ de 0,15, 0,20 e 0,25 e margens
+de 200, 400 e 800\,m. Com a margem de 400\,m, variamos também $f$ de 0,05
+a 0,5, para ver até onde o valor se mantém.
+
+\emph{Desempate do núcleo.} Para saber se o resultado depende de quais
+interseções empatadas entram no núcleo, embaralhamos 200 vezes, com semente
+fixa, a ordem dos vértices empatados na distância de corte e recalculamos
+as quatro contagens.
+
+Todos os procedimentos aleatórios usam sementes fixas, e o README do
 repositório (omitido para a revisão) lista o script de cada tabela e
 figura.
+
+\subsection{Conectividade externa}
+\label{sec:external-conn}
+
+O fluxo de acesso da Seção~\ref{sec:access-flow} termina nas portas
+administrativas. Duas ruas que cruzam a fronteira podem convergir logo
+depois para o mesmo corredor, e então as rotas contadas na fronteira não
+seriam independentes até o restante da cidade. Para testar essa hipótese,
+ampliamos cada rede em $R=500$\,m, 1\,km e 2\,km além do polígono
+oficial. O anel é o conjunto de interseções a até $R$ metros do
+polígono, em linha reta, e a extração da Overpass usa o envelope do
+bairro ampliado em $R$ mais 400\,m. O núcleo de origem é o da
+Seção~\ref{sec:access-flow} ($f=0{,}2$), e o destino passa a ser a borda
+externa do anel. Um destino externo é uma interseção do anel com uma rua
+que sai dele e chega à componente fortemente conexa gigante da rede de
+$R$ mais 400\,m. Assim só conta o que continua para a cidade. A
+capacidade é unitária por rua, com o sentido das vias
+respeitado. Calculamos o fluxo por ruas, que é a medida principal, e
+também por interseções e sem o sentido das vias. Os extratos ampliados
+são de 11 de outubro de 2026.
+
+Para saber se o gargalo está dentro ou fora do bairro, calculamos o corte
+mínimo mais próximo da origem e o mais próximo dos destinos, este por uma segunda execução do
+Edmonds--Karp na rede revertida. Uma rua de corte é interna quando os
+dois extremos ficam no polígono, de fronteira quando um fica e externa
+quando nenhum fica. Uma rua externa crítica é uma rua fora do polígono
+cujo fechamento, nos dois sentidos e com as paralelas, reduz o fluxo.
+Testamos apenas as ruas com fluxo positivo, as únicas que podem
+reduzi-lo.
+
+Para localizar a origem de uma queda do fluxo, separamos as portas do
+polígono entre as que continuam e as que não continuam. Contamos só as
+portas com uma rua que sai do bairro no sentido de saída, e por isso o
+número de portas difere do da Tabela~\ref{tab:acesso}, que conta toda
+porta com uma rua cruzando a fronteira, inclusive as de sentido único
+para dentro. Uma saída continua quando, a partir da rua que deixa o
+bairro, um caminho dirigido que permanece fora do polígono e a até $R$
+metros dele alcança um destino externo. Calculamos então o fluxo do
+núcleo até as portas que continuam, dentro do polígono.
+
+Com o destino nas portas administrativas ($R=0$), a rede ampliada deve
+reproduzir os valores da Tabela~\ref{tab:acesso}, e o código confere
+isso. O fluxo externo não pode superar o do polígono, porque todo
+caminho até o anel cruza a fronteira, e o código também confere essa
+desigualdade.
+
+\subsection{Simulação de interrupções}
+\label{sec:sim-method}
+
+Para saber se o fluxo de acesso aponta as ruas cujo fechamento isola o
+núcleo, fechamos $k$ ruas do bairro ($k=1$, 2, 4, 8 e 16, nos dois
+sentidos) e medimos a fração dos nós do núcleo que perde todas as rotas
+dirigidas até os destinos externos da rede ampliada em 1\,km
+(Seção~\ref{sec:external-conn}). Os indicadores são calculados sobre o
+bairro, e os cortes usam as portas administrativas. O desfecho mede a
+chegada à borda externa de uma rede maior. Fechar apenas as ruas do
+próprio corte e constatar que isolam o núcleo repetiria o teorema do
+fluxo máximo e corte mínimo. Por isso comparamos estratégias de mesmo
+orçamento e damos atenção a $k$ menor que o fluxo de acesso. Só as ruas
+dentro do polígono podem ser fechadas.
+
+As estratégias são: ruas sorteadas (200 sorteios, semente fixa); as $k$
+de maior intermediação de aresta dirigida; ruas sorteadas entre as
+pontes fortes e entre as pontes do grafo não dirigido; $k$ ruas de um
+corte mínimo entre o núcleo e as portas; $k$ ruas sorteadas entre as
+que reduzem o fluxo de acesso quando fechadas sozinhas; e um ataque
+guloso, que fecha a cada passo a rua de maior perda e serve de limite
+superior. Fechamos também cada rua isoladamente e comparamos o conjunto
+das ruas com dano com o que cada indicador seleciona, medido em acertos
+sobre o tamanho do conjunto, com o coeficiente de Spearman entre a
+intermediação de aresta e o dano e com a sobreposição de Jaccard entre
+as listas. A intermediação de aresta e a alcançabilidade conferem com o
+\texttt{networkx}, e as proporções de pontes reproduzem a
+Tabela~\ref{tab:estrutural}.
 
 % =====================================================================
 \section{Resultados}
 \label{sec:results}
 
-\subsection{Os indicadores estruturais não ordenam os casos}
+\subsection{Os indicadores estruturais não ordenam os casos e o corte entre dois nós os separa pouco}
 \label{sec:res-struct}
 
 A Tabela~\ref{tab:estrutural} compara os indicadores estruturais
-dirigidos. A Urca não ocupa o mesmo extremo em todos eles. Tem o maior
+dirigidos, a intermediação máxima e, nas últimas linhas, o corte mínimo entre
+dois nós. A Urca não ocupa o mesmo extremo em todos eles. Tem o maior
 valor de articulações fortes (73,8\%, contra 54,1\% em Copacabana e
 63,5\% em Botafogo) e o menor de pontes fracas (10,6\%, contra 15,8\% e
 20,2\%), com valores intermediários em pontes fortes (61,5\%) e na
 fração fora do núcleo forte (7,1\%). Por isso os indicadores não
-ordenam os bairros de forma consistente.
+ordenam os bairros de forma consistente. A intermediação máxima é a maior na
+Urca (54,2\%, contra 27,8\% e 22,4\%), mas parte dos pedaços de mesmo tamanho a
+iguala ou supera (Seção~\ref{sec:res-controls}).
 
 As duas malhas abertas também diferem entre si. Em pontes fortes,
-Copacabana tem 45,3\% e Botafogo 68,4\%, e a diferença persiste quando
-as redes são construídas a partir do retângulo manual
-(Seção~\ref{sec:res-clip}). Em todos os bairros, de 45\% a 68\% das
-ruas do núcleo forte são pontes fortes; na Urca, são 59 das 96.
+Copacabana tem 45,3\% e Botafogo 68,4\%. Na
+Urca, 59 das 96 ruas do núcleo forte são pontes fortes.
 
 \begin{table}[t]
 \centering
-\caption{Indicadores estruturais dirigidos (normalizados), com as três
-redes recortadas pelo polígono oficial.}
+\caption{Indicadores estruturais dirigidos (normalizados), intermediação máxima e
+corte mínimo entre dois nós em todos os pares de interseções, com as três redes
+recortadas pelo polígono oficial. Com o sentido das vias, os pares são ordenados e pertencem ao
+núcleo fortemente conexo.}
 \label{tab:estrutural}
 \begin{tabular}{lrrr}
 \toprule
@@ -408,19 +509,26 @@ Pontes fracas (\% dos trechos)          & 10,6 & 15,8 & 20,2 \\
 Pontes fortes (\% das ruas do núcleo forte)   & 61,5 & 45,3 & 68,4 \\
 Articulações fortes (\% do núcleo forte)      & 73,8 & 54,1 & 63,5 \\
 Fora do núcleo forte (\% de $V$)        & 7,1  & 4,1  & 9,7 \\
+Intermediação máxima (\% dos pares)    & 54,2 & 27,8 & 22,4 \\
+\midrule
+\multicolumn{4}{l}{\emph{Corte mínimo entre dois nós (todos os pares)}} \\
+Pares de interseções                    & 2.415 & 58.996 & 93.528 \\
+Pares com corte 1 (\%)                  & 68,4 & 40,7 & 51,7 \\
+Média do corte (ruas)                   & 1,49 & 1,94 & 1,68 \\
+Cortes 1 por nó de grau 1 (\%)         & 20,3 & 80,7 & 76,4 \\
+Pares com corte 1, com sentido (\%)     & 95,6 & 81,5 & 93,1 \\
+Média do corte, com sentido             & 1,04 & 1,19 & 1,07 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\subsection{Corte mínimo entre dois nós}
-\label{sec:res-mincut}
-
-Em 300 pares aleatórios de interseções por bairro
-(Seção~\ref{sec:controls}), o corte mínimo, em número de ruas, varia de
-1 a 3 na Urca e em Botafogo e de 1 a 4 em Copacabana. Os pares com corte
-1 são 70,0\% na Urca, 40,7\% em Copacabana e 52,0\% em Botafogo, e as
-médias são 1,49, 1,98 e 1,69. A Urca tem os menores valores, e a
-diferença entre sua média e a das malhas abertas é de 0,2 a 0,5 rua.
+O corte mínimo entre dois nós, calculado em todos os pares de interseções
+de cada bairro (Seção~\ref{sec:controls}), varia de 1 a 4 ruas nos três
+bairros. A Urca tem a menor média e a maior proporção de pares com corte 1,
+e a diferença entre sua média e a das malhas abertas é de 0,2 a 0,5 rua.
+Nas malhas abertas, 81\% e 76\% dos cortes iguais a 1 se devem a uma
+interseção de grau 1, contra 20\% na Urca. Com o sentido das vias, o corte
+é quase sempre 1, e a Urca quase não se distingue de Botafogo.
 
 \subsection{Fluxo de acesso por portas}
 \label{sec:res-access}
@@ -428,11 +536,12 @@ diferença entre sua média e a das malhas abertas é de 0,2 a 0,5 rua.
 O fluxo de acesso, em rotas disjuntas por ruas, é 1 na Urca, 18 em
 Copacabana e 15 em Botafogo (Tabela~\ref{tab:acesso}), com 3, 21 e 31
 portas. Os valores não mudam para $f$ entre 0,15 e 0,25 nem para
-margens de 200 a 800\,m. A Urca não tem portas de túnel. Em Copacabana,
-quatro das 21 portas são saídas dos túneis Velho e Novo, e sem elas o
-fluxo é 15. Em Botafogo, quatro das 31 portas também são saídas desses
-túneis, e o fluxo permanece em 15. A Seção~\ref{sec:res-ruas-int} traz
-as contagens por interseções e com o sentido das vias.
+margens de 200 a 800\,m, e o número de portas permanece o mesmo. Também não
+mudam nos 200 sorteios da ordem de desempate, nas quatro contagens, embora
+o núcleo mude (200 núcleos distintos em Copacabana, 36 em Botafogo e um só
+na Urca, onde todas as interseções empatadas cabem no núcleo). Com $f$ de 0,05 a 0,5, o fluxo varia de 15 a 21 em Copacabana e
+de 13 a 20 em Botafogo. Na Urca ele permanece em 1 até $f=0{,}4$ e vale 2
+em $f=0{,}5$.
 
 \begin{table}[t]
 \centering
@@ -454,35 +563,27 @@ Rotas por interseções, respeitando o sentido         & 1 & 8  & 6 \\
 \end{tabular}
 \end{table}
 
-\subsection{Contagens por ruas e por interseções}
-\label{sec:res-ruas-int}
-
 Sem o sentido das vias, contar interseções em vez de ruas muda pouco os
-valores: 1, 17 e 14, contra 1, 18 e 15 (Tabela~\ref{tab:acesso}). Na
-Urca, o fechamento de uma única rua do corredor, ou a falha de uma única
-interseção dele, deixa o núcleo do bairro sem saída (Figura~\ref{fig:cut}). Em
+valores (17 e 14 nas malhas abertas). Respeitar o sentido reduz o acesso
+das malhas abertas a menos da metade: 8 e 7 por ruas e 8 e 6 por
+interseções, e as duas contagens dirigidas diferem em uma unidade em
+Botafogo. A Urca fica em uma única rota nas quatro contagens. Seu
+núcleo fica sem saída com o fechamento de uma única rua do corredor ou
+a falha de uma única interseção dele (Figura~\ref{fig:cut}). Em
 Copacabana e Botafogo, o corte mínimo tem 18 e 15 ruas, ou 17 e 14
 interseções, espalhadas pelo bairro.
-
-Com o sentido das vias respeitado, o fluxo de acesso é 1 na Urca, 8 em
-Copacabana e 7 em Botafogo, menos da metade do valor não dirigido nas
-duas malhas abertas. Por interseções, os valores são 1, 8 e 6. As duas
-contagens dirigidas coincidem na Urca e em Copacabana e diferem em uma
-unidade em Botafogo. A Urca fica em uma única rota nas quatro contagens.
 
 \subsection{Localização do corte de acesso}
 \label{sec:res-cut}
 
 Na Urca há três cortes de uma única rua, todos no corredor que liga as
-duas malhas residenciais (Figura~\ref{fig:cut}): uma rua de 165\,m no
-extremo nordeste, que é o corte devolvido pelo Edmonds--Karp e deixa 23
-interseções do lado da origem; uma rua de 32\,m adjacente a ela, com 27;
-e uma rua de 33\,m na junção sudoeste, com 33. O corte por interseções é
-uma única interseção do corredor. Os três cortes aparecem para todo $f$
-de 0,05 a 0,25 e têm as mesmas cinco interseções nas extremidades. Para
-$f$ maior, restam dois cortes em $f=0{,}3$, um em $f=0{,}4$ e nenhum em
-$f=0{,}5$. Copacabana e Botafogo não têm corte de uma única rua: seus
-cortes mínimos têm 18 e 15 ruas, espalhadas pelo bairro.
+duas malhas residenciais (Figura~\ref{fig:cut}), e o corte por
+interseções é uma única interseção do corredor. Os três cortes aparecem
+para todo $f$ de 0,05 a 0,25 e têm as mesmas cinco interseções nas
+extremidades. Essas cinco interseções são também as de maior
+intermediação dirigida da Urca, com valores de 45,8\% a 54,2\% dos
+pares. Acima de 0,25 o núcleo passa a incluir o corredor, e os cortes de
+uma rua caem para 2, 1 e 0 em $f=0{,}3$, $0{,}4$ e $0{,}5$.
 
 \begin{figure}[t]
 \centering
@@ -493,103 +594,163 @@ interseções de corte (contagem por vértices).}
 \label{fig:cut}
 \end{figure}
 
-\subsection{Intermediação dirigida}
-\label{sec:res-betweenness}
-
-A Figura~\ref{fig:betweenness} mostra a intermediação dirigida. Na
-Urca, as cinco interseções de maior intermediação ficam ao
-longo do corredor e em suas junções com as duas malhas, com valores de
-45,8\% a 54,2\%; elas são os extremos dos três cortes de uma única rua.
-Em Copacabana e Botafogo, os máximos são 27,8\% e 22,4\%, ao longo do
-eixo principal de Copacabana e de duas ruas paralelas em Botafogo.
-
-O produto do máximo por $\sqrt{n}$, que seria constante se o máximo
-escalasse como $n^{-1/2}$, é 4,4 na Urca, 5,1 em Copacabana e 4,4 em
-Botafogo. Nos pedaços pareados por tamanho (Seção~\ref{sec:controls},
-Figura~\ref{fig:controles}b), o máximo da Urca, 54,2\%, é igualado ou
-superado por 2,0\% e 18,3\% dos pedaços de Copacabana e por 43,7\% e
-51,8\% dos de Botafogo, nos modos de crescimento por busca em largura e
-por Eden. Cada grupo tem 300 pedaços, exceto Botafogo por Eden, com 56.
-Os escores $z$ da Urca vão de $-0{,}3$ a 1,9. A religação das arestas
-preservando os graus dá escores $z$ de 22 a 39 nos três bairros.
-
-\begin{figure}[!htb]
-\centering
-\includegraphics[width=\textwidth]{Figures/fig_betweenness.png}
-\caption{Centralidade de intermediação dirigida (caminhos de tempo
-mínimo, núcleo forte), em uma escala de cor comum. Os máximos não são
-comparáveis entre núcleos fortes de tamanhos diferentes (ver texto).}
-\label{fig:betweenness}
-\end{figure}
-
-\subsection{Controle de tamanho do fluxo de acesso}
+\subsection{Controle de tamanho do fluxo de acesso e da intermediação}
 \label{sec:res-controls}
 
 A Urca é a menor das três redes. Para separar o efeito do tamanho,
 comparamos seu fluxo de acesso com o de pedaços conexos de 70
 interseções, o tamanho da Urca, sorteados dentro de Copacabana e de
 Botafogo (Seção~\ref{sec:controls}). Nenhum dos 2.000 pedaços chegou a um
-fluxo de 1 (Figura~\ref{fig:controles}a). A mediana do fluxo foi 11 e 13
+fluxo de 1 (Figura~\ref{fig:controles}). A mediana do fluxo foi 11 e 13
 nos pedaços de Copacabana e 8 e 11 nos de Botafogo, por crescimento em
 busca em largura e por Eden, e todo pedaço teve ao menos 9 portas,
 contra 3 na Urca. Os pedaços com fluxo de 3 ou menos foram 17,4\% e
-10,8\% em Copacabana e 0,0\% e 0,2\% em Botafogo. A busca de subida de
-encosta, que procura o menor fluxo possível, encontrou 3 como menor
-valor, em pedaços com 53 portas em Copacabana e 45 em Botafogo.
+10,8\% em Copacabana e 0,0\% e 0,2\% em Botafogo. O menor fluxo
+observado foi 2 em Copacabana (72 pedaços) e 3 em Botafogo (1 pedaço), e
+a busca de subida de encosta, iniciada nos pedaços mais frágeis, não o
+reduziu: terminou em 2 e 3, em pedaços com 40 e 42 portas. Com o núcleo forte
+do mesmo tamanho (65 $\pm$ 5 interseções), a intermediação máxima da Urca é
+igualada ou superada por 9,0\% a 12,3\% dos pedaços de Copacabana e por 36,7\%
+dos de Botafogo, enquanto nenhum pedaço chega ao fluxo de 1.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{Figures/fig_controles.png}
-\caption{Controles de tamanho. (a) Fluxo de acesso de pedaços conexos de
+\caption{Controle de tamanho: fluxo de acesso de pedaços conexos de
 70 interseções sorteados dentro de Copacabana e Botafogo (500 por
-crescimento em busca em largura e 500 por crescimento aleatório cada);
-o fluxo da Urca é 1. (b) Máximo de intermediação dos pedaços pareados
-por tamanho (Seção~\ref{sec:controls}); o da Urca é 54,2\%.}
+crescimento em busca em largura e 500 por crescimento aleatório cada); o
+fluxo da Urca é 1.}
 \label{fig:controles}
 \end{figure}
 
-\subsection{Sensibilidade ao recorte}
-\label{sec:res-clip}
+\subsection{Validação da conectividade externa e sensibilidade à extensão da rede}
+\label{sec:res-external}
 
-A Tabela~\ref{tab:recorte} compara o polígono oficial com o retângulo
-manual, sem recorte e com as portas na borda do retângulo. Do retângulo
-para o polígono, os valores de Botafogo mudam pouco: as pontes fortes
-vão de 70,4\% para 68,4\% e o fluxo de acesso de 16 para 15. Em
-Copacabana, o retângulo incluía 158 de suas 496 interseções, que ficam no
-território oficial de Botafogo, e as pontes fortes caem de 53,1\% para
-45,3\% e as portas de 45 para 21. Na Urca, o retângulo truncava a
-península, e o núcleo forte passa de 37 para 65 interseções e a fração
-fora dele de 38,3\% para 7,1\%.
-
-Duas comparações se repetem nos dois recortes. A diferença de pontes
-fortes entre Copacabana e Botafogo é de 53,1\% contra 70,4\% com o
-retângulo e de 45,3\% contra 68,4\% com o polígono. O fluxo de acesso da
-Urca é 1, contra 13 a 18 em Copacabana e 15 a 16 em Botafogo. A fração
-da Urca fora do núcleo forte e o número de portas, por sua vez, mudam
-com o recorte.
+Com o destino nas portas administrativas, a rede ampliada reproduz os
+valores da Tabela~\ref{tab:acesso}. A Tabela~\ref{tab:externa} traz o
+fluxo por ruas, respeitando o sentido, até a borda externa definida na
+Seção~\ref{sec:external-conn}. Na Urca ele é 1 em todos os raios, e
+Botafogo mantém 7. Copacabana cai de 8 para 7 a 500\,m e para 6 a 1\,km,
+e fica em 6 a 2\,km. Por interseções, Copacabana segue os mesmos valores
+(8, 7, 6 e 6) e Botafogo passa de 6 para 5 já a 500\,m. Sem o sentido
+das vias, o fluxo de Copacabana vai de 18 para 14 e depois para 12, e o
+de Botafogo fica em 15. A Urca tem o menor fluxo em todos os raios.
+Copacabana e Botafogo trocam de posição: 8 contra 7 na fronteira e 6
+contra 7 a 1\,km.
 
 \begin{table}[t]
 \centering
-\caption{Sensibilidade ao tipo de recorte. Retângulo: retângulo manual,
-sem recorte, com as portas de acesso na borda do retângulo. Polígono:
-polígono oficial (a versão do artigo). $V$: interseções; Fora: \% de $V$
-fora do núcleo forte; Pontes: \% de pontes fortes; Fluxo: fluxo de
-acesso ($f=0{,}2$).}
-\label{tab:recorte}
-\footnotesize
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{llrrrrr}
+\caption{Fluxo de acesso por ruas, respeitando o sentido das vias, do
+mesmo núcleo ($f=0{,}2$) até as portas administrativas e até a borda
+externa da rede ampliada. As definições de porta sem continuação e de rua
+externa crítica estão na Seção~\ref{sec:external-conn}.}
+\label{tab:externa}
+\begin{tabular}{lrrr}
 \toprule
-Bairro & Recorte & $V$ & Fora & Pontes & Portas & Fluxo \\
+ & Urca & Copacabana & Botafogo \\
 \midrule
-Urca       & retângulo & 60  & 38,3 & 67,3 & 4  & 1  \\
-           & polígono  & 70  & 7,1  & 61,5 & 3  & 1  \\
+Portas administrativas                         & 1 & 8 & 7 \\
+Rede ampliada em 500\,m                        & 1 & 7 & 7 \\
+Rede ampliada em 1\,km                         & 1 & 6 & 7 \\
+Rede ampliada em 2\,km                         & 1 & 6 & 7 \\
 \midrule
-Copacabana & retângulo & 496 & 19,6 & 53,1 & 45 & 13 \\
-           & polígono  & 345 & 4,1  & 45,3 & 21 & 18 \\
+Portas com saída para fora do bairro           & 2 & 14 & 20 \\
+Portas sem continuação a 1\,km                 & 1 & 5 & 3 \\
+Ruas externas críticas a 1\,km                 & 2 & 26 & 17 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Das 14 portas de Copacabana com saída para fora do bairro, 2 não
+continuam a 500\,m e 5 não continuam a 1\,km e a 2\,km. Cada uma dá em
+um bolsão de 1 a 26 interseções fora do polígono, e as saídas desses
+bolsões voltam ao bairro. Sem essas portas, o fluxo do núcleo até as
+portas restantes é 7 a 500\,m e 6 a 1\,km e a 2\,km, os mesmos valores
+da borda externa. Em Botafogo, 3 das 20 portas não continuam a 1\,km e o
+fluxo permanece em 7. Na Urca, 1 das 2 portas não continua e o fluxo
+permanece em 1.
+
+A Figura~\ref{fig:externa} mostra os cortes mínimos a 1\,km. O corte
+mais próximo da origem fica dentro do bairro nos três casos, com 1
+rua na Urca, 6 em Copacabana e 7 em Botafogo. O mais próximo dos
+destinos fica fora: uma rua na Urca, seis em Copacabana e duas em
+Botafogo, que completam o corte com cinco ruas internas. Em Copacabana,
+portanto, 6 ruas internas e 6 ruas externas limitam o fluxo ao mesmo
+valor. As ruas externas críticas somam 2 na Urca, 26 em Copacabana e 17
+em Botafogo a 1\,km (Tabela~\ref{tab:externa}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{Figures/fig_externa.png}
+\caption{Conectividade externa a 1\,km (ruas, com o sentido das vias).
+Azul: núcleo de origem; triângulos verdes: destinos externos; vermelho:
+corte mínimo mais próximo do núcleo; roxo: corte mínimo mais próximo dos
+destinos; laranja: ruas externas cujo fechamento sozinho reduz o fluxo;
+tracejado: fronteira oficial.}
+\label{fig:externa}
+\end{figure}
+
+\subsection{Simulação de interrupções e comparação com indicadores convencionais}
+\label{sec:res-sim}
+
+Na Urca, o fechamento de uma única rua do corredor, escolhida pela
+intermediação ou pelo corte, isola todo o núcleo ($k=1$), e o ataque
+guloso coincide com elas. Com $k=1$, as pontes fortes, as pontes fracas
+e o sorteio levam a perdas de 22,9\%, 25,5\% e 13,2\%
+(Figura~\ref{fig:simulacao}). Em Copacabana e Botafogo, com $k$ menor
+que o fluxo de acesso (8 e 7), as ruas do corte mínimo causam mais perda
+que as sorteadas: 3,2\% contra 0,3\% com $k=1$ e 13,5\% contra 1,8\%
+com $k=4$ em Copacabana, e 2,0\% contra 0,5\% e 7,2\% contra 1,4\% em
+Botafogo. Em Copacabana, elas também superam as pontes (1,0\% a 4,3\%
+com $k$ de 1 a 4) e a intermediação (0,0\%). Em Botafogo a intermediação
+fica próxima do corte: 1,1\%, 5,7\% e 5,7\% com $k=1$, 2 e 4, contra
+2,0\%, 3,2\% e 7,2\%. Com $k$ igual ao fluxo de acesso, o corte isola o
+núcleo (100\% com $k=8$ em Copacabana e Botafogo), valor que o teorema
+já garante. O ataque guloso chega a 18,8\% em Copacabana e a 9,2\% em
+Botafogo com $k=1$, e a 42,0\% e 40,2\% com $k=4$, bem acima de todos os
+indicadores.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{Figures/fig_simulacao.png}
+\caption{Perda de alcançabilidade do núcleo ao fechar $k$ ruas do bairro:
+porcentagem dos nós do núcleo que perde todas as rotas dirigidas até os
+destinos externos a 1\,km. Sorteio: média e intervalo de 10\% a 90\% em
+200 sorteios. As ruas do corte mínimo isolam o núcleo com $k$ igual ao
+fluxo de acesso, o que o teorema do fluxo máximo e corte mínimo já
+garante.}
+\label{fig:simulacao}
+\end{figure}
+
+A Tabela~\ref{tab:dano} olha cada rua isoladamente. Fechadas uma a uma,
+19 das 101 ruas da Urca, 60 das 492 de Copacabana e 84 das 558 de
+Botafogo reduzem a alcançabilidade do núcleo. Todas são pontes fortes,
+mas só 32\%, 28\% e 25\% das pontes fortes têm esse efeito. As pontes
+fracas recuperam 57\% e 50\% dessas ruas em Copacabana e Botafogo, e a
+intermediação, 12\% e 26\%. As ruas do corte mínimo recuperam 1 das 60
+em Copacabana e 3 das 84 em Botafogo. O coeficiente de Spearman entre a
+intermediação de aresta e o dano é 0,04 em Copacabana e 0,10 em
+Botafogo. A sobreposição (Jaccard) entre o corte mínimo e as listas de
+pontes e de intermediação vai de 0,00 a 0,03, e sobe a 0,33 e 0,29 com as
+ruas críticas de fluxo.
+
+\begin{table}[t]
+\centering
+\caption{Ruas que, fechadas sozinhas, reduzem a alcançabilidade do núcleo,
+e quantas delas cada indicador recupera (acertos de tamanho do conjunto).
+Intermediação: as $|D|$ ruas de maior intermediação de aresta, com $|D|$
+o número de ruas com dano.}
+\label{tab:dano}
+\begin{tabular}{lrrr}
+\toprule
+ & Urca & Copacabana & Botafogo \\
 \midrule
-Botafogo   & retângulo & 398 & 14,3 & 70,4 & 28 & 16 \\
-           & polígono  & 434 & 9,7  & 68,4 & 31 & 15 \\
+Ruas com dano $|D|$ (de todas as ruas do bairro) & 19 de 101 & 60 de 492 & 84 de 558 \\
+Pontes fortes                      & 19 de 59 & 60 de 216 & 84 de 342 \\
+Pontes fracas                      & 3 de 11  & 34 de 78  & 42 de 114 \\
+Intermediação de aresta            & 7 de 19  & 7 de 60   & 22 de 84 \\
+Corte mínimo núcleo-portas         & 1 de 1   & 1 de 8    & 3 de 7 \\
+Ruas críticas de fluxo             & 10 de 10 & 1 de 24   & 6 de 24 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -599,68 +760,121 @@ Botafogo   & retângulo & 398 & 14,3 & 70,4 & 28 & 16 \\
 \label{sec:discussion}
 
 Entre as medidas testadas, só o fluxo de acesso por portas isola a Urca
-das duas malhas abertas. Ele separa a Urca nas redes não dirigida e
-dirigida, e pedaços das malhas abertas com o tamanho da Urca não
-reproduzem seu valor. Os indicadores estruturais dirigidos e o corte
-mínimo entre dois nós não ordenam os bairros, e o máximo de intermediação
-acompanha o tamanho do núcleo forte. O padrão de rota única associa-se, assim,
-à geografia da península, nestes três casos.
+das duas malhas abertas, com e sem o sentido das vias: 1 rota contra 18
+e 15 sem o sentido, e contra 8 e 7 com ele (Seção~\ref{sec:res-access}).
+Pontes fortes e articulações fortes não ordenam os bairros, e o corte
+mínimo entre dois nós os separa pouco (Seção~\ref{sec:res-struct}). Como pedaços das malhas
+abertas do tamanho da Urca não reproduzem seu valor
+(Seção~\ref{sec:res-controls}), o padrão de rota única associa-se à
+geografia da península nestes três casos.
 
-Pontes e articulações fortes são calculadas sobre o núcleo fortemente
-conexo e, nessas redes de mão única, de 45\% a 68\% das ruas do núcleo
-forte são pontes fortes em qualquer bairro. Esses indicadores descrevem a
-redundância interna do
-núcleo forte, que é alta nos três bairros. O corte
-mínimo entre dois nós mede quantas ruas separam dois pontos escolhidos, e
-a resposta é pequena em toda parte. O fluxo de acesso toma o núcleo do bairro como
-origem e as travessias da fronteira como sumidouro, e por isso mede a
-ligação do bairro com o restante da cidade.
+Cada medida responde a uma pergunta diferente. Pontes e articulações
+fortes descrevem a fragilidade interna do núcleo fortemente conexo, que é
+alta nos três bairros. O corte mínimo entre dois nós mede quantas ruas
+separam dois pontos quaisquer, e a resposta é pequena em toda parte. A
+intermediação máxima também destaca a Urca, mas parte dos pedaços de mesmo
+tamanho a iguala ou supera, e nenhum pedaço chega ao fluxo de um
+(Seção~\ref{sec:res-controls}). O fluxo de acesso toma o núcleo do bairro
+como origem e as travessias da
+fronteira como sumidouro, e por isso mede a ligação do bairro com o
+restante da cidade. Na Urca, essa ligação passa por um corredor, com três
+cortes de uma única rua em série e, por interseções, uma única
+interseção (Figura~\ref{fig:cut}). O corredor liga duas malhas
+residenciais, posição análoga à dos elos entre agrupamentos que Akbarzadeh
+et al.~\cite{akbarzadeh2019critical} identificam como os mais críticos de
+uma rede urbana, à frente dos de maior fluxo, congestionamento ou
+intermediação. As saídas se concentram em um único
+extremo, com 3 portas contra 21 e 31, e o restante do perímetro é água e
+encosta. Ignorar o
+sentido das vias superestima a redundância das malhas abertas, e a Urca
+fica em uma rota nos dois casos porque o corredor é o mesmo.
 
-Na Urca, essa ligação passa por um corredor: três cortes de uma única rua
-em série e, na contagem por interseções, uma única interseção
-(Figura~\ref{fig:cut}). O bairro tem 0,21 porta por quilômetro de
-perímetro do polígono oficial, contra 1,64 em Copacabana e 2,55 em
-Botafogo, porque suas saídas se concentram em um único extremo e o
-restante do perímetro é água e encosta. Um pedaço sorteado dentro de uma
-malha tem, por construção, a fronteira cercada de malha e por isso muitas
-portas. A intermediação localiza o corredor, pois seus maiores valores
-ficam nos extremos dos três cortes, mas o valor máximo acompanha o
-tamanho do núcleo forte. Os túneis de Copacabana não criam um gargalo
-comparável: sem as quatro portas de túnel, o fluxo cai de 18 para 15.
+A validação externa responde à objeção de que duas ruas que cruzam a
+fronteira poderiam convergir logo depois para o mesmo corredor. A
+redundância contada na fronteira se mantém na Urca e em Botafogo e cai em
+Copacabana, de 8 para 6 rotas, abaixo das 7 de Botafogo. Cuellar-Hengartner et
+al.~\cite{cuellar2015checkpoints} também variam a largura de um anel ao
+redor da área de interesse para ver como o corte mínimo muda; no nosso
+caso, a variação só aparece em Copacabana. A queda tem origem em portas sem
+continuação: sem elas, o fluxo até as portas restantes já vale 6, o
+mesmo da borda externa, e nenhuma convergência fora do bairro o reduz
+abaixo desse valor nos três bairros. As rotas excedentes das portas
+administrativas terminavam em saídas que levam a bolsões e voltam ao
+bairro. Para o método, a contagem na fronteira administrativa pode
+superestimar o acesso, e filtrar as portas que continuam, ou estender a
+rede até uma borda externa, corrige o valor.
+
+Os cortes permitem separar a vulnerabilidade interna, em que uma
+interrupção dentro do bairro impede a saída, da externa, em que as saídas
+dependem de um corredor comum fora dele. Nos três bairros o corte mais
+próximo da origem fica dentro do bairro. Em Copacabana, 6 ruas internas e
+6 ruas externas limitam o fluxo ao mesmo valor, e em Botafogo o corte mais
+próximo dos destinos tem 5 ruas internas e 2 externas. As ruas externas
+críticas são numerosas (2, 26 e 17 a 1\,km), e o fluxo até a borda externa
+não fica abaixo do fluxo até as portas que continuam. Nestes casos, a
+dependência da rede externa tem o mesmo tamanho do gargalo interno.
+Sugiura e Kurauchi~\cite{sugiura2023isolation} observam que o conjunto de
+elos que define a vulnerabilidade de isolamento não precisa ser único. Na
+Urca, cada uma das três ruas em série isola sozinha o núcleo, e a escolha
+do destino muda quais ruas compõem o corte.
+
+A simulação de interrupções mostra consistência e informação
+complementar, e deixa em aberto se o fluxo de acesso encontra as ruas mais
+danosas. Com menos falhas que o fluxo de acesso, as ruas do corte mínimo
+tiram mais alcançabilidade do núcleo que as sorteadas em Copacabana e
+Botafogo e, em Copacabana, mais que as pontes e a intermediação. As listas
+de ruas de cada indicador quase não se sobrepõem, e a intermediação de
+aresta antecipa pouco o dano de uma rua fechada sozinha. Todas as ruas que
+reduzem a alcançabilidade quando fechadas sozinhas são pontes fortes, mas
+só uma parte das pontes fortes tem esse efeito. O ataque guloso encontra
+ruas isoladas de efeito muito maior, e nenhum dos indicadores testados
+chega a esses valores com $k=1$. Todas as rotas de uma parte do núcleo
+até o exterior passam por essas ruas. O fluxo de acesso dá o menor número
+de falhas que isola o núcleo inteiro, e as pontes fortes apontam as ruas
+que podem causar perda parcial. Com $k$ igual ao fluxo de acesso, o corte
+isola o núcleo por construção (Seção~\ref{sec:res-sim}), e esse resultado
+não conta como evidência.
 
 Kirkley et al.~\cite{kirkley2018betweenness} mostram, em redes viárias de
-97 cidades, que a distribuição estatística da intermediação é invariante
-em redes planares e que a distribuição espacial dos vértices de maior
-intermediação discrimina melhor entre cidades. Nossos dados seguem essa
-direção: o máximo acompanha o tamanho do núcleo forte, e a posição dos vértices
-de maior intermediação revela o corredor da Urca. Ganin et
-al.~\cite{ganin2017resilience} encontram, em 40 áreas urbanas dos EUA,
-que sistemas viários ineficientes podem ser resilientes e que alguns
-eficientes são frágeis. O fluxo de acesso mede a redundância de saída,
-que é distinta da eficiência do trânsito, e nossa comparação não testa
-essa relação. Sugiura e Kurauchi~\cite{sugiura2023isolation} observam que
-o conjunto de elos que define a vulnerabilidade de isolamento não precisa
-ser único; na Urca, cada uma de três ruas em série isola sozinha
-o núcleo do bairro.
+97 cidades, que a distribuição espacial dos vértices de maior
+intermediação discrimina melhor entre cidades que a distribuição
+estatística; na Urca, esses vértices ficam nos extremos dos cortes e
+revelam o corredor. Ganin et al.~\cite{ganin2017resilience} encontram, em
+40 áreas urbanas dos EUA, que sistemas viários ineficientes podem ser
+resilientes. O fluxo de acesso mede a redundância de saída, distinta da
+eficiência do trânsito, e nossa comparação não testa essa relação. Chalkiadakis et
+al.~\cite{chalkiadakis2022resilience} medem eficiência e criticidade
+removendo um elo por vez, e a simulação deste estudo usa o mesmo tipo de
+remoção com o acesso do núcleo como desfecho.
 
 Para o planejamento, a Urca é isolada por uma única falha, de rua ou de
-interseção, e as malhas abertas exigem de 6 a 18, conforme o modelo de
-falha. Um órgão de mobilidade ou de defesa civil trataria a Urca como um
-ponto único a proteger ou a ter alternativa. Como poucas rotas de acesso
-compartilham uma junção, as contagens por ruas e por interseções diferem
-pouco, e a conclusão vale para os dois tipos de evento. Ignorar o sentido
-das vias superestima a redundância das malhas abertas: de 18 rotas passa-se
-a 8 em Copacabana, e de 15 a 7 em Botafogo.
+interseção. As malhas abertas exigem de 6 a 8 ruas, ou de 5 a 8
+interseções, com o sentido das vias, e de 12 a 18 ruas sem ele. Um órgão
+de mobilidade ou de defesa civil trataria a Urca como um ponto único a
+proteger ou a ter alternativa, e conferiria nos demais bairros se as
+saídas administrativas continuam para a cidade. A variável de contexto
+associada ao resultado é a geografia da península, com duas malhas
+ligadas por um único corredor e saídas em um só extremo. O método só
+exige os dados do OpenStreetMap e o polígono oficial do bairro. Como
+poucas rotas de acesso compartilham uma junção, as contagens por ruas e
+por interseções diferem pouco, e a conclusão vale para os dois tipos de
+evento.
 
 O estudo tem três casos e não permite inferência estatística. A fronteira
 administrativa define as portas, e um bairro nem sempre é uma unidade de
-mobilidade; a extensão da rede é uma escolha de modelagem, como mostrou o
-retângulo manual (Seção~\ref{sec:res-clip}). O fluxo usa capacidade
+mobilidade; a extensão da rede é uma escolha de modelagem, como mostrou a
+ampliação além do polígono (Seção~\ref{sec:res-external}). O fluxo usa capacidade
 unitária por rua, sem considerar largura nem número de faixas, e conta
 falhas necessárias na estrutura da rede, sem medir sua probabilidade nem o
-volume de tráfego. Os tempos de percurso vêm, em sua maioria, de
-velocidades padrão, e a conectividade depende da qualidade das
-\emph{tags} \texttt{oneway}. Os pedaços de controle são recortes
+volume de tráfego. A validação externa e a simulação continuam
+topológicas: não usam capacidade, demanda nem condições de circulação, que
+uma análise de acessibilidade operacional ou de evacuação exigiria. O
+número de portas sem continuação depende do raio, e um bolsão de uma única
+interseção pode refletir uma via excluída do mapa. A perda medida na
+simulação depende do tamanho do núcleo, de 14 a 87 nós, e de uma única
+definição de destino. A conectividade depende da qualidade das
+\emph{tags} \texttt{oneway}, e a intermediação de aresta usa tempos de
+percurso que vêm, em sua maioria, de velocidades padrão. Os pedaços de controle são recortes
 arbitrários, e a busca por pedaços de fluxo mínimo dá um limite
 heurístico.
 
@@ -674,23 +888,37 @@ Este estudo perguntou se indicadores estruturais dirigidos ou um fluxo de
 acesso identificam um bairro com uma única rota de saída, e se isso
 reflete a geografia. Em três bairros do Rio de Janeiro, só o fluxo de
 acesso por portas isola a Urca: uma rota disjunta por ruas, contra
-dezoito em Copacabana e quinze em Botafogo, ordem que se mantém sob
-variações do recorte, da margem e da região de origem. Pontes e
-articulações fortes e o corte mínimo entre dois nós não ordenam os
-bairros. O resultado vale com e sem o sentido das vias, que reduz o
-acesso das malhas abertas a menos da metade e deixa a Urca em uma só
-rota, e contar interseções em vez de ruas quase não o altera.
+dezoito em Copacabana e quinze em Botafogo. A Urca mantém o menor valor
+sob variações da margem, da região de origem e da extensão da
+rede, com e sem o sentido das vias, que reduz o acesso das malhas abertas
+a menos da metade. Pontes e articulações fortes não ordenam os bairros, e o corte mínimo entre
+dois nós os separa pouco. A intermediação máxima também destaca a Urca, mas
+parte dos pedaços de mesmo tamanho a iguala ou supera. O corte da Urca está
+no corredor entre suas duas malhas, e pedaços das malhas abertas do tamanho da Urca não
+reproduzem um fluxo de um, o que associa o padrão de rota única à
+geografia da península.
 
-O corte da Urca está no corredor entre suas duas malhas, pedaços das
-malhas abertas com o tamanho da Urca não reproduzem um fluxo de 1, e os
-túneis de Copacabana não criam um gargalo comparável. Esses resultados
-associam o padrão de rota única à geografia da península. Com três casos
-contrastantes, eles são ilustrativos, e os próximos passos são ampliar a
-comparação a mais bairros, correlacionar o fluxo de acesso com um índice
-geométrico de forma e testar falhas geográficas contíguas, modeladas como
-discos. Na prática, uma contagem de rotas desse tipo poderia ajudar um
-órgão de mobilidade ou de defesa civil a sinalizar um bairro com apenas
-uma saída.
+Duas validações testaram o método. Com o destino na borda externa de
+redes ampliadas em 500\,m, 1\,km e 2\,km, o fluxo permaneceu em um na
+Urca e em sete em Botafogo e caiu de oito para seis em Copacabana, por
+causa de portas cujas saídas levam a bolsões e voltam ao bairro. A
+contagem na fronteira administrativa deve, por isso, filtrar as saídas
+que seguem para a cidade. Na simulação de interrupções, o corte mínimo,
+com menos ruas fechadas que o fluxo de acesso, causou mais perda de
+alcançabilidade do núcleo que ruas sorteadas e, em Copacabana, mais que
+pontes e intermediação. O fluxo de acesso dá o menor número de falhas que
+isola o núcleo inteiro e não encontra as ruas de maior dano isolado, o
+que indica informação complementar entre os indicadores.
+
+Com três casos contrastantes e uma análise topológica, sem dados de
+capacidade, demanda nem condições de circulação, os resultados são
+ilustrativos e não bastam para avaliar acessibilidade operacional ou
+evacuação. Os próximos passos são ampliar a comparação a mais bairros,
+correlacionar o fluxo de acesso com um índice geométrico de forma,
+incorporar capacidade e demanda das vias e testar falhas geográficas
+contíguas, modeladas como discos. Para o planejamento, a contagem de
+rotas pode sinalizar bairros com uma só saída, desde que se confira se as
+saídas administrativas continuam para a cidade.
 
 \subsubsection*{Reprodutibilidade.} Todo o código-fonte e os dados
 estão abertamente disponíveis (repositório omitido para a revisão

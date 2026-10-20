@@ -1,6 +1,6 @@
 """
 O maximo da intermediacao (betweenness.py) separa a Urca das malhas abertas por
-GEOGRAFIA ou so' por TAMANHO do nucleo? (Secao 4.4 do artigo)
+GEOGRAFIA ou so' por TAMANHO do nucleo? (fora do artigo)
 
 Tres verificacoes, todas com semente fixa:
 

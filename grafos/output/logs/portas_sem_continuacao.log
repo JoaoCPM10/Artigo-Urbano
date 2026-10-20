@@ -1,0 +1,10 @@
+copacabana  R= 500 portas=14 continuam=12  fluxo: todas=8 -> continuam=7 -> borda externa=7
+copacabana  R=1000 portas=14 continuam= 9  fluxo: todas=8 -> continuam=6 -> borda externa=6
+copacabana  R=2000 portas=14 continuam= 9  fluxo: todas=8 -> continuam=6 -> borda externa=6
+urca        R= 500 portas= 2 continuam= 1  fluxo: todas=1 -> continuam=1 -> borda externa=1
+urca        R=1000 portas= 2 continuam= 1  fluxo: todas=1 -> continuam=1 -> borda externa=1
+urca        R=2000 portas= 2 continuam= 1  fluxo: todas=1 -> continuam=1 -> borda externa=1
+botafogo    R= 500 portas=19 continuam=16  fluxo: todas=7 -> continuam=7 -> borda externa=7
+botafogo    R=1000 portas=20 continuam=17  fluxo: todas=7 -> continuam=7 -> borda externa=7
+botafogo    R=2000 portas=20 continuam=16  fluxo: todas=7 -> continuam=7 -> borda externa=7
+FIM

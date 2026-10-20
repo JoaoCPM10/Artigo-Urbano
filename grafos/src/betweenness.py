@@ -70,6 +70,60 @@ def betweenness(G, nodes) -> "dict[int, float]":
     return {u: b * scale for u, b in bc.items()}
 
 
+def edge_betweenness(G, nodes) -> "dict[tuple[int, int], float]":
+    """Intermediacao de cada ARCO (u, v) do subgrafo induzido por `nodes`:
+    fracao dos pares ordenados (s, t), s != t, cujos caminhos de tempo minimo
+    usam o arco, com divisao proporcional nos empates. Mesma definicao de
+    peso (menor tempo entre arcos paralelos) e de desempate de `betweenness`;
+    normalizada por n(n-1), como networkx.edge_betweenness_centrality."""
+    S = set(nodes)
+    adj: dict[int, dict[int, float]] = {u: {} for u in S}
+    for e in G.edges:
+        if e.u in S and e.v in S and e.u != e.v:
+            w = e.travel_time
+            if e.v not in adj[e.u] or w < adj[e.u][e.v]:
+                adj[e.u][e.v] = w
+
+    eb = {(u, v): 0.0 for u in S for v in adj[u]}
+    for s in S:
+        stack = []
+        pred: dict[int, list[int]] = {u: [] for u in S}
+        sigma = {u: 0.0 for u in S}
+        dist: dict[int, float] = {}
+        sigma[s] = 1.0
+        seen = {s: 0.0}
+        counter = 0
+        heap = [(0.0, counter, s)]
+        while heap:
+            d, _, v = heapq.heappop(heap)
+            if v in dist:
+                continue
+            dist[v] = d
+            stack.append(v)
+            for w, wt in adj[v].items():
+                nd = d + wt
+                if w not in dist and (w not in seen or nd < seen[w] - EPS):
+                    seen[w] = nd
+                    counter += 1
+                    heapq.heappush(heap, (nd, counter, w))
+                    sigma[w] = sigma[v]
+                    pred[w] = [v]
+                elif w not in dist and abs(nd - seen[w]) <= EPS:
+                    sigma[w] += sigma[v]
+                    pred[w].append(v)
+        delta = {u: 0.0 for u in stack}
+        while stack:
+            w = stack.pop()
+            for v in pred[w]:
+                c = sigma[v] / sigma[w] * (1.0 + delta[w])
+                eb[(v, w)] += c
+                delta[v] += c
+
+    n = len(S)
+    scale = 1.0 / (n * (n - 1)) if n > 1 else 1.0
+    return {a: b * scale for a, b in eb.items()}
+
+
 def summary(G, nodes) -> dict:
     """Maximo (e o no que o atinge) da intermediacao normalizada."""
     bc = betweenness(G, nodes)

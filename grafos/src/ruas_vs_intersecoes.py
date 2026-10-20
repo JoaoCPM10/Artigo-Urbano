@@ -1,6 +1,6 @@
 """
 QUANTAS RUAS contra QUANTAS INTERSECOES precisam falhar para isolar o nucleo
-do bairro de todas as suas portas de acesso? (Secao 4.3 do artigo)
+do bairro de todas as suas portas de acesso? (Secao 4.2 do artigo)
 
 Mesma origem (nucleo, f = 0,2) e mesmas portas de gateway_access_flow, quatro
 contagens de rotas disjuntas (= tamanho do menor corte, pelo teorema do fluxo

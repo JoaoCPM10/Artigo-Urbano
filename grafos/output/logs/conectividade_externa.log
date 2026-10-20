@@ -1,0 +1,20 @@
+Urca        R=   0 anel=   70 nos  dest(scc/qualquer)=  2/  2  ruas dir= 1/ 1  nd= 1/ 1  int dir= 1/ 1  criticas(int/front/ext)=10/0/0
+Urca        R= 500 anel=  200 nos  dest(scc/qualquer)= 18/ 18  ruas dir= 1/ 1  nd= 1/ 1  int dir= 1/ 1  criticas(int/front/ext)=10/1/2
+Urca        R=1000 anel=  441 nos  dest(scc/qualquer)= 19/ 19  ruas dir= 1/ 1  nd= 1/ 1  int dir= 1/ 1  criticas(int/front/ext)=10/1/2
+Urca        R=2000 anel=  979 nos  dest(scc/qualquer)= 30/ 31  ruas dir= 1/ 1  nd= 1/ 1  int dir= 1/ 1  criticas(int/front/ext)=10/1/2
+urca: networkx confere (fluxos e componente gigante)
+Copacabana  R=   0 anel=  345 nos  dest(scc/qualquer)= 11/ 14  ruas dir= 8/ 8  nd=18/18  int dir= 8/ 8  criticas(int/front/ext)=25/0/0
+Copacabana  R= 500 anel=  556 nos  dest(scc/qualquer)= 30/ 30  ruas dir= 7/ 7  nd=14/14  int dir= 7/ 7  criticas(int/front/ext)=18/4/9
+Copacabana  R=1000 anel=  956 nos  dest(scc/qualquer)= 35/ 35  ruas dir= 6/ 6  nd=12/12  int dir= 6/ 6  criticas(int/front/ext)=11/5/26
+Copacabana  R=2000 anel= 1416 nos  dest(scc/qualquer)= 22/ 23  ruas dir= 6/ 6  nd=12/12  int dir= 6/ 6  criticas(int/front/ext)=11/5/50
+copacabana: networkx confere (fluxos e componente gigante)
+Botafogo    R=   0 anel=  434 nos  dest(scc/qualquer)= 20/ 20  ruas dir= 7/ 7  nd=15/15  int dir= 6/ 6  criticas(int/front/ext)=24/0/0
+Botafogo    R= 500 anel=  830 nos  dest(scc/qualquer)= 51/ 51  ruas dir= 7/ 7  nd=15/15  int dir= 5/ 5  criticas(int/front/ext)=29/0/13
+Botafogo    R=1000 anel= 1235 nos  dest(scc/qualquer)= 31/ 32  ruas dir= 7/ 7  nd=15/15  int dir= 5/ 5  criticas(int/front/ext)=29/0/17
+Botafogo    R=2000 anel= 1815 nos  dest(scc/qualquer)= 42/ 42  ruas dir= 7/ 7  nd=15/15  int dir= 5/ 5  criticas(int/front/ext)=29/0/20
+botafogo: networkx confere (fluxos e componente gigante)
+
+Regressao R=0 (artigo | rede ampliada):
+  Urca {'ruas_nd': {'artigo': 1, 'rede_ampliada': 1}, 'ruas_dir': {'artigo': 1, 'rede_ampliada': 1}, 'int_dir': {'artigo': 1, 'rede_ampliada': 1}}
+  Copacabana {'ruas_nd': {'artigo': 18, 'rede_ampliada': 18}, 'ruas_dir': {'artigo': 8, 'rede_ampliada': 8}, 'int_dir': {'artigo': 8, 'rede_ampliada': 8}}
+  Botafogo {'ruas_nd': {'artigo': 15, 'rede_ampliada': 15}, 'ruas_dir': {'artigo': 7, 'rede_ampliada': 7}, 'int_dir': {'artigo': 6, 'rede_ampliada': 6}}

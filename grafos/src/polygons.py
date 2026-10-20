@@ -96,6 +96,49 @@ def point_in_bairro(lon: float, lat: float, feature: dict) -> bool:
     return any(_point_in_ring(lon, lat, ring) for ring in _rings(feature))
 
 
+def distancias_ao_poligono_m(pontos: dict, feature: dict, teto_m: float = float("inf")) -> dict:
+    """Distancia (m) de cada ponto ao poligono oficial; 0 dentro dele.
+
+    `pontos`: id -> (lat, lon). Projecao equirretangular local (a mesma ideia
+    de osm_loader.load_neighborhood), suficiente para distancias de ate' alguns
+    km. Pontos a mais de `teto_m` do poligono recebem `inf` sem calculo
+    exato (basta um teste com o retangulo do poligono).
+    """
+    import math
+    aneis = _rings(feature)
+    lat0 = sum(la for r in aneis for _, la in r) / sum(len(r) for r in aneis)
+    kx = math.cos(math.radians(lat0)) * 111320.0
+    ky = 110540.0
+    segs = []
+    xs, ys = [], []
+    for r in aneis:
+        pts = [(lo * kx, la * ky) for lo, la in r]
+        xs += [p[0] for p in pts]; ys += [p[1] for p in pts]
+        for i in range(len(pts)):
+            segs.append((pts[i], pts[(i + 1) % len(pts)]))
+    x0, x1, y0, y1 = min(xs), max(xs), min(ys), max(ys)
+    out = {}
+    for nid, (la, lo) in pontos.items():
+        if point_in_bairro(lo, la, feature):
+            out[nid] = 0.0
+            continue
+        px, py = lo * kx, la * ky
+        dbx = max(x0 - px, 0.0, px - x1); dby = max(y0 - py, 0.0, py - y1)
+        if math.hypot(dbx, dby) > teto_m:
+            out[nid] = float("inf")
+            continue
+        best = float("inf")
+        for (ax, ay), (bx, by) in segs:
+            dx, dy = bx - ax, by - ay
+            L2 = dx * dx + dy * dy
+            t = 0.0 if L2 == 0 else max(0.0, min(1.0, ((px - ax) * dx + (py - ay) * dy) / L2))
+            d = math.hypot(px - (ax + t * dx), py - (ay + t * dy))
+            if d < best:
+                best = d
+        out[nid] = best
+    return out
+
+
 def polygon_bbox(feature: dict) -> str:
     """Bbox 'S,W,N,E' que envolve o poligono oficial do bairro."""
     lons, lats = [], []

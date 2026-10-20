@@ -1,17 +1,21 @@
 """
-Figura dos controles de tamanho (Secoes 4.4 e 4.5 do artigo): distribuicao do
+Figura dos controles de tamanho (Secao 4.4 do artigo): distribuicao do
 fluxo de acesso e do maximo de intermediacao em pedacos de tamanho igual ao da
 Urca, sorteados em Copacabana e Botafogo, contra o valor da propria Urca.
 
 Le output/nulo_fluxo.json e output/nulo_intermediacao.json (ver nulo_fluxo.py e
 nulo_intermediacao.py) e escreve output/fig_controles.png.
 
-Uso:  py fig_controles.py
+Uso:  py fig_controles.py [--com-intermediacao]
+
+Por padrao, so' o painel (a): o controle de tamanho da intermediacao saiu do artigo.
+Com --com-intermediacao a figura volta a ter o painel (b).
 """
 
 from __future__ import annotations
 import json
 import os
+import sys
 
 import matplotlib
 matplotlib.use("Agg")
@@ -29,7 +33,11 @@ def main():
     with open(os.path.join(OUT, "nulo_intermediacao.json"), encoding="utf-8") as f:
         bt = json.load(f)
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 3.7))
+    com_b = "--com-intermediacao" in sys.argv
+    if com_b:
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 3.7))
+    else:
+        fig, ax1 = plt.subplots(1, 1, figsize=(6.2, 3.7))
 
 
     # ---- (a) fluxo de acesso dos pedacos de 70 interseccoes ---------------
@@ -46,11 +54,17 @@ def main():
     ax1.set_xlim(-0.5, 32.5)
     ax1.set_xlabel("access flow of a piece of 70 intersections (routes)")
     ax1.set_ylabel("share of pieces (%)")
-    ax1.set_title("(a) Access flow", fontsize=12)
+    ax1.set_title("(a) Access flow" if com_b else "Access flow", fontsize=12)
     ax1.legend(loc="upper right", fontsize=9, framealpha=0.9)
     ax1.grid(axis="y", alpha=0.3)
 
     # ---- (b) maximo de intermediacao dos pedacos --------------------------
+    if not com_b:
+        fig.tight_layout()
+        p = os.path.join(OUT, "fig_controles.png")
+        fig.savefig(p, dpi=150, bbox_inches="tight"); plt.close(fig)
+        print("saved:", p)
+        return
     bins2 = [x for x in range(20, 72, 2)]
     for k in ("copacabana", "botafogo"):
         v = bt["subamostragem"][f"{k}_bola"]["valores_pct"] + bt["subamostragem"][f"{k}_eden"]["valores_pct"]

@@ -1,0 +1,210 @@
+{
+  "copacabana": {
+    "bairro": "copacabana",
+    "fluxo_portas_todas": 8,
+    "raios": {
+      "500": {
+        "portas_dirigidas_com_saida": 14,
+        "portas_que_continuam": 12,
+        "portas_sem_continuacao": [
+          [
+            -22.98085,
+            -43.19729
+          ],
+          [
+            -22.98215,
+            -43.19662
+          ]
+        ],
+        "fluxo_portas_que_continuam": 7,
+        "fluxo_borda_externa": 7,
+        "efeito_portas_sem_continuacao": 1,
+        "efeito_convergencia_externa": 0
+      },
+      "1000": {
+        "portas_dirigidas_com_saida": 14,
+        "portas_que_continuam": 9,
+        "portas_sem_continuacao": [
+          [
+            -22.96528,
+            -43.17356
+          ],
+          [
+            -22.96387,
+            -43.17391
+          ],
+          [
+            -22.98085,
+            -43.19729
+          ],
+          [
+            -22.98215,
+            -43.19662
+          ],
+          [
+            -22.96266,
+            -43.17461
+          ]
+        ],
+        "fluxo_portas_que_continuam": 6,
+        "fluxo_borda_externa": 6,
+        "efeito_portas_sem_continuacao": 2,
+        "efeito_convergencia_externa": 0
+      },
+      "2000": {
+        "portas_dirigidas_com_saida": 14,
+        "portas_que_continuam": 9,
+        "portas_sem_continuacao": [
+          [
+            -22.96528,
+            -43.17356
+          ],
+          [
+            -22.96387,
+            -43.17391
+          ],
+          [
+            -22.98085,
+            -43.19729
+          ],
+          [
+            -22.98215,
+            -43.19662
+          ],
+          [
+            -22.96266,
+            -43.17461
+          ]
+        ],
+        "fluxo_portas_que_continuam": 6,
+        "fluxo_borda_externa": 6,
+        "efeito_portas_sem_continuacao": 2,
+        "efeito_convergencia_externa": 0
+      }
+    }
+  },
+  "urca": {
+    "bairro": "urca",
+    "fluxo_portas_todas": 1,
+    "raios": {
+      "500": {
+        "portas_dirigidas_com_saida": 2,
+        "portas_que_continuam": 1,
+        "portas_sem_continuacao": [
+          [
+            -22.95457,
+            -43.17375
+          ]
+        ],
+        "fluxo_portas_que_continuam": 1,
+        "fluxo_borda_externa": 1,
+        "efeito_portas_sem_continuacao": 0,
+        "efeito_convergencia_externa": 0
+      },
+      "1000": {
+        "portas_dirigidas_com_saida": 2,
+        "portas_que_continuam": 1,
+        "portas_sem_continuacao": [
+          [
+            -22.95457,
+            -43.17375
+          ]
+        ],
+        "fluxo_portas_que_continuam": 1,
+        "fluxo_borda_externa": 1,
+        "efeito_portas_sem_continuacao": 0,
+        "efeito_convergencia_externa": 0
+      },
+      "2000": {
+        "portas_dirigidas_com_saida": 2,
+        "portas_que_continuam": 1,
+        "portas_sem_continuacao": [
+          [
+            -22.95457,
+            -43.17375
+          ]
+        ],
+        "fluxo_portas_que_continuam": 1,
+        "fluxo_borda_externa": 1,
+        "efeito_portas_sem_continuacao": 0,
+        "efeito_convergencia_externa": 0
+      }
+    }
+  },
+  "botafogo": {
+    "bairro": "botafogo",
+    "fluxo_portas_todas": 7,
+    "raios": {
+      "500": {
+        "portas_dirigidas_com_saida": 19,
+        "portas_que_continuam": 16,
+        "portas_sem_continuacao": [
+          [
+            -22.94131,
+            -43.17668
+          ],
+          [
+            -22.94039,
+            -43.18238
+          ],
+          [
+            -22.94064,
+            -43.1853
+          ]
+        ],
+        "fluxo_portas_que_continuam": 7,
+        "fluxo_borda_externa": 7,
+        "efeito_portas_sem_continuacao": 0,
+        "efeito_convergencia_externa": 0
+      },
+      "1000": {
+        "portas_dirigidas_com_saida": 20,
+        "portas_que_continuam": 17,
+        "portas_sem_continuacao": [
+          [
+            -22.94131,
+            -43.17668
+          ],
+          [
+            -22.94039,
+            -43.18238
+          ],
+          [
+            -22.94064,
+            -43.1853
+          ]
+        ],
+        "fluxo_portas_que_continuam": 7,
+        "fluxo_borda_externa": 7,
+        "efeito_portas_sem_continuacao": 0,
+        "efeito_convergencia_externa": 0
+      },
+      "2000": {
+        "portas_dirigidas_com_saida": 20,
+        "portas_que_continuam": 16,
+        "portas_sem_continuacao": [
+          [
+            -22.95163,
+            -43.17526
+          ],
+          [
+            -22.94131,
+            -43.17668
+          ],
+          [
+            -22.94039,
+            -43.18238
+          ],
+          [
+            -22.94064,
+            -43.1853
+          ]
+        ],
+        "fluxo_portas_que_continuam": 7,
+        "fluxo_borda_externa": 7,
+        "efeito_portas_sem_continuacao": 0,
+        "efeito_convergencia_externa": 0
+      }
+    }
+  }
+}
