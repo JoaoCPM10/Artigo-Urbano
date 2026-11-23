@@ -1,25 +1,16 @@
 """
-Pipeline principal — Tema 5: Grafos em mobilidade urbana
-Estudo de caso: bairro da URCA (Rio de Janeiro), dados reais do OpenStreetMap.
+Indicadores estruturais de cada bairro (Secoes 3 e 4 do artigo).
 
-Usa SOMENTE algoritmos vistos na disciplina:
-  (A) CONECTIVIDADE      -> BFS/DFS; componentes; fortemente conexo (BFS no
-                            grafo e no reverso); articulacoes e pontes pela
-                            definicao.
-  (B) ROTAS ALTERNATIVAS -> Dijkstra (e Bellman-Ford como verificacao);
-                            rota alternativa recalculada ao bloquear um trecho.
-  (C) GARGALOS           -> estruturais (pontes/articulacoes, fracos e
-                            fortes) e por fluxo maximo / corte minimo
-                            (Edmonds-Karp).
+Para cada bairro: carrega a rede (recortada pelo poligono oficial), calcula a
+conectividade (componentes e componentes fortemente conexas), as pontes e
+articulacoes fracas e fortes, o fluxo de acesso (nucleo ate as portas) e a
+intermediacao maxima, e escreve output/<bairro>/metrics.json.
 
-Gera figuras (output/) e metricas (output/metrics.json).
-
-Uso:  py main.py
+Uso:  py main.py [bairro ...]      (sem argumento, so a Urca; "all" roda os nove)
 """
 
 from __future__ import annotations
 import json
-import math
 import os
 import sys
 import time
@@ -27,11 +18,9 @@ import time
 from graph import Graph
 from network import load_network, gateway_nodes, GATEWAY_BUFFER_M
 import betweenness as bt
-from neighborhoods import NEIGHBORHOODS, resolve_od
+from neighborhoods import NEIGHBORHOODS
 import connectivity as cc
-import shortest_paths as sp
 import maxflow as mf
-import visualize as viz
 
 OUT_BASE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "output")
 
@@ -107,8 +96,6 @@ def main(cfg):
         "E_arcos": G.m,
         "trechos": len(edges_u),
     }
-    viz.fig_overview(data, os.path.join(OUT, f"01_{cfg.key}.png"),
-                     display_name=cfg.display_name)
 
     # --------------------------------------------------------- conectividade
     banner("(A) CONECTIVIDADE")
@@ -122,7 +109,6 @@ def main(cfg):
     for (u, v) in edges_u:
         deg[u] += 1; deg[v] += 1
     dead_ends = [u for u in nodes if deg[u] == 1]
-    n_nao_triviais = sum(1 for c in scc if len(c) > 1)
     print(f"Componentes (nao-dirigido): {len(comps)} (maior = {comp_sizes[0]})")
     print(f"Componentes fortemente conexas: {len(scc)} (maior = {scc_sizes[0]})")
     print(f"Intersecoes fora da CFC gigante: {G.n - scc_sizes[0]} "
@@ -138,12 +124,10 @@ def main(cfg):
         "ruas_sem_saida": len(dead_ends),
         "tempo_ms": round(t_conn * 1000, 2),
     }
-    viz.fig_scc(data, scc, os.path.join(OUT, "02_scc.png"))
 
     # nucleo fortemente conexo gigante -- usado no restante do pipeline
     giant = max(scc, key=len)
     gset = set(giant)
-    gl = list(giant)
 
     # maior componente NAO-dirigida -- universo certo para "existe uma rua
     # de saida", que e' uma pergunta nao-dirigida (capacidade 1 por rua nos
@@ -168,7 +152,6 @@ def main(cfg):
         "pontes": len(brs),
         "tempo_ms": round(t_struct * 1000, 2),
     }
-    viz.fig_critical(data, brs, aps, os.path.join(OUT, "03_criticos.png"))
 
     # ------------------------------------- gargalos estruturais DIRIGIDOS
     banner("(C.1.5) GARGALOS ESTRUTURAIS DIRIGIDOS: pontes/articulacoes "
@@ -232,83 +215,6 @@ def main(cfg):
         "articulacoes_so_forte": len(nodes_strong_only),
         "tempo_ms": round(t_forte * 1000, 2),
     }
-    viz.fig_strong_gargalos(data, gl, edges_both, edges_strong_only,
-                             edges_weak_only, nodes_both, nodes_strong_only,
-                             os.path.join(OUT, "07_gargalos_dirigidos_categorizado.png"))
-
-    # ---- escolhe origem (O) e destino (D) para o corte minimo -------------
-    # Cada bairro declara seu proprio criterio em neighborhoods.py; a
-    # heuristica da Urca fica congelada (ver rationale de cada config).
-    od_ctx = {"gset": gset, "deg": deg, "giant": giant, "gl": gl}
-    O, D = resolve_od(cfg.mincut_od, G, od_ctx)
-
-    # ---------------------------------------------- gargalo por fluxo/corte
-    banner("(C.2) GARGALOS POR FLUXO MAXIMO / CORTE MINIMO (Edmonds-Karp)")
-    cap = mf.unit_capacity_network(data["undirected_edges"])
-    t0 = time.perf_counter()
-    fmax, flow, reach, cut = mf.edmonds_karp(nodes, cap, O, D)
-    t_flow = time.perf_counter() - t0
-    print(f"Origem O={O}  Destino D={D}")
-    print(f"Fluxo maximo (rotas por ruas distintas): {int(fmax)}")
-    print(f"Corte minimo (ruas que isolam O de D): {len(cut)}")
-    print(f"  -> {cut}")
-    print(f"Tempo Edmonds-Karp: {t_flow*1000:.1f} ms")
-
-    # a rota fisica de O a D pode ter, alem do corte relatado pelo Edmonds-
-    # Karp, outros trechos que, isoladamente, tambem sao corte de valor 1
-    # (pontos unicos de falha em serie na mesma rota; ver Secao 4.4).
-    rota_od, _ = sp.shortest_path(G, O, D)
-    rota_arestas = list(zip(rota_od, rota_od[1:])) if rota_od else []
-    adj_und = cc._undirected_adjacency(nodes, edges_u)
-    reportado = {frozenset(e) for e in cut}
-    alt_cut_edges = []
-    for (u, v) in rota_arestas:
-        if frozenset((u, v)) in reportado:
-            continue
-        comps_sem = cc._count_components(nodes, adj_und, skip_edge={u, v})
-        comps_base = cc._count_components(nodes, adj_und)
-        if comps_sem > comps_base:
-            # confirma que O e D ficam em componentes diferentes sem essa rua
-            seen = {O}
-            stack = [O]
-            while stack:
-                x = stack.pop()
-                for w in adj_und[x]:
-                    if w in seen or frozenset((x, w)) == frozenset((u, v)):
-                        continue
-                    seen.add(w); stack.append(w)
-            if D not in seen:
-                alt_cut_edges.append((u, v))
-    print(f"Rota fisica O->D: {len(rota_arestas)} rua(s); outros pontos "
-          f"unicos de falha na mesma rota: {alt_cut_edges}")
-
-    metrics["gargalo_corte_minimo"] = {
-        "origem": O, "destino": D,
-        "fluxo_maximo": int(fmax),
-        "corte_minimo": len(cut),
-        "ruas_do_corte": [list(e) for e in cut],
-        "outros_pontos_unicos_de_falha_na_rota": [list(e) for e in alt_cut_edges],
-        "tempo_ms": round(t_flow * 1000, 2),
-    }
-    viz.fig_mincut(data, O, D, cut, reach, fmax,
-                   os.path.join(OUT, "04_corte_minimo.png"),
-                   alt_cut_edges=alt_cut_edges)
-
-    # ------------------------------------ acesso: fluxo regiao-a-regiao
-    # O corte minimo no-a-no (acima) satura em 1 nessas malhas, porque ha
-    # pontes por toda parte. Para MEDIR o gargalo de acesso do bairro,
-    # agregamos cada extremo do eixo mais alongado numa REGIAO e medimos
-    # quantas rotas por ruas distintas ligam uma regiao a outra.
-    banner("(C.2.5) ACESSO: fluxo maximo REGIAO-a-REGIAO (eixo do bairro) "
-           "[verificacao de sanidade -- ver C.2.6 para a metrica de acesso real]")
-    acc = mf.region_access_flow(gl, data["undirected_edges"], frac=0.2)
-    print(f"Polos p1={acc['polo1']} p2={acc['polo2']} | regioes de "
-          f"{acc['n_origem']}/{acc['n_destino']} nos (frac={acc['frac']})")
-    print(f"Rotas por ruas distintas entre os DOIS EXTREMOS INTERNOS do "
-          f"bairro (nao e' acesso ao resto da cidade): "
-          f"{acc['fluxo']} (corte = {acc['corte']} ruas)")
-    metrics["travessia_interna_polos"] = acc
-
     # ---------------------------------- acesso real: nucleo -> GATEWAYS ----
     # `acc` acima mede a travessia interna mais estreita entre dois polos
     # achados dentro do proprio bairro -- nao referencia a fronteira do
@@ -348,172 +254,13 @@ def main(cfg):
         "n_nucleo": bsum["n_nucleo"],
     }
 
-    # ---------------------------------------------------- rotas alternativas
-    banner("(B) ROTAS ALTERNATIVAS (Dijkstra)")
-    # par O-D DENTRO da grade residencial (onde a malha oferece redundancia),
-    # para demonstrar de fato uma rota alternativa.
-    Or, Dr = resolve_od(cfg.altroute_od, G, od_ctx)
-    t0 = time.perf_counter()
-    main_route, main_cost = sp.shortest_path(G, Or, Dr)
-    t_dij = time.perf_counter() - t0
-    # verificacao independente com Bellman-Ford
-    t0 = time.perf_counter()
-    bf_dist, _ = sp.bellman_ford(G, Or)
-    t_bf = time.perf_counter() - t0
-    bf_cost = bf_dist.get(Dr, math.inf)
-    confere = abs(bf_cost - main_cost) < 1e-6
-
-    # bloqueia um trecho da rota principal (preferindo uma ponte/corte) e
-    # recalcula -> rota alternativa
-    # Para DEMONSTRAR uma rota alternativa, bloqueia um trecho da rota que NAO
-    # seja ponte (assim existe desvio pela malha). Trechos do meio primeiro.
-    bridge_set = {frozenset(e) for e in brs}
-    route_pairs = list(zip(main_route, main_route[1:])) if main_route else []
-    order = sorted(range(len(route_pairs)),
-                   key=lambda i: abs(i - len(route_pairs) / 2))
-    blocked_edge = None
-    for i in order:
-        a, b = route_pairs[i]
-        if frozenset((a, b)) not in bridge_set:
-            blocked_edge = (a, b)
-            break
-    # quantas pontes a rota atravessa (trechos sem alternativa)
-    route_bridges = [pair for pair in route_pairs
-                     if frozenset(pair) in bridge_set]
-    blocked = {blocked_edge, (blocked_edge[1], blocked_edge[0])} if blocked_edge else set()
-    alt_route, alt_cost = sp.alternative_route(G, Or, Dr, blocked)
-
-    print(f"Rota principal: {main_cost/60:.2f} min, {len(main_route)} intersecoes")
-    print(f"Verificacao Bellman-Ford: {bf_cost/60:.2f} min "
-          f"({'confere' if confere else 'DIVERGE'}); "
-          f"Dijkstra {t_dij*1000:.1f} ms vs Bellman-Ford {t_bf*1000:.1f} ms")
-    print(f"Origem Or={Or}  Destino Dr={Dr}  (dentro da grade residencial)")
-    if alt_route:
-        extra = 100.0 * (alt_cost - main_cost) / main_cost
-        print(f"Trecho (nao-ponte) bloqueado: {blocked_edge}")
-        print(f"Rota alternativa: {alt_cost/60:.2f} min  ({extra:+.1f}% vs principal)")
-    else:
-        print(f"Sem rota alternativa ao bloquear {blocked_edge}.")
-    print(f"A rota atravessa {len(route_bridges)} ponte(s) — trechos SEM "
-          f"alternativa (fechá-los desconecta a rota).")
-    metrics["rotas_alternativas"] = {
-        "origem": Or, "destino": Dr,
-        "rota_principal_min": round(main_cost / 60, 2),
-        "intersecoes_rota": len(main_route),
-        "bellman_ford_confere": confere,
-        "tempo_dijkstra_ms": round(t_dij * 1000, 2),
-        "tempo_bellman_ford_ms": round(t_bf * 1000, 2),
-        "trecho_bloqueado": list(blocked_edge) if blocked_edge else None,
-        "rota_alternativa_min": (round(alt_cost / 60, 2)
-                                 if alt_route else None),
-        "acrescimo_pct": (round(100.0 * (alt_cost - main_cost) / main_cost, 1)
-                          if alt_route else None),
-        "pontes_na_rota": len(route_bridges),
-    }
-    viz.fig_routes(data, main_route, alt_route, Or, Dr, blocked,
-                   os.path.join(OUT, "05_rotas.png"))
-
-    # ------------------------------------------------------------ resiliencia
-    banner("(C.3) RESILIENCIA: impacto EXAUSTIVO de cada ponte/articulacao "
-           "forte sobre o nucleo")
-    t0 = time.perf_counter()
-    all_pairs = [(a, b) for a in gl for b in gl if a != b]
-    print(f"Pares origem-destino exaustivos no nucleo: {len(all_pairs)}")
-
-    def custos(blocked_edges=None, blocked_node=None):
-        # Um Dijkstra por ORIGEM (le todos os destinos do mapa de distancias),
-        # em vez de um por par: mesma saida exata, ~V vezes menos Dijkstras.
-        # Semantica preservada: destino == no removido conta como desconectado
-        # (b == blocked_node -> inf); origem == no removido usa blocked_nodes,
-        # que so bloqueia a ENTRADA no no removido, nao a saida dele.
-        out = {}
-        blocked_nodes = {blocked_node} if blocked_node is not None else None
-        for a in gl:
-            dist, _ = sp.dijkstra(G, a, target=None,
-                                   blocked_edges=blocked_edges,
-                                   blocked_nodes=blocked_nodes)
-            for b in gl:
-                if a == b:
-                    continue
-                if blocked_node is not None and b == blocked_node:
-                    out[(a, b)] = math.inf
-                else:
-                    out[(a, b)] = dist.get(b, math.inf)
-        return out
-
-    base_costs = custos()
-
-    def resumo(valores):
-        vals = sorted(valores)
-        n = len(vals)
-        med = vals[n // 2] if n % 2 else (vals[n // 2 - 1] + vals[n // 2]) / 2
-        return {"min": vals[0], "mediana": med, "max": vals[-1]}
-
-    impacto_pontes = []
-    deltas_min_todos = []
-    n_binarias = 0
-    for (u, v) in core_breaking_edges:
-        novo = custos(blocked_edges={(u, v), (v, u)})
-        desconectados = sum(1 for k in base_costs
-                             if base_costs[k] != math.inf and novo[k] == math.inf)
-        deltas = [(novo[k] - base_costs[k]) / 60 for k in base_costs
-                  if base_costs[k] != math.inf and novo[k] != math.inf
-                  and novo[k] > base_costs[k] + 1e-9]
-        impacto_pontes.append(desconectados)
-        if deltas:
-            deltas_min_todos.extend(deltas)
-        else:
-            n_binarias += 1
-
-    impacto_nos = []
-    for u in core_breaking_nodes:
-        novo = custos(blocked_node=u)
-        desconectados = sum(1 for k in base_costs
-                             if base_costs[k] != math.inf and novo[k] == math.inf)
-        impacto_nos.append(desconectados)
-
-    t_res = time.perf_counter() - t0
-    resumo_pontes = resumo(impacto_pontes)
-    resumo_nos = resumo(impacto_nos)
-    resumo_deltas = resumo(deltas_min_todos) if deltas_min_todos else None
-
-    print(f"Pontes fortes, pares desconectados: min={resumo_pontes['min']} "
-          f"mediana={resumo_pontes['mediana']} max={resumo_pontes['max']}")
-    print(f"  binarias (sem desvio parcial): {n_binarias}  "
-          f"com desvio parcial: {len(core_breaking_edges) - n_binarias}")
-    if resumo_deltas:
-        print(f"  desvio parcial ({len(deltas_min_todos)} pares): "
-              f"min={resumo_deltas['min']:.2f} min "
-              f"mediana={resumo_deltas['mediana']:.2f} min "
-              f"max={resumo_deltas['max']:.2f} min")
-    print(f"Articulacoes fortes, pares desconectados: min={resumo_nos['min']} "
-          f"mediana={resumo_nos['mediana']} max={resumo_nos['max']}")
-    print(f"Tempo: {t_res*1000:.1f} ms")
-
-    metrics["resiliencia"] = {
-        "n_pares_nucleo": len(all_pairs),
-        "pontes_fortes": {
-            "n": len(core_breaking_edges),
-            "pares_desconectados": resumo_pontes,
-            "binarias": n_binarias,
-            "com_desvio_parcial": len(core_breaking_edges) - n_binarias,
-            "n_pares_com_desvio_parcial": len(deltas_min_todos),
-            "acrescimo_min": resumo_deltas,
-        },
-        "articulacoes_fortes": {
-            "n": len(core_breaking_nodes),
-            "pares_desconectados": resumo_nos,
-        },
-        "tempo_ms": round(t_res * 1000, 2),
-    }
-
     # ------------------------------------------------------------------ saida
     metrics["tempo_total_s"] = round(time.perf_counter() - t0_all, 2)
     with open(os.path.join(OUT, "metrics.json"), "w", encoding="utf-8") as f:
         json.dump(metrics, f, indent=2, ensure_ascii=False)
 
     banner("CONCLUIDO")
-    print(f"Figuras e metricas em: {OUT}")
+    print(f"Metricas em: {OUT}")
     print(f"Tempo total: {metrics['tempo_total_s']} s")
 
 

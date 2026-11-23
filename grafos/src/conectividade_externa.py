@@ -144,13 +144,6 @@ def corte_junto_ao_destino(nos, cap_completa):
     return [(b, a) for (a, b) in _so_reais(cut)]
 
 
-def ruas_do_corte(cut, dividido):
-    """Cortes por ruas -> pares de nos; por interseccoes -> nos do arco dividido."""
-    if dividido:
-        return sorted({a[0] for (a, b) in cut if a[0] == b[0]})
-    return [tuple(e) for e in cut]
-
-
 def baixa(nome, bbox, tentativas=6, espera_s=90):
     """load_neighborhood com novas tentativas: as consultas de 2 km sao pesadas
     e as copias da Overpass respondem 500/504 de vez em quando."""

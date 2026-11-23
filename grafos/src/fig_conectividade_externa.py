@@ -1,19 +1,13 @@
 """
-Figura da conectividade externa (Secao 4.6 do artigo): para cada bairro, a rede
-ampliada em R = 1 km com o nucleo de origem, os destinos externos, o corte
+Painel de um bairro da figura de conectividade externa (Secao 4.5 do artigo): a
+rede ampliada em R = 1 km com o nucleo de origem, os destinos externos, o corte
 minimo mais proximo da origem, o mais proximo do destino e as ruas externas
-cujo fechamento sozinho reduz o fluxo.
-
-Usa os dados ja baixados (cache de data/); recalcula so' R = 1 km.
-Escreve output/fig_externa.png (e a copia em ../Figures/).
-Uso:  py fig_conectividade_externa.py
+cujo fechamento sozinho reduz o fluxo. Modulo de apoio de fig_externa_geo.py.
 """
 
 from __future__ import annotations
 from rotulos import t as _t, num as _num
 import math
-import os
-import shutil
 
 import matplotlib
 matplotlib.use("Agg")
@@ -71,31 +65,3 @@ def painel(ax, key, res, obj):
                                        f"{it['fluxo']['scc']['ruas_dir']} at the 1 km outer edge",
                                        f"fluxo dirigido {f0} na fronteira,\n"
                                        f"{it['fluxo']['scc']['ruas_dir']} na borda externa a 1 km"), fontsize=11)
-
-
-def main():
-    fig, axes = plt.subplots(1, 3, figsize=(16, 5.8))
-    for ax, key in zip(axes, ("urca", "copacabana", "botafogo")):
-        res, obj = ce.analisa_bairro(key, raios=(0, RAIO_M))
-        painel(ax, key, res, obj[RAIO_M])
-    handles = [
-        plt.Line2D([], [], marker="o", ls="", color="#2b6cb0", label=_t("source region (core)", "região de origem (núcleo)")),
-        plt.Line2D([], [], marker="^", ls="", color="#2f855a", markeredgecolor="#1c4532",
-                   markersize=8, label=_t("external destinations", "destinos externos")),
-        plt.Line2D([], [], color=COR["origem"], lw=3, label=_t("minimum cut nearest the core", "corte mínimo mais próximo do núcleo")),
-        plt.Line2D([], [], color=COR["destino"], lw=3, label=_t("minimum cut nearest the destinations", "corte mínimo mais próximo dos destinos")),
-        plt.Line2D([], [], color=COR["externa"], lw=3, label=_t("external streets whose closure lowers the flow", "ruas externas cujo fechamento reduz o fluxo")),
-        plt.Line2D([], [], color="#2d3748", lw=1.3, ls="--", label=_t("official boundary", "fronteira oficial")),
-    ]
-    fig.legend(handles=handles, loc="lower center", ncol=3, fontsize=10, frameon=False)
-    fig.tight_layout(rect=(0, 0.1, 1, 1))
-    p = os.path.join(OUT, "fig_externa.png")
-    fig.savefig(p, dpi=140, bbox_inches="tight"); plt.close(fig)
-    figs = os.path.join(os.path.dirname(OUT), "..", "Figures")
-    if os.path.isdir(figs):
-        shutil.copy(p, os.path.join(figs, "fig_externa.png"))
-    print("saved:", p)
-
-
-if __name__ == "__main__":
-    main()

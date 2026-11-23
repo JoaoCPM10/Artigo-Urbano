@@ -1,9 +1,9 @@
 """
 Analise de CONECTIVIDADE usando SOMENTE o que foi visto na disciplina:
-percurso em grafos (BFS/DFS) e as definicoes formais de conexidade,
+percurso em largura (BFS) e as definicoes formais de conexidade,
 articulacao e ponte.
 
-  * bfs / dfs                      -> percursos basicos (Percurso em Grafos).
+  * bfs                            -> percurso em largura.
   * connected_components           -> componentes do grafo nao-dirigido (BFS).
   * strongly_connected_components  -> pela DEFINICAO: dois vertices estao na
                                       mesma componente fortemente conexa se ha
@@ -27,7 +27,7 @@ from graph import Graph
 
 
 # ---------------------------------------------------------------------------
-# Percursos basicos (Percurso em Grafos)
+# Percurso em largura
 # ---------------------------------------------------------------------------
 def bfs(G: Graph, source: int, reverse: bool = False) -> set[int]:
     """Conjunto de vertices alcancaveis a partir de source (BFS dirigido).
@@ -44,21 +44,6 @@ def bfs(G: Graph, source: int, reverse: bool = False) -> set[int]:
                 seen.add(w)
                 q.append(w)
     return seen
-
-
-def dfs(G: Graph, source: int) -> list[int]:
-    """DFS iterativo. Retorna a ordem de visita."""
-    seen = {source}
-    order = []
-    stack = [source]
-    while stack:
-        u = stack.pop()
-        order.append(u)
-        for v, _ in G.neighbors(u):
-            if v not in seen:
-                seen.add(v)
-                stack.append(v)
-    return order
 
 
 # ---------------------------------------------------------------------------

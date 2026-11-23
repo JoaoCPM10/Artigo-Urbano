@@ -12,3 +12,6 @@ grafos/data/ibge_censo2022_dicionario/
 # Caches de agua (OSM) e de elevacao: refeitos pelos scripts
 grafos/data/agua_osm_*
 grafos/data/elevacao_*
+
+# Logs de execucao
+grafos/output/logs/

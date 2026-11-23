@@ -38,20 +38,9 @@ from neighborhoods import NEIGHBORHOODS
 from network import load_network
 
 OUT = nf.OUT
-JANELA_NUCLEO = 60      # pedacos cujo componente forte tem ao menos 60 nos
 TOL_NUCLEO = 5          # pareamento: nucleo forte do pedaco = nucleo da Urca +- 5
 N_PAREADOS = 300        # pedacos pareados por bairro e por modo de crescimento
 TENTATIVAS = 200        # no maximo TENTATIVAS * N_PAREADOS sorteios por modo
-
-
-def maximo_intermediacao(G, S):
-    D = nx.DiGraph()
-    D.add_nodes_from(S)
-    for e in G.edges:
-        if e.u in S and e.v in S and e.u != e.v:
-            D.add_edge(e.u, e.v)
-    scc = max(nx.strongly_connected_components(D), key=len)
-    return bt.summary(G, set(scc))["max"], len(scc)
 
 
 def pareados(rede, G, ref, ref_n, modo, rng):
@@ -85,41 +74,10 @@ def main():
     ref_fluxo, _ = urca.fluxo(urca.inside)
     res = {"referencia_urca": {"intersecoes": m, "nucleo_forte": ref_n,
                                "intermediacao_maxima_pct": round(100 * ref, 2),
-                               "fluxo": ref_fluxo},
-           "pedacos": {}}
-    guardado = json.load(open(os.path.join(OUT, "nulo_fluxo.json"), encoding="utf-8"))
-
+                               "fluxo": ref_fluxo}}
     for key in ("copacabana", "botafogo"):
         rede = nf.Rede(key)
         G = load_network(NEIGHBORHOODS[key])[0]["graph"]
-        rng = random.Random(nf.SEED)
-        bloco = {}
-        for nome, gera in (("bola", rede.bola), ("eden", rede.eden)):
-            fluxos, maxs, tams = [], [], []
-            for _ in range(nf.N_PIECES):
-                S = gera(m, rng)
-                f, _g = rede.fluxo(S)
-                mx, n_scc = maximo_intermediacao(G, S)
-                fluxos.append(f); maxs.append(mx); tams.append(n_scc)
-            # os pedacos sao os de nulo_fluxo.py: o fluxo tem de coincidir
-            assert fluxos == guardado["pedacos"][key][nome]["valores_fluxo"], \
-                f"{key} {nome}: pedacos diferentes dos de nulo_fluxo.json"
-            idx = [i for i, t in enumerate(tams) if t >= JANELA_NUCLEO]
-            ge = [mx >= ref for mx in maxs]
-            bloco[nome] = {
-                "n_pedacos": len(maxs),
-                "fluxo_minimo": min(fluxos),
-                "intermediacao_mediana_pct": round(100 * st.median(maxs), 1),
-                "intermediacao_p95_pct": round(100 * sorted(maxs)[int(0.95 * len(maxs)) - 1], 1),
-                "nucleo_forte_mediana": st.median(tams),
-                "frac_intermediacao_ge_urca": round(sum(ge) / len(ge), 3),
-                "n_com_nucleo_ge_60": len(idx),
-                "frac_intermediacao_ge_urca_nucleo_ge_60":
-                    round(sum(ge[i] for i in idx) / len(idx), 3) if idx else None,
-                "frac_fluxo_le_1": round(sum(f <= 1 for f in fluxos) / len(fluxos), 3),
-            }
-            print(key, nome, json.dumps(bloco[nome], ensure_ascii=False))
-        res["pedacos"][key] = bloco
         rng2 = random.Random(nf.SEED)
         pareado = {}
         for modo in ("bola", "eden"):

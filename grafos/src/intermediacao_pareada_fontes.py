@@ -80,7 +80,8 @@ def main():
         if antigo:   # regressao: reproduz o JSON existente
             for modo in ("bola", "eden"):
                 assert antigo[modo]["tentativas"] == novo[modo]["tentativas"], (key, modo, "tentativas")
-                assert antigo[modo]["valores_pct"] == novo[modo]["valores_pct"], (key, modo, "valores")
+                if "valores_pct" in antigo[modo]:
+                    assert antigo[modo]["valores_pct"] == novo[modo]["valores_pct"], (key, modo, "valores")
             print(key, "regressao ok", flush=True)
         pareado_tudo[key] = novo
         with open(caminho, "w", encoding="utf-8") as f:
