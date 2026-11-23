@@ -24,6 +24,7 @@ Escreve output/controle_tamanho_intermediacao.json.  Uso:  python -m analises.co
 """
 
 from __future__ import annotations
+
 import json
 import os
 import random
@@ -31,16 +32,16 @@ import statistics as st
 
 import networkx as nx
 
+from analises import nulo_fluxo as nf
 from nucleo import betweenness as bt
 from nucleo import connectivity as cc
-from analises import nulo_fluxo as nf
 from nucleo.neighborhoods import NEIGHBORHOODS
 from nucleo.network import load_network
 
 OUT = nf.OUT
-TOL_NUCLEO = 5          # pareamento: nucleo forte do pedaco = nucleo da Urca +- 5
-N_PAREADOS = 300        # pedacos pareados por bairro e por modo de crescimento
-TENTATIVAS = 200        # no maximo TENTATIVAS * N_PAREADOS sorteios por modo
+TOL_NUCLEO = 5  # pareamento: nucleo forte do pedaco = nucleo da Urca +- 5
+N_PAREADOS = 300  # pedacos pareados por bairro e por modo de crescimento
+TENTATIVAS = 200  # no maximo TENTATIVAS * N_PAREADOS sorteios por modo
 
 
 def pareados(rede, G, ref, ref_n, modo, rng):
@@ -72,9 +73,14 @@ def main():
     urca = nf.Rede("urca")
     m = len(urca.inside)
     ref_fluxo, _ = urca.fluxo(urca.inside)
-    res = {"referencia_urca": {"intersecoes": m, "nucleo_forte": ref_n,
-                               "intermediacao_maxima_pct": round(100 * ref, 2),
-                               "fluxo": ref_fluxo}}
+    res = {
+        "referencia_urca": {
+            "intersecoes": m,
+            "nucleo_forte": ref_n,
+            "intermediacao_maxima_pct": round(100 * ref, 2),
+            "fluxo": ref_fluxo,
+        }
+    }
     for key in ("copacabana", "botafogo"):
         rede = nf.Rede(key)
         G = load_network(NEIGHBORHOODS[key])[0]["graph"]
@@ -83,10 +89,13 @@ def main():
         for modo in ("bola", "eden"):
             maxs, tams, tent = pareados(rede, G, ref, ref_n, modo, rng2)
             pareado[modo] = {
-                "n_pedacos": len(maxs), "tentativas": tent,
+                "n_pedacos": len(maxs),
+                "tentativas": tent,
                 "nucleo_forte_min_max": [min(tams), max(tams)],
                 "intermediacao_mediana_pct": round(100 * st.median(maxs), 1),
-                "intermediacao_p95_pct": round(100 * sorted(maxs)[max(0, int(0.95 * len(maxs)) - 1)], 1),
+                "intermediacao_p95_pct": round(
+                    100 * sorted(maxs)[max(0, int(0.95 * len(maxs)) - 1)], 1
+                ),
                 "frac_intermediacao_ge_urca": round(sum(v >= ref for v in maxs) / len(maxs), 3),
                 "valores_pct": [round(100 * v, 2) for v in maxs],
             }

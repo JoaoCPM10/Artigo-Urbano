@@ -12,6 +12,7 @@ Cada bairro declara:
 """
 
 from __future__ import annotations
+
 from dataclasses import dataclass
 
 
@@ -51,7 +52,7 @@ NEIGHBORHOODS: "dict[str, NeighborhoodConfig]" = {
         bairro_full="Botafogo, Rio de Janeiro",
         bbox="-22.960,-43.195,-22.945,-43.170",
     ),
-    # Bairros de encosta (casos adicionais pedidos na revisao do orientador).
+    # Bairros de encosta (casos adicionais).
     # bbox = envelope do poligono oficial (Data.Rio/IPP), com folga de ~0,001 grau.
     "alto_da_boa_vista": NeighborhoodConfig(
         key="alto_da_boa_vista",
@@ -90,3 +91,29 @@ NEIGHBORHOODS: "dict[str, NeighborhoodConfig]" = {
         bbox="-22.917,-43.221,-22.906,-43.207",
     ),
 }
+
+# Ordem de apresentacao dos nove bairros: nas tabelas, nos mapas de redes e de
+# corte (ORDEM_TABELAS) e nas figuras de resultados (ORDEM_FIGURAS).
+ORDEM_TABELAS = [
+    "urca",
+    "leme",
+    "joa",
+    "alto_da_boa_vista",
+    "praca_da_bandeira",
+    "cosme_velho",
+    "sao_conrado",
+    "botafogo",
+    "copacabana",
+]
+ORDEM_FIGURAS = [
+    "urca",
+    "leme",
+    "alto_da_boa_vista",
+    "cosme_velho",
+    "joa",
+    "sao_conrado",
+    "copacabana",
+    "botafogo",
+    "praca_da_bandeira",
+]
+NOMES = {chave: cfg.display_name for chave, cfg in NEIGHBORHOODS.items()}

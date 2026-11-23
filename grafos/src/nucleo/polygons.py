@@ -17,10 +17,12 @@ layer 4) do ArcGIS REST do Data.Rio/IPP.
 """
 
 from __future__ import annotations
+
 import json
 import os
-import urllib.request
 import urllib.parse
+import urllib.request
+
 from caminhos import DATA as DATA_DIR
 
 os.makedirs(DATA_DIR, exist_ok=True)
@@ -51,7 +53,8 @@ def fetch_bairro_polygon(nome: str, use_cache: bool = True) -> dict:
     }
     url = ARCGIS_QUERY_URL + "?" + urllib.parse.urlencode(params)
     req = urllib.request.Request(
-        url, headers={"User-Agent": "grafos-academic/1.0 (trabalho academico)"})
+        url, headers={"User-Agent": "grafos-academic/1.0 (trabalho academico)"}
+    )
     with urllib.request.urlopen(req, timeout=30) as r:
         data = json.loads(r.read().decode("utf-8"))
     feats = data.get("features", [])
@@ -105,6 +108,7 @@ def distancias_ao_poligono_m(pontos: dict, feature: dict, teto_m: float = float(
     exato (basta um teste com o retangulo do poligono).
     """
     import math
+
     aneis = _rings(feature)
     lat0 = sum(la for r in aneis for _, la in r) / sum(len(r) for r in aneis)
     kx = math.cos(math.radians(lat0)) * 111320.0
@@ -113,7 +117,8 @@ def distancias_ao_poligono_m(pontos: dict, feature: dict, teto_m: float = float(
     xs, ys = [], []
     for r in aneis:
         pts = [(lo * kx, la * ky) for lo, la in r]
-        xs += [p[0] for p in pts]; ys += [p[1] for p in pts]
+        xs += [p[0] for p in pts]
+        ys += [p[1] for p in pts]
         for i in range(len(pts)):
             segs.append((pts[i], pts[(i + 1) % len(pts)]))
     x0, x1, y0, y1 = min(xs), max(xs), min(ys), max(ys)
@@ -123,7 +128,8 @@ def distancias_ao_poligono_m(pontos: dict, feature: dict, teto_m: float = float(
             out[nid] = 0.0
             continue
         px, py = lo * kx, la * ky
-        dbx = max(x0 - px, 0.0, px - x1); dby = max(y0 - py, 0.0, py - y1)
+        dbx = max(x0 - px, 0.0, px - x1)
+        dby = max(y0 - py, 0.0, py - y1)
         if math.hypot(dbx, dby) > teto_m:
             out[nid] = float("inf")
             continue
@@ -144,7 +150,8 @@ def polygon_bbox(feature: dict) -> str:
     lons, lats = [], []
     for ring in _rings(feature):
         for lon, lat in ring:
-            lons.append(lon); lats.append(lat)
+            lons.append(lon)
+            lats.append(lat)
     return f"{min(lats)},{min(lons)},{max(lats)},{max(lons)}"
 
 
@@ -158,8 +165,7 @@ def clip_graph_to_polygon(data: dict, feature: dict) -> dict:
     from nucleo.graph import Graph  # import local: evita ciclo de import com main
 
     latlon = data["latlon"]
-    keep = {nid for nid, (lat, lon) in latlon.items()
-            if point_in_bairro(lon, lat, feature)}
+    keep = {nid for nid, (lat, lon) in latlon.items() if point_in_bairro(lon, lat, feature)}
 
     G_old = data["graph"]
     G_new = Graph()
@@ -170,8 +176,7 @@ def clip_graph_to_polygon(data: dict, feature: dict) -> dict:
         if e.u in keep and e.v in keep:
             G_new._add_directed(e.u, e.v, e.length, e.travel_time, e.oneway)
 
-    new_undirected = [seg for seg in data["undirected_edges"]
-                       if seg[0] in keep and seg[1] in keep]
+    new_undirected = [seg for seg in data["undirected_edges"] if seg[0] in keep and seg[1] in keep]
 
     out = dict(data)
     out["graph"] = G_new

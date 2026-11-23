@@ -1,7 +1,7 @@
 """
 GARGALOS via FLUXO MAXIMO / CORTE MINIMO (algoritmo de Edmonds-Karp).
 
-Vistos em sala: Ford-Fulkerson e sua especializacao Edmonds-Karp (busca do
+Ford-Fulkerson e sua especializacao Edmonds-Karp (busca do
 caminho aumentante por BFS), e o Teorema do Fluxo Maximo / Corte Minimo:
 
     "O valor maximo de um fluxo O-D e' igual a capacidade minima de um
@@ -16,6 +16,7 @@ Implementacao: Edmonds-Karp em O(V * E^2).
 """
 
 from __future__ import annotations
+
 from collections import deque
 
 
@@ -33,7 +34,7 @@ def edmonds_karp(nodes, capacity, source, sink):
     adj: dict[int, set[int]] = {u: set() for u in nodes}
     for (u, v), c in capacity.items():
         res[(u, v)] = res.get((u, v), 0) + c
-        res.setdefault((v, u), 0)        # arco reverso (residual)
+        res.setdefault((v, u), 0)  # arco reverso (residual)
         adj[u].add(v)
         adj[v].add(u)
 
@@ -60,8 +61,7 @@ def edmonds_karp(nodes, capacity, source, sink):
             path.append(v)
             v = prev[v]
         path.reverse()
-        bottleneck = min(res[(path[i], path[i + 1])]
-                         for i in range(len(path) - 1))
+        bottleneck = min(res[(path[i], path[i + 1])] for i in range(len(path) - 1))
         for i in range(len(path) - 1):
             a, b = path[i], path[i + 1]
             res[(a, b)] -= bottleneck
@@ -79,8 +79,7 @@ def edmonds_karp(nodes, capacity, source, sink):
                 reachable.add(v)
                 q.append(v)
 
-    cut_edges = [(u, v) for (u, v), c in capacity.items()
-                 if u in reachable and v not in reachable]
+    cut_edges = [(u, v) for (u, v), c in capacity.items() if u in reachable and v not in reachable]
 
     # fluxo efetivo por arco (capacidade - residual)
     flow = {}
@@ -105,8 +104,7 @@ def unit_capacity_network(undirected_edges):
     return cap
 
 
-def gateway_access_flow(node_list, undirected_edges, gateway_nodes, frac=0.2,
-                        details=False):
+def gateway_access_flow(node_list, undirected_edges, gateway_nodes, frac=0.2, details=False):
     """Fluxo maximo NUCLEO-a-GATEWAYS: quantas rotas por ruas distintas ligam
     o interior do bairro aos pontos onde ele de fato se conecta ao resto da
     cidade.
@@ -140,13 +138,20 @@ def gateway_access_flow(node_list, undirected_edges, gateway_nodes, frac=0.2,
     for e in undirected_edges:
         u, v = e[0], e[1]
         if u in S and v in S:
-            adj[u].add(v); adj[v].add(u)
+            adj[u].add(v)
+            adj[v].add(u)
             edges_in.append((u, v))
 
     gw = set(gateway_nodes) & S
     if not gw or len(S) < 2:
-        return {"gateways": sorted(gw), "fluxo": 0, "corte": 0,
-                "n_origem": 0, "n_gateways": len(gw), "frac": frac}
+        return {
+            "gateways": sorted(gw),
+            "fluxo": 0,
+            "corte": 0,
+            "n_origem": 0,
+            "n_gateways": len(gw),
+            "frac": frac,
+        }
 
     # distancia (em arestas) de cada no ao gateway mais proximo (BFS
     # multi-fonte: todos os gateways comecam na fila com distancia 0)
@@ -165,18 +170,24 @@ def gateway_access_flow(node_list, undirected_edges, gateway_nodes, frac=0.2,
 
     cap = dict(unit_capacity_network(edges_in))
     SS, TT = "__S__", "__T__"
-    BIG = 10 ** 9
+    BIG = 10**9
     for u in src:
         cap[(SS, u)] = BIG
     for g in gw:
         cap[(g, TT)] = BIG
     fmax, flow, reach, cut = edmonds_karp(list(S) + [SS, TT], cap, SS, TT)
     cut_real = [(u, v) for (u, v) in cut if u not in (SS, TT) and v not in (SS, TT)]
-    out = {"gateways": sorted(gw), "fluxo": int(fmax), "corte": len(cut_real),
-           "n_origem": len(src), "n_gateways": len(gw), "frac": frac}
+    out = {
+        "gateways": sorted(gw),
+        "fluxo": int(fmax),
+        "corte": len(cut_real),
+        "n_origem": len(src),
+        "n_gateways": len(gw),
+        "frac": frac,
+    }
     if details:
         # so' para analise/figura (localiza_corte.py); fora de metrics.json
         out["origem"] = sorted(src)
         out["corte_arestas"] = cut_real
-        out["lado_origem"] = len(reach) - 1     # nos do lado da origem (sem a super-fonte)
+        out["lado_origem"] = len(reach) - 1  # nos do lado da origem (sem a super-fonte)
     return out

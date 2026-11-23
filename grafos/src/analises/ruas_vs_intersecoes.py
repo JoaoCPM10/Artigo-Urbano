@@ -1,6 +1,6 @@
 """
 QUANTAS RUAS contra QUANTAS INTERSECOES precisam falhar para isolar o nucleo
-do bairro de todas as suas portas de acesso? (Secao 4.2 do artigo)
+do bairro de todas as suas portas de acesso? (Secao 4.1 do artigo)
 
 Mesma origem (nucleo, f = 0,2) e mesmas portas de gateway_access_flow, quatro
 contagens de rotas disjuntas (= tamanho do menor corte, pelo teorema do fluxo
@@ -19,17 +19,18 @@ Uso:  python -m analises.ruas_vs_intersecoes [--verifica]   (--verifica exige ne
 """
 
 from __future__ import annotations
+
 import json
 import os
 import sys
 
+from caminhos import OUT
 from nucleo import connectivity as cc
 from nucleo import maxflow as mf
 from nucleo.neighborhoods import NEIGHBORHOODS
-from nucleo.network import load_network, gateway_nodes
-from caminhos import OUT
+from nucleo.network import gateway_nodes, load_network
 
-BIG = 10 ** 9
+BIG = 10**9
 SS, TT = "__S__", "__T__"
 
 
@@ -59,8 +60,9 @@ def _rede_intersecoes(uset, edges_in, G, src, gw, dirigido):
     else:
         pares = []
         for e in edges_in:
-            pares.append((e[0], e[1])); pares.append((e[1], e[0]))
-    for (u, v) in pares:
+            pares.append((e[0], e[1]))
+            pares.append((e[1], e[0]))
+    for u, v in pares:
         cap[((u, 1), (v, 0))] = BIG
     return cap
 
@@ -91,20 +93,29 @@ def analisa(key: str) -> dict:
     nos = list(uset)
     nos_div = [(v, s) for v in uset for s in (0, 1)]
 
-    res = {"bairro": cfg.display_name, "portas": len(gw), "origem": len(src),
-           "fluxo_ruas_referencia_gateway_access_flow": acc["fluxo"]}
+    res = {
+        "bairro": cfg.display_name,
+        "portas": len(gw),
+        "origem": len(src),
+        "fluxo_ruas_referencia_gateway_access_flow": acc["fluxo"],
+    }
     for nome, dirigido in (("nao_dirigido", False), ("dirigido", True)):
         f_ruas, cut_r = _fluxo(nos, _rede_ruas(uset, edges_in, G, dirigido), src, gw, False)
-        f_int, cut_i = _fluxo(nos_div, _rede_intersecoes(uset, edges_in, G, src, gw, dirigido),
-                              src, gw, True)
+        f_int, cut_i = _fluxo(
+            nos_div, _rede_intersecoes(uset, edges_in, G, src, gw, dirigido), src, gw, True
+        )
         verts = sorted({a[0] for (a, b) in cut_i if a[0] == b[0]})
         res[nome] = {
-            "ruas": f_ruas, "intersecoes": f_int,
+            "ruas": f_ruas,
+            "intersecoes": f_int,
             "corte_ruas": [list(e) for e in cut_r][:40],
-            "corte_intersecoes": [{"no": v, "coords": [round(ll[v][0], 5), round(ll[v][1], 5)]}
-                                  for v in verts][:40],
+            "corte_intersecoes": [
+                {"no": v, "coords": [round(ll[v][0], 5), round(ll[v][1], 5)]} for v in verts
+            ][:40],
         }
-    assert res["nao_dirigido"]["ruas"] == acc["fluxo"], "contagem por ruas nao bate com gateway_access_flow"
+    assert res["nao_dirigido"]["ruas"] == acc["fluxo"], (
+        "contagem por ruas nao bate com gateway_access_flow"
+    )
     res["_entrada"] = (uset, edges_in, G, src, gw)
     return res
 
@@ -113,11 +124,12 @@ def verifica(res) -> None:
     """Confere as quatro contagens com o networkx (maximum_flow), montando as
     redes de novo, por outro caminho de codigo."""
     import networkx as nx
+
     uset, edges_in, G, src, gw = res["_entrada"]
 
     def nx_fluxo(D):
         for u in src:
-            D.add_edge(SS, u)             # sem 'capacity' = infinita
+            D.add_edge(SS, u)  # sem 'capacity' = infinita
         for g in gw:
             D.add_edge(g, TT)
         return nx.maximum_flow_value(D, SS, TT)
@@ -150,7 +162,8 @@ def verifica(res) -> None:
                     D.add_edge(("s", e.u), ("e", e.v))
         else:
             for e in edges_in:
-                D.add_edge(("s", e[0]), ("e", e[1])); D.add_edge(("s", e[1]), ("e", e[0]))
+                D.add_edge(("s", e[0]), ("e", e[1]))
+                D.add_edge(("s", e[1]), ("e", e[0]))
         for u in src:
             D.add_edge(SS, ("e", u))
         for g in gw:
@@ -158,21 +171,27 @@ def verifica(res) -> None:
         i = nx.maximum_flow_value(D, SS, TT)
         nome = "dirigido" if dirigido else "nao_dirigido"
         assert r == res[nome]["ruas"], f"networkx ruas {nome}: {r} != {res[nome]['ruas']}"
-        assert i == res[nome]["intersecoes"], f"networkx intersecoes {nome}: {i} != {res[nome]['intersecoes']}"
+        assert i == res[nome]["intersecoes"], (
+            f"networkx intersecoes {nome}: {i} != {res[nome]['intersecoes']}"
+        )
 
 
 def main():
     chaves = ["urca", "copacabana", "botafogo"]
     saida = {}
     checar = "--verifica" in sys.argv
-    print(f"{'bairro':<12}{'portas':>7}{'ruas':>6}{'inters.':>8}{'ruas(dir)':>10}{'inters.(dir)':>13}")
+    print(
+        f"{'bairro':<12}{'portas':>7}{'ruas':>6}{'inters.':>8}{'ruas(dir)':>10}{'inters.(dir)':>13}"
+    )
     for k in chaves:
         r = analisa(k)
         if checar:
             verifica(r)
         nd, d = r["nao_dirigido"], r["dirigido"]
-        print(f"{r['bairro']:<12}{r['portas']:>7}{nd['ruas']:>6}{nd['intersecoes']:>8}"
-              f"{d['ruas']:>10}{d['intersecoes']:>13}")
+        print(
+            f"{r['bairro']:<12}{r['portas']:>7}{nd['ruas']:>6}{nd['intersecoes']:>8}"
+            f"{d['ruas']:>10}{d['intersecoes']:>13}"
+        )
         r.pop("_entrada")
         saida[k] = r
     if checar:

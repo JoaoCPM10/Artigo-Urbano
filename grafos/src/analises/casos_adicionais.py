@@ -12,13 +12,14 @@ Uso:  python -m analises.casos_adicionais alto_da_boa_vista cosme_velho
 """
 
 from __future__ import annotations
+
 import json
 import os
 import sys
 
-from analises import ruas_vs_intersecoes as ri
 from analises import localiza_corte as lc
 from analises import robustez_desempate as rd
+from analises import ruas_vs_intersecoes as ri
 
 OUT = ri.OUT
 
@@ -35,15 +36,27 @@ def main():
             ri.verifica(r)
         r.pop("_entrada")
         c = lc.analisa(k)
-        for campo in ("_objs", "_vertices_corte"):
-            c.pop(campo, None)
+        c.pop("_objs")
         d = rd.analisa(k, 200)
         saida[k] = {"quatro_contagens": r, "localizacao_corte": c, "desempate": d}
-        print(k, "portas", r["portas"], "| ruas nd", r["nao_dirigido"]["ruas"],
-              "int nd", r["nao_dirigido"]["intersecoes"], "| ruas dir", r["dirigido"]["ruas"],
-              "int dir", r["dirigido"]["intersecoes"],
-              "| cortes de 1 rua", len(c["cortes_de_uma_rua"]), "| desempate", d["min_max"],
-              flush=True)
+        print(
+            k,
+            "portas",
+            r["portas"],
+            "| ruas nd",
+            r["nao_dirigido"]["ruas"],
+            "int nd",
+            r["nao_dirigido"]["intersecoes"],
+            "| ruas dir",
+            r["dirigido"]["ruas"],
+            "int dir",
+            r["dirigido"]["intersecoes"],
+            "| cortes de 1 rua",
+            len(c["cortes_de_uma_rua"]),
+            "| desempate",
+            d["min_max"],
+            flush=True,
+        )
     with open(caminho, "w", encoding="utf-8") as fh:
         json.dump(saida, fh, ensure_ascii=False, indent=2)
 

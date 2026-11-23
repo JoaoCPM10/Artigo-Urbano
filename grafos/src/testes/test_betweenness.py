@@ -3,6 +3,7 @@ independente; o pipeline nao depende de networkx).
 
 Uso:  python -m testes.test_betweenness
 """
+
 import networkx as nx
 
 from nucleo import betweenness as bt
@@ -26,8 +27,10 @@ def main():
         ref = nx.betweenness_centrality(D, weight="w", normalized=True)
 
         err = max(abs(mine[u] - ref[u]) for u in core)
-        print(f"{key:11s} n={len(core):4d}  max meu={max(mine.values()):.6f} "
-              f"networkx={max(ref.values()):.6f}  erro max={err:.2e}")
+        print(
+            f"{key:11s} n={len(core):4d}  max meu={max(mine.values()):.6f} "
+            f"networkx={max(ref.values()):.6f}  erro max={err:.2e}"
+        )
         assert err < 1e-9, f"{key}: divergencia de {err}"
     print("OK: implementacao propria confere com networkx.")
 

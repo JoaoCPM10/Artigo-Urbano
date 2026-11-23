@@ -21,23 +21,30 @@ Uso:  python -m analises.intermediacao_pareada_fontes [urca|leme] [bairro1,bairr
 """
 
 from __future__ import annotations
+
 import json
 import os
 import random
 import statistics as st
 import sys
 
+from analises import controle_tamanho_intermediacao as ct
+from analises import nulo_fluxo as nf
 from nucleo import betweenness as bt
 from nucleo import connectivity as cc
-from analises import nulo_fluxo as nf
-from analises import controle_tamanho_intermediacao as ct
 from nucleo.neighborhoods import NEIGHBORHOODS
 from nucleo.network import load_network
 
 FONTES = {
     "urca": ("copacabana", "botafogo", "alto_da_boa_vista", "sao_conrado", "praca_da_bandeira"),
-    "leme": ("copacabana", "botafogo", "alto_da_boa_vista", "sao_conrado", "praca_da_bandeira",
-             "cosme_velho"),
+    "leme": (
+        "copacabana",
+        "botafogo",
+        "alto_da_boa_vista",
+        "sao_conrado",
+        "praca_da_bandeira",
+        "cosme_velho",
+    ),
 }
 
 
@@ -54,8 +61,12 @@ def main():
     if ref_nome == "leme":
         rede_ref = nf.Rede("leme")
         f_ref, _ = rede_ref.fluxo(rede_ref.inside)
-        res["referencia_leme"] = {"intersecoes": len(rede_ref.inside), "nucleo_forte": ref_n,
-                                  "intermediacao_maxima_pct": round(100 * ref, 2), "fluxo": f_ref}
+        res["referencia_leme"] = {
+            "intersecoes": len(rede_ref.inside),
+            "nucleo_forte": ref_n,
+            "intermediacao_maxima_pct": round(100 * ref, 2),
+            "fluxo": f_ref,
+        }
     pareado_tudo = res.setdefault(campo, {})
     for key in fontes:
         rede = nf.Rede(key)
@@ -65,28 +76,54 @@ def main():
         for modo in ("bola", "eden"):
             maxs, tams, tent = ct.pareados(rede, G, ref, ref_n, modo, rng)
             novo[modo] = {
-                "n_pedacos": len(maxs), "tentativas": tent,
+                "n_pedacos": len(maxs),
+                "tentativas": tent,
                 "nucleo_forte_min_max": [min(tams), max(tams)] if tams else None,
                 "intermediacao_mediana_pct": round(100 * st.median(maxs), 1) if maxs else None,
-                "intermediacao_p95_pct": round(100 * sorted(maxs)[max(0, int(0.95 * len(maxs)) - 1)], 1) if maxs else None,
-                "frac_intermediacao_ge_ref": round(sum(v >= ref for v in maxs) / len(maxs), 3) if maxs else None,
+                "intermediacao_p95_pct": round(
+                    100 * sorted(maxs)[max(0, int(0.95 * len(maxs)) - 1)], 1
+                )
+                if maxs
+                else None,
+                "frac_intermediacao_ge_ref": round(sum(v >= ref for v in maxs) / len(maxs), 3)
+                if maxs
+                else None,
                 "valores_pct": [round(100 * v, 2) for v in maxs],
             }
             if ref_nome == "urca":
                 novo[modo]["frac_intermediacao_ge_urca"] = novo[modo]["frac_intermediacao_ge_ref"]
-            print(key, modo, "n", len(maxs), "tentativas", tent,
-                  "frac >= ref", novo[modo]["frac_intermediacao_ge_ref"], flush=True)
+            print(
+                key,
+                modo,
+                "n",
+                len(maxs),
+                "tentativas",
+                tent,
+                "frac >= ref",
+                novo[modo]["frac_intermediacao_ge_ref"],
+                flush=True,
+            )
         antigo = pareado_tudo.get(key) if ref_nome == "urca" else None
-        if antigo:   # regressao: reproduz o JSON existente
+        if antigo:  # regressao: reproduz o JSON existente
             for modo in ("bola", "eden"):
-                assert antigo[modo]["tentativas"] == novo[modo]["tentativas"], (key, modo, "tentativas")
+                assert antigo[modo]["tentativas"] == novo[modo]["tentativas"], (
+                    key,
+                    modo,
+                    "tentativas",
+                )
                 if "valores_pct" in antigo[modo]:
-                    assert antigo[modo]["valores_pct"] == novo[modo]["valores_pct"], (key, modo, "valores")
+                    assert antigo[modo]["valores_pct"] == novo[modo]["valores_pct"], (
+                        key,
+                        modo,
+                        "valores",
+                    )
             print(key, "regressao ok", flush=True)
         pareado_tudo[key] = novo
         with open(caminho, "w", encoding="utf-8") as f:
             json.dump(res, f, indent=2, ensure_ascii=False)
-    print("referencia", ref_nome, ": nucleo forte", ref_n, "intermediacao maxima %.2f%%" % (100 * ref))
+    print(
+        "referencia", ref_nome, ": nucleo forte", ref_n, "intermediacao maxima %.2f%%" % (100 * ref)
+    )
 
 
 if __name__ == "__main__":

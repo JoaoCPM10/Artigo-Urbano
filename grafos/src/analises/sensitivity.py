@@ -1,5 +1,5 @@
 """
-Sensibilidade do fluxo de acesso por portas (Secao 3.3 do artigo), nos TRES
+Sensibilidade do fluxo de acesso por portas (Secoes 3.4 e 4.1 do artigo), nos TRES
 bairros e com a mesma fronteira (poligono oficial):
 
   - margem de busca da fronteira (metros alem do envelope): 200, 400, 800;
@@ -17,16 +17,17 @@ Uso:  python -m analises.sensitivity            (as duas analises)
 """
 
 from __future__ import annotations
+
 import csv
 import json
 import os
 import sys
 
+from caminhos import OUT
 from nucleo import connectivity as cc
 from nucleo import maxflow as mf
 from nucleo.neighborhoods import NEIGHBORHOODS
-from nucleo.network import load_network, gateway_nodes
-from caminhos import OUT
+from nucleo.network import gateway_nodes, load_network
 
 MARGENS_M = (200, 400, 800)
 FRACOES = (0.15, 0.20, 0.25)
@@ -46,14 +47,23 @@ def varre_fracao():
         gw = gateway_nodes(cfg, data, bbox, uset)
         for f in FRACOES_AMPLAS:
             r = mf.gateway_access_flow(ul, data["undirected_edges"], gw, frac=f)
-            linhas.append({"bairro": cfg.display_name, "f": f, "n_origem": r["n_origem"],
-                           "portas": r["n_gateways"], "fluxo": r["fluxo"]})
+            linhas.append(
+                {
+                    "bairro": cfg.display_name,
+                    "f": f,
+                    "n_origem": r["n_origem"],
+                    "portas": r["n_gateways"],
+                    "fluxo": r["fluxo"],
+                }
+            )
     with open(os.path.join(OUT, "sensibilidade_fracao.json"), "w", encoding="utf-8") as fh:
         json.dump(linhas, fh, indent=2, ensure_ascii=False)
-    with open(os.path.join(OUT, "sensibilidade_fracao.csv"), "w", newline="",
-              encoding="utf-8") as fh:
+    with open(
+        os.path.join(OUT, "sensibilidade_fracao.csv"), "w", newline="", encoding="utf-8"
+    ) as fh:
         w = csv.DictWriter(fh, fieldnames=list(linhas[0]))
-        w.writeheader(); w.writerows(linhas)
+        w.writeheader()
+        w.writerows(linhas)
     print("\nFluxo de acesso em funcao de f (margem padrao):")
     print(f"  {'bairro':<11}" + "".join(f"{f:>6.2f}" for f in FRACOES_AMPLAS))
     for cfg in NEIGHBORHOODS.values():
@@ -77,17 +87,28 @@ def main():
             gw = gateway_nodes(cfg, data, bbox, uset, buffer_m=m)
             for f in FRACOES:
                 r = mf.gateway_access_flow(ul, data["undirected_edges"], gw, frac=f)
-                linhas.append({"bairro": cfg.display_name, "margem_m": m, "f": f,
-                               "portas": r["n_gateways"], "fluxo": r["fluxo"],
-                               "n_origem": r["n_origem"]})
-                print(f"{cfg.display_name:11s} margem={m:3d} m f={f:.2f} "
-                      f"portas={r['n_gateways']:2d} fluxo={r['fluxo']}")
+                linhas.append(
+                    {
+                        "bairro": cfg.display_name,
+                        "margem_m": m,
+                        "f": f,
+                        "portas": r["n_gateways"],
+                        "fluxo": r["fluxo"],
+                        "n_origem": r["n_origem"],
+                    }
+                )
+                print(
+                    f"{cfg.display_name:11s} margem={m:3d} m f={f:.2f} "
+                    f"portas={r['n_gateways']:2d} fluxo={r['fluxo']}"
+                )
     with open(os.path.join(OUT, "sensibilidade_acesso.json"), "w", encoding="utf-8") as fh:
         json.dump(linhas, fh, indent=2, ensure_ascii=False)
-    with open(os.path.join(OUT, "sensibilidade_acesso.csv"), "w", newline="",
-              encoding="utf-8") as fh:
+    with open(
+        os.path.join(OUT, "sensibilidade_acesso.csv"), "w", newline="", encoding="utf-8"
+    ) as fh:
         w = csv.DictWriter(fh, fieldnames=list(linhas[0]))
-        w.writeheader(); w.writerows(linhas)
+        w.writeheader()
+        w.writerows(linhas)
 
     print("\nResumo (faixa do fluxo de acesso sobre margem x f):")
     for cfg in NEIGHBORHOODS.values():

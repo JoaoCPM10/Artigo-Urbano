@@ -6,6 +6,7 @@ FIG_LANG=en gera as mesmas figuras em ingles (para a versao em ingles).
     ax.set_xlabel(t("origin fraction f", "fração de origem f"))
     ax.set_title(num(f"{x:.1f}%"))      # virgula decimal no portugues
 """
+
 import os
 
 LANG = os.environ.get("FIG_LANG", "pt").lower()

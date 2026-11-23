@@ -17,16 +17,17 @@ pois o objetivo do trabalho e' exercitar os algoritmos diretamente.
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, field
+
 import math
+from dataclasses import dataclass
 
 
 @dataclass
 class Edge:
     u: int
     v: int
-    length: float          # metros
-    travel_time: float     # segundos
+    length: float  # metros
+    travel_time: float  # segundos
     oneway: bool = False
 
     @property
@@ -40,8 +41,8 @@ class Graph:
 
     def __init__(self) -> None:
         self.coords: dict[int, tuple[float, float]] = {}
-        self.adj: dict[int, list[Edge]] = {}     # u -> arestas de saida
-        self.radj: dict[int, list[Edge]] = {}    # u -> arestas de entrada (grafo reverso)
+        self.adj: dict[int, list[Edge]] = {}  # u -> arestas de saida
+        self.radj: dict[int, list[Edge]] = {}  # u -> arestas de entrada (grafo reverso)
         self.edges: list[Edge] = []
 
     # ---- construcao -------------------------------------------------------
@@ -51,15 +52,15 @@ class Graph:
             self.adj[node_id] = []
             self.radj[node_id] = []
 
-    def _add_directed(self, u: int, v: int, length: float,
-                      travel_time: float, oneway: bool) -> None:
+    def _add_directed(
+        self, u: int, v: int, length: float, travel_time: float, oneway: bool
+    ) -> None:
         e = Edge(u, v, length, travel_time, oneway)
         self.adj[u].append(e)
         self.radj[v].append(e)
         self.edges.append(e)
 
-    def add_street(self, u: int, v: int, *, speed_kmh: float = 40.0,
-                   oneway: bool = False) -> None:
+    def add_street(self, u: int, v: int, *, speed_kmh: float = 40.0, oneway: bool = False) -> None:
         """Adiciona um trecho de rua entre os cruzamentos u e v.
 
         Se oneway=False cria as duas arestas direcionadas (mao dupla).
@@ -71,8 +72,7 @@ class Graph:
         if not oneway:
             self._add_directed(v, u, length, travel_time, oneway)
 
-    def add_directed_explicit(self, u: int, v: int, length: float,
-                              travel_time: float) -> None:
+    def add_directed_explicit(self, u: int, v: int, length: float, travel_time: float) -> None:
         """Adiciona um unico arco u->v com comprimento e tempo ja calculados.
 
         Usado pelo carregador OSM apos a simplificacao da topologia.

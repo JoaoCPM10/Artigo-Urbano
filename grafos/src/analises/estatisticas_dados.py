@@ -16,19 +16,22 @@ Uso:  python -m analises.estatisticas_dados
 """
 
 from __future__ import annotations
+
 import json
 import os
 
+from caminhos import OUT
+from nucleo import osm_loader as ol
 from nucleo.neighborhoods import NEIGHBORHOODS
 from nucleo.network import load_network
-from nucleo import osm_loader as ol
-from caminhos import OUT
-
 
 
 def main():
-    res = {"classes_de_via": ol.DRIVE.split("|"),
-           "velocidade_padrao_kmh": ol.DEFAULT_SPEED, "bairros": {}}
+    res = {
+        "classes_de_via": ol.DRIVE.split("|"),
+        "velocidade_padrao_kmh": ol.DEFAULT_SPEED,
+        "bairros": {},
+    }
     for key, cfg in NEIGHBORHOODS.items():
         data, _ = load_network(cfg)
         st = dict(data["stats"])
@@ -39,8 +42,11 @@ def main():
         st["pares_com_rua_paralela_na_rede_recortada"] = sum(1 for v in mult.values() if v > 1)
         st["pct_vias_com_maxspeed"] = round(100 * st["vias_com_maxspeed"] / st["vias"], 1)
         st["pct_cadeias_descartadas"] = round(
-            100 * (st["lacos_descartados"] + st["cadeias_mistas_descartadas"])
-            / (st["cadeias_mantidas"] + st["lacos_descartados"] + st["cadeias_mistas_descartadas"]), 2)
+            100
+            * (st["lacos_descartados"] + st["cadeias_mistas_descartadas"])
+            / (st["cadeias_mantidas"] + st["lacos_descartados"] + st["cadeias_mistas_descartadas"]),
+            2,
+        )
         res["bairros"][cfg.display_name] = st
         print(cfg.display_name, st)
     with open(os.path.join(OUT, "estatisticas_dados.json"), "w", encoding="utf-8") as f:

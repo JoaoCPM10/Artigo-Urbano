@@ -1,10 +1,10 @@
 """
 SIMULACAO DE INTERRUPCOES: os indicadores apontam as ruas cujo fechamento de
-fato isola o nucleo? (Secao 4.7 do artigo)
+fato isola o nucleo? (Secao 4.6 do artigo)
 
 Variavel de avaliacao independente: fracao dos nos do nucleo que ainda alcancam,
 por caminho dirigido, algum destino externo da rede ampliada em 1 km (os
-destinos da Secao 4.6), depois de fechar k ruas (os dois sentidos). Os
+destinos da Secao 4.5), depois de fechar k ruas (os dois sentidos). Os
 indicadores sao calculados sobre o bairro (poligono oficial) e os cortes usam as
 portas administrativas; o desfecho mede outra coisa, a chegada a borda externa
 de uma rede maior. Remover so' as arestas do proprio corte e constatar que isola
@@ -29,27 +29,34 @@ Uso:  python -m analises.simulacao_interrupcoes [--verifica] [--bairros urca,cop
 """
 
 from __future__ import annotations
+
 import csv
 import json
 import math
 import os
 import random
-import shutil
 import sys
 from collections import deque
 
+from analises import conectividade_externa as ce
 from nucleo import betweenness as bt
 from nucleo import connectivity as cc
-from analises import conectividade_externa as ce
-from nucleo.neighborhoods import NEIGHBORHOODS
+from nucleo.neighborhoods import NEIGHBORHOODS, ORDEM_FIGURAS
 
 OUT = ce.OUT
 RAIO_M = 1000
 KS = (1, 2, 4, 8, 16)
 SORTEIOS = 200
 SEMENTE = 13
-ESTRATEGIAS = ("aleatoria", "intermediacao", "pontes_fortes", "pontes_fracas",
-               "fluxo_corte", "fluxo_criticas", "guloso")
+ESTRATEGIAS = (
+    "aleatoria",
+    "intermediacao",
+    "pontes_fortes",
+    "pontes_fracas",
+    "fluxo_corte",
+    "fluxo_criticas",
+    "guloso",
+)
 
 
 # ---------------------------------------------------------------------------
@@ -70,13 +77,15 @@ class Mundo:
         self.arcos = [(e.u, e.v) for e in G.edges if e.u in ring and e.v in ring and e.u != e.v]
         self.radj = {n: [] for n in ring}
         self.fadj = {n: [] for n in ring}
-        for (u, v) in self.arcos:
+        for u, v in self.arcos:
             p = frozenset((u, v))
             self.radj[v].append((u, p))
             self.fadj[u].append((v, p))
         self.ruas = {frozenset((u, v)) for (u, v) in self.arcos}
-        self.pool = sorted((p for p in self.ruas if all(n in self.interior for n in p)),
-                           key=lambda p: tuple(sorted(p)))
+        self.pool = sorted(
+            (p for p in self.ruas if all(n in self.interior for n in p)),
+            key=lambda p: tuple(sorted(p)),
+        )
         self.base = self.alcanca(frozenset())
         self.n_src_ok = len(self.src & self.base)
 
@@ -86,7 +95,7 @@ class Mundo:
         fila = deque(visto)
         while fila:
             v = fila.popleft()
-            for (u, p) in self.radj[v]:
+            for u, p in self.radj[v]:
                 if u not in visto and p not in removidas:
                     visto.add(u)
                     fila.append(u)
@@ -115,7 +124,7 @@ def _scc_maior(nodes, fadj, radj, p_fora=None):
         pilha = [(s, iter(fadj[s]))]
         while pilha:
             u, it = pilha[-1]
-            for (v, p) in it:
+            for v, p in it:
                 if v in S and v not in visto and p != p_fora:
                     visto.add(v)
                     pilha.append((v, iter(fadj[v])))
@@ -131,9 +140,11 @@ def _scc_maior(nodes, fadj, radj, p_fora=None):
         atrib.add(s)
         while pilha:
             u = pilha.pop()
-            for (w, p) in radj[u]:
+            for w, p in radj[u]:
                 if w in S and w not in atrib and p != p_fora:
-                    atrib.add(w); comp.add(w); pilha.append(w)
+                    atrib.add(w)
+                    comp.add(w)
+                    pilha.append(w)
         if len(comp) > len(melhor):
             melhor = comp
     return melhor
@@ -170,13 +181,24 @@ def indicadores(m: Mundo) -> dict:
 
     # fluxo de acesso: ruas do corte minimo e ruas cujo fechamento reduz o fluxo
     r = m.rede0.fluxo("ruas_dir", "qualquer", detalhes=True)
-    corte = sorted({frozenset((u, v)) for (u, v) in r["cut_origem"]}, key=lambda p: tuple(sorted(p)))
+    corte = sorted(
+        {frozenset((u, v)) for (u, v) in r["cut_origem"]}, key=lambda p: tuple(sorted(p))
+    )
     criticas = ce.critica_externas(m.rede0, r)
-    crit = sorted({frozenset((u, v)) for (u, v, _) in criticas["interno"]},
-                  key=lambda p: tuple(sorted(p)))
-    return {"nucleo": nucleo, "ruas_nucleo": ruas_nucleo, "fortes": fortes, "fracas": fracas,
-            "score_bt": score_bt, "por_bt": por_bt, "corte": corte, "criticas": crit,
-            "fluxo_acesso": r["fluxo"]}
+    crit = sorted(
+        {frozenset((u, v)) for (u, v, _) in criticas["interno"]}, key=lambda p: tuple(sorted(p))
+    )
+    return {
+        "nucleo": nucleo,
+        "ruas_nucleo": ruas_nucleo,
+        "fortes": fortes,
+        "fracas": fracas,
+        "score_bt": score_bt,
+        "por_bt": por_bt,
+        "corte": corte,
+        "criticas": crit,
+        "fluxo_acesso": r["fluxo"],
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -224,14 +246,19 @@ def simula(m: Mundo, ind: dict) -> dict:
     ordem_g = guloso(m, max(KS))
     for k in KS:
         # estrategias com sorteio
-        for nome, pref in (("aleatoria", pool), ("pontes_fortes", ind["fortes"]),
-                           ("pontes_fracas", ind["fracas"]), ("fluxo_corte", ind["corte"]),
-                           ("fluxo_criticas", ind["criticas"])):
+        for nome, pref in (
+            ("aleatoria", pool),
+            ("pontes_fortes", ind["fortes"]),
+            ("pontes_fracas", ind["fracas"]),
+            ("fluxo_corte", ind["corte"]),
+            ("fluxo_criticas", ind["criticas"]),
+        ):
             c, i = [], []
             for _ in range(SORTEIOS):
                 sel = _sorteio(rng, pref, pool, k)
                 a, b = m.desfecho(set(sel))
-                c.append(a); i.append(b)
+                c.append(a)
+                i.append(b)
             res[nome][k] = {"nucleo": estat(c), "interior": estat(i), "conjunto": len(pref)}
         # determinísticas
         sel = set(ind["por_bt"][:k])
@@ -247,31 +274,44 @@ def dano_isolado(m: Mundo, ind: dict) -> dict:
     """Dano de cada rua fechada sozinha e quanto cada indicador o antecipa."""
     dano = {p: m.desfecho({p})[0] for p in m.pool}
     D = {p for p, d in dano.items() if d > 0}
-    out = {"ruas_com_dano": len(D), "ruas": len(m.pool),
-           "dano_maximo": max(dano.values()) if dano else 0.0}
+    out = {
+        "ruas_com_dano": len(D),
+        "ruas": len(m.pool),
+        "dano_maximo": max(dano.values()) if dano else 0.0,
+    }
 
     def pr(conj):
         conj = set(conj) & set(m.pool)
         inter = len(conj & D)
-        return {"tamanho": len(conj), "acertos": inter,
-                "precisao": inter / len(conj) if conj else None,
-                "revocacao": inter / len(D) if D else None}
+        return {
+            "tamanho": len(conj),
+            "acertos": inter,
+            "precisao": inter / len(conj) if conj else None,
+            "revocacao": inter / len(D) if D else None,
+        }
 
     out["fortes"] = pr(ind["fortes"])
     out["fracas"] = pr(ind["fracas"])
     out["fluxo_corte"] = pr(ind["corte"])
     out["fluxo_criticas"] = pr(ind["criticas"])
-    out["intermediacao_top_|D|"] = pr(ind["por_bt"][:len(D)])
-    out["spearman_intermediacao"] = spearman([ind["score_bt"].get(p, 0.0) for p in m.pool],
-                                              [dano[p] for p in m.pool])
+    out["intermediacao_top_|D|"] = pr(ind["por_bt"][: len(D)])
+    out["spearman_intermediacao"] = spearman(
+        [ind["score_bt"].get(p, 0.0) for p in m.pool], [dano[p] for p in m.pool]
+    )
     # sobreposicao entre indicadores (Jaccard)
-    base = {"fortes": set(ind["fortes"]), "fracas": set(ind["fracas"]),
-            "corte": set(ind["corte"]), "criticas": set(ind["criticas"]),
-            "intermediacao_top_f": set(ind["por_bt"][:max(1, ind["fluxo_acesso"])])}
+    base = {
+        "fortes": set(ind["fortes"]),
+        "fracas": set(ind["fracas"]),
+        "corte": set(ind["corte"]),
+        "criticas": set(ind["criticas"]),
+        "intermediacao_top_f": set(ind["por_bt"][: max(1, ind["fluxo_acesso"])]),
+    }
     nomes = sorted(base)
-    out["jaccard"] = {f"{a}|{b}": (len(base[a] & base[b]) / len(base[a] | base[b])
-                                   if base[a] | base[b] else None)
-                      for i, a in enumerate(nomes) for b in nomes[i + 1:]}
+    out["jaccard"] = {
+        f"{a}|{b}": (len(base[a] & base[b]) / len(base[a] | base[b]) if base[a] | base[b] else None)
+        for i, a in enumerate(nomes)
+        for b in nomes[i + 1 :]
+    }
     return out, dano
 
 
@@ -303,6 +343,7 @@ def spearman(a, b):
 # ---------------------------------------------------------------------------
 def verifica(m: Mundo, ind: dict) -> None:
     import networkx as nx
+
     nucleo = ind["nucleo"]
     D = nx.DiGraph()
     D.add_nodes_from(nucleo)
@@ -318,7 +359,7 @@ def verifica(m: Mundo, ind: dict) -> None:
     H = nx.DiGraph()
     H.add_nodes_from(m.rede.ring)
     pares = {}
-    for (u, v) in m.arcos:
+    for u, v in m.arcos:
         H.add_edge(u, v)
         pares.setdefault(frozenset((u, v)), []).append((u, v))
     rng = random.Random(5)
@@ -326,7 +367,7 @@ def verifica(m: Mundo, ind: dict) -> None:
         rem = set(rng.sample(m.pool, rng.choice([1, 4, 16])))
         H2 = H.copy()
         for p in rem:
-            for (u, v) in pares[p]:
+            for u, v in pares[p]:
                 if H2.has_edge(u, v):
                     H2.remove_edge(u, v)
         esperado = set(m.dest)
@@ -340,18 +381,42 @@ def verifica(m: Mundo, ind: dict) -> None:
 # ---------------------------------------------------------------------------
 def figura(resultados) -> None:
     import matplotlib
+
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
+
     from figuras.rotulos import t as _t
-    estilo = {"aleatoria": ("#7a7a7a", "-", "o", _t("random streets", "sorteio")),
-              "intermediacao": ("#2b6cb0", "-", "s", _t("edge betweenness (top k)", "intermediação de aresta (k maiores)")),
-              "pontes_fortes": ("#2f855a", "-", "^", _t("strong bridges", "pontes fortes")),
-              "pontes_fracas": ("#b7791f", "-", "v", _t("bridges (undirected)", "pontes fracas")),
-              "fluxo_corte": ("#c0392b", "-", "D", _t("access flow: one minimum cut", "corte mínimo do fluxo de acesso")),
-              "fluxo_criticas": ("#6b46c1", "-", "P", _t("access flow: critical streets", "ruas críticas de fluxo")),
-              "guloso": ("#111111", "--", "x", _t("greedy attack (upper bound)", "ataque guloso (limite superior)"))}
-    ordem = ["urca", "leme", "alto_da_boa_vista", "cosme_velho", "joa", "sao_conrado",
-             "copacabana", "botafogo", "praca_da_bandeira"]
+
+    estilo = {
+        "aleatoria": ("#7a7a7a", "-", "o", _t("random streets", "sorteio")),
+        "intermediacao": (
+            "#2b6cb0",
+            "-",
+            "s",
+            _t("edge betweenness (top k)", "intermediação de aresta (k maiores)"),
+        ),
+        "pontes_fortes": ("#2f855a", "-", "^", _t("strong bridges", "pontes fortes")),
+        "pontes_fracas": ("#b7791f", "-", "v", _t("bridges (undirected)", "pontes fracas")),
+        "fluxo_corte": (
+            "#c0392b",
+            "-",
+            "D",
+            _t("access flow: one minimum cut", "corte mínimo do fluxo de acesso"),
+        ),
+        "fluxo_criticas": (
+            "#6b46c1",
+            "-",
+            "P",
+            _t("access flow: critical streets", "ruas críticas de fluxo"),
+        ),
+        "guloso": (
+            "#111111",
+            "--",
+            "x",
+            _t("greedy attack (upper bound)", "ataque guloso (limite superior)"),
+        ),
+    }
+    ordem = ORDEM_FIGURAS
     chaves = [k for k in ordem if k in resultados] + [k for k in resultados if k not in ordem]
     ncol = 3
     nlin = (len(chaves) + ncol - 1) // ncol
@@ -361,27 +426,44 @@ def figura(resultados) -> None:
         for e in ESTRATEGIAS:
             cor, ls, mk, lab = estilo[e]
             ys = [100 * r["estrategias"][e][str(k)]["nucleo"]["media"] for k in KS]
-            ax.plot(range(len(KS)), ys, color=cor, ls=ls, marker=mk, ms=6, lw=1.8, label=lab,
-                    zorder=3)
+            ax.plot(
+                range(len(KS)), ys, color=cor, ls=ls, marker=mk, ms=6, lw=1.8, label=lab, zorder=3
+            )
             if e == "aleatoria":
                 lo = [100 * r["estrategias"][e][str(k)]["nucleo"]["p10"] for k in KS]
                 hi = [100 * r["estrategias"][e][str(k)]["nucleo"]["p90"] for k in KS]
                 ax.fill_between(range(len(KS)), lo, hi, color=cor, alpha=0.18, zorder=1)
-        ax.set_xticks(range(len(KS))); ax.set_xticklabels([str(k) for k in KS])
-        ax.set_xlabel(_t("streets closed (k)", "ruas fechadas (k)")); ax.set_ylim(-3, 103)
-        fl = r['indicadores']['fluxo_acesso']
+        ax.set_xticks(range(len(KS)))
+        ax.set_xticklabels([str(k) for k in KS])
+        ax.set_xlabel(_t("streets closed (k)", "ruas fechadas (k)"))
+        ax.set_ylim(-3, 103)
+        fl = r["indicadores"]["fluxo_acesso"]
         # k = fluxo de acesso: a escala dos k e' logaritmica (indice = log2 k)
-        ax.axvline(math.log2(fl), color="#c0392b", ls=":", lw=1.4, zorder=2,
-                   label=_t("k = access flow", "k = fluxo de acesso"))
-        ax.set_title(f"{r['bairro']} " + _t(f"(access flow {fl})", f"(fluxo de acesso {fl})"), fontsize=12)
+        ax.axvline(
+            math.log2(fl),
+            color="#c0392b",
+            ls=":",
+            lw=1.4,
+            zorder=2,
+            label=_t("k = access flow", "k = fluxo de acesso"),
+        )
+        ax.set_title(
+            f"{r['bairro']} " + _t(f"(access flow {fl})", f"(fluxo de acesso {fl})"), fontsize=12
+        )
         ax.grid(alpha=0.25)
     for i in range(0, len(chaves), ncol):
-        axes[i].set_ylabel(_t("core intersections that lose every route\nto the external edge (%)", "interseções do núcleo que perdem todas as rotas\naté a borda externa (%)"))
+        axes[i].set_ylabel(
+            _t(
+                "core intersections that lose every route\nto the external edge (%)",
+                "interseções do núcleo que perdem todas as rotas\naté a borda externa (%)",
+            )
+        )
     h, l = axes[0].get_legend_handles_labels()
     fig.legend(h, l, loc="lower center", ncol=4, fontsize=10, frameon=False)
     fig.tight_layout(rect=(0, 0.06, 1, 1))
     p = os.path.join(OUT, "fig_simulacao.png")
-    fig.savefig(p, dpi=140, bbox_inches="tight"); plt.close(fig)
+    fig.savefig(p, dpi=140, bbox_inches="tight")
+    plt.close(fig)
     print("saved:", p, "(a copia para Figures e feita na integracao)")
 
 
@@ -396,25 +478,38 @@ def analisa(key: str, checar: bool) -> dict:
     isolado, _ = dano_isolado(m, ind)
     res = {
         "bairro": NEIGHBORHOODS[key].display_name,
-        "rede": {"nos_anel": len(m.rede.ring), "destinos": len(m.dest), "ruas_removiveis": len(m.pool),
-                 "nucleo_origem": len(m.src), "nucleo_alcanca_no_inicio": m.n_src_ok},
-        "indicadores": {"fluxo_acesso": ind["fluxo_acesso"],
-                        "nucleo_forte_nos": len(ind["nucleo"]),
-                        "ruas_nucleo_forte": len(ind["ruas_nucleo"]),
-                        "pontes_fortes": len(ind["fortes"]),
-                        "pct_pontes_fortes": round(100 * len(ind["fortes"]) / len(ind["ruas_nucleo"]), 1),
-                        "pontes_fracas": len(ind["fracas"]),
-                        "ruas_corte_minimo": len(ind["corte"]),
-                        "ruas_criticas_de_fluxo": len(ind["criticas"])},
+        "rede": {
+            "nos_anel": len(m.rede.ring),
+            "destinos": len(m.dest),
+            "ruas_removiveis": len(m.pool),
+            "nucleo_origem": len(m.src),
+            "nucleo_alcanca_no_inicio": m.n_src_ok,
+        },
+        "indicadores": {
+            "fluxo_acesso": ind["fluxo_acesso"],
+            "nucleo_forte_nos": len(ind["nucleo"]),
+            "ruas_nucleo_forte": len(ind["ruas_nucleo"]),
+            "pontes_fortes": len(ind["fortes"]),
+            "pct_pontes_fortes": round(100 * len(ind["fortes"]) / len(ind["ruas_nucleo"]), 1),
+            "pontes_fracas": len(ind["fracas"]),
+            "ruas_corte_minimo": len(ind["corte"]),
+            "ruas_criticas_de_fluxo": len(ind["criticas"]),
+        },
         "estrategias": {e: {str(k): v for k, v in est[e].items()} for e in ESTRATEGIAS},
         "dano_isolado": isolado,
     }
-    ln = f"{res['bairro']:11s} f={ind['fluxo_acesso']:2d} pontes fortes={res['indicadores']['pct_pontes_fortes']}% " \
-         f"fracas={len(ind['fracas'])} criticas={len(ind['criticas'])} | perda do nucleo (%) por k=" \
-         f"{','.join(map(str, KS))}"
+    ln = (
+        f"{res['bairro']:11s} f={ind['fluxo_acesso']:2d} pontes fortes={res['indicadores']['pct_pontes_fortes']}% "
+        f"fracas={len(ind['fracas'])} criticas={len(ind['criticas'])} | perda do nucleo (%) por k="
+        f"{','.join(map(str, KS))}"
+    )
     print(ln)
     for e in ESTRATEGIAS:
-        print(f"   {e:15s}", "  ".join(f"{100 * est[e][k]['nucleo']['media']:5.1f}" for k in KS), flush=True)
+        print(
+            f"   {e:15s}",
+            "  ".join(f"{100 * est[e][k]['nucleo']['media']:5.1f}" for k in KS),
+            flush=True,
+        )
     return res
 
 
@@ -426,14 +521,23 @@ def escreve(resultados) -> None:
         for e in ESTRATEGIAS:
             for k in KS:
                 v = r["estrategias"][e][str(k)]
-                linhas.append({"bairro": r["bairro"], "estrategia": e, "k": k,
-                               "perda_nucleo_media": round(v["nucleo"]["media"], 4),
-                               "perda_nucleo_p10": round(v["nucleo"].get("p10", v["nucleo"]["media"]), 4),
-                               "perda_nucleo_p90": round(v["nucleo"].get("p90", v["nucleo"]["media"]), 4),
-                               "perda_interior_media": round(v["interior"]["media"], 4)})
-    with open(os.path.join(OUT, "simulacao_interrupcoes.csv"), "w", newline="", encoding="utf-8") as fh:
+                linhas.append(
+                    {
+                        "bairro": r["bairro"],
+                        "estrategia": e,
+                        "k": k,
+                        "perda_nucleo_media": round(v["nucleo"]["media"], 4),
+                        "perda_nucleo_p10": round(v["nucleo"].get("p10", v["nucleo"]["media"]), 4),
+                        "perda_nucleo_p90": round(v["nucleo"].get("p90", v["nucleo"]["media"]), 4),
+                        "perda_interior_media": round(v["interior"]["media"], 4),
+                    }
+                )
+    with open(
+        os.path.join(OUT, "simulacao_interrupcoes.csv"), "w", newline="", encoding="utf-8"
+    ) as fh:
         w = csv.DictWriter(fh, fieldnames=list(linhas[0]))
-        w.writeheader(); w.writerows(linhas)
+        w.writeheader()
+        w.writerows(linhas)
 
 
 def junta_com_existente(caminho, novos):
@@ -452,8 +556,7 @@ def main():
         chaves = sys.argv[sys.argv.index("--bairros") + 1].split(",")
     checar = "--verifica" in sys.argv
     resultados = {k: analisa(k, checar) for k in chaves}
-    resultados = junta_com_existente(
-        os.path.join(OUT, "simulacao_interrupcoes.json"), resultados)
+    resultados = junta_com_existente(os.path.join(OUT, "simulacao_interrupcoes.json"), resultados)
     escreve(resultados)
     if len(chaves) == 3:
         figura(resultados)

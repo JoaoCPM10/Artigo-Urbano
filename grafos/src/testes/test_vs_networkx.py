@@ -17,6 +17,7 @@ Uso:  python -m testes.test_vs_networkx
 """
 
 from __future__ import annotations
+
 import math
 import random
 import sys
@@ -26,9 +27,9 @@ import networkx as nx
 from nucleo import connectivity as cc
 from nucleo import maxflow as mf
 from nucleo import shortest_paths as sp
-from nucleo.remocao import copia_sem_aresta, copia_sem_no, nucleo_intacto
 from nucleo.neighborhoods import NEIGHBORHOODS
-from nucleo.network import load_network, gateway_nodes
+from nucleo.network import gateway_nodes, load_network
+from nucleo.remocao import copia_sem_aresta, copia_sem_no, nucleo_intacto
 
 SEED = 11
 FALHAS = []
@@ -51,11 +52,14 @@ def testa(key):
     print(f"[{key}] V={G.n} arcos={G.m} trechos={len(edges_u)}")
 
     # ---- componentes ------------------------------------------------------
-    U = nx.Graph(); U.add_nodes_from(nodes); U.add_edges_from(edges_u)
+    U = nx.Graph()
+    U.add_nodes_from(nodes)
+    U.add_edges_from(edges_u)
     mine = sorted(map(sorted, cc.connected_components(nodes, edges_u)))
     ref = sorted(map(sorted, nx.connected_components(U)))
     confere(mine == ref, f"{key}: componentes conexas")
-    D = nx.DiGraph(); D.add_nodes_from(nodes)
+    D = nx.DiGraph()
+    D.add_nodes_from(nodes)
     for e in G.edges:
         D.add_edge(e.u, e.v)
     mine = sorted(map(sorted, cc.strongly_connected_components(G)))
@@ -64,13 +68,16 @@ def testa(key):
 
     # ---- pontes e articulacoes fracas ------------------------------------
     mult = {}
-    for (u, v) in edges_u:
-        k = frozenset((u, v)); mult[k] = mult.get(k, 0) + 1
+    for u, v in edges_u:
+        k = frozenset((u, v))
+        mult[k] = mult.get(k, 0) + 1
     ref_b = {frozenset(e) for e in nx.bridges(U) if mult[frozenset(e)] == 1}
     mine_b = {frozenset(e) for e in cc.bridges(nodes, edges_u)}
     confere(mine_b == ref_b, f"{key}: pontes fracas ({len(mine_b)} x {len(ref_b)})")
-    confere(cc.articulation_points(nodes, edges_u) == set(nx.articulation_points(U)),
-            f"{key}: pontos de articulacao fracos")
+    confere(
+        cc.articulation_points(nodes, edges_u) == set(nx.articulation_points(U)),
+        f"{key}: pontos de articulacao fracos",
+    )
 
     # ---- Dijkstra ----------------------------------------------------------
     W = nx.DiGraph()
@@ -80,8 +87,11 @@ def testa(key):
     for s in rng.sample(nodes, 8):
         d, _ = sp.dijkstra(G, s)
         r = nx.single_source_dijkstra_path_length(W, s, weight="w")
-        confere(set(d) == set(r) and all(math.isclose(d[v], r[v], rel_tol=1e-9, abs_tol=1e-9) for v in r),
-                f"{key}: Dijkstra a partir de {s}")
+        confere(
+            set(d) == set(r)
+            and all(math.isclose(d[v], r[v], rel_tol=1e-9, abs_tol=1e-9) for v in r),
+            f"{key}: Dijkstra a partir de {s}",
+        )
 
     # ---- fluxo maximo (pares aleatorios) ---------------------------------
     cap = mf.unit_capacity_network(ue)
@@ -103,7 +113,7 @@ def testa(key):
     for (u, v), c in mf.unit_capacity_network(ue_in).items():
         H.add_edge(u, v, capacity=c)
     for u in acc["origem"]:
-        H.add_edge("S", u)                      # sem 'capacity' = infinita
+        H.add_edge("S", u)  # sem 'capacity' = infinita
     for g in gw:
         H.add_edge(g, "T")
     confere(acc["fluxo"] == nx.maximum_flow_value(H, "S", "T"), f"{key}: fluxo de acesso")
@@ -113,10 +123,11 @@ def testa(key):
     gset = set(max(cc.strongly_connected_components(G), key=len))
     confere(core == gset, f"{key}: nucleo forte")
     pares, vistos = [], set()
-    for (u, v) in edges_u:
+    for u, v in edges_u:
         k = frozenset((u, v))
         if u in gset and v in gset and k not in vistos:
-            vistos.add(k); pares.append((u, v))
+            vistos.add(k)
+            pares.append((u, v))
     mine_e = {frozenset(p) for p in pares if not nucleo_intacto(copia_sem_aresta(G, *p), gset)}
     mine_n = {u for u in gset if not nucleo_intacto(copia_sem_no(G, u), gset - {u})}
 
@@ -124,19 +135,23 @@ def testa(key):
         return any(alvo <= c for c in nx.strongly_connected_components(Dx))
 
     ref_e = set()
-    for (u, v) in pares:
-        Dx = D.copy(); Dx.remove_edges_from([(u, v), (v, u)])
+    for u, v in pares:
+        Dx = D.copy()
+        Dx.remove_edges_from([(u, v), (v, u)])
         if not intacto(Dx, gset):
             ref_e.add(frozenset((u, v)))
     ref_n = set()
     for w in gset:
-        Dx = D.copy(); Dx.remove_node(w)
+        Dx = D.copy()
+        Dx.remove_node(w)
         if not intacto(Dx, gset - {w}):
             ref_n.add(w)
     confere(mine_e == ref_e, f"{key}: pontes fortes ({len(mine_e)} x {len(ref_e)})")
     confere(mine_n == ref_n, f"{key}: articulacoes fortes ({len(mine_n)} x {len(ref_n)})")
-    print(f"  pontes fracas={len(mine_b)} pontes fortes={len(mine_e)} "
-          f"articulacoes fortes={len(mine_n)} fluxo de acesso={acc['fluxo']}")
+    print(
+        f"  pontes fracas={len(mine_b)} pontes fortes={len(mine_e)} "
+        f"articulacoes fortes={len(mine_n)} fluxo de acesso={acc['fluxo']}"
+    )
 
 
 def main():
@@ -145,8 +160,10 @@ def main():
     if FALHAS:
         print(f"\n{len(FALHAS)} falha(s).")
         sys.exit(1)
-    print("\nOK: componentes, pontes/articulacoes, Dijkstra, fluxo maximo e "
-          "pontes/articulacoes fortes conferem com o networkx em todos os bairros.")
+    print(
+        "\nOK: componentes, pontes/articulacoes, Dijkstra, fluxo maximo e "
+        "pontes/articulacoes fortes conferem com o networkx em todos os bairros."
+    )
 
 
 if __name__ == "__main__":

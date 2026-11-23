@@ -1,0 +1,9 @@
+# Padroes do codigo: PEP 8 com 100 colunas, imports organizados e sem nomes sem uso.
+line-length = 100
+target-version = "py313"
+
+[lint]
+select = ["F", "I"]
+
+[lint.isort]
+known-first-party = ["nucleo", "analises", "figuras", "testes", "conferencia", "caminhos"]

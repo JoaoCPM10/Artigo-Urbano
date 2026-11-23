@@ -1,5 +1,5 @@
 """
-Lista de vias da Urca para conferir as tags de mao unica no Street View (M3).
+Lista de vias da Urca para conferir as tags de mao unica no Street View.
 
 Le o cache bruto do OSM usado no artigo (urca_oficial_*) e o poligono oficial,
 e escreve, para cada via (way) com ao menos um no dentro do poligono: id do
@@ -12,16 +12,16 @@ Escreve output/urca_vias_street_view.csv (UTF-8 com BOM, abre no Excel).
 """
 
 from __future__ import annotations
+
 import csv
 import json
 import os
 
+from caminhos import OUT
 from nucleo import polygons as pg
 from nucleo.neighborhoods import NEIGHBORHOODS
 from nucleo.network import union_bbox
-from nucleo.osm_loader import cache_path, _oneway_dir, _haversine
-from caminhos import OUT
-
+from nucleo.osm_loader import _haversine, _oneway_dir, cache_path
 
 
 def regra(tags: dict) -> str:
@@ -29,9 +29,14 @@ def regra(tags: dict) -> str:
     d = _oneway_dir(tags)
     if d == 0:
         return "mão dupla" + (f" (tag oneway={ow})" if ow else " (sem tag)")
-    origem = ("tag oneway=" + ow) if ow else (
-        "rotatória" if tags.get("junction") == "roundabout" else "convenção da classe")
-    return ("mão única, sentido dos nós" if d == 1 else "mão única, sentido invertido") + f" ({origem})"
+    origem = (
+        ("tag oneway=" + ow)
+        if ow
+        else ("rotatória" if tags.get("junction") == "roundabout" else "convenção da classe")
+    )
+    return (
+        "mão única, sentido dos nós" if d == 1 else "mão única, sentido invertido"
+    ) + f" ({origem})"
 
 
 def main():
@@ -53,35 +58,52 @@ def main():
         if not dentro:
             continue
         ini, fim = ll[dentro[0]], ll[dentro[-1]]
-        comp = sum(_haversine(*ll[a], *ll[b]) for a, b in zip(dentro, dentro[1:])
-                   if True)
+        comp = sum(_haversine(*ll[a], *ll[b]) for a, b in zip(dentro, dentro[1:]) if True)
         meio = ll[dentro[len(dentro) // 2]]
         perto = any(_haversine(*ll[n], *e) <= 60 for n in dentro for e in extremos)
-        linhas.append({
-            "way_osm": el["id"],
-            "nome": tags.get("name", "(sem nome)"),
-            "classe": tags.get("highway", ""),
-            "regra_aplicada": regra(tags),
-            "sentido_permitido": ("de A para B" if _oneway_dir(tags) == 1 else
-                                  "de B para A" if _oneway_dir(tags) == -1 else "dois sentidos"),
-            "A_lat_lon": f"{ini[0]:.6f},{ini[1]:.6f}",
-            "B_lat_lon": f"{fim[0]:.6f},{fim[1]:.6f}",
-            "comprimento_dentro_m": round(comp),
-            "prioridade": "alta (a menos de 60 m de uma rua de corte)" if perto else "normal",
-            "link_osm": f"https://www.openstreetmap.org/way/{el['id']}",
-            "link_street_view": ("https://www.google.com/maps/@?api=1&map_action=pano&viewpoint="
-                                 f"{meio[0]:.6f},{meio[1]:.6f}"),
-            "confere_no_street_view (preencher)": "",
-        })
-    linhas.sort(key=lambda r: (r["prioridade"] != "alta (a menos de 60 m de uma rua de corte)", r["nome"], r["way_osm"]))
+        linhas.append(
+            {
+                "way_osm": el["id"],
+                "nome": tags.get("name", "(sem nome)"),
+                "classe": tags.get("highway", ""),
+                "regra_aplicada": regra(tags),
+                "sentido_permitido": (
+                    "de A para B"
+                    if _oneway_dir(tags) == 1
+                    else "de B para A"
+                    if _oneway_dir(tags) == -1
+                    else "dois sentidos"
+                ),
+                "A_lat_lon": f"{ini[0]:.6f},{ini[1]:.6f}",
+                "B_lat_lon": f"{fim[0]:.6f},{fim[1]:.6f}",
+                "comprimento_dentro_m": round(comp),
+                "prioridade": "alta (a menos de 60 m de uma rua de corte)" if perto else "normal",
+                "link_osm": f"https://www.openstreetmap.org/way/{el['id']}",
+                "link_street_view": (
+                    "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint="
+                    f"{meio[0]:.6f},{meio[1]:.6f}"
+                ),
+                "confere_no_street_view (preencher)": "",
+            }
+        )
+    linhas.sort(
+        key=lambda r: (
+            r["prioridade"] != "alta (a menos de 60 m de uma rua de corte)",
+            r["nome"],
+            r["way_osm"],
+        )
+    )
     os.makedirs(OUT, exist_ok=True)
     caminho = os.path.join(OUT, "urca_vias_street_view.csv")
     with open(caminho, "w", newline="", encoding="utf-8-sig") as fh:
         w = csv.DictWriter(fh, fieldnames=list(linhas[0]), delimiter=";")
-        w.writeheader(); w.writerows(linhas)
+        w.writeheader()
+        w.writerows(linhas)
     print("prioridade alta:", sum(1 for r in linhas if r["prioridade"].startswith("alta")))
     unica = sum(1 for r in linhas if r["sentido_permitido"] != "dois sentidos")
-    print(f"{len(linhas)} vias dentro do poligono; {unica} de mao unica; {len(linhas) - unica} de mao dupla")
+    print(
+        f"{len(linhas)} vias dentro do poligono; {unica} de mao unica; {len(linhas) - unica} de mao dupla"
+    )
     print("salvo:", caminho)
 
 

@@ -17,23 +17,21 @@ Uso:  python -m analises.localiza_corte
 """
 
 from __future__ import annotations
+
 import json
 import os
 from collections import deque
 
 import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-from matplotlib.collections import LineCollection
 
+matplotlib.use("Agg")
+
+from caminhos import OUT
 from nucleo import betweenness as bt
 from nucleo import connectivity as cc
 from nucleo import maxflow as mf
-from analises import ruas_vs_intersecoes as rv
-from figuras import visualize as viz
 from nucleo.neighborhoods import NEIGHBORHOODS
-from nucleo.network import load_network, gateway_nodes
-from caminhos import OUT
+from nucleo.network import gateway_nodes, load_network
 
 FRACOES = (0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.40, 0.50)
 
@@ -45,7 +43,8 @@ def _alcanca(adj, inicio, sem_aresta):
         u = fila.popleft()
         for v, i in adj[u]:
             if i != sem_aresta and v not in visto:
-                visto.add(v); fila.append(v)
+                visto.add(v)
+                fila.append(v)
     return visto
 
 
@@ -73,7 +72,8 @@ def analisa(key: str) -> dict:
     edges_in = [e for e in data["undirected_edges"] if e[0] in uset and e[1] in uset]
     adj = {u: [] for u in uset}
     for i, e in enumerate(edges_in):
-        adj[e[0]].append((e[1], i)); adj[e[1]].append((e[0], i))
+        adj[e[0]].append((e[1], i))
+        adj[e[1]].append((e[0], i))
     ll = data["latlon"]
 
     def coords(n):
@@ -89,28 +89,48 @@ def analisa(key: str) -> dict:
     extremos = {n for i, _ in cuts for n in edges_in[i][:2]}
 
     res = {
-        "bairro": cfg.display_name, "V": len(uset), "portas": len(gw),
-        "origem": len(src), "fluxo": acc["fluxo"],
+        "bairro": cfg.display_name,
+        "V": len(uset),
+        "portas": len(gw),
+        "origem": len(src),
+        "fluxo": acc["fluxo"],
         "corte_edmonds_karp": [
-            {"ruas": [list(e) for e in acc["corte_arestas"]][:40],
-             "n_ruas": len(acc["corte_arestas"]), "nos_lado_origem": acc["lado_origem"]}],
+            {
+                "ruas": [list(e) for e in acc["corte_arestas"]][:40],
+                "n_ruas": len(acc["corte_arestas"]),
+                "nos_lado_origem": acc["lado_origem"],
+            }
+        ],
         "cortes_de_uma_rua": [
-            {"rua": [edges_in[i][0], edges_in[i][1]],
-             "coords": [coords(edges_in[i][0]), coords(edges_in[i][1])],
-             "comprimento_m": round(edges_in[i][2]),
-             "nos_lado_origem": len(lado), "pct_lado_origem": round(100 * len(lado) / len(uset), 1)}
-            for i, lado in cuts],
+            {
+                "rua": [edges_in[i][0], edges_in[i][1]],
+                "coords": [coords(edges_in[i][0]), coords(edges_in[i][1])],
+                "comprimento_m": round(edges_in[i][2]),
+                "nos_lado_origem": len(lado),
+                "pct_lado_origem": round(100 * len(lado) / len(uset), 1),
+            }
+            for i, lado in cuts
+        ],
         "extremos_dos_cortes_sao_as_5_mais_centrais": bool(cuts) and extremos <= top5,
     }
     if key in ("urca", "leme"):
         varredura = []
         for f in FRACOES:
-            s2 = set(mf.gateway_access_flow(list(uset), data["undirected_edges"], gw,
-                                            frac=f, details=True)["origem"])
+            s2 = set(
+                mf.gateway_access_flow(
+                    list(uset), data["undirected_edges"], gw, frac=f, details=True
+                )["origem"]
+            )
             c2 = cortes_de_uma_rua(edges_in, adj, s2, gw)
             ext2 = {n for i, _ in c2 for n in edges_in[i][:2]}
-            varredura.append({"f": f, "n_origem": len(s2), "cortes_de_uma_rua": len(c2),
-                              "extremos_entre_as_5_mais_centrais": ext2 <= top5})
+            varredura.append(
+                {
+                    "f": f,
+                    "n_origem": len(s2),
+                    "cortes_de_uma_rua": len(c2),
+                    "extremos_entre_as_5_mais_centrais": ext2 <= top5,
+                }
+            )
         res["varredura_f"] = varredura
     res["_objs"] = (data, src, gw, [edges_in[i] for i, _ in cuts], acc["corte_arestas"])
     return res
@@ -120,8 +140,11 @@ def main():
     resultados = [analisa(k) for k in ("urca", "copacabana", "botafogo", "leme")]
     for r in resultados:
         r.pop("_objs")
-        print(json.dumps({k: v for k, v in r.items() if k != "corte_edmonds_karp"},
-                         ensure_ascii=False)[:900])
+        print(
+            json.dumps(
+                {k: v for k, v in r.items() if k != "corte_edmonds_karp"}, ensure_ascii=False
+            )[:900]
+        )
     with open(os.path.join(OUT, "localizacao_corte.json"), "w", encoding="utf-8") as f:
         json.dump(resultados, f, indent=2, ensure_ascii=False)
 

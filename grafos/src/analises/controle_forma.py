@@ -1,5 +1,5 @@
 """
-C3 (orientador): o controle de tamanho nao isola a geografia. Pedacos sorteados
+Controle de forma (Secao 4.4 do artigo): o controle de tamanho nao isola a geografia. Pedacos sorteados
 dentro de uma malha tem portas em todo o perimetro por construcao; o controle
 mostra que recortes de malha sao porosos, mas nao que a diferenca vem da
 geografia e nao da forma da fronteira.
@@ -17,6 +17,7 @@ Uso:  python -m analises.controle_forma urca [N_POSICOES]
 """
 
 from __future__ import annotations
+
 import json
 import os
 import random
@@ -31,9 +32,9 @@ from shapely import affinity
 from shapely.geometry import shape
 
 from analises import conectividade_externa as ce
+from analises import nulo_fluxo as nf
 from nucleo import maxflow as mf
 from nucleo import polygons as pg
-from analises import nulo_fluxo as nf
 from nucleo.neighborhoods import NEIGHBORHOODS
 
 UTM = "EPSG:31983"
@@ -53,8 +54,9 @@ class Universo:
         rede, big, dist, _ = ce.monta_rede(key, 1000)
         ll = big["latlon"]
         ring = [n for n in rede.ring if n in ll]
-        pts = gpd.GeoSeries(gpd.points_from_xy([ll[n][1] for n in ring], [ll[n][0] for n in ring]),
-                            crs="EPSG:4326").to_crs(UTM)
+        pts = gpd.GeoSeries(
+            gpd.points_from_xy([ll[n][1] for n in ring], [ll[n][0] for n in ring]), crs="EPSG:4326"
+        ).to_crs(UTM)
         self.nos = ring
         self.xy = np.array([(p.x, p.y) for p in pts])
         idx = {n: i for i, n in enumerate(self.nos)}
@@ -62,7 +64,8 @@ class Universo:
         self.edges = []
         for e in big["undirected_edges"]:
             if e[0] in idx and e[1] in idx and e[0] != e[1]:
-                self.adj[e[0]].add(e[1]); self.adj[e[1]].add(e[0])
+                self.adj[e[0]].add(e[1])
+                self.adj[e[1]].add(e[0])
                 self.edges.append((e[0], e[1]))
         self.poly = poligono_utm(NEIGHBORHOODS[key].display_name)
         self.dentro_bairro = [n for n in self.nos if dist[n] == 0]
@@ -79,7 +82,9 @@ class Universo:
                 u = q.popleft()
                 for v in self.adj[u]:
                     if v in S and v not in vis:
-                        vis.add(v); comp.add(v); q.append(v)
+                        vis.add(v)
+                        comp.add(v)
+                        q.append(v)
             if len(comp) > len(melhor):
                 melhor = comp
         return melhor
@@ -124,9 +129,17 @@ def main():
     f_ref, g_ref = rede_ref.fluxo(rede_ref.inside)
     poly_ref = poligono_utm(NEIGHBORHOODS[ref].display_name)
     c_ref = poly_ref.centroid
-    res = {"referencia": {"bairro": ref, "interseccoes": alvo, "fluxo": f_ref, "portas": g_ref,
-                          "area_km2": round(poly_ref.area / 1e6, 2), "perimetro_km": round(poly_ref.length / 1e3, 1)},
-           "pedacos": {}}
+    res = {
+        "referencia": {
+            "bairro": ref,
+            "interseccoes": alvo,
+            "fluxo": f_ref,
+            "portas": g_ref,
+            "area_km2": round(poly_ref.area / 1e6, 2),
+            "perimetro_km": round(poly_ref.length / 1e3, 1),
+        },
+        "pedacos": {},
+    }
     rng = random.Random(SEED)
     for key in fontes:
         univ = Universo(key)
@@ -146,17 +159,34 @@ def main():
             if S is None:
                 continue
             f, g = univ.fluxo(S)
-            fl.append(f); gws.append(g); esc.append(s)
+            fl.append(f)
+            gws.append(g)
+            esc.append(s)
         res["pedacos"][key] = {
-            "n": len(fl), "tentativas": tent,
-            "fluxo": nf.resumo(fl), "portas": nf.resumo(gws), "valores_fluxo": fl,
+            "n": len(fl),
+            "tentativas": tent,
+            "fluxo": nf.resumo(fl),
+            "portas": nf.resumo(gws),
+            "valores_fluxo": fl,
             "escala_mediana": round(st.median(esc), 3),
             "n_fluxo_le_ref": sum(x <= f_ref for x in fl),
             "frac_fluxo_le_ref": round(sum(x <= f_ref for x in fl) / len(fl), 4) if fl else None,
         }
         b = res["pedacos"][key]
-        print(key, "n", b["n"], "fluxo", b["fluxo"], "portas", b["portas"], "escala med", b["escala_mediana"],
-              f"<= {f_ref}:", b["n_fluxo_le_ref"], flush=True)
+        print(
+            key,
+            "n",
+            b["n"],
+            "fluxo",
+            b["fluxo"],
+            "portas",
+            b["portas"],
+            "escala med",
+            b["escala_mediana"],
+            f"<= {f_ref}:",
+            b["n_fluxo_le_ref"],
+            flush=True,
+        )
     with open(os.path.join(OUT, f"controle_forma_{ref}{sufixo}.json"), "w", encoding="utf-8") as fh:
         json.dump(res, fh, ensure_ascii=False, indent=2)
     print("referencia:", res["referencia"])

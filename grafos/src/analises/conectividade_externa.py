@@ -1,6 +1,6 @@
 """
 CONECTIVIDADE EXTERNA: as saidas do bairro levam a caminhos independentes ate' o
-resto da cidade, ou so' alcancam a fronteira administrativa? (Secao 4.6 do artigo)
+resto da cidade, ou so' alcancam a fronteira administrativa? (Secao 4.5 do artigo)
 
 O fluxo de acesso da Tabela 3 termina nas portas administrativas. Duas ruas
 podem cruzar a fronteira e, logo depois, convergir para o mesmo corredor. Aqui
@@ -32,6 +32,7 @@ Uso:  python -m analises.conectividade_externa [--verifica] [--bairros urca,copa
 """
 
 from __future__ import annotations
+
 import csv
 import json
 import os
@@ -39,16 +40,16 @@ import sys
 import time
 from collections import deque
 
+from analises import ruas_vs_intersecoes as rv
+from caminhos import OUT
 from nucleo import maxflow as mf
 from nucleo import polygons as pg
-from analises import ruas_vs_intersecoes as rv
 from nucleo.neighborhoods import NEIGHBORHOODS
 from nucleo.network import load_network
 from nucleo.osm_loader import expand_bbox, load_neighborhood
-from caminhos import OUT
 
 RAIOS_M = (500, 1000, 2000)
-MARGEM_M = 400            # alem de R, so' para decidir se a rua que sai continua
+MARGEM_M = 400  # alem de R, so' para decidir se a rua que sai continua
 INF = float("inf")
 SS, TT, BIG = rv.SS, rv.TT, rv.BIG
 
@@ -96,7 +97,8 @@ def scc_gigante(G) -> set:
 def componente_gigante_nao_dirigida(G, arestas) -> set:
     adj = {u: [] for u in G.nodes()}
     for e in arestas:
-        adj[e[0]].append(e[1]); adj[e[1]].append(e[0])
+        adj[e[0]].append(e[1])
+        adj[e[1]].append(e[0])
     visto, melhor = set(), set()
     for s in adj:
         if s in visto:
@@ -107,7 +109,9 @@ def componente_gigante_nao_dirigida(G, arestas) -> set:
             u = fila.popleft()
             for w in adj[u]:
                 if w not in visto:
-                    visto.add(w); comp.add(w); fila.append(w)
+                    visto.add(w)
+                    comp.add(w)
+                    fila.append(w)
         if len(comp) > len(melhor):
             melhor = comp
     return melhor
@@ -168,12 +172,12 @@ class Rede:
         # destinos por variante e por modo (dirigido ou nao)
         d = {"scc": {"dir": set(), "nd": set()}, "qualquer": {"dir": set(), "nd": set()}}
         for u in self.ring:
-            for e in G.adj[u]:                          # arco u -> w saindo do anel
+            for e in G.adj[u]:  # arco u -> w saindo do anel
                 if e.v not in self.ring:
                     d["qualquer"]["dir"].add(u)
                     if e.v in giant_scc:
                         d["scc"]["dir"].add(u)
-        for e in arestas:                               # rua entre anel e fora, sem sentido
+        for e in arestas:  # rua entre anel e fora, sem sentido
             for a, b in ((e[0], e[1]), (e[1], e[0])):
                 if a in self.ring and b not in self.ring:
                     d["qualquer"]["nd"].add(a)
@@ -196,9 +200,16 @@ class Rede:
         f, flow, cut, cap_c = _resolve(nos, cap, src, dest, dividido)
         if not detalhes:
             return f
-        return {"fluxo": f, "flow": flow, "cut_origem": _so_reais(cut),
-                "nos": nos, "cap": cap, "cap_completa": cap_c, "dest": dest,
-                "dividido": dividido}
+        return {
+            "fluxo": f,
+            "flow": flow,
+            "cut_origem": _so_reais(cut),
+            "nos": nos,
+            "cap": cap,
+            "cap_completa": cap_c,
+            "dest": dest,
+            "dividido": dividido,
+        }
 
 
 def critica_externas(rede, r) -> dict:
@@ -206,8 +217,11 @@ def critica_externas(rede, r) -> dict:
     fluxo por ruas dirigido. Candidatas: ruas com fluxo positivo no fluxo
     maximo encontrado (so' elas podem reduzi-lo)."""
     f0, nos, cap = r["fluxo"], r["nos"], r["cap"]
-    candidatas = {frozenset(k) for k in r["flow"]
-                  if k[0] not in (SS, TT) and k[1] not in (SS, TT) and k[0] != k[1]}
+    candidatas = {
+        frozenset(k)
+        for k in r["flow"]
+        if k[0] not in (SS, TT) and k[1] not in (SS, TT) and k[0] != k[1]
+    }
     criticas = {"interno": [], "fronteira": [], "externo": []}
     for par in candidatas:
         cap2 = {k: v for k, v in cap.items() if frozenset(k) != par}
@@ -231,22 +245,30 @@ def monta_rede(key: str, R: int, src=None):
     G = big["graph"]
     dist = pg.distancias_ao_poligono_m(big["latlon"], poly, teto_m=R + MARGEM_M + 1)
     arestas = big["undirected_edges"]
-    rede = Rede(G, arestas, dist, R, src, scc_gigante(G),
-                componente_gigante_nao_dirigida(G, arestas))
+    rede = Rede(
+        G, arestas, dist, R, src, scc_gigante(G), componente_gigante_nao_dirigida(G, arestas)
+    )
     return rede, big, dist, set(src)
 
 
 def analisa_bairro(key: str, raios=(0,) + RAIOS_M) -> tuple[dict, dict]:
     cfg = NEIGHBORHOODS[key]
-    ref = rv.analisa(key)                       # Tabela 3 (portas administrativas)
+    ref = rv.analisa(key)  # Tabela 3 (portas administrativas)
     uset, edges_in0, G0, src, gw = ref.pop("_entrada")
     data, bbox = load_network(cfg)
     poly = pg.fetch_bairro_polygon(cfg.display_name)
-    res = {"bairro": cfg.display_name, "origem": len(src), "referencia_artigo": {
-        "portas": ref["portas"],
-        "ruas_nd": ref["nao_dirigido"]["ruas"], "ruas_dir": ref["dirigido"]["ruas"],
-        "int_nd": ref["nao_dirigido"]["intersecoes"], "int_dir": ref["dirigido"]["intersecoes"]},
-        "raios": {}}
+    res = {
+        "bairro": cfg.display_name,
+        "origem": len(src),
+        "referencia_artigo": {
+            "portas": ref["portas"],
+            "ruas_nd": ref["nao_dirigido"]["ruas"],
+            "ruas_dir": ref["dirigido"]["ruas"],
+            "int_nd": ref["nao_dirigido"]["intersecoes"],
+            "int_dir": ref["dirigido"]["intersecoes"],
+        },
+        "raios": {},
+    }
     objetos = {}
     for R in raios:
         nome = f"{key}_buffer{MARGEM_M}" if R == 0 else f"{key}_ext{R}"
@@ -256,40 +278,65 @@ def analisa_bairro(key: str, raios=(0,) + RAIOS_M) -> tuple[dict, dict]:
         faltam = [n for n in src if n not in G.coords or dist.get(n, INF) != 0]
         assert not faltam, f"{key} R={R}: {len(faltam)} nos do nucleo fora da rede expandida"
         arestas = big["undirected_edges"]
-        rede = Rede(G, arestas, dist, R, src, scc_gigante(G),
-                    componente_gigante_nao_dirigida(G, arestas))
-        item = {"R_m": R, "nos_anel": len(rede.ring), "ruas_anel": len(rede.edges_in),
-                "destinos": {f: {m: len(rede.dest[f][m]) for m in ("dir", "nd")}
-                             for f in ("scc", "qualquer")}, "fluxo": {}}
+        rede = Rede(
+            G, arestas, dist, R, src, scc_gigante(G), componente_gigante_nao_dirigida(G, arestas)
+        )
+        item = {
+            "R_m": R,
+            "nos_anel": len(rede.ring),
+            "ruas_anel": len(rede.edges_in),
+            "destinos": {
+                f: {m: len(rede.dest[f][m]) for m in ("dir", "nd")} for f in ("scc", "qualquer")
+            },
+            "fluxo": {},
+        }
         for filtro in ("scc", "qualquer"):
-            item["fluxo"][filtro] = {m: rede.fluxo(m, filtro)
-                                     for m in ("ruas_dir", "ruas_nd", "int_dir")}
+            item["fluxo"][filtro] = {
+                m: rede.fluxo(m, filtro) for m in ("ruas_dir", "ruas_nd", "int_dir")
+            }
         # cortes e ruas criticas: variante principal, por ruas dirigido
         r = rede.fluxo("ruas_dir", "scc", detalhes=True)
         co = _so_reais(r["cut_origem"])
         cd = corte_junto_ao_destino(r["nos"], r["cap_completa"])
-        cont = lambda cut: {c: sum(1 for (u, v) in cut if _classe(u, v, dist) == c)
-                            for c in ("interno", "fronteira", "externo")}
+        cont = lambda cut: {
+            c: sum(1 for (u, v) in cut if _classe(u, v, dist) == c)
+            for c in ("interno", "fronteira", "externo")
+        }
         item["corte_perto_origem"] = cont(co)
         item["corte_perto_destino"] = cont(cd)
         crit = critica_externas(rede, r)
         item["ruas_criticas"] = {c: len(v) for c, v in crit.items()}
         ll = big["latlon"]
         item["ruas_criticas_externas"] = [
-            {"coords": [[round(ll[u][0], 5), round(ll[u][1], 5)],
-                        [round(ll[v][0], 5), round(ll[v][1], 5)]], "queda": q}
-            for (u, v, q) in crit["externo"]][:40]
+            {
+                "coords": [
+                    [round(ll[u][0], 5), round(ll[u][1], 5)],
+                    [round(ll[v][0], 5), round(ll[v][1], 5)],
+                ],
+                "queda": q,
+            }
+            for (u, v, q) in crit["externo"]
+        ][:40]
         res["raios"][str(R)] = item
-        objetos[R] = {"big": big, "rede": rede, "corte_origem": co, "corte_destino": cd,
-                      "criticas": crit, "dest": r["dest"]}
+        objetos[R] = {
+            "big": big,
+            "rede": rede,
+            "corte_origem": co,
+            "corte_destino": cd,
+            "criticas": crit,
+            "dest": r["dest"],
+        }
         f = item["fluxo"]
-        print(f"{cfg.display_name:11s} R={R:4d} anel={len(rede.ring):5d} nos  "
-              f"dest(scc/qualquer)={item['destinos']['scc']['dir']:3d}/{item['destinos']['qualquer']['dir']:3d}  "
-              f"ruas dir={f['scc']['ruas_dir']:2d}/{f['qualquer']['ruas_dir']:2d}  "
-              f"nd={f['scc']['ruas_nd']:2d}/{f['qualquer']['ruas_nd']:2d}  "
-              f"int dir={f['scc']['int_dir']:2d}/{f['qualquer']['int_dir']:2d}  "
-              f"criticas(int/front/ext)={item['ruas_criticas']['interno']}/"
-              f"{item['ruas_criticas']['fronteira']}/{item['ruas_criticas']['externo']}", flush=True)
+        print(
+            f"{cfg.display_name:11s} R={R:4d} anel={len(rede.ring):5d} nos  "
+            f"dest(scc/qualquer)={item['destinos']['scc']['dir']:3d}/{item['destinos']['qualquer']['dir']:3d}  "
+            f"ruas dir={f['scc']['ruas_dir']:2d}/{f['qualquer']['ruas_dir']:2d}  "
+            f"nd={f['scc']['ruas_nd']:2d}/{f['qualquer']['ruas_nd']:2d}  "
+            f"int dir={f['scc']['int_dir']:2d}/{f['qualquer']['int_dir']:2d}  "
+            f"criticas(int/front/ext)={item['ruas_criticas']['interno']}/"
+            f"{item['ruas_criticas']['fronteira']}/{item['ruas_criticas']['externo']}",
+            flush=True,
+        )
     if tuple(raios) == (0,) + RAIOS_M:
         checa_invariantes(res)
     return res, objetos
@@ -300,15 +347,18 @@ def checa_invariantes(res) -> None:
     ref, r0 = res["referencia_artigo"], res["raios"]["0"]["fluxo"]["qualquer"]
     # regressao: a rede ampliada em R=0 pode diferir do artigo so' na contracao de
     # grau 2 junto ao envelope antigo; registramos a diferenca em vez de esconde-la
-    res["regressao_R0"] = {m: {"artigo": ref[m], "rede_ampliada": r0[m]}
-                          for m in ("ruas_nd", "ruas_dir", "int_dir")}
+    res["regressao_R0"] = {
+        m: {"artigo": ref[m], "rede_ampliada": r0[m]} for m in ("ruas_nd", "ruas_dir", "int_dir")
+    }
     for m in ("ruas_dir", "ruas_nd", "int_dir"):
         base = r0[m]
         for R in map(str, RAIOS_M):
             for filtro in ("qualquer", "scc"):
                 v = res["raios"][R]["fluxo"][filtro][m]
-                assert v <= base, (f"{res['bairro']}: fluxo({R} m, {filtro}, {m}) = {v} "
-                                   f"supera o do poligono ({base})")
+                assert v <= base, (
+                    f"{res['bairro']}: fluxo({R} m, {filtro}, {m}) = {v} "
+                    f"supera o do poligono ({base})"
+                )
 
 
 # ---------------------------------------------------------------------------
@@ -316,6 +366,7 @@ def checa_invariantes(res) -> None:
 # ---------------------------------------------------------------------------
 def verifica(res_obj) -> None:
     import networkx as nx
+
     for R, o in res_obj.items():
         if R not in (0, 1000):
             continue
@@ -342,7 +393,9 @@ def verifica(res_obj) -> None:
                     D.add_edge(g, TT)
                 esperado = nx.maximum_flow_value(D, SS, TT)
                 obtido = rede.fluxo("ruas_dir" if dirigido else "ruas_nd", filtro)
-                assert esperado == obtido, f"networkx R={R} {filtro} dir={dirigido}: {esperado} != {obtido}"
+                assert esperado == obtido, (
+                    f"networkx R={R} {filtro} dir={dirigido}: {esperado} != {obtido}"
+                )
         # componente gigante fortemente conexa
         Dg = nx.DiGraph()
         Dg.add_nodes_from(G.nodes())
@@ -360,13 +413,25 @@ def escreve(resultados) -> None:
         for R, it in r["raios"].items():
             for filtro in ("scc", "qualquer"):
                 for modo, v in it["fluxo"][filtro].items():
-                    linhas.append({"bairro": r["bairro"], "R_m": R, "destino": filtro,
-                                   "modo": modo, "fluxo": v,
-                                   "n_destinos": it["destinos"][filtro]["nd" if modo == "ruas_nd" else "dir"],
-                                   "nos_anel": it["nos_anel"]})
-    with open(os.path.join(OUT, "conectividade_externa.csv"), "w", newline="", encoding="utf-8") as fh:
+                    linhas.append(
+                        {
+                            "bairro": r["bairro"],
+                            "R_m": R,
+                            "destino": filtro,
+                            "modo": modo,
+                            "fluxo": v,
+                            "n_destinos": it["destinos"][filtro][
+                                "nd" if modo == "ruas_nd" else "dir"
+                            ],
+                            "nos_anel": it["nos_anel"],
+                        }
+                    )
+    with open(
+        os.path.join(OUT, "conectividade_externa.csv"), "w", newline="", encoding="utf-8"
+    ) as fh:
         w = csv.DictWriter(fh, fieldnames=list(linhas[0]))
-        w.writeheader(); w.writerows(linhas)
+        w.writeheader()
+        w.writerows(linhas)
 
 
 def junta_com_existente(caminho, novos):
@@ -389,8 +454,7 @@ def main():
         if "--verifica" in sys.argv:
             verifica(objetos[k])
             print(f"{k}: networkx confere (fluxos e componente gigante)")
-    resultados = junta_com_existente(
-        os.path.join(OUT, "conectividade_externa.json"), resultados)
+    resultados = junta_com_existente(os.path.join(OUT, "conectividade_externa.json"), resultados)
     escreve(resultados)
     print("\nRegressao R=0 (artigo | rede ampliada):")
     for k, r in resultados.items():

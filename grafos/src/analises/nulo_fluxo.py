@@ -22,22 +22,23 @@ Escreve output/nulo_fluxo.json.  Uso:  python -m analises.nulo_fluxo
 """
 
 from __future__ import annotations
+
 import json
 import os
 import random
 import statistics as st
 from collections import deque
 
+from caminhos import OUT
 from nucleo import connectivity as cc
 from nucleo import maxflow as mf
 from nucleo.neighborhoods import NEIGHBORHOODS
-from nucleo.network import load_network, GATEWAY_BUFFER_M
-from nucleo.osm_loader import load_neighborhood, expand_bbox
-from caminhos import OUT
+from nucleo.network import GATEWAY_BUFFER_M, load_network
+from nucleo.osm_loader import expand_bbox, load_neighborhood
 
 SEED = 7
-N_PIECES = 500            # pedacos por bairro e por gerador
-N_INICIOS, N_ITERS = 25, 3000   # busca adversaria: inicios nos pedacos mais frageis
+N_PIECES = 500  # pedacos por bairro e por gerador
+N_INICIOS, N_ITERS = 25, 3000  # busca adversaria: inicios nos pedacos mais frageis
 
 
 class Rede:
@@ -46,16 +47,18 @@ class Rede:
     def __init__(self, key):
         cfg = NEIGHBORHOODS[key]
         data, bbox = load_network(cfg)
-        self.edges = data["undirected_edges"]                 # dentro do poligono
+        self.edges = data["undirected_edges"]  # dentro do poligono
         nodes = data["graph"].nodes()
         comp = set(max(cc.connected_components(nodes, [(e[0], e[1]) for e in self.edges]), key=len))
         self.inside = comp
         self.adj = {u: set() for u in comp}
         for e in self.edges:
             if e[0] in comp and e[1] in comp:
-                self.adj[e[0]].add(e[1]); self.adj[e[1]].add(e[0])
-        buf = load_neighborhood(f"{key}_buffer{GATEWAY_BUFFER_M}",
-                                expand_bbox(bbox, GATEWAY_BUFFER_M))
+                self.adj[e[0]].add(e[1])
+                self.adj[e[1]].add(e[0])
+        buf = load_neighborhood(
+            f"{key}_buffer{GATEWAY_BUFFER_M}", expand_bbox(bbox, GATEWAY_BUFFER_M)
+        )
         self.full_adj = {}
         for e in buf["undirected_edges"]:
             self.full_adj.setdefault(e[0], set()).add(e[1])
@@ -76,7 +79,9 @@ class Rede:
             u = q.popleft()
             for v in sorted(self.adj[u]):
                 if v not in vis:
-                    vis.add(v); seen.append(v); q.append(v)
+                    vis.add(v)
+                    seen.append(v)
+                    q.append(v)
                     if len(seen) == m:
                         break
         return set(seen)
@@ -87,17 +92,21 @@ class Rede:
         while len(S) < m and front:
             v = rng.choice(sorted(front))
             S.add(v)
-            front |= self.adj[v]; front -= S
+            front |= self.adj[v]
+            front -= S
         return S
 
     def conexo(self, S):
         S = set(S)
-        s0 = next(iter(S)); vis = {s0}; q = deque([s0])
+        s0 = next(iter(S))
+        vis = {s0}
+        q = deque([s0])
         while q:
             u = q.popleft()
             for v in self.adj[u]:
                 if v in S and v not in vis:
-                    vis.add(v); q.append(v)
+                    vis.add(v)
+                    q.append(v)
         return len(vis) == len(S)
 
     def adversaria(self, inicios, rng):
@@ -114,7 +123,8 @@ class Rede:
                 fora = {v for u in S for v in self.adj[u]} - S
                 if not fora:
                     break
-                sai = rng.choice(sorted(S)); entra = rng.choice(sorted(fora))
+                sai = rng.choice(sorted(S))
+                entra = rng.choice(sorted(fora))
                 T = (S - {sai}) | {entra}
                 if not self.conexo(T):
                     continue
@@ -128,8 +138,14 @@ class Rede:
 
 def resumo(vals):
     v = sorted(vals)
-    return {"n": len(v), "min": v[0], "p5": v[int(0.05 * len(v))], "mediana": st.median(v),
-            "p95": v[int(0.95 * len(v)) - 1], "max": v[-1]}
+    return {
+        "n": len(v),
+        "min": v[0],
+        "p5": v[int(0.05 * len(v))],
+        "mediana": st.median(v),
+        "p95": v[int(0.95 * len(v)) - 1],
+        "max": v[-1],
+    }
 
 
 def main():
@@ -141,23 +157,33 @@ def main():
         rede = Rede(key)
         rng = random.Random(SEED)
         bloco = {}
-        sorteados = []                       # (fluxo, pedaco) de todos os sorteios
+        sorteados = []  # (fluxo, pedaco) de todos os sorteios
         for nome, gera in (("bola", rede.bola), ("eden", rede.eden)):
             fl, gw = [], []
             for _ in range(N_PIECES):
                 S = gera(m, rng)
                 f, g = rede.fluxo(S)
-                fl.append(f); gw.append(g); sorteados.append((f, S))
-            bloco[nome] = {"fluxo": resumo(fl), "portas": resumo(gw), "valores_fluxo": fl,
-                           "frac_fluxo_le_3": round(sum(x <= 3 for x in fl) / len(fl), 3),
-                           "frac_fluxo_le_1": round(sum(x <= 1 for x in fl) / len(fl), 3)}
+                fl.append(f)
+                gw.append(g)
+                sorteados.append((f, S))
+            bloco[nome] = {
+                "fluxo": resumo(fl),
+                "portas": resumo(gw),
+                "valores_fluxo": fl,
+                "frac_fluxo_le_3": round(sum(x <= 3 for x in fl) / len(fl), 3),
+                "frac_fluxo_le_1": round(sum(x <= 1 for x in fl) / len(fl), 3),
+            }
         sorteados.sort(key=lambda x: x[0])
         f_min, g_min, S_min = rede.adversaria(sorteados[:N_INICIOS], rng)
-        bloco["adversaria"] = {"menor_fluxo": f_min, "portas_do_pedaco": g_min,
-                               "n_nos": len(S_min),
-                               "menor_fluxo_nos_sorteios": sorteados[0][0],
-                               "n_pedacos_com_o_menor_fluxo": sum(f == sorteados[0][0] for f, _ in sorteados),
-                               "n_inicios": N_INICIOS, "n_iteracoes": N_ITERS}
+        bloco["adversaria"] = {
+            "menor_fluxo": f_min,
+            "portas_do_pedaco": g_min,
+            "n_nos": len(S_min),
+            "menor_fluxo_nos_sorteios": sorteados[0][0],
+            "n_pedacos_com_o_menor_fluxo": sum(f == sorteados[0][0] for f, _ in sorteados),
+            "n_inicios": N_INICIOS,
+            "n_iteracoes": N_ITERS,
+        }
         res["pedacos"][key] = bloco
         print(key, json.dumps(bloco, ensure_ascii=False))
     print("Urca:", res["referencia_urca"])

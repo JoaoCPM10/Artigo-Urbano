@@ -19,6 +19,7 @@ Uso:  python -m analises.analisa_portas_sem_continuacao [urca,copacabana,botafog
 """
 
 from __future__ import annotations
+
 import json
 import os
 import sys
@@ -48,7 +49,8 @@ def continuacao(rede, dist, G) -> dict:
                 break
             for e in G.adj[x]:
                 if e.v in exterior and e.v not in visto:
-                    visto.add(e.v); fila.append(e.v)
+                    visto.add(e.v)
+                    fila.append(e.v)
         cache[w] = ok
         return ok
 
@@ -79,17 +81,25 @@ def analisa(key: str) -> dict:
         f_ext = rede.fluxo("ruas_dir", "scc")
         ll = big["latlon"]
         res["raios"][str(R)] = {
-            "portas_dirigidas_com_saida": len(saidas), "portas_que_continuam": len(continua),
+            "portas_dirigidas_com_saida": len(saidas),
+            "portas_que_continuam": len(continua),
             "portas_sem_continuacao": [[round(ll[u][0], 5), round(ll[u][1], 5)] for u in sem],
-            "fluxo_portas_que_continuam": f_cont, "fluxo_borda_externa": f_ext,
+            "fluxo_portas_que_continuam": f_cont,
+            "fluxo_borda_externa": f_ext,
             "efeito_portas_sem_continuacao": f_todas - f_cont,
-            "efeito_convergencia_externa": f_cont - f_ext}
-        print(f"{key:11s} R={R:4d} portas={len(saidas):2d} continuam={len(continua):2d}  "
-              f"fluxo: todas={f_todas} -> continuam={f_cont} -> borda externa={f_ext}", flush=True)
+            "efeito_convergencia_externa": f_cont - f_ext,
+        }
+        print(
+            f"{key:11s} R={R:4d} portas={len(saidas):2d} continuam={len(continua):2d}  "
+            f"fluxo: todas={f_todas} -> continuam={f_cont} -> borda externa={f_ext}",
+            flush=True,
+        )
         if not (f_ext <= f_cont <= f_todas):
             # so' ocorre se as portas da rede ampliada diferem das da rede R=0 (contracao de
             # grau 2 junto a fronteira, ver regressao_R0 em conectividade_externa.py)
-            print(f"  AVISO: ordem esperada violada em {key} R={R}: {f_ext} <= {f_cont} <= {f_todas}")
+            print(
+                f"  AVISO: ordem esperada violada em {key} R={R}: {f_ext} <= {f_cont} <= {f_todas}"
+            )
             res["raios"][str(R)]["ordem_violada"] = True
     return res
 
@@ -98,7 +108,7 @@ def main():
     chaves = sys.argv[1].split(",") if len(sys.argv) > 1 else ["copacabana", "urca", "botafogo"]
     resultados = {k: analisa(k) for k in chaves}
     caminho = os.path.join(OUT, "portas_sem_continuacao.json")
-    if len(sys.argv) > 1 and os.path.exists(caminho):      # mescla com os bairros ja calculados
+    if len(sys.argv) > 1 and os.path.exists(caminho):  # mescla com os bairros ja calculados
         with open(caminho, encoding="utf-8") as fh:
             antigos = json.load(fh)
         antigos.update(resultados)

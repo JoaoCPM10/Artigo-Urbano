@@ -15,6 +15,7 @@ A normalizacao por (n-1)(n-2) e' a de networkx.betweenness_centrality
 """
 
 from __future__ import annotations
+
 import heapq
 
 EPS = 1e-9
@@ -39,7 +40,7 @@ def betweenness(G, nodes) -> "dict[int, float]":
         sigma[s] = 1.0
         seen = {s: 0.0}
         counter = 0
-        heap = [(0.0, counter, s)]    # (dist, desempate, no)
+        heap = [(0.0, counter, s)]  # (dist, desempate, no)
         while heap:
             d, _, v = heapq.heappop(heap)
             if v in dist:

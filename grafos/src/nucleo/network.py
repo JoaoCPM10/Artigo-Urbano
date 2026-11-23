@@ -17,8 +17,8 @@ retangulo manual, e o retangulo truncava a rede na borda.
 
 from __future__ import annotations
 
-from nucleo.osm_loader import load_neighborhood, expand_bbox
 from nucleo import polygons as pg
+from nucleo.osm_loader import expand_bbox, load_neighborhood
 
 # margem padrao (metros) alem do envelope, so' para achar a primeira
 # interseccao alem da fronteira em toda rua que a cruza.
@@ -49,8 +49,9 @@ def load_network(cfg, clip: bool = True) -> "tuple[dict, str]":
     return data, bbox_usado
 
 
-def gateway_nodes(cfg, data: dict, bbox_usado: str, uset: set,
-                  buffer_m: float = GATEWAY_BUFFER_M) -> set:
+def gateway_nodes(
+    cfg, data: dict, bbox_usado: str, uset: set, buffer_m: float = GATEWAY_BUFFER_M
+) -> set:
     """Portas de acesso: interseccoes do grafo recortado com pelo menos uma
     rua que sai dele. Busca-se a rede com uma margem extra (`buffer_m`) so'
     para que o no do outro lado da fronteira exista; uma porta e' um no do
@@ -59,8 +60,9 @@ def gateway_nodes(cfg, data: dict, bbox_usado: str, uset: set,
     Restrito a `uset` (maior componente NAO-dirigida): uma saida so-entrada
     ou so-saida por mao unica ainda e' uma saida real.
     """
-    data_buf = load_neighborhood(f"{cfg.key}_buffer{int(buffer_m)}",
-                                 expand_bbox(bbox_usado, buffer_m))
+    data_buf = load_neighborhood(
+        f"{cfg.key}_buffer{int(buffer_m)}", expand_bbox(bbox_usado, buffer_m)
+    )
     inside = set(data["graph"].nodes())
     gw = set()
     for e in data_buf["undirected_edges"]:

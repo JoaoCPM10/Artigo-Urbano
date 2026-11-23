@@ -1,5 +1,5 @@
 """
-Corte minimo NO-A-NO (Secao 4.1 do artigo): quantas ruas separam duas
+Corte minimo NO-A-NO (Secao 4.2 do artigo): quantas ruas separam duas
 interseccoes?
 
 Calcula o fluxo maximo de Edmonds-Karp, com capacidade 1 por rua (ruas paralelas
@@ -20,6 +20,7 @@ Uso:  python -m analises.corte_no_a_no [--verifica]   (--verifica exige networkx
 """
 
 from __future__ import annotations
+
 import json
 import os
 import random
@@ -27,13 +28,13 @@ import sys
 import time
 from itertools import combinations, permutations
 
+from caminhos import OUT
 from nucleo import connectivity as cc
 from nucleo import maxflow as mf
 from nucleo.neighborhoods import NEIGHBORHOODS
 from nucleo.network import load_network
-from caminhos import OUT
 
-N_VERIFICA = 40      # pares conferidos contra o networkx, por bairro e por medida
+N_VERIFICA = 40  # pares conferidos contra o networkx, por bairro e por medida
 
 
 def _resumo(vals, limitado):
@@ -89,6 +90,7 @@ def dirigido(G):
 def verifica(nome, tipo, entrada):
     """Confere uma amostra de pares contra o networkx (valida a implementacao)."""
     import networkx as nx
+
     nos, cap, pares, vals = entrada
     D = nx.DiGraph()
     D.add_nodes_from(nos)
@@ -122,11 +124,13 @@ def main():
             verifica(cfg.display_name, "dirigido", ent_d)
         res["bairros"][cfg.display_name] = {"nao_dirigido": r_nd, "dirigido": r_d}
         for tipo, r in (("nao dirigido", r_nd), ("dirigido", r_d)):
-            print(f"{cfg.display_name:11s} {tipo:12s} pares={r['n_pares']:>7d} "
-                  f"corte1={r['pct_corte_1']:5.1f}% media={r['media']:.2f} "
-                  f"min-max={r['minimo']}-{r['maximo']} "
-                  f"grau1={r['pct_pares_com_no_de_grau_1']}% "
-                  f"(expl. {r['pct_cortes_1_explicados_por_grau_1']}%)")
+            print(
+                f"{cfg.display_name:11s} {tipo:12s} pares={r['n_pares']:>7d} "
+                f"corte1={r['pct_corte_1']:5.1f}% media={r['media']:.2f} "
+                f"min-max={r['minimo']}-{r['maximo']} "
+                f"grau1={r['pct_pares_com_no_de_grau_1']}% "
+                f"(expl. {r['pct_cortes_1_explicados_por_grau_1']}%)"
+            )
         print(f"  ({time.time() - t0:.0f} s)", flush=True)
     if checar:
         print("networkx: amostra de pares confere nas duas medidas e nos tres bairros")

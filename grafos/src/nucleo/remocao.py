@@ -6,6 +6,7 @@ de cada arco (length, travel_time) em vez de recalcula-los das coordenadas.
 """
 
 from __future__ import annotations
+
 from nucleo import connectivity as cc
 from nucleo.graph import Graph
 

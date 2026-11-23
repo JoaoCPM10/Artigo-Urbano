@@ -18,27 +18,37 @@ Uso:  python -m analises.velocidade_ctb [chave ...]      Escreve output/velocida
 """
 
 from __future__ import annotations
+
 import copy
 import json
 import os
 import sys
 
-from nucleo import osm_loader as ol
-from nucleo import betweenness as bt
-from nucleo import connectivity as cc
-from nucleo.neighborhoods import NEIGHBORHOODS
-from nucleo.network import load_network
 from analises.simulacao_interrupcoes import spearman
 from caminhos import OUT
+from nucleo import betweenness as bt
+from nucleo import connectivity as cc
+from nucleo import osm_loader as ol
+from nucleo.neighborhoods import NEIGHBORHOODS
+from nucleo.network import load_network
 
 CTB = copy.deepcopy(ol.DEFAULT_SPEED)
 
 ANTERIOR = {
-    "motorway": 90, "trunk": 80, "primary": 60, "secondary": 50,
-    "tertiary": 40, "unclassified": 40, "residential": 30,
-    "living_street": 20, "road": 30,
-    "motorway_link": 60, "trunk_link": 50, "primary_link": 40,
-    "secondary_link": 40, "tertiary_link": 30,
+    "motorway": 90,
+    "trunk": 80,
+    "primary": 60,
+    "secondary": 50,
+    "tertiary": 40,
+    "unclassified": 40,
+    "residential": 30,
+    "living_street": 20,
+    "road": 30,
+    "motorway_link": 60,
+    "trunk_link": 50,
+    "primary_link": 40,
+    "secondary_link": 40,
+    "tertiary_link": 30,
     "service": 20,
 }
 CTB_BAIXO = dict(CTB, secondary=40, secondary_link=40)
@@ -68,23 +78,33 @@ def main():
     for k in chaves:
         m = {nome: medidas(k, tab) for nome, tab in TABELAS.items()}
         ref = m["ctb"]
-        linha = {"nucleo": ref["nucleo"], "ctb": {"max_pct": round(ref["max_pct"], 2), "no": ref["no_max"]}}
+        linha = {
+            "nucleo": ref["nucleo"],
+            "ctb": {"max_pct": round(ref["max_pct"], 2), "no": ref["no_max"]},
+        }
         for nome in ("anterior", "trunk80", "ctb_baixo"):
             alt = m[nome]
             ps = sorted(ref["rua"], key=lambda p: tuple(sorted(p)))
             rho = spearman([ref["rua"][p] for p in ps], [alt["rua"].get(p, 0.0) for p in ps])
             top = lambda d: set(sorted(d, key=lambda p: (-d[p], tuple(sorted(p))))[:10])
             inter = len(top(ref["rua"]) & top(alt["rua"]))
-            linha[nome] = {"max_pct": round(alt["max_pct"], 2), "no": alt["no_max"],
-                           "mesmo_no": alt["no_max"] == ref["no_max"],
-                           "spearman_ruas": round(rho, 3), "top10_em_comum": inter}
+            linha[nome] = {
+                "max_pct": round(alt["max_pct"], 2),
+                "no": alt["no_max"],
+                "mesmo_no": alt["no_max"] == ref["no_max"],
+                "spearman_ruas": round(rho, 3),
+                "top10_em_comum": inter,
+            }
         saida[k] = linha
         a, c, b = linha["anterior"], linha["trunk80"], linha["ctb_baixo"]
-        print(f"{k:18s} N={linha['nucleo']:4d} max% ctb={linha['ctb']['max_pct']:5.1f} "
-              f"anterior={a['max_pct']:5.1f} trunk80={c['max_pct']:5.1f} baixo={b['max_pct']:5.1f} | rho "
-              f"{a['spearman_ruas']:.3f}/{c['spearman_ruas']:.3f}/{b['spearman_ruas']:.3f} | top10 "
-              f"{a['top10_em_comum']}/{c['top10_em_comum']}/{b['top10_em_comum']} "
-              f"| mesmo no {a['mesmo_no']}/{c['mesmo_no']}/{b['mesmo_no']}", flush=True)
+        print(
+            f"{k:18s} N={linha['nucleo']:4d} max% ctb={linha['ctb']['max_pct']:5.1f} "
+            f"anterior={a['max_pct']:5.1f} trunk80={c['max_pct']:5.1f} baixo={b['max_pct']:5.1f} | rho "
+            f"{a['spearman_ruas']:.3f}/{c['spearman_ruas']:.3f}/{b['spearman_ruas']:.3f} | top10 "
+            f"{a['top10_em_comum']}/{c['top10_em_comum']}/{b['top10_em_comum']} "
+            f"| mesmo no {a['mesmo_no']}/{c['mesmo_no']}/{b['mesmo_no']}",
+            flush=True,
+        )
     ol.DEFAULT_SPEED.clear()
     ol.DEFAULT_SPEED.update(CTB)
     if not sys.argv[1:]:

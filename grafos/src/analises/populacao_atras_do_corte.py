@@ -1,5 +1,5 @@
 """
-M1 (orientador): quantas pessoas ficam do lado da origem do corte de acesso?
+Populacao atras do corte (Secao 4.3 do artigo): quantas pessoas ficam do lado da origem do corte de acesso?
 
 O fluxo de acesso mede o acesso do nucleo do bairro, mas para o planejamento
 importa a populacao que depende desse acesso. Aqui a populacao residente do
@@ -28,6 +28,7 @@ Uso:  python -m analises.populacao_atras_do_corte
 """
 
 from __future__ import annotations
+
 import json
 import os
 import sys
@@ -35,16 +36,15 @@ from collections import deque
 
 import geopandas as gpd
 import numpy as np
-from shapely.geometry import shape, Point
-from shapely.ops import unary_union
+from shapely.geometry import Point, shape
 
+from analises.localiza_corte import cortes_de_uma_rua
+from caminhos import OUT, ROOT
 from nucleo import connectivity as cc
 from nucleo import maxflow as mf
 from nucleo import polygons as pg
 from nucleo.neighborhoods import NEIGHBORHOODS
-from nucleo.network import load_network, gateway_nodes
-from analises.localiza_corte import cortes_de_uma_rua
-from caminhos import OUT, ROOT
+from nucleo.network import gateway_nodes, load_network
 
 GPKG = os.path.join(ROOT, "data", "ibge_censo2022_rj", "RJ_setores_CD2022.gpkg")
 UTM = "EPSG:31983"
@@ -100,8 +100,10 @@ def analisa(key, setores_all):
     adj = {u: set() for u in uset}
     adj_i = {u: [] for u in uset}
     for i, e in enumerate(edges_in):
-        adj[e[0]].add(e[1]); adj[e[1]].add(e[0])
-        adj_i[e[0]].append((e[1], i)); adj_i[e[1]].append((e[0], i))
+        adj[e[0]].add(e[1])
+        adj[e[1]].add(e[0])
+        adj_i[e[0]].append((e[1], i))
+        adj_i[e[1]].append((e[0], i))
     r = mf.gateway_access_flow(list(uset), ue, gw, frac=FRAC, details=True)
     src = set(r["origem"])
     cortadas = {frozenset(c) for c in r["corte_arestas"]}
@@ -113,31 +115,47 @@ def analisa(key, setores_all):
     pts = gpd.GeoSeries([Point(ll[n][1], ll[n][0]) for n in nos], crs="EPSG:4326").to_crs(UTM)
     no_xy = {n: (p.x, p.y) for n, p in zip(nos, pts)}
 
-    minx, miny, maxx, maxy = pg.polygon_bbox(poly).split(",")[1], pg.polygon_bbox(poly).split(",")[0], \
-        pg.polygon_bbox(poly).split(",")[3], pg.polygon_bbox(poly).split(",")[2]
-    sub = setores_all.cx[float(minx):float(maxx), float(miny):float(maxy)].to_crs(UTM)
+    minx, miny, maxx, maxy = (
+        pg.polygon_bbox(poly).split(",")[1],
+        pg.polygon_bbox(poly).split(",")[0],
+        pg.polygon_bbox(poly).split(",")[3],
+        pg.polygon_bbox(poly).split(",")[2],
+    )
+    sub = setores_all.cx[float(minx) : float(maxx), float(miny) : float(maxy)].to_crs(UTM)
     pop, total = populacao_por_no(key, data, poly, sub, no_xy)
 
-    pop_total_rede = sum(pop.values())
-    ibge_bairro = float(setores_all.loc[(setores_all["NM_MUN"] == "Rio de Janeiro")
-                                         & (setores_all["NM_BAIRRO"] == cfg.display_name), "v0001"].sum())
+    ibge_bairro = float(
+        setores_all.loc[
+            (setores_all["NM_MUN"] == "Rio de Janeiro")
+            & (setores_all["NM_BAIRRO"] == cfg.display_name),
+            "v0001",
+        ].sum()
+    )
     res = {
         "bairro": cfg.display_name,
-        "fluxo": r["fluxo"], "portas": len(gw), "nucleo_nos": len(src),
+        "fluxo": r["fluxo"],
+        "portas": len(gw),
+        "nucleo_nos": len(src),
         "populacao_ibge_bairro": round(ibge_bairro),
         "populacao_alocada_no_poligono": round(total),
         "populacao_nucleo": round(sum(pop[n] for n in src)),
         "lado_origem_nos": len(lado),
         "populacao_lado_origem": round(sum(pop[n] for n in lado)),
-        "pct_populacao_lado_origem": round(100 * sum(pop[n] for n in lado) / total, 1) if total else None,
+        "pct_populacao_lado_origem": round(100 * sum(pop[n] for n in lado) / total, 1)
+        if total
+        else None,
         "pessoas_por_rota": round(sum(pop[n] for n in lado) / r["fluxo"]) if r["fluxo"] else None,
     }
     cortes1 = cortes_de_uma_rua(edges_in, adj_i_to_list(adj_i), src, gw)
     res["cortes_de_uma_rua"] = [
-        {"comprimento_m": round(edges_in[i][2]), "nos_lado_origem": len(l),
-         "populacao_lado_origem": round(sum(pop[n] for n in l)),
-         "pct": round(100 * sum(pop[n] for n in l) / total, 1) if total else None}
-        for i, l in cortes1]
+        {
+            "comprimento_m": round(edges_in[i][2]),
+            "nos_lado_origem": len(l),
+            "populacao_lado_origem": round(sum(pop[n] for n in l)),
+            "pct": round(100 * sum(pop[n] for n in l) / total, 1) if total else None,
+        }
+        for i, l in cortes1
+    ]
     return res
 
 
@@ -150,13 +168,18 @@ def main():
     setores = gpd.read_file(GPKG, engine="pyogrio") if False else gpd.read_file(GPKG)
     setores = setores.set_crs("EPSG:4674", allow_override=True)
     saida = {}
-    print(f"{'bairro':18s} {'fluxo':>5s} {'IBGE':>8s} {'alocada':>8s} {'nucleo':>7s} {'lado':>6s} {'pop lado':>9s} {'%':>6s} {'pess/rota':>9s}")
+    print(
+        f"{'bairro':18s} {'fluxo':>5s} {'IBGE':>8s} {'alocada':>8s} {'nucleo':>7s} {'lado':>6s} {'pop lado':>9s} {'%':>6s} {'pess/rota':>9s}"
+    )
     for k in chaves:
         r = analisa(k, setores)
         saida[k] = r
-        print(f"{r['bairro']:18s} {r['fluxo']:5d} {r['populacao_ibge_bairro']:8d} {r['populacao_alocada_no_poligono']:8d} "
-              f"{r['populacao_nucleo']:7d} {r['lado_origem_nos']:6d} {r['populacao_lado_origem']:9d} "
-              f"{r['pct_populacao_lado_origem']:6.1f} {r['pessoas_por_rota'] or 0:9d}  cortes1={r['cortes_de_uma_rua']}", flush=True)
+        print(
+            f"{r['bairro']:18s} {r['fluxo']:5d} {r['populacao_ibge_bairro']:8d} {r['populacao_alocada_no_poligono']:8d} "
+            f"{r['populacao_nucleo']:7d} {r['lado_origem_nos']:6d} {r['populacao_lado_origem']:9d} "
+            f"{r['pct_populacao_lado_origem']:6.1f} {r['pessoas_por_rota'] or 0:9d}  cortes1={r['cortes_de_uma_rua']}",
+            flush=True,
+        )
     with open(os.path.join(OUT, "populacao_corte.json"), "w", encoding="utf-8") as fh:
         json.dump(saida, fh, ensure_ascii=False, indent=2)
 

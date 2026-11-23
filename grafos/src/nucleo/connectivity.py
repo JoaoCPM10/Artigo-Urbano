@@ -1,5 +1,5 @@
 """
-Analise de CONECTIVIDADE usando SOMENTE o que foi visto na disciplina:
+Analise de CONECTIVIDADE sem bibliotecas de grafos:
 percurso em largura (BFS) e as definicoes formais de conexidade,
 articulacao e ponte.
 
@@ -22,7 +22,9 @@ conexidade forte usa o grafo dirigido (o sentido importa para o motorista).
 """
 
 from __future__ import annotations
+
 from collections import deque
+
 from nucleo.graph import Graph
 
 
@@ -51,7 +53,7 @@ def bfs(G: Graph, source: int, reverse: bool = False) -> set[int]:
 # ---------------------------------------------------------------------------
 def _undirected_adjacency(nodes, edges):
     adj = {u: [] for u in nodes}
-    for (u, v) in edges:
+    for u, v in edges:
         adj[u].append(v)
         adj[v].append(u)
     return adj
@@ -110,7 +112,7 @@ def strongly_connected_components(G: Graph) -> list[list[int]]:
     sccs = []
     while remaining:
         s = next(iter(remaining))
-        reach = bfs(G, s)                 # alcancaveis a partir de s
+        reach = bfs(G, s)  # alcancaveis a partir de s
         reach_rev = bfs(G, s, reverse=True)  # que alcancam s
         comp = (reach & reach_rev) & remaining
         if s not in comp:
@@ -131,8 +133,7 @@ def articulation_points(nodes, edges) -> set[int]:
         # remover v deve ser comparado contra (base + 1): o proprio v vira
         # uma "componente" ausente. v e' articulacao se o resto se parte em
         # mais de uma componente.
-        comps_without_v = _count_components([u for u in nodes if u != v],
-                                            adj, skip_node=v)
+        comps_without_v = _count_components([u for u in nodes if u != v], adj, skip_node=v)
         if comps_without_v > base:
             aps.add(v)
     return aps
@@ -144,10 +145,10 @@ def bridges(nodes, edges) -> list[tuple[int, int]]:
     # multiplicidade de cada par: se ha duas ruas ligando o mesmo par de
     # intersecoes, nenhuma delas e' ponte (remover uma mantem a outra).
     mult: dict[frozenset, int] = {}
-    for (u, v) in edges:
+    for u, v in edges:
         mult[frozenset((u, v))] = mult.get(frozenset((u, v)), 0) + 1
     result = []
-    for (u, v) in edges:
+    for u, v in edges:
         if mult[frozenset((u, v))] > 1:
             continue
         if _count_components(nodes, adj, skip_edge={u, v}) > base:

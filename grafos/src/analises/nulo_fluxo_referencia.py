@@ -13,6 +13,7 @@ Uso:  python -m analises.nulo_fluxo_referencia leme
 """
 
 from __future__ import annotations
+
 import json
 import os
 import random
@@ -45,20 +46,32 @@ def main():
             for _ in range(nf.N_PIECES):
                 S = gera(m, rng)
                 f, g = rede.fluxo(S)
-                fl.append(f); gw.append(g); sorteados.append((f, S))
-            bloco[nome] = {"fluxo": nf.resumo(fl), "portas": nf.resumo(gw), "valores_fluxo": fl,
-                           "frac_fluxo_le_3": round(sum(x <= 3 for x in fl) / len(fl), 3),
-                           "frac_fluxo_le_1": round(sum(x <= 1 for x in fl) / len(fl), 3),
-                           "frac_fluxo_le_ref": round(sum(x <= f_ref for x in fl) / len(fl), 3)}
+                fl.append(f)
+                gw.append(g)
+                sorteados.append((f, S))
+            bloco[nome] = {
+                "fluxo": nf.resumo(fl),
+                "portas": nf.resumo(gw),
+                "valores_fluxo": fl,
+                "frac_fluxo_le_3": round(sum(x <= 3 for x in fl) / len(fl), 3),
+                "frac_fluxo_le_1": round(sum(x <= 1 for x in fl) / len(fl), 3),
+                "frac_fluxo_le_ref": round(sum(x <= f_ref for x in fl) / len(fl), 3),
+            }
         sorteados.sort(key=lambda x: x[0])
-        f_min, g_min, S_min = rede.adversaria(sorteados[:nf.N_INICIOS], rng)
-        bloco["adversaria"] = {"menor_fluxo": f_min, "portas_do_pedaco": g_min,
-                               "n_nos": len(S_min),
-                               "menor_fluxo_nos_sorteios": sorteados[0][0],
-                               "n_pedacos_com_o_menor_fluxo": sum(f == sorteados[0][0] for f, _ in sorteados),
-                               "n_inicios": nf.N_INICIOS, "n_iteracoes": nf.N_ITERS}
+        f_min, g_min, S_min = rede.adversaria(sorteados[: nf.N_INICIOS], rng)
+        bloco["adversaria"] = {
+            "menor_fluxo": f_min,
+            "portas_do_pedaco": g_min,
+            "n_nos": len(S_min),
+            "menor_fluxo_nos_sorteios": sorteados[0][0],
+            "n_pedacos_com_o_menor_fluxo": sum(f == sorteados[0][0] for f, _ in sorteados),
+            "n_inicios": nf.N_INICIOS,
+            "n_iteracoes": nf.N_ITERS,
+        }
         res["pedacos"][key] = bloco
-        print(key, {k: (v["fluxo"] if k != "adversaria" else v) for k, v in bloco.items()}, flush=True)
+        print(
+            key, {k: (v["fluxo"] if k != "adversaria" else v) for k, v in bloco.items()}, flush=True
+        )
     print("Referencia:", res["referencia"])
     with open(os.path.join(nf.OUT, f"nulo_fluxo_{ref}{sufixo}.json"), "w", encoding="utf-8") as fh:
         json.dump(res, fh, indent=2, ensure_ascii=False)

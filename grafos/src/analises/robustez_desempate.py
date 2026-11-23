@@ -15,16 +15,17 @@ Uso:  python -m analises.robustez_desempate [N_SORTEIOS]      (padrao: 200)
 """
 
 from __future__ import annotations
+
 import json
 import os
 import random
 import sys
 from collections import Counter, deque
 
-from nucleo import connectivity as cc
 from analises import ruas_vs_intersecoes as ri
+from nucleo import connectivity as cc
 from nucleo.neighborhoods import NEIGHBORHOODS
-from nucleo.network import load_network, gateway_nodes
+from nucleo.network import gateway_nodes, load_network
 
 SEMENTE = 20261012
 FRAC = 0.2
@@ -54,8 +55,9 @@ def _quatro(uset, edges_in, G, src, gw, nos, nos_div):
     out = {}
     for nome, dirigido in (("nao_dirigido", False), ("dirigido", True)):
         f_r, _ = ri._fluxo(nos, ri._rede_ruas(uset, edges_in, G, dirigido), src, gw, False)
-        f_i, _ = ri._fluxo(nos_div, ri._rede_intersecoes(uset, edges_in, G, src, gw, dirigido),
-                           src, gw, True)
+        f_i, _ = ri._fluxo(
+            nos_div, ri._rede_intersecoes(uset, edges_in, G, src, gw, dirigido), src, gw, True
+        )
         out[f"{nome}_ruas"] = f_r
         out[f"{nome}_intersecoes"] = f_i
     return out
@@ -105,7 +107,9 @@ def analisa(key: str, n_sorteios: int) -> dict:
 
     return {
         "bairro": cfg.display_name,
-        "k": k, "n_componente": len(uset), "portas": len(gw),
+        "k": k,
+        "n_componente": len(uset),
+        "portas": len(gw),
         "dist_corte": d_corte,
         "empatados_na_dist_corte": len(empatados),
         "acima_da_dist_corte": acima,
@@ -124,9 +128,11 @@ def main():
     for key in ("urca", "copacabana", "botafogo"):
         r = analisa(key, n)
         saida[key] = r
-        print(f"\n{r['bairro']}: k={r['k']} de n={r['n_componente']}; distancia de corte {r['dist_corte']}; "
-              f"{r['vagas_no_empate']} vagas para {r['empatados_na_dist_corte']} empatados; "
-              f"{r['nucleos_distintos']} nucleos distintos em {n} sorteios")
+        print(
+            f"\n{r['bairro']}: k={r['k']} de n={r['n_componente']}; distancia de corte {r['dist_corte']}; "
+            f"{r['vagas_no_empate']} vagas para {r['empatados_na_dist_corte']} empatados; "
+            f"{r['nucleos_distintos']} nucleos distintos em {n} sorteios"
+        )
         for nome, (lo, hi) in r["min_max"].items():
             print(f"  {nome:<26} artigo={r['valor_artigo'][nome]:>3}  sorteios: min={lo} max={hi}")
     os.makedirs(ri.OUT, exist_ok=True)

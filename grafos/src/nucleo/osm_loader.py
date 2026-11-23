@@ -19,22 +19,25 @@ Fonte: © OpenStreetMap contributors (ODbL).
 """
 
 from __future__ import annotations
+
 import hashlib
 import json
 import math
 import os
-import urllib.request
 import urllib.parse
+import urllib.request
 
-from nucleo.graph import Graph
 from caminhos import DATA as DATA_DIR
+from nucleo.graph import Graph
 
 os.makedirs(DATA_DIR, exist_ok=True)
 
 # tipos de via "dirigíveis" (carro)
-DRIVE = ("motorway|trunk|primary|secondary|tertiary|unclassified|residential|"
-         "living_street|road|motorway_link|trunk_link|primary_link|"
-         "secondary_link|tertiary_link")
+DRIVE = (
+    "motorway|trunk|primary|secondary|tertiary|unclassified|residential|"
+    "living_street|road|motorway_link|trunk_link|primary_link|"
+    "secondary_link|tertiary_link"
+)
 
 # velocidade padrao (km/h) por classe de via, quando o OSM nao traz maxspeed.
 # Segue o art. 61, par. 1, I, do Codigo de Transito Brasileiro (vias urbanas sem
@@ -46,15 +49,25 @@ DRIVE = ("motorway|trunk|primary|secondary|tertiary|unclassified|residential|"
 # implicitos em outros paises) e service (20) nao tem valor no CTB.
 # velocidade_ctb.py compara com variantes (trunk a 80; secondary a 40).
 DEFAULT_SPEED = {
-    "motorway": 80, "trunk": 60, "primary": 60, "secondary": 60,
-    "tertiary": 40, "unclassified": 30, "residential": 30,
-    "living_street": 20, "road": 30,
-    "motorway_link": 80, "trunk_link": 60, "primary_link": 60,
-    "secondary_link": 60, "tertiary_link": 40,
+    "motorway": 80,
+    "trunk": 60,
+    "primary": 60,
+    "secondary": 60,
+    "tertiary": 40,
+    "unclassified": 30,
+    "residential": 30,
+    "living_street": 20,
+    "road": 30,
+    "motorway_link": 80,
+    "trunk_link": 60,
+    "primary_link": 60,
+    "secondary_link": 60,
+    "tertiary_link": 40,
     "service": 20,
 }
 
-# Variante de sensibilidade (M3): variavel de ambiente GRAFOS_SERVICE.
+
+# Variante de sensibilidade: variavel de ambiente GRAFOS_SERVICE.
 #   (vazia)    : so' as classes de DRIVE (o que o artigo usa);
 #   "todas"    : acrescenta highway=service;
 #   "publicas" : acrescenta highway=service sem access=private|no.
@@ -81,17 +94,19 @@ def _overpass(bbox: str) -> dict:
     if modo == "todas":
         sel = f'way[highway~"^({DRIVE}|service)$"]({s},{w},{n},{e})->.w;'
     elif modo == "publicas":
-        sel = (f'(way[highway~"^({DRIVE})$"]({s},{w},{n},{e});'
-               f'way[highway="service"][access!~"^(private|no)$"]({s},{w},{n},{e});)->.w;')
+        sel = (
+            f'(way[highway~"^({DRIVE})$"]({s},{w},{n},{e});'
+            f'way[highway="service"][access!~"^(private|no)$"]({s},{w},{n},{e});)->.w;'
+        )
     else:
         sel = f'way[highway~"^({DRIVE})$"]({s},{w},{n},{e})->.w;'
-    q = (f"[out:json][timeout:120];" + sel + f"(.w; .w >;); out body;")
+    q = "[out:json][timeout:120];" + sel + "(.w; .w >;); out body;"
     data = urllib.parse.urlencode({"data": q}).encode()
     last_err = None
     for host in OVERPASS_MIRRORS:
         req = urllib.request.Request(
-            host, data=data,
-            headers={"User-Agent": "grafos-academic/1.0 (trabalho academico)"})
+            host, data=data, headers={"User-Agent": "grafos-academic/1.0 (trabalho academico)"}
+        )
         try:
             with urllib.request.urlopen(req, timeout=180) as r:
                 return json.loads(r.read())
@@ -178,8 +193,8 @@ def _speed(tags: dict) -> float:
 # ---------------------------------------------------------------------------
 def load_neighborhood(name: str, bbox: str, use_cache: bool = True) -> dict:
     raw = fetch_osm(name, bbox, use_cache)
-    nodes_ll = {}      # id -> (lat, lon)
-    ways = []          # (lista de node ids, tags)
+    nodes_ll = {}  # id -> (lat, lon)
+    ways = []  # (lista de node ids, tags)
     for el in raw["elements"]:
         if el["type"] == "node":
             nodes_ll[el["id"]] = (el["lat"], el["lon"])
@@ -188,8 +203,8 @@ def load_neighborhood(name: str, bbox: str, use_cache: bool = True) -> dict:
 
     # --- arcos dirigidos completos + segmentos não-dirigidos ----------------
     arcs: set[tuple[int, int]] = set()
-    segments = []      # (a, b, length, speed)
-    undir_adj: dict[int, list[tuple[int, int]]] = {}   # node -> [(segid, other)]
+    segments = []  # (a, b, length, speed)
+    undir_adj: dict[int, list[tuple[int, int]]] = {}  # node -> [(segid, other)]
 
     def add_seg(a, b, length, speed):
         sid = len(segments)
@@ -210,7 +225,8 @@ def load_neighborhood(name: str, bbox: str, use_cache: bool = True) -> dict:
                 continue
             add_seg(a, b, length, sp)
             if d == 0:
-                arcs.add((a, b)); arcs.add((b, a))
+                arcs.add((a, b))
+                arcs.add((b, a))
             elif d == 1:
                 arcs.add((a, b))
             else:
@@ -219,19 +235,19 @@ def load_neighborhood(name: str, bbox: str, use_cache: bool = True) -> dict:
     # --- interseções (endpoints): grau != 2 -------------------------------
     def degree(u):
         return len(undir_adj.get(u, []))
+
     endpoints = {u for u in undir_adj if degree(u) != 2}
     # caso degenerado: nenhum endpoint (anel isolado) -> escolhe um nó
     if not endpoints and undir_adj:
         endpoints = {next(iter(undir_adj))}
 
     # --- contrai cadeias de grau 2 entre interseções ----------------------
-    used = set()       # segids consumidos
-    chains = []        # cada cadeia: lista de node ids c0..ck
+    used = set()  # segids consumidos
+    chains = []  # cada cadeia: lista de node ids c0..ck
 
     def walk(start, first_seg, first_other):
         seq = [start]
         seg, other = first_seg, first_other
-        prev = start
         while True:
             used.add(seg)
             seq.append(other)
@@ -244,7 +260,7 @@ def load_neighborhood(name: str, bbox: str, use_cache: bool = True) -> dict:
             seg, nxtother = nxt[0]
             if seg in used:
                 break
-            prev, other = other, nxtother
+            other = nxtother
         return seq
 
     for u in endpoints:
@@ -266,24 +282,24 @@ def load_neighborhood(name: str, bbox: str, use_cache: bool = True) -> dict:
         return ((lo - lon0) * kx, (la - lat0) * ky)
 
     # --- monta o grafo dirigido simplificado ------------------------------
-    n_lacos = 0        # cadeias que voltam ao proprio no (descartadas)
-    n_mistas = 0       # cadeias sem sentido unico consistente (descartadas)
+    n_lacos = 0  # cadeias que voltam ao proprio no (descartadas)
+    n_mistas = 0  # cadeias sem sentido unico consistente (descartadas)
     G = Graph()
     core_nodes = set()
     for ch in chains:
-        core_nodes.add(ch[0]); core_nodes.add(ch[-1])
+        core_nodes.add(ch[0])
+        core_nodes.add(ch[-1])
     for nid in core_nodes:
         x, y = xy(nid)
         G.add_node(nid, x, y)
 
-    undirected_edges = []   # (u, v, length, geometry) permitindo paralelas
+    undirected_edges = []  # (u, v, length, geometry) permitindo paralelas
     for ch in chains:
         u, v = ch[0], ch[-1]
         if u == v:
             n_lacos += 1
             continue  # laço (rotatória fechada) — ignora para a análise
-        length = sum(_haversine(*nodes_ll[a], *nodes_ll[b])
-                     for a, b in zip(ch, ch[1:]))
+        length = sum(_haversine(*nodes_ll[a], *nodes_ll[b]) for a, b in zip(ch, ch[1:]))
         # velocidade média ponderada pelo comprimento
         tot_t = 0.0
         for a, b in zip(ch, ch[1:]):
@@ -305,10 +321,11 @@ def load_neighborhood(name: str, bbox: str, use_cache: bool = True) -> dict:
     return {
         "graph": G,
         "name": name,
-        "undirected_edges": undirected_edges,   # interseções, com geometria
+        "undirected_edges": undirected_edges,  # interseções, com geometria
         "n_raw_nodes": len(nodes_ll),
         "n_ways": len(ways),
-        "lat0": lat0, "lon0": lon0,
+        "lat0": lat0,
+        "lon0": lon0,
         # lat/lon (nao projetado) de cada interseccao pos-simplificacao;
         # usado por polygons.py para checagens administrativas (ponto-em-
         # poligono), sem afetar as coordenadas projetadas (x, y) usadas em
