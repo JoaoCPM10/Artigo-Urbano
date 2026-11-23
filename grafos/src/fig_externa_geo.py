@@ -6,6 +6,7 @@ Uso:  py fig_externa_geo.py
 """
 
 from __future__ import annotations
+from rotulos import t as _t, num as _num
 import os
 
 import matplotlib
@@ -32,13 +33,13 @@ def main():
         mc.seta_norte(ax)
         print(key, "ok", flush=True)
     h = mc.handles_contexto()[:2] + [
-        plt.Line2D([], [], marker="o", ls="", color="#2b6cb0", label="source region (core)"),
+        plt.Line2D([], [], marker="o", ls="", color="#2b6cb0", label=_t("source region (core)", "região de origem (núcleo)")),
         plt.Line2D([], [], marker="^", ls="", color="#2f855a", markeredgecolor="#1c4532", markersize=8,
-                   label="external destinations"),
-        plt.Line2D([], [], color=fe.COR["origem"], lw=3, label="minimum cut nearest the core"),
-        plt.Line2D([], [], color=fe.COR["destino"], lw=3, label="minimum cut nearest the destinations"),
-        plt.Line2D([], [], color=fe.COR["externa"], lw=3, label="external streets whose closure lowers the flow"),
-        plt.Line2D([], [], color="#2d3748", lw=1.3, ls="--", label="official boundary"),
+                   label=_t("external destinations", "destinos externos")),
+        plt.Line2D([], [], color=fe.COR["origem"], lw=3, label=_t("minimum cut nearest the core", "corte mínimo mais próximo do núcleo")),
+        plt.Line2D([], [], color=fe.COR["destino"], lw=3, label=_t("minimum cut nearest the destinations", "corte mínimo mais próximo dos destinos")),
+        plt.Line2D([], [], color=fe.COR["externa"], lw=3, label=_t("external streets whose closure lowers the flow", "ruas externas cujo fechamento reduz o fluxo")),
+        plt.Line2D([], [], color="#2d3748", lw=1.3, ls="--", label=_t("official boundary", "fronteira oficial")),
     ]
     fig.legend(handles=h, loc="lower center", ncol=4, fontsize=10, frameon=False)
     fig.tight_layout(rect=(0, 0.04, 1, 1))

@@ -344,10 +344,68 @@ entre o morro e o mar.}
 \label{fig:networks}
 \end{figure}
 
+\subsection{Fluxo de acesso por portas}
+\label{sec:access-flow}
+
+Para medir o acesso ao restante da cidade, ao invés de separar entre
+duas interseções escolhidas, distinguimos o \emph{interior} de um bairro
+de suas \emph{portas de acesso}. A rede é extraída com uma margem de
+400\,m além do polígono oficial, de modo que a primeira interseção além
+da fronteira esteja presente em toda rua que a cruza. Depois da
+identificação das portas, a rede é recortada pelo polígono e a margem não
+entra na análise. Um vértice é uma \emph{porta de acesso} se ao menos uma
+de suas ruas incidentes cruza a fronteira, e todo outro vértice é
+\emph{interior}. Para definir esses dois conjuntos, usamos o grafo não dirigido, que ignora o
+sentido das vias, e tomamos sua maior componente conexa. Não usamos o núcleo
+fortemente conexo, porque ele exige caminhos nos dois sentidos e descartaria
+uma porta que, dentro do grafo recortado, só recebe arcos, embora ela seja uma
+saída real.
+
+A região de origem, o núcleo do bairro, reúne as interseções interiores mais
+afastadas das portas. Para cada interseção interior, medimos a distância, em
+número de arestas, até a porta de acesso mais próxima dela, e o núcleo fica
+com as $k=\mathrm{round}(f\,n)$ interseções de maior distância, com $n$ sendo
+o número de vértices da componente definida acima, portas incluídas, e $f$ a
+fração do bairro que o núcleo representa, igual a 0,2. As distâncias saem de uma busca em largura que parte de todas as
+portas ao mesmo tempo, e os empates na distância de corte são resolvidos pela
+ordem em que o programa armazena os vértices (Seção~\ref{sec:controls}). O valor $f=0{,}2$ fica entre dois extremos, um
+núcleo tão pequeno que o fluxo dependeria do ponto escolhido e um tão grande
+que ele se aproximaria das portas, e a Seção~\ref{sec:controls} testa a
+sensibilidade do resultado a $f$. Uma superfonte alimenta o núcleo e as portas
+alimentam um supersumidouro, ambos com capacidade infinita, o que reduz o
+problema entre dois conjuntos ao de um único par de pontos, e o
+Edmonds--Karp é executado entre eles. O valor resultante, o \emph{fluxo
+de acesso}, é o número de rotas disjuntas por ruas entre o núcleo e as
+saídas para o restante da cidade. Ele mede apenas a saída do bairro, do
+núcleo para fora.
+
+O fluxo de acesso tem quatro versões, com a mesma origem e as mesmas portas,
+que resultam de duas escolhas. A primeira é o que conta como falha, uma rua ou
+uma interseção. Por \emph{ruas}, cada rua tem capacidade unitária, e o fluxo é
+o número de rotas que não repartem nenhuma rua. Por \emph{interseções},
+aplicamos o teorema de Menger~\cite{menger1927}, dividindo cada vértice em
+$v_{\text{ent}}\to v_{\text{sai}}$, e só as interseções interiores recebem
+capacidade~1. O núcleo e as portas não podem falhar, e as ruas têm capacidade
+infinita, pois sem essa distinção o valor ficaria limitado trivialmente pelo
+número de portas. A segunda escolha é respeitar ou não o sentido das vias. Sem
+o sentido, toda rua vale nos dois sentidos. Com o sentido, mantemos só os arcos
+que existem, e uma saída de mão única só conta no sentido que permite deixar o
+bairro.
+
+Os valores se ordenam. O fluxo dirigido é menor ou igual ao não dirigido,
+porque o sentido só retira arcos, e o fluxo por interseções é menor ou igual ao
+por ruas, porque rotas sem interseção interior em comum também não repartem
+rua. Além disso, cada contagem corresponde a um tipo de evento. O fluxo por
+ruas serve ao fechamento de ruas, como numa interdição ou num deslizamento, e o
+fluxo por interseções serve à falha de interseções, como num 
+bloqueio de um cruzamento. Em ambos os casos, o valor é o menor número de
+falhas que isolam o núcleo de todas as portas. As quatro contagens conferem com
+o \texttt{networkx}.
+
 \subsection{Indicadores estruturais e algoritmos}
 \label{sec:algos}
 
-Calculamos quatro indicadores estruturais, todos em proporção
+Além do fluxo de acesso, calculamos quatro indicadores estruturais, todos em proporção
 (Tabela~\ref{tab:estrutural}). O primeiro, as pontes fracas, ignora o sentido
 das vias. Uma ponte fraca é um trecho cuja remoção desconecta o grafo não
 dirigido, de modo que um trecho com outro paralelo nunca é ponte fraca, e o
@@ -410,64 +468,6 @@ das CFC após cada remoção.
 O mesmo vale para os fluxos e a componente gigante da
 Seção~\ref{sec:external-conn} e para a intermediação de aresta e a
 alcançabilidade da Seção~\ref{sec:sim-method}.
-
-\subsection{Fluxo de acesso por portas}
-\label{sec:access-flow}
-
-Para medir o acesso ao restante da cidade, ao invés de separar entre
-duas interseções escolhidas, distinguimos o \emph{interior} de um bairro
-de suas \emph{portas de acesso}. A rede é extraída com uma margem de
-400\,m além do polígono oficial, de modo que a primeira interseção além
-da fronteira esteja presente em toda rua que a cruza. Depois da
-identificação das portas, a rede é recortada pelo polígono e a margem não
-entra na análise. Um vértice é uma \emph{porta de acesso} se ao menos uma
-de suas ruas incidentes cruza a fronteira, e todo outro vértice é
-\emph{interior}. Para definir esses dois conjuntos, usamos o grafo não dirigido, que ignora o
-sentido das vias, e tomamos sua maior componente conexa. Não usamos o núcleo
-fortemente conexo, porque ele exige caminhos nos dois sentidos e descartaria
-uma porta que, dentro do grafo recortado, só recebe arcos, embora ela seja uma
-saída real.
-
-A região de origem, o núcleo do bairro, reúne as interseções interiores mais
-afastadas das portas. Para cada interseção interior, medimos a distância, em
-número de arestas, até a porta de acesso mais próxima dela, e o núcleo fica
-com as $k=\mathrm{round}(f\,n)$ interseções de maior distância, com $n$ sendo
-o número de vértices da componente definida acima, portas incluídas, e $f$ a
-fração do bairro que o núcleo representa, igual a 0,2. As distâncias saem de uma busca em largura que parte de todas as
-portas ao mesmo tempo, e os empates na distância de corte são resolvidos pela
-ordem em que o programa armazena os vértices (Seção~\ref{sec:controls}). O valor $f=0{,}2$ fica entre dois extremos, um
-núcleo tão pequeno que o fluxo dependeria do ponto escolhido e um tão grande
-que ele se aproximaria das portas, e a Seção~\ref{sec:controls} testa a
-sensibilidade do resultado a $f$. Uma superfonte alimenta o núcleo e as portas
-alimentam um supersumidouro, ambos com capacidade infinita, o que reduz o
-problema entre dois conjuntos ao de um único par de pontos, e o
-Edmonds--Karp é executado entre eles. O valor resultante, o \emph{fluxo
-de acesso}, é o número de rotas disjuntas por ruas entre o núcleo e as
-saídas para o restante da cidade. Ele mede apenas a saída do bairro, do
-núcleo para fora.
-
-O fluxo de acesso tem quatro versões, com a mesma origem e as mesmas portas,
-que resultam de duas escolhas. A primeira é o que conta como falha, uma rua ou
-uma interseção. Por \emph{ruas}, cada rua tem capacidade unitária, e o fluxo é
-o número de rotas que não repartem nenhuma rua. Por \emph{interseções},
-aplicamos o teorema de Menger~\cite{menger1927}, dividindo cada vértice em
-$v_{\text{ent}}\to v_{\text{sai}}$, e só as interseções interiores recebem
-capacidade~1. O núcleo e as portas não podem falhar, e as ruas têm capacidade
-infinita, pois sem essa distinção o valor ficaria limitado trivialmente pelo
-número de portas. A segunda escolha é respeitar ou não o sentido das vias. Sem
-o sentido, toda rua vale nos dois sentidos. Com o sentido, mantemos só os arcos
-que existem, e uma saída de mão única só conta no sentido que permite deixar o
-bairro.
-
-Os valores se ordenam. O fluxo dirigido é menor ou igual ao não dirigido,
-porque o sentido só retira arcos, e o fluxo por interseções é menor ou igual ao
-por ruas, porque rotas sem interseção interior em comum também não repartem
-rua. Além disso, cada contagem corresponde a um tipo de evento. O fluxo por
-ruas serve ao fechamento de ruas, como numa interdição ou num deslizamento, e o
-fluxo por interseções serve à falha de interseções, como num 
-bloqueio de um cruzamento. Em ambos os casos, o valor é o menor número de
-falhas que isolam o núcleo de todas as portas. As quatro contagens conferem com
-o \texttt{networkx}.
 
 \subsection{Controles e análises de sensibilidade}
 \label{sec:controls}
@@ -665,92 +665,6 @@ rota.
 \section{Resultados}
 \label{sec:results}
 
-\subsection{Indicadores estruturais e corte entre dois nós}
-\label{sec:res-struct}
-
-A Tabela~\ref{tab:estrutural} reúne os indicadores convencionais dos nove
-bairros. Valores maiores nas quatro primeiras colunas indicam mais
-fragilidade, e um indicador que identificasse os bairros de rota única
-colocaria a Urca e o Leme no extremo frágil em todas elas, o que não ocorre.
-Nas pontes fracas, a Urca tem o menor valor dos nove (10,6\%) e o Leme o maior
-(46,9\%). Nas pontes fortes, a Urca fica no meio (61,5\%, entre 34,8\% no Joá e
-83,3\% no Leme). Nas articulações fortes, a Praça da Bandeira (74,6\%) supera a
-Urca (73,8\%), e na fração fora do núcleo forte cinco bairros têm valor maior
-que o da Urca (7,1\%). Por isso os indicadores não ordenam os bairros de forma
-consistente.
-
-A intermediação máxima é maior na Urca e no Leme (54,2\% e 55,0\%) que em
-Copacabana e Botafogo (27,8\% e 20,9\%), mas o Cosme Velho, o Joá e o Alto da
-Boa Vista chegam a 60,0\%, 59,5\% e 58,0\%, com fluxos de 6, 3 e 4. Além disso, parte dos pedaços de mesmo tamanho
-iguala ou supera a intermediação da Urca (Seção~\ref{sec:res-controls}).
-
-\begin{table}[t]
-\centering
-\caption{Indicadores estruturais dirigidos e intermediação máxima, com as
-redes recortadas pelo polígono oficial. Valores maiores nas quatro primeiras
-colunas indicam mais fragilidade. Pontes fracas em porcentagem dos trechos,
-pontes fortes em porcentagem das ruas do núcleo forte, articulações fortes em
-porcentagem do núcleo forte, Fora em porcentagem de $V$ e intermediação máxima
-em porcentagem dos pares.}
-\label{tab:estrutural}
-\small
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{lrrrrr}
-\toprule
-Bairro & Pontes fracas & Pontes fortes & Artic. fortes & Fora & Interm. máx. \\
-\midrule
-Urca              & 10,6 & 61,5 & 73,8 &  7,1 & 54,2 \\
-Leme              & 46,9 & 83,3 & 70,0 & 25,9 & 55,0 \\
-Alto da Boa Vista & 43,8 & 60,0 & 54,4 & 10,1 & 58,0 \\
-Cosme Velho       & 32,3 & 44,1 & 43,8 &  4,0 & 60,0 \\
-Joá               & 29,2 & 34,8 & 57,9 &  5,0 & 59,5 \\
-São Conrado       & 14,3 & 50,2 & 57,8 &  7,2 & 39,7 \\
-Copacabana        & 15,8 & 45,3 & 54,1 &  4,1 & 27,8 \\
-Botafogo          & 20,2 & 68,4 & 63,5 &  9,7 & 20,9 \\
-Praça da Bandeira & 19,5 & 79,2 & 74,6 & 42,2 & 52,8 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-O corte mínimo entre dois nós, calculado em todos os pares de interseções do
-maior componente não dirigido de cada bairro (Tabela~\ref{tab:corte};
-Seção~\ref{sec:controls}), varia de 1 a 4 ruas. Nenhum dos valores separa a
-Urca dos demais. A proporção de pares com corte 1 vai de 35,1\% em São Conrado
-a 87,1\% no Joá, com a Urca (68,4\%) no meio, e a média do corte vai de 1,14 no
-Joá a 1,96 em São Conrado, com a Urca em 1,49 e o Leme em 1,27. Entre os cortes
-iguais a 1, a parcela devida a uma interseção de grau 1 é a menor na Urca
-(20\%) e vai de 34\% no Joá a 81\% em Copacabana. Com o sentido das vias, o
-corte é quase sempre 1 (de 76,2\% no Cosme Velho a 98,4\% no Leme), e a Urca
-(95,6\%) quase não se distingue do Leme, da Praça da Bandeira e de Botafogo.
-
-\begin{table}[t]
-\centering
-\caption{Corte mínimo entre dois nós em todos os pares de interseções. Sem o
-sentido das vias, os pares são do maior componente não dirigido, e Grau 1
-indica a parcela dos cortes iguais a 1 devida a uma interseção de grau 1. Com o
-sentido, os pares são ordenados e pertencem ao núcleo fortemente conexo.}
-\label{tab:corte}
-\small
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{lrrrrrr}
-\toprule
- & & \multicolumn{3}{c}{Sem o sentido} & \multicolumn{2}{c}{Com o sentido} \\
-\cmidrule(lr){3-5}\cmidrule(lr){6-7}
-Bairro & Pares & Corte 1 (\%) & Média & Grau 1 (\%) & Corte 1 (\%) & Média \\
-\midrule
-Urca              &  2.415 & 68,4 & 1,49 & 20,3 & 95,6 & 1,04 \\
-Leme              &    351 & 81,2 & 1,27 & 69,5 & 98,4 & 1,02 \\
-Alto da Boa Vista & 16.290 & 82,3 & 1,18 & 64,6 & 91,3 & 1,09 \\
-Cosme Velho       &  1.225 & 70,9 & 1,34 & 64,4 & 76,2 & 1,25 \\
-Joá               &    171 & 87,1 & 1,14 & 34,2 & 88,0 & 1,13 \\
-São Conrado       & 13.530 & 35,1 & 1,96 & 77,0 & 85,6 & 1,14 \\
-Copacabana        & 58.996 & 40,7 & 1,94 & 80,7 & 81,5 & 1,19 \\
-Botafogo          & 93.528 & 51,7 & 1,68 & 76,4 & 93,1 & 1,07 \\
-Praça da Bandeira &  5.151 & 46,1 & 1,70 & 66,6 & 97,6 & 1,02 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
 \subsection{Fluxo de acesso por portas}
 \label{sec:res-access}
 
@@ -833,6 +747,93 @@ cortes de uma rua passam de três para dois, porque a rua de 165\,m deixa de
 isolar o núcleo sozinha, e no Leme o corte continua sendo de uma rua, mas passa
 de 296 para 81\,m.
 
+\subsection{Indicadores estruturais e corte entre dois nós}
+\label{sec:res-struct}
+
+A Tabela~\ref{tab:estrutural} reúne os indicadores convencionais dos nove
+bairros. Valores maiores nas quatro primeiras colunas indicam mais
+fragilidade, e um indicador que identificasse os bairros de rota única
+(Seção~\ref{sec:res-access}) colocaria a Urca e o Leme no extremo frágil em todas
+elas, o que não ocorre.
+Nas pontes fracas, a Urca tem o menor valor dos nove (10,6\%) e o Leme o maior
+(46,9\%). Nas pontes fortes, a Urca fica no meio (61,5\%, entre 34,8\% no Joá e
+83,3\% no Leme). Nas articulações fortes, a Praça da Bandeira (74,6\%) supera a
+Urca (73,8\%), e na fração fora do núcleo forte cinco bairros têm valor maior
+que o da Urca (7,1\%). Por isso os indicadores não ordenam os bairros de forma
+consistente.
+
+A intermediação máxima é maior na Urca e no Leme (54,2\% e 55,0\%) que em
+Copacabana e Botafogo (27,8\% e 20,9\%), mas o Cosme Velho, o Joá e o Alto da
+Boa Vista chegam a 60,0\%, 59,5\% e 58,0\%, com fluxos de 6, 3 e 4. Além disso, parte dos pedaços de mesmo tamanho
+iguala ou supera a intermediação da Urca (Seção~\ref{sec:res-controls}).
+
+\begin{table}[t]
+\centering
+\caption{Indicadores estruturais dirigidos e intermediação máxima, com as
+redes recortadas pelo polígono oficial. Valores maiores nas quatro primeiras
+colunas indicam mais fragilidade. Pontes fracas em porcentagem dos trechos,
+pontes fortes em porcentagem das ruas do núcleo forte, articulações fortes em
+porcentagem do núcleo forte, Fora em porcentagem de $V$ e intermediação máxima
+em porcentagem dos pares.}
+\label{tab:estrutural}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrr}
+\toprule
+Bairro & Pontes fracas & Pontes fortes & Artic. fortes & Fora & Interm. máx. \\
+\midrule
+Urca              & 10,6 & 61,5 & 73,8 &  7,1 & 54,2 \\
+Leme              & 46,9 & 83,3 & 70,0 & 25,9 & 55,0 \\
+Alto da Boa Vista & 43,8 & 60,0 & 54,4 & 10,1 & 58,0 \\
+Cosme Velho       & 32,3 & 44,1 & 43,8 &  4,0 & 60,0 \\
+Joá               & 29,2 & 34,8 & 57,9 &  5,0 & 59,5 \\
+São Conrado       & 14,3 & 50,2 & 57,8 &  7,2 & 39,7 \\
+Copacabana        & 15,8 & 45,3 & 54,1 &  4,1 & 27,8 \\
+Botafogo          & 20,2 & 68,4 & 63,5 &  9,7 & 20,9 \\
+Praça da Bandeira & 19,5 & 79,2 & 74,6 & 42,2 & 52,8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+O corte mínimo entre dois nós, calculado em todos os pares de interseções do
+maior componente não dirigido de cada bairro (Tabela~\ref{tab:corte};
+Seção~\ref{sec:controls}), varia de 1 a 4 ruas. Nenhum dos valores separa a
+Urca dos demais. A proporção de pares com corte 1 vai de 35,1\% em São Conrado
+a 87,1\% no Joá, com a Urca (68,4\%) no meio, e a média do corte vai de 1,14 no
+Joá a 1,96 em São Conrado, com a Urca em 1,49 e o Leme em 1,27. Entre os cortes
+iguais a 1, a parcela devida a uma interseção de grau 1 é a menor na Urca
+(20\%) e vai de 34\% no Joá a 81\% em Copacabana. Com o sentido das vias, o
+corte é quase sempre 1 (de 76,2\% no Cosme Velho a 98,4\% no Leme), e a Urca
+(95,6\%) quase não se distingue do Leme, da Praça da Bandeira e de Botafogo.
+
+\begin{table}[t]
+\centering
+\caption{Corte mínimo entre dois nós em todos os pares de interseções. Sem o
+sentido das vias, os pares são do maior componente não dirigido, e Grau 1
+indica a parcela dos cortes iguais a 1 devida a uma interseção de grau 1. Com o
+sentido, os pares são ordenados e pertencem ao núcleo fortemente conexo.}
+\label{tab:corte}
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrrrrrr}
+\toprule
+ & & \multicolumn{3}{c}{Sem o sentido} & \multicolumn{2}{c}{Com o sentido} \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-7}
+Bairro & Pares & Corte 1 (\%) & Média & Grau 1 (\%) & Corte 1 (\%) & Média \\
+\midrule
+Urca              &  2.415 & 68,4 & 1,49 & 20,3 & 95,6 & 1,04 \\
+Leme              &    351 & 81,2 & 1,27 & 69,5 & 98,4 & 1,02 \\
+Alto da Boa Vista & 16.290 & 82,3 & 1,18 & 64,6 & 91,3 & 1,09 \\
+Cosme Velho       &  1.225 & 70,9 & 1,34 & 64,4 & 76,2 & 1,25 \\
+Joá               &    171 & 87,1 & 1,14 & 34,2 & 88,0 & 1,13 \\
+São Conrado       & 13.530 & 35,1 & 1,96 & 77,0 & 85,6 & 1,14 \\
+Copacabana        & 58.996 & 40,7 & 1,94 & 80,7 & 81,5 & 1,19 \\
+Botafogo          & 93.528 & 51,7 & 1,68 & 76,4 & 93,1 & 1,07 \\
+Praça da Bandeira &  5.151 & 46,1 & 1,70 & 66,6 & 97,6 & 1,02 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \subsection{Localização do corte de acesso}
 \label{sec:res-cut}
 
@@ -875,8 +876,10 @@ Joá, de modo que os valores desses bairros são menos confiáveis.
 \caption{Onde está o corte de acesso na Urca e no Leme ($f=0{,}2$), sobre o
 relevo sombreado. A água aparece em azul-claro e a encosta (declividade de
 30\% ou mais, SRTM de 30\,m) em marrom. Pontos azuis marcam a região de
-origem, triângulos verdes as portas e vermelho as ruas de corte. O tracejado é
-a fronteira oficial.}
+origem, triângulos verdes as portas e vermelho as ruas de corte, com o
+comprimento de cada uma. Na Urca, duas das três ruas de corte se encontram no
+mesmo cruzamento, e os círculos brancos marcam as pontas de cada rua. O
+tracejado é a fronteira oficial.}
 \label{fig:cut}
 \end{figure}
 

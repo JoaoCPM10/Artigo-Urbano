@@ -10,6 +10,7 @@ Uso:  py fig_conectividade_externa.py
 """
 
 from __future__ import annotations
+from rotulos import t as _t, num as _num
 import math
 import os
 import shutil
@@ -66,8 +67,10 @@ def painel(ax, key, res, obj):
     ax.set_xticks([]); ax.set_yticks([])
     it = res["raios"][str(RAIO_M)]
     f0 = res["raios"]["0"]["fluxo"]["qualquer"]["ruas_dir"]
-    ax.set_title(f"{cfg.display_name}: directed flow {f0} at the boundary,\n"
-                 f"{it['fluxo']['scc']['ruas_dir']} at the 1 km outer edge", fontsize=11)
+    ax.set_title(f"{cfg.display_name}: " + _t(f"directed flow {f0} at the boundary,\n"
+                                       f"{it['fluxo']['scc']['ruas_dir']} at the 1 km outer edge",
+                                       f"fluxo dirigido {f0} na fronteira,\n"
+                                       f"{it['fluxo']['scc']['ruas_dir']} na borda externa a 1 km"), fontsize=11)
 
 
 def main():
@@ -76,13 +79,13 @@ def main():
         res, obj = ce.analisa_bairro(key, raios=(0, RAIO_M))
         painel(ax, key, res, obj[RAIO_M])
     handles = [
-        plt.Line2D([], [], marker="o", ls="", color="#2b6cb0", label="source region (core)"),
+        plt.Line2D([], [], marker="o", ls="", color="#2b6cb0", label=_t("source region (core)", "região de origem (núcleo)")),
         plt.Line2D([], [], marker="^", ls="", color="#2f855a", markeredgecolor="#1c4532",
-                   markersize=8, label="external destinations"),
-        plt.Line2D([], [], color=COR["origem"], lw=3, label="minimum cut nearest the core"),
-        plt.Line2D([], [], color=COR["destino"], lw=3, label="minimum cut nearest the destinations"),
-        plt.Line2D([], [], color=COR["externa"], lw=3, label="external streets whose closure lowers the flow"),
-        plt.Line2D([], [], color="#2d3748", lw=1.3, ls="--", label="official boundary"),
+                   markersize=8, label=_t("external destinations", "destinos externos")),
+        plt.Line2D([], [], color=COR["origem"], lw=3, label=_t("minimum cut nearest the core", "corte mínimo mais próximo do núcleo")),
+        plt.Line2D([], [], color=COR["destino"], lw=3, label=_t("minimum cut nearest the destinations", "corte mínimo mais próximo dos destinos")),
+        plt.Line2D([], [], color=COR["externa"], lw=3, label=_t("external streets whose closure lowers the flow", "ruas externas cujo fechamento reduz o fluxo")),
+        plt.Line2D([], [], color="#2d3748", lw=1.3, ls="--", label=_t("official boundary", "fronteira oficial")),
     ]
     fig.legend(handles=handles, loc="lower center", ncol=3, fontsize=10, frameon=False)
     fig.tight_layout(rect=(0, 0.1, 1, 1))

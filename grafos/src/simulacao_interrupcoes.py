@@ -342,13 +342,14 @@ def figura(resultados) -> None:
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    estilo = {"aleatoria": ("#7a7a7a", "-", "o", "random streets"),
-              "intermediacao": ("#2b6cb0", "-", "s", "edge betweenness (top k)"),
-              "pontes_fortes": ("#2f855a", "-", "^", "strong bridges"),
-              "pontes_fracas": ("#b7791f", "-", "v", "bridges (undirected)"),
-              "fluxo_corte": ("#c0392b", "-", "D", "access flow: one minimum cut"),
-              "fluxo_criticas": ("#6b46c1", "-", "P", "access flow: critical streets"),
-              "guloso": ("#111111", "--", "x", "greedy attack (upper bound)")}
+    from rotulos import t as _t
+    estilo = {"aleatoria": ("#7a7a7a", "-", "o", _t("random streets", "sorteio")),
+              "intermediacao": ("#2b6cb0", "-", "s", _t("edge betweenness (top k)", "intermediação de aresta (k maiores)")),
+              "pontes_fortes": ("#2f855a", "-", "^", _t("strong bridges", "pontes fortes")),
+              "pontes_fracas": ("#b7791f", "-", "v", _t("bridges (undirected)", "pontes fracas")),
+              "fluxo_corte": ("#c0392b", "-", "D", _t("access flow: one minimum cut", "corte mínimo do fluxo de acesso")),
+              "fluxo_criticas": ("#6b46c1", "-", "P", _t("access flow: critical streets", "ruas críticas de fluxo")),
+              "guloso": ("#111111", "--", "x", _t("greedy attack (upper bound)", "ataque guloso (limite superior)"))}
     ordem = ["urca", "leme", "alto_da_boa_vista", "cosme_velho", "joa", "sao_conrado",
              "copacabana", "botafogo", "praca_da_bandeira"]
     chaves = [k for k in ordem if k in resultados] + [k for k in resultados if k not in ordem]
@@ -367,15 +368,15 @@ def figura(resultados) -> None:
                 hi = [100 * r["estrategias"][e][str(k)]["nucleo"]["p90"] for k in KS]
                 ax.fill_between(range(len(KS)), lo, hi, color=cor, alpha=0.18, zorder=1)
         ax.set_xticks(range(len(KS))); ax.set_xticklabels([str(k) for k in KS])
-        ax.set_xlabel("streets closed (k)"); ax.set_ylim(-3, 103)
+        ax.set_xlabel(_t("streets closed (k)", "ruas fechadas (k)")); ax.set_ylim(-3, 103)
         fl = r['indicadores']['fluxo_acesso']
         # k = fluxo de acesso: a escala dos k e' logaritmica (indice = log2 k)
         ax.axvline(math.log2(fl), color="#c0392b", ls=":", lw=1.4, zorder=2,
-                   label="k = access flow")
-        ax.set_title(f"{r['bairro']} (access flow {fl})", fontsize=12)
+                   label=_t("k = access flow", "k = fluxo de acesso"))
+        ax.set_title(f"{r['bairro']} " + _t(f"(access flow {fl})", f"(fluxo de acesso {fl})"), fontsize=12)
         ax.grid(alpha=0.25)
     for i in range(0, len(chaves), ncol):
-        axes[i].set_ylabel("core intersections that lose every route\nto the external edge (%)")
+        axes[i].set_ylabel(_t("core intersections that lose every route\nto the external edge (%)", "interseções do núcleo que perdem todas as rotas\naté a borda externa (%)"))
     h, l = axes[0].get_legend_handles_labels()
     fig.legend(h, l, loc="lower center", ncol=4, fontsize=10, frameon=False)
     fig.tight_layout(rect=(0, 0.06, 1, 1))

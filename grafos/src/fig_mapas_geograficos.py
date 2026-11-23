@@ -11,6 +11,7 @@ Uso:  py fig_mapas_geograficos.py [redes|corte|todas]
 """
 
 from __future__ import annotations
+from rotulos import t as _t, num as _num
 import os
 import sys
 
@@ -49,13 +50,13 @@ def fig_redes():
         info = mc.desenha_contexto(ax, key, d)
         desenha_rede(ax, d)
         ax.set_xticks([]); ax.set_yticks([])
-        ax.set_title(f"{cfg.display_name}: {d['graph'].n} intersections", fontsize=12)
+        ax.set_title(f"{cfg.display_name}: {d['graph'].n} " + _t("intersections", "interseções"), fontsize=12)
         mc.barra_escala(ax)
         mc.seta_norte(ax)
         print(key, "ok", round(info["passo"]), "m", flush=True)
     h = mc.handles_contexto()
-    h += [plt.Line2D([], [], color="#26324d", lw=2, label="one-way"),
-          plt.Line2D([], [], color="#e6752f", lw=2.5, label="two-way")]
+    h += [plt.Line2D([], [], color="#26324d", lw=2, label=_t("one-way", "mão única")),
+          plt.Line2D([], [], color="#e6752f", lw=2.5, label=_t("two-way", "mão dupla"))]
     fig.legend(handles=h, loc="lower center", ncol=6, fontsize=10, frameon=False)
     fig.tight_layout(rect=(0, 0.03, 1, 1))
     p = os.path.join(OUT, "fig_networks_geo.png")
@@ -77,19 +78,35 @@ def fig_corte():
             colors="#8a93a5", linewidths=0.9, zorder=2))
         cortes = um_corte if um_corte else [(u, v) for (u, v) in ek_cut]
         ax.add_collection(LineCollection(viz._edge_segments(cortes, lut, G), colors="#c0392b",
-                                         linewidths=3.6, zorder=6))
+                                         linewidths=3.6, zorder=9))
+        # pontas das ruas de corte e comprimento de cada uma: ruas vizinhas (como duas
+        # das tres da Urca) se desenham como uma curva so, e a marca mostra onde uma termina
+        pontas = {n for e in cortes for n in e[:2]}
+        ax.scatter([G.coords[n][0] for n in pontas], [G.coords[n][1] for n in pontas], s=22,
+                   facecolor="white", edgecolor="#c0392b", linewidths=1.2, zorder=10)
+        desloc = [(-50, -26), (28, -28), (28, 28)]
+        for i, e in enumerate(cortes):
+            if len(e) < 3:
+                continue
+            mx = (G.coords[e[0]][0] + G.coords[e[1]][0]) / 2
+            my = (G.coords[e[0]][1] + G.coords[e[1]][1]) / 2
+            ax.annotate(f"{round(e[2])} m", xy=(mx, my), xytext=desloc[i % 3], textcoords="offset points",
+                        fontsize=9, color="#7b1e17", fontweight="bold", zorder=11,
+                        bbox=dict(facecolor="white", alpha=0.85, edgecolor="none", pad=1.2),
+                        arrowprops=dict(arrowstyle="-", color="#7b1e17", lw=0.8))
         ax.scatter([G.coords[u][0] for u in src], [G.coords[u][1] for u in src], s=26, color="#2b6cb0", zorder=5)
         ax.scatter([G.coords[g][0] for g in gw], [G.coords[g][1] for g in gw], s=60, marker="^",
                    color="#2f855a", edgecolors="#1c4532", linewidths=0.6, zorder=7)
         n = len(um_corte) if um_corte else len(ek_cut)
         ax.set_xticks([]); ax.set_yticks([])
-        ax.set_title(f"{cfg.display_name}: access flow {r['fluxo']} ({n} single-street cut{'s' if n != 1 else ''})", fontsize=12)
+        ax.set_title(f"{cfg.display_name}: " + _t(f"access flow {r['fluxo']} ({n} single-street cut{'s' if n != 1 else ''})",
+                                       f"fluxo de acesso {r['fluxo']} ({n} corte{'s' if n != 1 else ''} de uma rua)"), fontsize=12)
         mc.barra_escala(ax)
         mc.seta_norte(ax)
     h = mc.handles_contexto() + [
-        plt.Line2D([], [], marker="o", ls="", color="#2b6cb0", label="source region"),
-        plt.Line2D([], [], marker="^", ls="", color="#2f855a", markeredgecolor="#1c4532", markersize=8, label="gateways"),
-        plt.Line2D([], [], color="#c0392b", lw=3.6, label="cut streets")]
+        plt.Line2D([], [], marker="o", ls="", color="#2b6cb0", label=_t("source region", "região de origem")),
+        plt.Line2D([], [], marker="^", ls="", color="#2f855a", markeredgecolor="#1c4532", markersize=8, label=_t("gateways", "portas")),
+        plt.Line2D([], [], color="#c0392b", lw=3.6, label=_t("cut streets", "ruas de corte"))]
     fig.legend(handles=h, loc="lower center", ncol=4, fontsize=10, frameon=False)
     fig.tight_layout(rect=(0, 0.09, 1, 1))
     p = os.path.join(OUT, "fig_cut_geo.png")

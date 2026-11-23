@@ -13,6 +13,7 @@ Escreve output/fig_controles.png e copia para ../Figures.   Uso:  py fig_control
 """
 
 from __future__ import annotations
+from rotulos import t as _t, num as _num
 import json
 import os
 import shutil
@@ -43,8 +44,8 @@ def painel_fluxo(ax, arq, ref_nome, ref_cor, titulo, xmax):
                 color=ref_cor, fontsize=10, fontweight="bold", va="center",
                 bbox=dict(facecolor="white", alpha=0.9, edgecolor="none", pad=1.5))
     ax.set_xlim(-0.5, xmax + 0.5)
-    ax.set_xlabel("access flow of a piece (routes)")
-    ax.set_ylabel("share of pieces (%)")
+    ax.set_xlabel(_t("access flow of a piece (routes)", "fluxo de acesso do pedaço (rotas)"))
+    ax.set_ylabel(_t("share of pieces (%)", "parcela dos pedaços (%)"))
     ax.set_title(titulo, fontsize=11)
     ax.legend(loc="upper right", fontsize=7.5, framealpha=0.9)
     ax.grid(axis="y", alpha=0.3)
@@ -54,9 +55,9 @@ def main():
     bt = json.load(open(os.path.join(OUT, "controle_tamanho_intermediacao.json"), encoding="utf-8"))
     fig, axes = plt.subplots(1, 3, figsize=(15, 3.9))
     painel_fluxo(axes[0], "nulo_fluxo_urca_fontes.json", "Urca", "#c0392b",
-                 "(a) Pieces of 70 intersections", 31)
+                 _t("(a) Pieces of 70 intersections", "(a) Pedaços de 70 interseções"), 31)
     painel_fluxo(axes[1], "nulo_fluxo_leme_fontes.json", "Leme", "#e67e22",
-                 "(b) Pieces of 27 intersections", 20)
+                 _t("(b) Pieces of 27 intersections", "(b) Pedaços de 27 interseções"), 20)
     ax = axes[2]
     bins2 = list(range(20, 72, 2))
     for k, cor in (("copacabana", COR["copacabana"]), ("botafogo", COR["botafogo"])):
@@ -66,14 +67,14 @@ def main():
                 label=f"{NOME[k]} (n = {len(v)})")
     urca_b = bt["referencia_urca"]["intermediacao_maxima_pct"]
     ax.axvline(urca_b, color="#c0392b", lw=2.5)
-    ax.annotate(f"Urca: {urca_b:.1f}%", xy=(urca_b, 0.92), xycoords=("data", "axes fraction"),
+    ax.annotate(_num(f"Urca: {urca_b:.1f}%"), xy=(urca_b, 0.92), xycoords=("data", "axes fraction"),
                 xytext=(urca_b + 0.8, 0.92), textcoords=("data", "axes fraction"),
                 color="#c0392b", fontsize=10, fontweight="bold", va="center",
                 bbox=dict(facecolor="white", alpha=0.9, edgecolor="none", pad=1.5))
     ax.set_xlim(20, 80)
-    ax.set_xlabel("maximum betweenness of a piece (% of pairs)")
-    ax.set_ylabel("share of pieces (%)")
-    ax.set_title("(c) Betweenness, strong core of 65 ± 5", fontsize=11)
+    ax.set_xlabel(_t("maximum betweenness of a piece (% of pairs)", "intermediação máxima do pedaço (% dos pares)"))
+    ax.set_ylabel(_t("share of pieces (%)", "parcela dos pedaços (%)"))
+    ax.set_title(_t("(c) Betweenness, strong core of 65 ± 5", "(c) Intermediação, núcleo forte de 65 ± 5"), fontsize=11)
     ax.legend(loc="upper left", fontsize=8, framealpha=0.9)
     ax.grid(axis="y", alpha=0.3)
     fig.tight_layout()

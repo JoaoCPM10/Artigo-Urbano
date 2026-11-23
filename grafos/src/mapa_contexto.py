@@ -16,6 +16,7 @@ so' pelas linhas do OSM.
 """
 
 from __future__ import annotations
+from rotulos import t as _t, num as _num
 import json
 import os
 
@@ -161,7 +162,7 @@ def desenha_contexto(ax, key, data, nos=None):
 
 
 def handles_contexto():
-    return [Patch(facecolor=(0.55, 0.78, 0.95), label="water (elevation <= 0.5 m)"),
-            Patch(facecolor=(0.65, 0.40, 0.10, 0.45), label="slope >= 30% (SRTM 30 m)"),
-            Line2D([], [], color="#2a7fba", lw=1.2, label="OSM coastline and water"),
-            Line2D([], [], color="#2d3748", lw=1.2, ls="--", label="official boundary")]
+    return [Patch(facecolor=(0.55, 0.78, 0.95), label=_t("water (elevation <= 0.5 m)", "água (altitude ≤ 0,5 m)")),
+            Patch(facecolor=(0.65, 0.40, 0.10, 0.45), label=_t("slope >= 30% (SRTM 30 m)", "encosta (declividade ≥ 30%, SRTM de 30 m)")),
+            Line2D([], [], color="#2a7fba", lw=1.2, label=_t("OSM coastline and water", "costa e água do OSM")),
+            Line2D([], [], color="#2d3748", lw=1.2, ls="--", label=_t("official boundary", "fronteira oficial"))]
