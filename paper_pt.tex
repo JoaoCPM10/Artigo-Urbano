@@ -37,22 +37,21 @@ João Carlos Pereira de Melo\inst{1}}
 \maketitle
 
 % =====================================================================
-\begin{abstract}
-Modelamos as redes viárias de nove bairros do Rio de Janeiro como grafos
-dirigidos do OpenStreetMap e propomos uma forma de medir a redundância do
-acesso, o fluxo de acesso, que é o número de rotas disjuntas do núcleo do
-bairro até suas portas. Perguntamos se indicadores convencionais ou o fluxo de acesso
-identificam um bairro com uma única rota de saída, e se isso reflete a
-geografia ou o tamanho. Pontes e articulações fortes não ordenam os bairros, o
-corte mínimo entre dois nós os separa pouco e a intermediação máxima, que
-destaca a Urca, é igualada por parte dos pedaços de mesmo tamanho. O fluxo de
-acesso por ruas, sem o sentido das vias, vai de uma rota disjunta na Urca e no
-Leme a dezoito em Copacabana, e com o sentido vai de uma a oito. Nos dois
-bairros de rota única o corte é uma única rua, que localiza o gargalo; nos
+\begin{abstract} Modelamos as redes viárias de nove bairros do Rio de Janeiro
+como grafos dirigidos do OpenStreetMap e propomos uma forma de medir a
+redundância do acesso, o fluxo de acesso, que é o número de rotas disjuntas do
+núcleo do bairro até suas portas. Perguntamos se indicadores convencionais ou o
+fluxo de acesso identificam um bairro com uma única rota de saída, e se isso
+reflete a geografia ou o tamanho. Pontes e articulações fortes não ordenam os
+bairros, o corte mínimo entre dois nós os separa pouco e a intermediação
+máxima, que destaca a Urca, é igualada por parte dos pedaços de mesmo tamanho.
+O fluxo de acesso por ruas, sem o sentido das vias, vai de uma rota disjunta na
+Urca e no Leme a dezoito em Copacabana, e com o sentido vai de uma a oito. Nos
+dois bairros de rota única o corte é uma única rua, que localiza o gargalo; nos
 demais é um grupo de ruas. Pedaços das malhas abertas do tamanho e da forma da
-Urca não reproduzem o fluxo 1, o que o associa à geografia da península, e a
-fração do perímetro em água ou encosta acompanha fluxos menores (Spearman de
-$-0{,}68$, com nove casos). Na rede ampliada, a contagem na fronteira
+Urca não reproduzem o fluxo 1, o que é compatível com a geografia da península,
+e a fração do perímetro em água ou encosta acompanha fluxos menores (Spearman
+de $-0{,}68$, com nove casos). Na rede ampliada, a contagem na fronteira
 superestima o acesso de Copacabana, e uma simulação de interrupções mostra que
 o fluxo e os indicadores convencionais se complementam. A contagem pode ajudar
 o planejamento e a defesa civil a sinalizar bairros com uma só saída, desde que
@@ -1133,17 +1132,17 @@ mas só 25\% a 45\% das pontes fortes têm esse efeito.
 Os demais indicadores recuperam essas ruas de modo desigual. As pontes fracas
 recuperam de 16\% das ruas com dano na Urca a todas as 3 do Joá (57\% em
 Copacabana e 50\% em Botafogo), e a intermediação de aresta de nenhuma no Alto
-da Boa Vista, no Cosme Velho e no Joá a 50\% no Leme (12\% e 26\% em
-Copacabana e Botafogo). As ruas do corte mínimo recuperam 1 das 60 em
-Copacabana, 3 das 84 em Botafogo e 4 das 23 na Praça da Bandeira. O
-coeficiente de Spearman entre a intermediação de aresta e o dano vai de
-$-0{,}11$ no Alto da Boa Vista a 0,41 na Urca, com 0,04 em Copacabana e 0,10
-em Botafogo. Já a sobreposição (Jaccard) entre o corte mínimo e as listas de
-pontes vai de 0,00 a 0,11 nos nove bairros, e com as ruas críticas de fluxo vai
-de 0,10 a 1,00, com 0,33 e 0,29 em Copacabana e Botafogo. Na Urca são 10 as
-ruas críticas de fluxo, contra as três ruas de corte da
-Seção~\ref{sec:res-cut}, que ignora o sentido das vias, e as três estão entre
-as 10, enquanto a única rua do corte mínimo dirigido não é uma delas.
+da Boa Vista, no Cosme Velho e no Joá a 50\% no Leme (12\% e 26\% em Copacabana
+e Botafogo). As ruas do corte mínimo recuperam 1 das 60 em Copacabana, 3 das 84
+em Botafogo e 4 das 23 na Praça da Bandeira. O coeficiente de Spearman entre a
+intermediação de aresta e o dano vai de $-0{,}11$ no Alto da Boa Vista a 0,41
+na Urca, com 0,04 em Copacabana e 0,10 em Botafogo. Já a sobreposição (Jaccard)
+entre o corte mínimo e as listas de pontes vai de 0,00 a 0,11 nos nove bairros,
+e com as ruas críticas de fluxo vai de 0,10 a 1,00, com 0,33 e 0,29 em
+Copacabana e Botafogo. Na Urca são 10 as ruas críticas de fluxo, contra as três
+ruas de corte da Seção~\ref{sec:res-cut}, que ignora o sentido das vias, e as
+três estão entre as 10. A única rua do corte mínimo dirigido também está entre
+as 10, mas não é uma das três.
 
 \begin{table}[t]
 \centering
@@ -1203,7 +1202,7 @@ fluxos 4 e 6, sem rota única.
 
 A medida tem limites. A altimetria SRTM é um modelo de superfície, com copas e
 edificações, e sua resolução de 30\,m torna a declividade aproximada. Na Praça
-da Bandeira, os 33,0\% de água vêm de canais e rios canalizados do
+da Bandeira, os 33,0\% de água vêm do Rio Maracanã e de dois canais do
 OpenStreetMap, que podem ser cruzados por pontes e tendem a restringir as ruas
 menos que o mar.
 
@@ -1283,13 +1282,13 @@ ruas em série no corredor que liga as duas malhas residenciais
 (Figura~\ref{fig:cut}), posição análoga à dos elos entre agrupamentos que
 Akbarzadeh et al.~\cite{akbarzadeh2019critical} identificam como os mais
 críticos de uma rede urbana, e no Leme é uma rua de 296\,m. Sugiura e
-Kurauchi~\cite{sugiura2023isolation} observam que o conjunto de elos que
-define a vulnerabilidade de isolamento não precisa ser único, e na Urca cada
-uma das três ruas isola sozinha o núcleo. Nos outros sete bairros o corte
-mínimo é um grupo de 3 a 18 ruas, e em geral poucas delas causam dano
-sozinhas, como 1 das 8 em Copacabana, 3 das 7 em Botafogo e nenhuma das 3 no
-Alto da Boa Vista, com a Praça da Bandeira como exceção, onde as 4 causam
-(Seção~\ref{sec:res-sim}).
+Kurauchi~\cite{sugiura2023isolation} observam que o conjunto de elos que define
+a vulnerabilidade de isolamento não precisa ser único, e na Urca cada uma das
+três ruas isola sozinha o núcleo. Nos outros sete bairros o corte mínimo é um
+grupo de 3 a 18 ruas, ou de 3 a 8 com o sentido das vias, e em geral poucas
+delas causam dano sozinhas, como 1 das 8 em Copacabana, 3 das 7 em Botafogo e
+nenhuma das 3 no Alto da Boa Vista, com a Praça da Bandeira como exceção, onde
+as 4 causam (Seção~\ref{sec:res-sim}).
 
 A validação externa mostra que a contagem na fronteira pode superestimar o
 acesso. O fluxo muda com o raio em Copacabana, no Joá, no Cosme Velho e em São
@@ -1307,40 +1306,41 @@ gargalo interno.
 A simulação de interrupções mostra consistência e informação complementar, e
 deixa em aberto se o fluxo de acesso encontra as ruas mais danosas. Com $k$
 menor que o fluxo, as ruas do corte mínimo causam mais perda que as sorteadas
-em seis bairros (Copacabana, Botafogo, Joá, Praça da Bandeira e, com $k=4$,
-São Conrado e Cosme Velho) e menos no Alto da Boa Vista, de modo que o corte
-não antecipa o dano em todos eles. As listas de ruas de cada indicador quase
-não se sobrepõem, e a intermediação de aresta antecipa pouco o dano de uma rua
-fechada sozinha (Spearman de $-0{,}11$ a 0,41). Quase todas as ruas com dano
-são pontes fortes, mas só 25\% a 45\% das pontes fortes têm esse efeito, e o
-ataque guloso encontra ruas isoladas de efeito muito maior, que nenhum
-indicador alcança com $k=1$. O fluxo de acesso dá o menor número de falhas que
-isola o núcleo inteiro, e as pontes fortes apontam as ruas que podem causar
-perda parcial. Com $k$ igual ao fluxo de acesso, o corte isola o núcleo por
-construção (Seção~\ref{sec:sim-method}), e esse resultado não conta como
-evidência. Chalkiadakis et al.~\cite{chalkiadakis2022resilience} medem
-eficiência e criticidade removendo um elo por vez, e a simulação deste estudo
-usa o mesmo tipo de remoção com o acesso do núcleo como desfecho.
+em seis bairros (Copacabana, Botafogo, Joá, Praça da Bandeira e, com $k=4$, São
+Conrado e Cosme Velho) e menos no Alto da Boa Vista, de modo que o corte não
+antecipa o dano em todos eles. As listas de ruas do corte e das pontes quase
+não se sobrepõem (Jaccard de 0,00 a 0,11), e a intermediação de aresta antecipa
+pouco o dano de uma rua fechada sozinha (Spearman de $-0{,}11$ a 0,41). Quase
+todas as ruas com dano são pontes fortes, mas só 25\% a 45\% das pontes fortes
+têm esse efeito, e, em seis bairros, o ataque guloso encontra ruas isoladas de
+efeito muito maior, que nenhum indicador alcança com $k=1$. O fluxo de acesso
+dá o menor número de falhas que isola o núcleo inteiro, e as pontes fortes
+apontam as ruas que podem causar perda parcial. Com $k$ igual ao fluxo de
+acesso, o corte isola o núcleo por construção (Seção~\ref{sec:sim-method}), e
+esse resultado não conta como evidência. Chalkiadakis et
+al.~\cite{chalkiadakis2022resilience} medem eficiência e criticidade removendo
+um elo por vez, e a simulação deste estudo usa o mesmo tipo de remoção com o
+acesso do núcleo como desfecho.
 
-Para o planejamento, a Urca e o Leme são isolados por uma única falha de rua,
-e os outros bairros exigem de 3 a 18 ruas sem o sentido das vias e de 3 a 8
-com ele. Os valores com o sentido descrevem a circulação de veículos no dia a
-dia, em que cada rua só serve no sentido regulamentado. Os valores sem o
-sentido descrevem situações em que o sentido da via não restringe o
-deslocamento, como o acesso a pé ou uma evacuação que inverte a direção de
-algumas vias~\cite{behrooz2025adaptive}, e são o limite superior do acesso
-pelas vias de veículos. A rede não inclui calçadas, escadarias nem trilhas, e
-por isso esses valores só aproximam o acesso a pé. Um órgão de mobilidade ou
-de defesa civil trataria a Urca e o Leme como pontos únicos a proteger ou a
-ter alternativa, e conferiria nos demais bairros se as saídas administrativas
+Para o planejamento, a Urca e o Leme são isolados por uma única falha de rua, e
+os outros bairros exigem de 3 a 18 ruas sem o sentido das vias e de 3 a 8 com
+ele. Os valores com o sentido descrevem a circulação de veículos no dia a dia,
+em que cada rua só serve no sentido regulamentado. Os valores sem o sentido
+descrevem situações em que o sentido da via não restringe o deslocamento, como
+o acesso a pé ou uma evacuação que inverte a direção de algumas
+vias~\cite{behrooz2025adaptive}, e são o limite superior do acesso pelas vias
+de veículos. A rede não inclui calçadas, escadarias nem trilhas, e por isso
+esses valores só aproximam o acesso a pé. Um órgão de mobilidade ou de defesa
+civil trataria a Urca e o Leme como pontos únicos a proteger ou a ter
+alternativa, e conferiria nos demais bairros se as saídas administrativas
 continuam para a cidade. A população dá uma medida da exposição. Atrás de uma
-única rua ficam 2,2 mil moradores da Urca e 2,7 mil do Leme, e nos outros
-bairros o lado da origem do corte reúne de 39\% a 56\% dos moradores em seis
-deles, atrás de 3 a 18 rotas. As pessoas por rota não distinguem os bairros de
-rota única, de modo que o número de rotas é o que os separa. Como poucas rotas
-de acesso compartilham uma junção, as contagens por ruas e por interseções
-diferem em uma unidade no máximo, e a conclusão vale para os dois tipos de
-evento.
+única rua ficam de 2,2 a 3,2 mil moradores da Urca e 2,7 mil do Leme, e nos
+outros bairros o lado da origem do corte reúne de 39\% a 56\% dos moradores em
+seis deles, atrás de 3 a 18 rotas. As pessoas por rota não distinguem os
+bairros de rota única, de modo que o número de rotas é o que os separa. Como
+poucas rotas de acesso compartilham uma junção, as contagens por ruas e por
+interseções diferem em uma unidade no máximo, e a conclusão vale para os dois
+tipos de evento.
 
 Os nove casos foram escolhidos por tipo de geografia, o que impede inferência
 estatística. A fronteira administrativa define as portas, e um bairro nem
@@ -1355,23 +1355,24 @@ continuação depende do raio, e um bolsão de uma única interseção pode refl
 uma via excluída do mapa. A perda medida na simulação depende do tamanho do
 núcleo, de 4 a 87 nós, e de uma única definição de destino. O valor de cada
 bairro depende dos dados do OpenStreetMap, pois incluir as vias de serviço muda
-o fluxo do Cosme Velho (de 6 para 2) e do Alto da Boa Vista (de 4 para 6), e as
-\emph{tags} \texttt{oneway} e as velocidades padrão afetam a conectividade e a
-intermediação de aresta. Tratar a classe \texttt{secondary} como coletora
-(40\,km/h) em vez de arterial (60\,km/h), ou a \texttt{trunk} como trânsito
-rápido (80\,km/h), muda a intermediação máxima em até 2,1 pontos, exceto no
-Alto da Boa Vista com a \texttt{secondary} a 40\,km/h (de 58,0\% para 51,0\%),
-e a correlação de Spearman da intermediação de aresta entre as tabelas fica
-acima de 0,95. Em bairros muito pequenos, o fluxo cai a 1 com frações de origem
-baixas, como no Cosme Velho e no Joá, e a população alocada difere da soma dos
-setores do IBGE em até 44\% no Joá e conta só moradores. Os pedaços de controle
-são recortes arbitrários, o controle da intermediação não inclui a Praça da
-Bandeira no caso da Urca, por ter núcleo forte pequeno demais, e a busca por
-pedaços de fluxo mínimo dá um limite heurístico. A altimetria SRTM, de 30\,m,
-aproxima a declividade. Ganin et al.~\cite{ganin2017resilience} encontram, em
-40 áreas urbanas dos EUA, que sistemas viários ineficientes podem ser
-resilientes. O fluxo de acesso mede a redundância de saída, distinta da
-eficiência do trânsito, e nossa comparação não testa essa relação.
+o fluxo do Cosme Velho (de 6 para 2), do Alto da Boa Vista (de 4 para 6) e, em
+uma unidade, de São Conrado, e as \emph{tags} \texttt{oneway} e as velocidades
+padrão afetam a conectividade e a intermediação de aresta. Tratar a classe
+\texttt{secondary} como coletora (40\,km/h) em vez de arterial (60\,km/h), ou a
+\texttt{trunk} como trânsito rápido (80\,km/h), muda a intermediação máxima em
+até 2,1 pontos, exceto no Alto da Boa Vista com a \texttt{secondary} a 40\,km/h
+(de 58,0\% para 51,0\%), e a correlação de Spearman da intermediação de aresta
+entre as tabelas fica acima de 0,95. Em bairros muito pequenos, o fluxo cai a 1
+com frações de origem baixas, como no Cosme Velho e no Joá, e a população
+alocada difere da soma dos setores do IBGE em até 44\% no Joá e conta só
+moradores. Os pedaços de controle são recortes arbitrários, o controle da
+intermediação não inclui a Praça da Bandeira no caso da Urca, por ter núcleo
+forte pequeno demais, e a busca por pedaços de fluxo mínimo dá um limite
+heurístico. A altimetria SRTM, de 30\,m, aproxima a declividade. Ganin et
+al.~\cite{ganin2017resilience} encontram, em 40 áreas urbanas dos EUA, que
+sistemas viários ineficientes podem ser resilientes. O fluxo de acesso mede a
+redundância de saída, distinta da eficiência do trânsito, e nossa comparação
+não testa essa relação.
 
 \FloatBarrier
 
@@ -1387,11 +1388,12 @@ contra 3 a 18 nos outros sete sem o sentido das vias e 3 a 8 com ele. Pontes e
 articulações fortes não ordenam os bairros, o corte mínimo entre dois nós os
 separa pouco e a intermediação máxima, embora destaque a Urca e o Leme, é
 igualada ou superada por outros bairros e por parte dos pedaços de mesmo
-tamanho. Nos dois bairros de rota única o corte é uma única rua. Os controles
-de tamanho e de forma separam a Urca, o que associa o fluxo 1 à geografia da
-península, mas não separam o Leme, cujo fluxo 1 também ocorre em regiões
-pendentes locais de outros bairros. A fração do perímetro em água ou encosta
-acompanha fluxos menores (Spearman de $-0{,}68$), sem garantir rota única.
+tamanho. Nos dois bairros de rota única o corte é uma única rua, e na Urca são
+três ruas em série. Os controles de tamanho e de forma separam a Urca, o que é
+compatível com a geografia da península, mas não separam o Leme, cujo fluxo 1
+também ocorre em regiões pendentes locais de outros bairros. A fração do
+perímetro em água ou encosta acompanha fluxos menores (Spearman de $-0{,}68$),
+sem garantir rota única.
 
 Duas validações completaram o método. Com o destino na borda externa de redes
 ampliadas, o fluxo mudou em quatro bairros, e a queda de Copacabana, de 8 para
@@ -1405,16 +1407,16 @@ entre os indicadores.
 Com nove casos escolhidos por tipo de geografia e uma análise topológica, sem
 dados de capacidade, demanda nem condições de circulação, os resultados são
 ilustrativos e não bastam para avaliar acessibilidade operacional ou evacuação.
-A população atrás do corte dá uma ideia da exposição, com 2,2 mil moradores na
-Urca e 2,7 mil no Leme atrás de uma única rua, mas conta só residentes. Os
-próximos passos são ampliar a comparação a mais bairros e incorporar capacidade
-e demanda das vias. Para o planejamento, a contagem de rotas pode sinalizar
-bairros com uma só saída, desde que se confira se as saídas administrativas
-continuam para a cidade.
+A população atrás do corte dá uma ideia da exposição, com 2,2 a 3,2 mil
+moradores na Urca e 2,7 mil no Leme atrás de uma única rua, mas conta só
+residentes. Os próximos passos são ampliar a comparação a mais bairros e
+incorporar capacidade e demanda das vias. Para o planejamento, a contagem de
+rotas pode sinalizar bairros com uma só saída, desde que se confira se as
+saídas administrativas continuam para a cidade.
 
-\subsubsection*{Reprodutibilidade.} Todo o código-fonte e os dados
-estão abertamente disponíveis (repositório omitido para a revisão
-duplo-cega).
+\subsubsection*{Reprodutibilidade.} O código está aberto e os dados vêm de fontes públicas
+(OpenStreetMap, IBGE e SRTM), com as extrações do OpenStreetMap incluídas no repositório
+(omitido para a revisão duplo-cega).
 
 % =====================================================================
 \bibliographystyle{splncs04}
