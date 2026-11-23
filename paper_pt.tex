@@ -501,10 +501,11 @@ fluxo não aumenta (3.000 trocas por início).
 
 A intermediação máxima pede outro pareamento. Como ela se define no núcleo
 fortemente conexo, e os pedaços costumam ter um núcleo forte menor que o do
-bairro de referência, mantemos só as sub-redes de Copacabana e Botafogo,
-sorteadas pelos mesmos dois tipos de crescimento, cujo núcleo forte tem o
+bairro de referência, mantemos só as sub-redes, sorteadas pelos mesmos dois
+tipos de crescimento nos bairros do sorteio anterior, cujo núcleo forte tem o
 tamanho do núcleo forte do bairro de referência, com tolerância de 5
-interseções (300 por bairro e por tipo).
+interseções. Sorteamos 300 por bairro e por tipo, com no máximo 60.000
+tentativas, e um bairro que não alcança esse número fica fora do controle.
 
 O tamanho, porém, não é a única diferença entre um bairro e um pedaço sorteado.
 Um pedaço recortado no interior de uma malha tem portas em todo o perímetro,
@@ -764,8 +765,9 @@ consistente.
 
 A intermediação máxima é maior na Urca e no Leme (54,2\% e 55,0\%) que em
 Copacabana e Botafogo (27,8\% e 20,9\%), mas o Cosme Velho, o Joá e o Alto da
-Boa Vista chegam a 60,0\%, 59,5\% e 58,0\%, com fluxos de 6, 3 e 4. Além disso, parte dos pedaços de mesmo tamanho
-iguala ou supera a intermediação da Urca (Seção~\ref{sec:res-controls}).
+Boa Vista chegam a 60,0\%, 59,5\% e 58,0\%, com fluxos de 6, 3 e 4. Além disso,
+parte dos pedaços de mesmo tamanho iguala ou supera a da Urca e a do Leme
+(Seção~\ref{sec:res-controls}).
 
 \begin{table}[t]
 \centering
@@ -839,7 +841,7 @@ Praça da Bandeira &  5.151 & 46,1 & 1,70 & 66,6 & 97,6 & 1,02 \\
 
 Na Urca há três cortes de uma única rua, todos no corredor que liga as
 duas malhas residenciais (Figura~\ref{fig:cut}), e o corte por interseções
-é uma única interseção do corredor. As três ruas medem 165, 32 e 33\,m e
+é uma única interseção, na entrada do corredor. As três ruas medem 165, 32 e 33\,m e
 deixam do lado da origem 23, 27 e 33 das 70 interseções (33\%, 39\% e
 47\%). As cinco interseções nas extremidades das três ruas são também as de
 maior intermediação dirigida da Urca, com valores de 45,8\% a 54,2\% dos
@@ -852,23 +854,19 @@ origem 7 das 27 interseções (26\%). Suas extremidades são a primeira e a
 segunda interseção de maior intermediação do bairro, e o fluxo permanece em 1
 para $f$ de 0,05 a 0,2. Essa rua é o único corte de uma rua só para $f=0{,}2$.
 Com $f$ de 0,05 a 0,15 surgem também cortes de 96 a 240\,m, que isolam de 1 a 5
-interseções, e as extremidades deles não estão entre as cinco de maior
-intermediação. Nos outros sete bairros não há corte de uma rua, e o corte
+interseções, e cada um deles tem ao menos uma extremidade fora das cinco de
+maior intermediação. Nos outros sete bairros não há corte de uma rua, e o corte
 mínimo tem de 3 ruas no Joá a 18 em Copacabana.
 
 Para saber quantas pessoas ficam atrás do corte, atribuímos a população do
 Censo 2022 às interseções (Seção~\ref{sec:geo-pop}). Na Urca, de 2,2 a 3,2 mil
-moradores, ou 41\% a 61\% do bairro, ficam do lado da origem de cada um dos
+moradores, ou 41,1\% a 60,5\% do bairro, ficam do lado da origem de cada um dos
 três cortes, e no Leme são 2,7 mil, 24\%. Nos outros bairros, o lado da origem
 do corte mínimo reúne de 39\% a 56\% dos moradores em seis deles e 13\% no Joá,
-mas atrás de 3 a 18 rotas disjuntas (Tabela~\ref{tab:pop}). Por isso as
-pessoas por rota não distinguem os bairros de rota única, com 2,2 mil na Urca e
-2,7 mil no Leme, contra 2,7 mil em Botafogo e 3,8 mil em Copacabana. O que
-separa a Urca e o Leme dos demais é o número de rotas, 1 contra 3 a 18. A
-população alocada difere da soma dos setores de cada bairro no IBGE em menos de
-2\% na Urca, em Copacabana, em Botafogo e no Cosme Velho, em 9\% a 20\% na
-Praça da Bandeira, no Leme, no Alto da Boa Vista e em São Conrado, e em 44\% no
-Joá, de modo que os valores desses bairros são menos confiáveis.
+mas atrás de 3 a 18 rotas disjuntas (Tabela~\ref{tab:pop}). As pessoas por
+rota, com 2,2 mil na Urca e 2,7 mil no Leme contra 2,7 mil em Botafogo e 3,8
+mil em Copacabana, não distinguem os bairros de rota única, e o que os separa é
+o número de rotas, 1 contra 3 a 18.
 
 \begin{figure}[t]
 \centering
@@ -887,8 +885,12 @@ tracejado é a fronteira oficial.}
 \centering
 \caption{População residente atrás do corte mínimo (Censo 2022). O lado da
 origem reúne as interseções que o corte separa das portas, e pessoas por rota é
-a população desse lado dividida pelo fluxo de acesso sem o sentido das vias. Pop. é a população
-alocada ao polígono, e Inters. atrás é o número de interseções do lado da origem.}
+a população desse lado dividida pelo fluxo de acesso sem o sentido das vias. Pop. é a população alocada ao polígono, e Inters. atrás é o número de
+interseções do lado da origem. A população alocada difere da soma dos setores
+do IBGE em menos de 2\% na Urca, em Copacabana, em Botafogo e no Cosme Velho,
+em 9\% a 20\% na Praça da Bandeira, no Leme, no Alto da Boa Vista e em São
+Conrado, e em 44\% no Joá, de modo que os valores desses bairros são menos
+confiáveis.}
 \label{tab:pop}
 \small
 \setlength{\tabcolsep}{3pt}
@@ -923,17 +925,23 @@ Conrado (6 e 7) e Praça da Bandeira (7 e 9). A busca de subida de encosta,
 iniciada nos pedaços mais frágeis, não reduz esses mínimos e termina em 2, 2,
 3, 4 e 4, nessa mesma ordem.
 
-Para a intermediação, só Copacabana e Botafogo servem de origem. Com o núcleo
-forte do mesmo tamanho (65 $\pm$ 5 interseções), a intermediação máxima da
-Urca é igualada ou superada por 9,0\% a 12,3\% dos pedaços de Copacabana e por
-38,0\% a 40,3\% dos de Botafogo (Figura~\ref{fig:controles}c).
+Para a intermediação, os pedaços vêm dos bairros em que o sorteio alcança um
+núcleo forte de 65 $\pm$ 5 interseções, o que exclui a Praça da Bandeira, cujo
+núcleo forte tem 59 e não rendeu pedaço algum em 60.000 tentativas por tipo de
+crescimento. Com esse núcleo, a intermediação máxima da Urca (54,2\%) é
+igualada ou superada por 9,0\% a 12,3\% dos pedaços de Copacabana, 6,0\% a
+11,3\% dos de São Conrado, 38,0\% a 40,3\% dos de Botafogo e 58,0\% a 60,3\%
+dos do Alto da Boa Vista (Figura~\ref{fig:controles}c). Para o Leme, com núcleo
+forte de 20 $\pm$ 5 interseções, a intermediação máxima de 55,0\% é igualada ou
+superada por 31,0\% a 91,7\% dos pedaços de cada um dos seis bairros.
 
 Os moldes com a forma da Urca dão resultado semelhante. Em 4.882 posições sobre
 os cinco bairros, só 4 chegam a fluxo 1, todas no Alto da Boa Vista (4 de 882),
 e o menor fluxo nos demais é 2 em Copacabana, 3 em Botafogo e São Conrado e 4
 na Praça da Bandeira. O Alto da Boa Vista admitiu só 882 das 1.000 posições,
-porque em muitas o molde não atinge o número de interseções do bairro de
-referência dentro da tolerância, e o sorteio para após 40.000 tentativas. Dois
+porque muitas tentativas sorteiam um centro fora do bairro ou um molde que não
+atinge o número de interseções do bairro de referência dentro da tolerância, e
+o sorteio para após 40.000 tentativas. Dois
 bairros reais de porte próximo servem ainda de comparação natural. O Joá, com
 20 interseções, tem fluxo 3, e o Cosme Velho, com 50, tem fluxo 6, de modo que
 o tamanho pequeno, sozinho, não leva ao fluxo 1.
@@ -958,7 +966,8 @@ interseções reproduz isso.
 acesso de pedaços conexos de 70 interseções em cinco bairros (500 por tipo de
 crescimento em cada um), com a Urca em 1. (b)~Fluxo de acesso de pedaços de 27
 interseções em seis bairros, com o Leme em 1. (c)~Intermediação máxima de
-pedaços de Copacabana e Botafogo com núcleo forte de 65 $\pm$ 5 interseções
+pedaços de Copacabana, Botafogo, Alto da Boa Vista e São Conrado com núcleo
+forte de 65 $\pm$ 5 interseções
 (300 por tipo de crescimento em cada bairro), com a Urca em 54,2\%.}
 \label{fig:controles}
 \end{figure}
@@ -975,12 +984,13 @@ com o sentido). Copacabana perde rotas à medida que o raio cresce, de 8 nas
 portas para 7 a 500\,m e 6 a 1\,km e a 2\,km, e o Joá passa de 3 para 2 a
 1\,km. O Cosme Velho e São Conrado oscilam, com 5, 3, 3 e 4 no primeiro e 7, 5,
 7 e 6 no segundo nas portas e nos três raios. A Urca e o Leme têm o menor fluxo
-em todos os raios, e com o sentido a 1\,km Copacabana (6) fica abaixo de
-Botafogo e São Conrado (7). Por interseções, os valores coincidem com os de
-ruas, salvo em Botafogo (6 nas portas e 5 nos raios maiores) e no Cosme Velho
-(4 nas portas). Sem o sentido, Copacabana vai de 18 nas portas para 14 a
-500\,m e 12 a 1\,km e a 2\,km, São Conrado de 11 para 10, 10 e 9 e o Cosme
-Velho de 6 para 5, enquanto os demais bairros não mudam.
+em todos os raios, e com o sentido a 1\,km Copacabana (6) passa a ter menos
+rotas que Botafogo (7), o que inverte a ordem das portas (8 e 7). Por
+interseções, o fluxo com o sentido coincide com o de ruas, salvo em Botafogo (6
+nas portas e 5 nos três raios) e no Cosme Velho (4 nas portas). Sem o sentido,
+Copacabana vai de 18 nas portas para 14 a 500\,m e 12 a 1\,km e a 2\,km, São
+Conrado de 11 para 10, 10 e 9 e o Cosme Velho de 6 para 5, enquanto os demais
+bairros não mudam.
 
 \begin{table}[t]
 \centering
@@ -1230,14 +1240,15 @@ Praça da Bandeira &  4,7 & 33,0 &  0,0 & 33,0 &  8 & 4 \\
 \section{Discussão}
 \label{sec:discussion}
 
-O fluxo de acesso por portas identifica os dois bairros de rota única, a Urca
-e o Leme, entre os nove estudados. Sem o sentido das vias, ele vale 1 nesses
-dois bairros e de 3 a 18 nos outros sete, e com o sentido vale 1 e de 3 a 8
+O fluxo de acesso por portas identifica os dois bairros de rota única, a Urca e
+o Leme, entre os nove estudados. Sem o sentido das vias, ele vale 1 nesses dois
+bairros e de 3 a 18 nos outros sete, e com o sentido vale 1 e de 3 a 8
 (Seção~\ref{sec:res-access}). Pontes e articulações fortes não ordenam os
 bairros, e o corte mínimo entre dois nós os separa pouco
 (Seção~\ref{sec:res-struct}). A intermediação máxima destaca a Urca e o Leme,
-mas o Cosme Velho, o Joá e o Alto da Boa Vista têm valores maiores, e parte dos pedaços de mesmo
-tamanho iguala a da Urca (Seção~\ref{sec:res-controls}).
+mas o Cosme Velho, o Joá e o Alto da Boa Vista têm valores maiores, e parte dos
+pedaços de mesmo tamanho iguala a da Urca e a do Leme
+(Seção~\ref{sec:res-controls}).
 
 Os controles de tamanho e de forma separam a Urca. Nenhum dos 5.000 pedaços de
 70 interseções chega a fluxo 1, e só 4 de 4.882 moldes com a forma da Urca o
@@ -1343,24 +1354,24 @@ acessibilidade operacional ou de evacuação exigiria. O número de portas sem
 continuação depende do raio, e um bolsão de uma única interseção pode refletir
 uma via excluída do mapa. A perda medida na simulação depende do tamanho do
 núcleo, de 4 a 87 nós, e de uma única definição de destino. O valor de cada
-bairro depende dos dados do OpenStreetMap, pois incluir as vias de serviço
-muda o fluxo do Cosme Velho (de 6 para 2) e do Alto da Boa Vista (de 4 para
-6), e as \emph{tags} \texttt{oneway} e as velocidades padrão afetam a
-conectividade e a intermediação de aresta. Tratar a classe \texttt{secondary}
-como coletora (40\,km/h) em vez de arterial (60\,km/h), ou a \texttt{trunk} como
-trânsito rápido (80\,km/h), muda a intermediação máxima em até 2,1 pontos,
-exceto no Alto da Boa Vista com a \texttt{secondary} a 40\,km/h (de 58,0\% para
-51,0\%), e a correlação de Spearman da intermediação de aresta entre as
-tabelas fica acima de 0,95. Em bairros muito pequenos, o fluxo
-cai a 1 com frações de origem baixas, como no Cosme Velho e no Joá, e a
-população alocada difere da soma dos setores do IBGE em até 44\% no Joá e
-conta só moradores. Os pedaços de controle são recortes arbitrários, o
-controle da intermediação usa só Copacabana e Botafogo, e a busca por pedaços
-de fluxo mínimo dá um limite heurístico. A altimetria SRTM, de 30\,m, aproxima
-a declividade. Ganin et al.~\cite{ganin2017resilience} encontram, em 40 áreas
-urbanas dos EUA, que sistemas viários ineficientes podem ser resilientes. O
-fluxo de acesso mede a redundância de saída, distinta da eficiência do
-trânsito, e nossa comparação não testa essa relação.
+bairro depende dos dados do OpenStreetMap, pois incluir as vias de serviço muda
+o fluxo do Cosme Velho (de 6 para 2) e do Alto da Boa Vista (de 4 para 6), e as
+\emph{tags} \texttt{oneway} e as velocidades padrão afetam a conectividade e a
+intermediação de aresta. Tratar a classe \texttt{secondary} como coletora
+(40\,km/h) em vez de arterial (60\,km/h), ou a \texttt{trunk} como trânsito
+rápido (80\,km/h), muda a intermediação máxima em até 2,1 pontos, exceto no
+Alto da Boa Vista com a \texttt{secondary} a 40\,km/h (de 58,0\% para 51,0\%),
+e a correlação de Spearman da intermediação de aresta entre as tabelas fica
+acima de 0,95. Em bairros muito pequenos, o fluxo cai a 1 com frações de origem
+baixas, como no Cosme Velho e no Joá, e a população alocada difere da soma dos
+setores do IBGE em até 44\% no Joá e conta só moradores. Os pedaços de controle
+são recortes arbitrários, o controle da intermediação não inclui a Praça da
+Bandeira no caso da Urca, por ter núcleo forte pequeno demais, e a busca por
+pedaços de fluxo mínimo dá um limite heurístico. A altimetria SRTM, de 30\,m,
+aproxima a declividade. Ganin et al.~\cite{ganin2017resilience} encontram, em
+40 áreas urbanas dos EUA, que sistemas viários ineficientes podem ser
+resilientes. O fluxo de acesso mede a redundância de saída, distinta da
+eficiência do trânsito, e nossa comparação não testa essa relação.
 
 \FloatBarrier
 
@@ -1393,12 +1404,11 @@ entre os indicadores.
 
 Com nove casos escolhidos por tipo de geografia e uma análise topológica, sem
 dados de capacidade, demanda nem condições de circulação, os resultados são
-ilustrativos e não bastam para avaliar acessibilidade operacional ou
-evacuação. A população atrás do corte dá uma ideia da exposição, com 2,2 mil
-moradores na Urca e 2,7 mil no Leme atrás de uma única rua, mas conta só
-residentes. Os próximos passos são ampliar a comparação a mais bairros,
-estender o controle da intermediação a todos eles e incorporar capacidade e
-demanda das vias. Para o planejamento, a contagem de rotas pode sinalizar
+ilustrativos e não bastam para avaliar acessibilidade operacional ou evacuação.
+A população atrás do corte dá uma ideia da exposição, com 2,2 mil moradores na
+Urca e 2,7 mil no Leme atrás de uma única rua, mas conta só residentes. Os
+próximos passos são ampliar a comparação a mais bairros e incorporar capacidade
+e demanda das vias. Para o planejamento, a contagem de rotas pode sinalizar
 bairros com uma só saída, desde que se confira se as saídas administrativas
 continuam para a cidade.
 

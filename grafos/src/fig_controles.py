@@ -5,7 +5,7 @@ Figura dos controles de tamanho (Secao 4.4 do artigo), em tres paineis.
     cinco bairros (output/nulo_fluxo_urca_fontes.json), contra o fluxo da Urca.
 (b) Fluxo de acesso de pedacos de 27 interseccoes (o tamanho do Leme) sorteados em
     seis bairros (output/nulo_fluxo_leme_fontes.json), contra o fluxo do Leme.
-(c) Intermediacao maxima de pedacos de Copacabana e Botafogo com nucleo forte de
+(c) Intermediacao maxima de pedacos de Copacabana, Botafogo, Alto da Boa Vista e Sao Conrado com nucleo forte de
     65 +- 5 nos (output/controle_tamanho_intermediacao.json, campo "valores_pct"
     gravado por valores_pareados.py), contra a da Urca.
 
@@ -60,7 +60,7 @@ def main():
                  _t("(b) Pieces of 27 intersections", "(b) Pedaços de 27 interseções"), 20)
     ax = axes[2]
     bins2 = list(range(20, 72, 2))
-    for k, cor in (("copacabana", COR["copacabana"]), ("botafogo", COR["botafogo"])):
+    for k, cor in ((k, COR[k]) for k in ("copacabana", "botafogo", "alto_da_boa_vista", "sao_conrado")):
         p = bt["pareado_por_nucleo_forte"][k]
         v = p["bola"]["valores_pct"] + p["eden"]["valores_pct"]
         ax.hist(v, bins=bins2, weights=[100 / len(v)] * len(v), histtype="step", lw=1.8, color=cor,
@@ -76,6 +76,7 @@ def main():
     ax.set_ylabel(_t("share of pieces (%)", "parcela dos pedaços (%)"))
     ax.set_title(_t("(c) Betweenness, strong core of 65 ± 5", "(c) Intermediação, núcleo forte de 65 ± 5"), fontsize=11)
     ax.legend(loc="upper left", fontsize=8, framealpha=0.9)
+    ax.set_ylim(top=ax.get_ylim()[1] * 1.3)   # folga para a legenda de quatro bairros
     ax.grid(axis="y", alpha=0.3)
     fig.tight_layout()
     p = os.path.join(OUT, "fig_controles.png")
