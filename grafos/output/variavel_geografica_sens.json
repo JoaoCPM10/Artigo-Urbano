@@ -1,0 +1,155 @@
+[
+  {
+    "limiar": 0.2,
+    "dist_agua_m": 50,
+    "spearman_nd": -0.787,
+    "spearman_dir": -0.692,
+    "fracoes": {
+      "urca": 0.89,
+      "copacabana": 0.737,
+      "botafogo": 0.574,
+      "alto_da_boa_vista": 0.874,
+      "cosme_velho": 0.841,
+      "leme": 0.857,
+      "joa": 0.91,
+      "sao_conrado": 0.819,
+      "praca_da_bandeira": 0.298
+    }
+  },
+  {
+    "limiar": 0.2,
+    "dist_agua_m": 100,
+    "spearman_nd": -0.778,
+    "spearman_dir": -0.7,
+    "fracoes": {
+      "urca": 0.936,
+      "copacabana": 0.741,
+      "botafogo": 0.632,
+      "alto_da_boa_vista": 0.875,
+      "cosme_velho": 0.841,
+      "leme": 0.864,
+      "joa": 0.921,
+      "sao_conrado": 0.842,
+      "praca_da_bandeira": 0.33
+    }
+  },
+  {
+    "limiar": 0.2,
+    "dist_agua_m": 200,
+    "spearman_nd": -0.77,
+    "spearman_dir": -0.667,
+    "fracoes": {
+      "urca": 0.975,
+      "copacabana": 0.773,
+      "botafogo": 0.678,
+      "alto_da_boa_vista": 0.876,
+      "cosme_velho": 0.841,
+      "leme": 0.886,
+      "joa": 0.949,
+      "sao_conrado": 0.879,
+      "praca_da_bandeira": 0.372
+    }
+  },
+  {
+    "limiar": 0.3,
+    "dist_agua_m": 50,
+    "spearman_nd": -0.653,
+    "spearman_dir": -0.532,
+    "fracoes": {
+      "urca": 0.847,
+      "copacabana": 0.561,
+      "botafogo": 0.409,
+      "alto_da_boa_vista": 0.722,
+      "cosme_velho": 0.637,
+      "leme": 0.736,
+      "joa": 0.847,
+      "sao_conrado": 0.743,
+      "praca_da_bandeira": 0.298
+    }
+  },
+  {
+    "limiar": 0.3,
+    "dist_agua_m": 100,
+    "spearman_nd": -0.678,
+    "spearman_dir": -0.565,
+    "fracoes": {
+      "urca": 0.893,
+      "copacabana": 0.569,
+      "botafogo": 0.467,
+      "alto_da_boa_vista": 0.725,
+      "cosme_velho": 0.637,
+      "leme": 0.743,
+      "joa": 0.87,
+      "sao_conrado": 0.77,
+      "praca_da_bandeira": 0.33
+    }
+  },
+  {
+    "limiar": 0.3,
+    "dist_agua_m": 200,
+    "spearman_nd": -0.678,
+    "spearman_dir": -0.565,
+    "fracoes": {
+      "urca": 0.936,
+      "copacabana": 0.612,
+      "botafogo": 0.512,
+      "alto_da_boa_vista": 0.728,
+      "cosme_velho": 0.637,
+      "leme": 0.779,
+      "joa": 0.921,
+      "sao_conrado": 0.815,
+      "praca_da_bandeira": 0.372
+    }
+  },
+  {
+    "limiar": 0.4,
+    "dist_agua_m": 50,
+    "spearman_nd": -0.736,
+    "spearman_dir": -0.658,
+    "fracoes": {
+      "urca": 0.826,
+      "copacabana": 0.502,
+      "botafogo": 0.281,
+      "alto_da_boa_vista": 0.55,
+      "cosme_velho": 0.382,
+      "leme": 0.686,
+      "joa": 0.791,
+      "sao_conrado": 0.634,
+      "praca_da_bandeira": 0.298
+    }
+  },
+  {
+    "limiar": 0.4,
+    "dist_agua_m": 100,
+    "spearman_nd": -0.703,
+    "spearman_dir": -0.616,
+    "fracoes": {
+      "urca": 0.875,
+      "copacabana": 0.51,
+      "botafogo": 0.339,
+      "alto_da_boa_vista": 0.554,
+      "cosme_velho": 0.382,
+      "leme": 0.7,
+      "joa": 0.819,
+      "sao_conrado": 0.672,
+      "praca_da_bandeira": 0.33
+    }
+  },
+  {
+    "limiar": 0.4,
+    "dist_agua_m": 200,
+    "spearman_nd": -0.653,
+    "spearman_dir": -0.591,
+    "fracoes": {
+      "urca": 0.925,
+      "copacabana": 0.553,
+      "botafogo": 0.384,
+      "alto_da_boa_vista": 0.558,
+      "cosme_velho": 0.382,
+      "leme": 0.75,
+      "joa": 0.881,
+      "sao_conrado": 0.732,
+      "praca_da_bandeira": 0.372
+    }
+  }
+]

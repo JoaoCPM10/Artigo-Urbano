@@ -1,0 +1,5872 @@
+{
+ "referencia": "leme",
+ "por_fonte": {
+  "copacabana": 15,
+  "botafogo": 8,
+  "alto_da_boa_vista": 69,
+  "sao_conrado": 36,
+  "praca_da_bandeira": 0,
+  "cosme_velho": 210
+ },
+ "grupos": [
+  {
+   "fonte": "cosme_velho",
+   "pedacos": 210,
+   "corte_m": [
+    199
+   ],
+   "lado_origem": [
+    5
+   ],
+   "portas_min_max": [
+    5,
+    14
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "pedacos": 52,
+   "corte_m": [
+    290
+   ],
+   "lado_origem": [
+    7
+   ],
+   "portas_min_max": [
+    3,
+    10
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "pedacos": 36,
+   "corte_m": [
+    67
+   ],
+   "lado_origem": [
+    5
+   ],
+   "portas_min_max": [
+    5,
+    15
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "pedacos": 17,
+   "corte_m": [
+    64
+   ],
+   "lado_origem": [
+    5
+   ],
+   "portas_min_max": [
+    3,
+    9
+   ]
+  },
+  {
+   "fonte": "copacabana",
+   "pedacos": 8,
+   "corte_m": [
+    31
+   ],
+   "lado_origem": [
+    7
+   ],
+   "portas_min_max": [
+    5,
+    14
+   ]
+  },
+  {
+   "fonte": "botafogo",
+   "pedacos": 8,
+   "corte_m": [
+    24
+   ],
+   "lado_origem": [
+    7
+   ],
+   "portas_min_max": [
+    9,
+    14
+   ]
+  },
+  {
+   "fonte": "copacabana",
+   "pedacos": 7,
+   "corte_m": [
+    131
+   ],
+   "lado_origem": [
+    5
+   ],
+   "portas_min_max": [
+    6,
+    10
+   ]
+  }
+ ],
+ "resumo": {
+  "n": 338,
+  "lado_origem_min": 5,
+  "lado_origem_mediana": 5.0,
+  "lado_origem_max": 7,
+  "nucleo": [
+   5
+  ],
+  "portas_min": 3,
+  "portas_mediana": 7.0,
+  "portas_max": 15,
+  "um_so_corte_de_uma_rua": 338
+ },
+ "pedacos": [
+  {
+   "fonte": "copacabana",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1535222468,
+     12471598586
+    ]
+   ],
+   "corte_m": [
+    131
+   ]
+  },
+  {
+   "fonte": "copacabana",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1535222468,
+     12471598586
+    ]
+   ],
+   "corte_m": [
+    131
+   ]
+  },
+  {
+   "fonte": "copacabana",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1535222468,
+     12471598586
+    ]
+   ],
+   "corte_m": [
+    131
+   ]
+  },
+  {
+   "fonte": "copacabana",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1535222468,
+     12471598586
+    ]
+   ],
+   "corte_m": [
+    131
+   ]
+  },
+  {
+   "fonte": "copacabana",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1535222468,
+     12471598586
+    ]
+   ],
+   "corte_m": [
+    131
+   ]
+  },
+  {
+   "fonte": "copacabana",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 5,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     4148200510,
+     7823342314
+    ]
+   ],
+   "corte_m": [
+    31
+   ]
+  },
+  {
+   "fonte": "copacabana",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     4148200510,
+     7823342314
+    ]
+   ],
+   "corte_m": [
+    31
+   ]
+  },
+  {
+   "fonte": "copacabana",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 12,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     4148200510,
+     7823342314
+    ]
+   ],
+   "corte_m": [
+    31
+   ]
+  },
+  {
+   "fonte": "copacabana",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 10,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1535222468,
+     12471598586
+    ]
+   ],
+   "corte_m": [
+    131
+   ]
+  },
+  {
+   "fonte": "copacabana",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 14,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     4148200510,
+     7823342314
+    ]
+   ],
+   "corte_m": [
+    31
+   ]
+  },
+  {
+   "fonte": "copacabana",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 10,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1535222468,
+     12471598586
+    ]
+   ],
+   "corte_m": [
+    131
+   ]
+  },
+  {
+   "fonte": "copacabana",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     4148200510,
+     7823342314
+    ]
+   ],
+   "corte_m": [
+    31
+   ]
+  },
+  {
+   "fonte": "copacabana",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     4148200510,
+     7823342314
+    ]
+   ],
+   "corte_m": [
+    31
+   ]
+  },
+  {
+   "fonte": "copacabana",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 10,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     4148200510,
+     7823342314
+    ]
+   ],
+   "corte_m": [
+    31
+   ]
+  },
+  {
+   "fonte": "copacabana",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     4148200510,
+     7823342314
+    ]
+   ],
+   "corte_m": [
+    31
+   ]
+  },
+  {
+   "fonte": "botafogo",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     148386059,
+     12479952928
+    ]
+   ],
+   "corte_m": [
+    24
+   ]
+  },
+  {
+   "fonte": "botafogo",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     148386059,
+     12479952928
+    ]
+   ],
+   "corte_m": [
+    24
+   ]
+  },
+  {
+   "fonte": "botafogo",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     148386059,
+     12479952928
+    ]
+   ],
+   "corte_m": [
+    24
+   ]
+  },
+  {
+   "fonte": "botafogo",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     148386059,
+     12479952928
+    ]
+   ],
+   "corte_m": [
+    24
+   ]
+  },
+  {
+   "fonte": "botafogo",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     148386059,
+     12479952928
+    ]
+   ],
+   "corte_m": [
+    24
+   ]
+  },
+  {
+   "fonte": "botafogo",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     148386059,
+     12479952928
+    ]
+   ],
+   "corte_m": [
+    24
+   ]
+  },
+  {
+   "fonte": "botafogo",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     148386059,
+     12479952928
+    ]
+   ],
+   "corte_m": [
+    24
+   ]
+  },
+  {
+   "fonte": "botafogo",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 14,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     148386059,
+     12479952928
+    ]
+   ],
+   "corte_m": [
+    24
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 5,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 5,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 5,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 5,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 3,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     2142181994,
+     2142182067
+    ]
+   ],
+   "corte_m": [
+    64
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 3,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     2142181994,
+     2142182067
+    ]
+   ],
+   "corte_m": [
+    64
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 3,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     2142181994,
+     2142182067
+    ]
+   ],
+   "corte_m": [
+    64
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 5,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 3,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     2142181994,
+     2142182067
+    ]
+   ],
+   "corte_m": [
+    64
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 3,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     2142181994,
+     2142182067
+    ]
+   ],
+   "corte_m": [
+    64
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 3,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     2142181994,
+     2142182067
+    ]
+   ],
+   "corte_m": [
+    64
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 3,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     2142181994,
+     2142182067
+    ]
+   ],
+   "corte_m": [
+    64
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 3,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     2142181994,
+     2142182067
+    ]
+   ],
+   "corte_m": [
+    64
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 3,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     2142181994,
+     2142182067
+    ]
+   ],
+   "corte_m": [
+    64
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 3,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     2142181994,
+     2142182067
+    ]
+   ],
+   "corte_m": [
+    64
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 3,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 5,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 5,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 5,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     2142181994,
+     2142182067
+    ]
+   ],
+   "corte_m": [
+    64
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 3,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     2142181994,
+     2142182067
+    ]
+   ],
+   "corte_m": [
+    64
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 5,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     2142181994,
+     2142182067
+    ]
+   ],
+   "corte_m": [
+    64
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 5,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     2142181994,
+     2142182067
+    ]
+   ],
+   "corte_m": [
+    64
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 3,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     2142181994,
+     2142182067
+    ]
+   ],
+   "corte_m": [
+    64
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 3,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     2142181994,
+     2142182067
+    ]
+   ],
+   "corte_m": [
+    64
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     2142181994,
+     2142182067
+    ]
+   ],
+   "corte_m": [
+    64
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 10,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 5,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "alto_da_boa_vista",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 7,
+   "corte": [
+    [
+     2784113059,
+     7776586390
+    ]
+   ],
+   "corte_m": [
+    290
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 12,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 15,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 13,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 13,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 12,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 5,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 12,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 11,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "sao_conrado",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     1584075913,
+     1584075943
+    ]
+   ],
+   "corte_m": [
+    67
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "bola",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 11,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 13,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 10,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 11,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 10,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 10,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 12,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 13,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 10,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 5,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 10,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 10,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 10,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 10,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 13,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 13,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 10,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 12,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 10,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 13,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 14,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 11,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 11,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 6,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 10,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 12,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 7,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 8,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 11,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 11,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 10,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  },
+  {
+   "fonte": "cosme_velho",
+   "tipo": "eden",
+   "fluxo": 1,
+   "portas": 9,
+   "nucleo": 5,
+   "lado_origem": 5,
+   "corte": [
+    [
+     331107847,
+     331107851
+    ]
+   ],
+   "corte_m": [
+    199
+   ]
+  }
+ ]
+}

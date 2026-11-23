@@ -75,10 +75,10 @@ Botafogo,aleatoria,4,0.0144,0.0,0.0575,0.0118
 Botafogo,aleatoria,8,0.035,0.0,0.092,0.0241
 Botafogo,aleatoria,16,0.0755,0.0115,0.1724,0.0515
 Botafogo,intermediacao,1,0.0115,0.0115,0.0115,0.0023
-Botafogo,intermediacao,2,0.0575,0.0575,0.0575,0.0138
-Botafogo,intermediacao,4,0.0575,0.0575,0.0575,0.0138
-Botafogo,intermediacao,8,0.1264,0.1264,0.1264,0.0392
-Botafogo,intermediacao,16,0.2069,0.2069,0.2069,0.0668
+Botafogo,intermediacao,2,0.0805,0.0805,0.0805,0.023
+Botafogo,intermediacao,4,0.0805,0.0805,0.0805,0.023
+Botafogo,intermediacao,8,0.1264,0.1264,0.1264,0.0346
+Botafogo,intermediacao,16,0.2989,0.2989,0.2989,0.0853
 Botafogo,pontes_fortes,1,0.008,0.0,0.023,0.0049
 Botafogo,pontes_fortes,2,0.0121,0.0,0.046,0.0082
 Botafogo,pontes_fortes,4,0.0266,0.0,0.0805,0.0159
@@ -104,3 +104,213 @@ Botafogo,guloso,2,0.1839,0.1839,0.1839,0.1152
 Botafogo,guloso,4,0.4023,0.4023,0.4023,0.1912
 Botafogo,guloso,8,0.6782,0.6782,0.6782,0.2788
 Botafogo,guloso,16,1.0,1.0,1.0,0.4724
+Leme,aleatoria,1,0.153,0.0,0.8,0.0717
+Leme,aleatoria,2,0.367,0.0,1.0,0.2006
+Leme,aleatoria,4,0.647,0.0,1.0,0.3569
+Leme,aleatoria,8,0.889,0.6,1.0,0.5596
+Leme,aleatoria,16,0.991,1.0,1.0,0.7696
+Leme,intermediacao,1,1.0,1.0,1.0,0.2593
+Leme,intermediacao,2,1.0,1.0,1.0,0.7037
+Leme,intermediacao,4,1.0,1.0,1.0,0.7037
+Leme,intermediacao,8,1.0,1.0,1.0,0.7037
+Leme,intermediacao,16,1.0,1.0,1.0,0.7037
+Leme,pontes_fortes,1,0.275,0.0,1.0,0.1317
+Leme,pontes_fortes,2,0.475,0.0,1.0,0.2302
+Leme,pontes_fortes,4,0.713,0.2,1.0,0.3591
+Leme,pontes_fortes,8,0.952,0.8,1.0,0.5417
+Leme,pontes_fortes,16,1.0,1.0,1.0,0.6769
+Leme,pontes_fracas,1,0.252,0.0,1.0,0.0919
+Leme,pontes_fracas,2,0.482,0.0,1.0,0.1941
+Leme,pontes_fracas,4,0.781,0.2,1.0,0.3737
+Leme,pontes_fracas,8,0.975,0.8,1.0,0.5844
+Leme,pontes_fracas,16,1.0,1.0,1.0,0.8889
+Leme,fluxo_corte,1,1.0,1.0,1.0,0.2593
+Leme,fluxo_corte,2,1.0,1.0,1.0,0.3306
+Leme,fluxo_corte,4,1.0,1.0,1.0,0.4243
+Leme,fluxo_corte,8,1.0,1.0,1.0,0.5852
+Leme,fluxo_corte,16,1.0,1.0,1.0,0.7511
+Leme,fluxo_criticas,1,1.0,1.0,1.0,0.5198
+Leme,fluxo_criticas,2,1.0,1.0,1.0,0.677
+Leme,fluxo_criticas,4,1.0,1.0,1.0,0.7778
+Leme,fluxo_criticas,8,1.0,1.0,1.0,0.7883
+Leme,fluxo_criticas,16,1.0,1.0,1.0,0.8154
+Leme,guloso,1,1.0,1.0,1.0,0.7778
+Leme,guloso,2,1.0,1.0,1.0,0.7778
+Leme,guloso,4,1.0,1.0,1.0,0.7778
+Leme,guloso,8,1.0,1.0,1.0,0.7778
+Leme,guloso,16,1.0,1.0,1.0,0.7778
+Alto da Boa Vista,aleatoria,1,0.0078,0.0,0.0278,0.0057
+Alto da Boa Vista,aleatoria,2,0.0163,0.0,0.0556,0.0092
+Alto da Boa Vista,aleatoria,4,0.0335,0.0,0.0833,0.0205
+Alto da Boa Vista,aleatoria,8,0.091,0.0,0.2778,0.0494
+Alto da Boa Vista,aleatoria,16,0.2178,0.0556,0.5278,0.1175
+Alto da Boa Vista,intermediacao,1,0.0,0.0,0.0,0.0
+Alto da Boa Vista,intermediacao,2,0.0,0.0,0.0,0.0
+Alto da Boa Vista,intermediacao,4,0.0,0.0,0.0,0.0106
+Alto da Boa Vista,intermediacao,8,0.0278,0.0278,0.0278,0.0426
+Alto da Boa Vista,intermediacao,16,0.6667,0.6667,0.6667,0.3883
+Alto da Boa Vista,pontes_fortes,1,0.0126,0.0,0.0556,0.0076
+Alto da Boa Vista,pontes_fortes,2,0.0274,0.0,0.0833,0.0138
+Alto da Boa Vista,pontes_fortes,4,0.0569,0.0,0.1389,0.0274
+Alto da Boa Vista,pontes_fortes,8,0.1094,0.0278,0.2222,0.0536
+Alto da Boa Vista,pontes_fortes,16,0.1924,0.0833,0.3056,0.1091
+Alto da Boa Vista,pontes_fracas,1,0.0113,0.0,0.0278,0.0076
+Alto da Boa Vista,pontes_fracas,2,0.0318,0.0,0.0833,0.0168
+Alto da Boa Vista,pontes_fracas,4,0.0479,0.0,0.1111,0.0318
+Alto da Boa Vista,pontes_fracas,8,0.1056,0.0278,0.2222,0.0648
+Alto da Boa Vista,pontes_fracas,16,0.2029,0.0833,0.3333,0.13
+Alto da Boa Vista,fluxo_corte,1,0.0,0.0,0.0,0.0
+Alto da Boa Vista,fluxo_corte,2,0.0,0.0,0.0,0.0
+Alto da Boa Vista,fluxo_corte,4,1.0,1.0,1.0,0.4601
+Alto da Boa Vista,fluxo_corte,8,1.0,1.0,1.0,0.472
+Alto da Boa Vista,fluxo_corte,16,1.0,1.0,1.0,0.4953
+Alto da Boa Vista,fluxo_criticas,1,0.0,0.0,0.0,0.0
+Alto da Boa Vista,fluxo_criticas,2,0.0,0.0,0.0,0.0022
+Alto da Boa Vista,fluxo_criticas,4,0.765,0.0,1.0,0.3672
+Alto da Boa Vista,fluxo_criticas,8,1.0,1.0,1.0,0.487
+Alto da Boa Vista,fluxo_criticas,16,1.0,1.0,1.0,0.5116
+Alto da Boa Vista,guloso,1,0.1944,0.1944,0.1944,0.0372
+Alto da Boa Vista,guloso,2,0.3333,0.3333,0.3333,0.0638
+Alto da Boa Vista,guloso,4,0.5,0.5,0.5,0.1436
+Alto da Boa Vista,guloso,8,0.8611,0.8611,0.8611,0.2926
+Alto da Boa Vista,guloso,16,0.9444,0.9444,0.9444,0.4947
+Cosme Velho,aleatoria,1,0.025,0.0,0.1,0.0092
+Cosme Velho,aleatoria,2,0.0475,0.0,0.1,0.0186
+Cosme Velho,aleatoria,4,0.072,0.0,0.2,0.0342
+Cosme Velho,aleatoria,8,0.228,0.0,0.5,0.1137
+Cosme Velho,aleatoria,16,0.577,0.2,1.0,0.3934
+Cosme Velho,intermediacao,1,0.0,0.0,0.0,0.0
+Cosme Velho,intermediacao,2,0.0,0.0,0.0,0.0
+Cosme Velho,intermediacao,4,0.6,0.6,0.6,0.1429
+Cosme Velho,intermediacao,8,0.6,0.6,0.6,0.2245
+Cosme Velho,intermediacao,16,0.7,0.7,0.7,0.3878
+Cosme Velho,pontes_fortes,1,0.055,0.0,0.1,0.0198
+Cosme Velho,pontes_fortes,2,0.099,0.0,0.3,0.0385
+Cosme Velho,pontes_fortes,4,0.2065,0.0,0.5,0.0799
+Cosme Velho,pontes_fortes,8,0.392,0.1,0.7,0.1698
+Cosme Velho,pontes_fortes,16,0.6865,0.5,0.8,0.3394
+Cosme Velho,pontes_fracas,1,0.048,0.0,0.1,0.0178
+Cosme Velho,pontes_fracas,2,0.136,0.0,0.5,0.0463
+Cosme Velho,pontes_fracas,4,0.265,0.0,0.6,0.0958
+Cosme Velho,pontes_fracas,8,0.4655,0.2,0.7,0.1827
+Cosme Velho,pontes_fracas,16,0.676,0.6,0.7,0.341
+Cosme Velho,fluxo_corte,1,0.0185,0.0,0.1,0.0038
+Cosme Velho,fluxo_corte,2,0.041,0.0,0.1,0.0084
+Cosme Velho,fluxo_corte,4,0.268,0.1,0.9,0.0804
+Cosme Velho,fluxo_corte,8,1.0,1.0,1.0,0.3659
+Cosme Velho,fluxo_corte,16,1.0,1.0,1.0,0.5408
+Cosme Velho,fluxo_criticas,1,0.0025,0.0,0.0,0.0019
+Cosme Velho,fluxo_criticas,2,0.0105,0.0,0.1,0.0089
+Cosme Velho,fluxo_criticas,4,0.0275,0.0,0.1,0.0352
+Cosme Velho,fluxo_criticas,8,0.1715,0.0,1.0,0.1814
+Cosme Velho,fluxo_criticas,16,0.6905,0.1,1.0,0.6362
+Cosme Velho,guloso,1,0.5,0.5,0.5,0.102
+Cosme Velho,guloso,2,0.6,0.6,0.6,0.1224
+Cosme Velho,guloso,4,0.7,0.7,0.7,0.2653
+Cosme Velho,guloso,8,0.7,0.7,0.7,0.4694
+Cosme Velho,guloso,16,0.7,0.7,0.7,0.5306
+Joá,aleatoria,1,0.04,0.0,0.25,0.0155
+Joá,aleatoria,2,0.07,0.0,0.25,0.0285
+Joá,aleatoria,4,0.1862,0.0,0.5,0.072
+Joá,aleatoria,8,0.5062,0.25,1.0,0.2472
+Joá,aleatoria,16,0.9838,1.0,1.0,0.6658
+Joá,intermediacao,1,0.0,0.0,0.0,0.0
+Joá,intermediacao,2,0.0,0.0,0.0,0.0
+Joá,intermediacao,4,0.0,0.0,0.0,0.05
+Joá,intermediacao,8,1.0,1.0,1.0,0.45
+Joá,intermediacao,16,1.0,1.0,1.0,0.55
+Joá,pontes_fortes,1,0.0925,0.0,0.25,0.0365
+Joá,pontes_fortes,2,0.2013,0.0,0.5,0.0773
+Joá,pontes_fortes,4,0.4213,0.25,0.75,0.1725
+Joá,pontes_fortes,8,1.0,1.0,1.0,0.55
+Joá,pontes_fortes,16,1.0,1.0,1.0,0.6917
+Joá,pontes_fracas,1,0.115,0.0,0.25,0.0463
+Joá,pontes_fracas,2,0.1963,0.0,0.5,0.0833
+Joá,pontes_fracas,4,0.4913,0.25,0.75,0.2082
+Joá,pontes_fracas,8,1.0,1.0,1.0,0.55
+Joá,pontes_fracas,16,1.0,1.0,1.0,0.6747
+Joá,fluxo_corte,1,0.09,0.0,0.25,0.054
+Joá,fluxo_corte,2,0.3975,0.25,0.75,0.1648
+Joá,fluxo_corte,4,1.0,1.0,1.0,0.3535
+Joá,fluxo_corte,8,1.0,1.0,1.0,0.3795
+Joá,fluxo_corte,16,1.0,1.0,1.0,0.6465
+Joá,fluxo_criticas,1,0.0762,0.0,0.25,0.0458
+Joá,fluxo_criticas,2,0.395,0.25,0.75,0.1645
+Joá,fluxo_criticas,4,1.0,1.0,1.0,0.3528
+Joá,fluxo_criticas,8,1.0,1.0,1.0,0.384
+Joá,fluxo_criticas,16,1.0,1.0,1.0,0.6462
+Joá,guloso,1,0.25,0.25,0.25,0.15
+Joá,guloso,2,0.5,0.5,0.5,0.2
+Joá,guloso,4,0.75,0.75,0.75,0.3
+Joá,guloso,8,0.75,0.75,0.75,0.4
+Joá,guloso,16,1.0,1.0,1.0,0.5
+São Conrado,aleatoria,1,0.0058,0.0,0.0303,0.0027
+São Conrado,aleatoria,2,0.0111,0.0,0.0303,0.0062
+São Conrado,aleatoria,4,0.0209,0.0,0.0606,0.0133
+São Conrado,aleatoria,8,0.0462,0.0,0.1212,0.0264
+São Conrado,aleatoria,16,0.1442,0.0303,0.303,0.0887
+São Conrado,intermediacao,1,0.0,0.0,0.0,0.0
+São Conrado,intermediacao,2,0.0,0.0,0.0,0.0181
+São Conrado,intermediacao,4,0.0,0.0,0.0,0.0361
+São Conrado,intermediacao,8,0.0,0.0,0.0,0.0361
+São Conrado,intermediacao,16,0.0303,0.0303,0.0303,0.0904
+São Conrado,pontes_fortes,1,0.0103,0.0,0.0303,0.0058
+São Conrado,pontes_fortes,2,0.0268,0.0,0.0909,0.0144
+São Conrado,pontes_fortes,4,0.0533,0.0,0.1212,0.0275
+São Conrado,pontes_fortes,8,0.1032,0.0303,0.1818,0.0576
+São Conrado,pontes_fortes,16,0.2224,0.0909,0.3636,0.1428
+São Conrado,pontes_fracas,1,0.0302,0.0,0.0909,0.0084
+São Conrado,pontes_fracas,2,0.0529,0.0,0.1212,0.0155
+São Conrado,pontes_fracas,4,0.0911,0.0303,0.1818,0.0292
+São Conrado,pontes_fracas,8,0.1806,0.0909,0.2727,0.0564
+São Conrado,pontes_fracas,16,0.3176,0.2424,0.3939,0.1018
+São Conrado,fluxo_corte,1,0.0045,0.0,0.0303,0.0071
+São Conrado,fluxo_corte,2,0.0098,0.0,0.0303,0.0137
+São Conrado,fluxo_corte,4,0.0777,0.0,0.5455,0.0451
+São Conrado,fluxo_corte,8,1.0,1.0,1.0,0.6814
+São Conrado,fluxo_corte,16,1.0,1.0,1.0,0.6948
+São Conrado,fluxo_criticas,1,0.0009,0.0,0.0,0.0022
+São Conrado,fluxo_criticas,2,0.0027,0.0,0.0,0.0066
+São Conrado,fluxo_criticas,4,0.0164,0.0,0.0303,0.0181
+São Conrado,fluxo_criticas,8,0.1015,0.0,0.5455,0.0772
+São Conrado,fluxo_criticas,16,0.7348,0.0303,1.0,0.5834
+São Conrado,guloso,1,0.1515,0.1515,0.1515,0.0301
+São Conrado,guloso,2,0.2424,0.2424,0.2424,0.0602
+São Conrado,guloso,4,0.4242,0.4242,0.4242,0.0964
+São Conrado,guloso,8,0.6061,0.6061,0.6061,0.3133
+São Conrado,guloso,16,1.0,1.0,1.0,0.6024
+Praça da Bandeira,aleatoria,1,0.0135,0.0,0.05,0.0079
+Praça da Bandeira,aleatoria,2,0.0398,0.0,0.15,0.0219
+Praça da Bandeira,aleatoria,4,0.0633,0.0,0.2,0.0374
+Praça da Bandeira,aleatoria,8,0.1573,0.0,0.35,0.0938
+Praça da Bandeira,aleatoria,16,0.3812,0.15,0.7,0.2254
+Praça da Bandeira,intermediacao,1,0.3,0.3,0.3,0.1
+Praça da Bandeira,intermediacao,2,0.3,0.3,0.3,0.1
+Praça da Bandeira,intermediacao,4,0.3,0.3,0.3,0.11
+Praça da Bandeira,intermediacao,8,0.5,0.5,0.5,0.2
+Praça da Bandeira,intermediacao,16,0.6,0.6,0.6,0.36
+Praça da Bandeira,pontes_fortes,1,0.038,0.0,0.1,0.0154
+Praça da Bandeira,pontes_fortes,2,0.0703,0.0,0.2,0.0312
+Praça da Bandeira,pontes_fortes,4,0.1412,0.0,0.35,0.0667
+Praça da Bandeira,pontes_fortes,8,0.2745,0.1,0.55,0.1325
+Praça da Bandeira,pontes_fortes,16,0.516,0.3,0.75,0.2617
+Praça da Bandeira,pontes_fracas,1,0.0243,0.0,0.05,0.0101
+Praça da Bandeira,pontes_fracas,2,0.046,0.0,0.15,0.0186
+Praça da Bandeira,pontes_fracas,4,0.0963,0.0,0.2,0.0387
+Praça da Bandeira,pontes_fracas,8,0.203,0.05,0.35,0.0784
+Praça da Bandeira,pontes_fracas,16,0.372,0.25,0.5,0.1526
+Praça da Bandeira,fluxo_corte,1,0.1548,0.05,0.3,0.0617
+Praça da Bandeira,fluxo_corte,2,0.3543,0.15,0.6,0.1463
+Praça da Bandeira,fluxo_corte,4,1.0,1.0,1.0,0.38
+Praça da Bandeira,fluxo_corte,8,1.0,1.0,1.0,0.4139
+Praça da Bandeira,fluxo_corte,16,1.0,1.0,1.0,0.4785
+Praça da Bandeira,fluxo_criticas,1,0.0697,0.0,0.2,0.0316
+Praça da Bandeira,fluxo_criticas,2,0.1598,0.0,0.4,0.072
+Praça da Bandeira,fluxo_criticas,4,0.415,0.1,0.8,0.2013
+Praça da Bandeira,fluxo_criticas,8,0.8155,0.3,1.0,0.446
+Praça da Bandeira,fluxo_criticas,16,1.0,1.0,1.0,0.62
+Praça da Bandeira,guloso,1,0.3,0.3,0.3,0.1
+Praça da Bandeira,guloso,2,0.6,0.6,0.6,0.25
+Praça da Bandeira,guloso,4,1.0,1.0,1.0,0.52
+Praça da Bandeira,guloso,8,1.0,1.0,1.0,0.52
+Praça da Bandeira,guloso,16,1.0,1.0,1.0,0.52

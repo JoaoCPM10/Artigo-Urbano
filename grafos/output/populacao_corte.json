@@ -1,0 +1,154 @@
+{
+  "urca": {
+    "bairro": "Urca",
+    "fluxo": 1,
+    "portas": 3,
+    "nucleo_nos": 14,
+    "populacao_ibge_bairro": 5215,
+    "populacao_alocada_no_poligono": 5305,
+    "populacao_nucleo": 912,
+    "lado_origem_nos": 23,
+    "populacao_lado_origem": 2182,
+    "pct_populacao_lado_origem": 41.1,
+    "pessoas_por_rota": 2182,
+    "cortes_de_uma_rua": [
+      {
+        "comprimento_m": 32,
+        "nos_lado_origem": 27,
+        "populacao_lado_origem": 2572,
+        "pct": 48.5
+      },
+      {
+        "comprimento_m": 33,
+        "nos_lado_origem": 33,
+        "populacao_lado_origem": 3211,
+        "pct": 60.5
+      },
+      {
+        "comprimento_m": 165,
+        "nos_lado_origem": 23,
+        "populacao_lado_origem": 2182,
+        "pct": 41.1
+      }
+    ]
+  },
+  "copacabana": {
+    "bairro": "Copacabana",
+    "fluxo": 18,
+    "portas": 21,
+    "nucleo_nos": 69,
+    "populacao_ibge_bairro": 128919,
+    "populacao_alocada_no_poligono": 129215,
+    "populacao_nucleo": 24678,
+    "lado_origem_nos": 191,
+    "populacao_lado_origem": 68300,
+    "pct_populacao_lado_origem": 52.9,
+    "pessoas_por_rota": 3794,
+    "cortes_de_uma_rua": []
+  },
+  "botafogo": {
+    "bairro": "Botafogo",
+    "fluxo": 15,
+    "portas": 31,
+    "nucleo_nos": 87,
+    "populacao_ibge_bairro": 76728,
+    "populacao_alocada_no_poligono": 75885,
+    "populacao_nucleo": 24433,
+    "lado_origem_nos": 189,
+    "populacao_lado_origem": 40969,
+    "pct_populacao_lado_origem": 54.0,
+    "pessoas_por_rota": 2731,
+    "cortes_de_uma_rua": []
+  },
+  "alto_da_boa_vista": {
+    "bairro": "Alto da Boa Vista",
+    "fluxo": 4,
+    "portas": 13,
+    "nucleo_nos": 36,
+    "populacao_ibge_bairro": 8079,
+    "populacao_alocada_no_poligono": 9128,
+    "populacao_nucleo": 1557,
+    "lado_origem_nos": 82,
+    "populacao_lado_origem": 3691,
+    "pct_populacao_lado_origem": 40.4,
+    "pessoas_por_rota": 923,
+    "cortes_de_uma_rua": []
+  },
+  "cosme_velho": {
+    "bairro": "Cosme Velho",
+    "fluxo": 6,
+    "portas": 6,
+    "nucleo_nos": 10,
+    "populacao_ibge_bairro": 6408,
+    "populacao_alocada_no_poligono": 6492,
+    "populacao_nucleo": 376,
+    "lado_origem_nos": 33,
+    "populacao_lado_origem": 3640,
+    "pct_populacao_lado_origem": 56.1,
+    "pessoas_por_rota": 607,
+    "cortes_de_uma_rua": []
+  },
+  "leme": {
+    "bairro": "Leme",
+    "fluxo": 1,
+    "portas": 5,
+    "nucleo_nos": 5,
+    "populacao_ibge_bairro": 12479,
+    "populacao_alocada_no_poligono": 10954,
+    "populacao_nucleo": 2446,
+    "lado_origem_nos": 7,
+    "populacao_lado_origem": 2656,
+    "pct_populacao_lado_origem": 24.2,
+    "pessoas_por_rota": 2656,
+    "cortes_de_uma_rua": [
+      {
+        "comprimento_m": 296,
+        "nos_lado_origem": 7,
+        "populacao_lado_origem": 2656,
+        "pct": 24.2
+      }
+    ]
+  },
+  "joa": {
+    "bairro": "Joá",
+    "fluxo": 3,
+    "portas": 3,
+    "nucleo_nos": 4,
+    "populacao_ibge_bairro": 1966,
+    "populacao_alocada_no_poligono": 1096,
+    "populacao_nucleo": 97,
+    "lado_origem_nos": 7,
+    "populacao_lado_origem": 144,
+    "pct_populacao_lado_origem": 13.2,
+    "pessoas_por_rota": 48,
+    "cortes_de_uma_rua": []
+  },
+  "sao_conrado": {
+    "bairro": "São Conrado",
+    "fluxo": 11,
+    "portas": 11,
+    "nucleo_nos": 33,
+    "populacao_ibge_bairro": 9739,
+    "populacao_alocada_no_poligono": 11669,
+    "populacao_nucleo": 1774,
+    "lado_origem_nos": 118,
+    "populacao_lado_origem": 6214,
+    "pct_populacao_lado_origem": 53.3,
+    "pessoas_por_rota": 565,
+    "cortes_de_uma_rua": []
+  },
+  "praca_da_bandeira": {
+    "bairro": "Praça da Bandeira",
+    "fluxo": 8,
+    "portas": 27,
+    "nucleo_nos": 20,
+    "populacao_ibge_bairro": 7215,
+    "populacao_alocada_no_poligono": 6588,
+    "populacao_nucleo": 2560,
+    "lado_origem_nos": 25,
+    "populacao_lado_origem": 2560,
+    "pct_populacao_lado_origem": 38.9,
+    "pessoas_por_rota": 320,
+    "cortes_de_uma_rua": []
+  }
+}

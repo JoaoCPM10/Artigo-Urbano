@@ -1,0 +1,254 @@
+{
+  "urca": {
+    "nucleo": 65,
+    "ctb": {
+      "max_pct": 54.24,
+      "no": 186310957
+    },
+    "anterior": {
+      "max_pct": 54.24,
+      "no": 186310957,
+      "mesmo_no": true,
+      "spearman_ruas": 1.0,
+      "top10_em_comum": 10
+    },
+    "trunk80": {
+      "max_pct": 54.24,
+      "no": 186310957,
+      "mesmo_no": true,
+      "spearman_ruas": 1.0,
+      "top10_em_comum": 10
+    },
+    "ctb_baixo": {
+      "max_pct": 54.24,
+      "no": 186310957,
+      "mesmo_no": true,
+      "spearman_ruas": 1.0,
+      "top10_em_comum": 10
+    }
+  },
+  "copacabana": {
+    "nucleo": 331,
+    "ctb": {
+      "max_pct": 27.79,
+      "no": 146377309
+    },
+    "anterior": {
+      "max_pct": 27.78,
+      "no": 146377309,
+      "mesmo_no": true,
+      "spearman_ruas": 0.988,
+      "top10_em_comum": 9
+    },
+    "trunk80": {
+      "max_pct": 27.8,
+      "no": 146377309,
+      "mesmo_no": true,
+      "spearman_ruas": 0.991,
+      "top10_em_comum": 10
+    },
+    "ctb_baixo": {
+      "max_pct": 28.44,
+      "no": 148823585,
+      "mesmo_no": false,
+      "spearman_ruas": 0.978,
+      "top10_em_comum": 7
+    }
+  },
+  "botafogo": {
+    "nucleo": 392,
+    "ctb": {
+      "max_pct": 20.95,
+      "no": 418044506
+    },
+    "anterior": {
+      "max_pct": 22.37,
+      "no": 418044506,
+      "mesmo_no": true,
+      "spearman_ruas": 0.976,
+      "top10_em_comum": 5
+    },
+    "trunk80": {
+      "max_pct": 21.2,
+      "no": 418044506,
+      "mesmo_no": true,
+      "spearman_ruas": 0.999,
+      "top10_em_comum": 10
+    },
+    "ctb_baixo": {
+      "max_pct": 23.02,
+      "no": 142778669,
+      "mesmo_no": false,
+      "spearman_ruas": 0.985,
+      "top10_em_comum": 5
+    }
+  },
+  "alto_da_boa_vista": {
+    "nucleo": 169,
+    "ctb": {
+      "max_pct": 57.96,
+      "no": 837056862
+    },
+    "anterior": {
+      "max_pct": 51.72,
+      "no": 837056862,
+      "mesmo_no": true,
+      "spearman_ruas": 0.956,
+      "top10_em_comum": 9
+    },
+    "trunk80": {
+      "max_pct": 57.96,
+      "no": 837056862,
+      "mesmo_no": true,
+      "spearman_ruas": 1.0,
+      "top10_em_comum": 10
+    },
+    "ctb_baixo": {
+      "max_pct": 50.96,
+      "no": 837056862,
+      "mesmo_no": true,
+      "spearman_ruas": 0.955,
+      "top10_em_comum": 9
+    }
+  },
+  "cosme_velho": {
+    "nucleo": 48,
+    "ctb": {
+      "max_pct": 60.04,
+      "no": 141961818
+    },
+    "anterior": {
+      "max_pct": 59.48,
+      "no": 141961818,
+      "mesmo_no": true,
+      "spearman_ruas": 0.998,
+      "top10_em_comum": 9
+    },
+    "trunk80": {
+      "max_pct": 60.04,
+      "no": 141961818,
+      "mesmo_no": true,
+      "spearman_ruas": 1.0,
+      "top10_em_comum": 10
+    },
+    "ctb_baixo": {
+      "max_pct": 58.83,
+      "no": 141961818,
+      "mesmo_no": true,
+      "spearman_ruas": 0.992,
+      "top10_em_comum": 8
+    }
+  },
+  "leme": {
+    "nucleo": 20,
+    "ctb": {
+      "max_pct": 54.97,
+      "no": 527726642
+    },
+    "anterior": {
+      "max_pct": 54.97,
+      "no": 527726642,
+      "mesmo_no": true,
+      "spearman_ruas": 1.0,
+      "top10_em_comum": 10
+    },
+    "trunk80": {
+      "max_pct": 54.97,
+      "no": 527726642,
+      "mesmo_no": true,
+      "spearman_ruas": 1.0,
+      "top10_em_comum": 10
+    },
+    "ctb_baixo": {
+      "max_pct": 54.97,
+      "no": 527726642,
+      "mesmo_no": true,
+      "spearman_ruas": 1.0,
+      "top10_em_comum": 10
+    }
+  },
+  "joa": {
+    "nucleo": 19,
+    "ctb": {
+      "max_pct": 59.48,
+      "no": 2888534641
+    },
+    "anterior": {
+      "max_pct": 59.48,
+      "no": 2888534641,
+      "mesmo_no": true,
+      "spearman_ruas": 1.0,
+      "top10_em_comum": 10
+    },
+    "trunk80": {
+      "max_pct": 59.48,
+      "no": 2888534641,
+      "mesmo_no": true,
+      "spearman_ruas": 1.0,
+      "top10_em_comum": 10
+    },
+    "ctb_baixo": {
+      "max_pct": 59.48,
+      "no": 2888534641,
+      "mesmo_no": true,
+      "spearman_ruas": 1.0,
+      "top10_em_comum": 10
+    }
+  },
+  "sao_conrado": {
+    "nucleo": 154,
+    "ctb": {
+      "max_pct": 39.68,
+      "no": 3648017599
+    },
+    "anterior": {
+      "max_pct": 39.34,
+      "no": 3648017599,
+      "mesmo_no": true,
+      "spearman_ruas": 1.0,
+      "top10_em_comum": 10
+    },
+    "trunk80": {
+      "max_pct": 39.83,
+      "no": 3648017599,
+      "mesmo_no": true,
+      "spearman_ruas": 0.964,
+      "top10_em_comum": 9
+    },
+    "ctb_baixo": {
+      "max_pct": 39.68,
+      "no": 3648017599,
+      "mesmo_no": true,
+      "spearman_ruas": 1.0,
+      "top10_em_comum": 10
+    }
+  },
+  "praca_da_bandeira": {
+    "nucleo": 59,
+    "ctb": {
+      "max_pct": 52.75,
+      "no": 1071672663
+    },
+    "anterior": {
+      "max_pct": 52.75,
+      "no": 1071672663,
+      "mesmo_no": true,
+      "spearman_ruas": 1.0,
+      "top10_em_comum": 10
+    },
+    "trunk80": {
+      "max_pct": 52.75,
+      "no": 1071672663,
+      "mesmo_no": true,
+      "spearman_ruas": 1.0,
+      "top10_em_comum": 10
+    },
+    "ctb_baixo": {
+      "max_pct": 52.75,
+      "no": 1071672663,
+      "mesmo_no": true,
+      "spearman_ruas": 1.0,
+      "top10_em_comum": 10
+    }
+  }
+}

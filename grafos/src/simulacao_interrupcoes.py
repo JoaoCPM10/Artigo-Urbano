@@ -31,6 +31,7 @@ Uso:  py simulacao_interrupcoes.py [--verifica] [--bairros urca,copacabana]
 from __future__ import annotations
 import csv
 import json
+import math
 import os
 import random
 import shutil
@@ -348,8 +349,14 @@ def figura(resultados) -> None:
               "fluxo_corte": ("#c0392b", "-", "D", "access flow: one minimum cut"),
               "fluxo_criticas": ("#6b46c1", "-", "P", "access flow: critical streets"),
               "guloso": ("#111111", "--", "x", "greedy attack (upper bound)")}
-    fig, axes = plt.subplots(1, 3, figsize=(16, 5.2), sharey=True)
-    for ax, (key, r) in zip(axes, resultados.items()):
+    ordem = ["urca", "leme", "alto_da_boa_vista", "cosme_velho", "joa", "sao_conrado",
+             "copacabana", "botafogo", "praca_da_bandeira"]
+    chaves = [k for k in ordem if k in resultados] + [k for k in resultados if k not in ordem]
+    ncol = 3
+    nlin = (len(chaves) + ncol - 1) // ncol
+    fig, axes = plt.subplots(nlin, ncol, figsize=(16, 4.6 * nlin), sharey=True, squeeze=False)
+    axes = axes.ravel()
+    for ax, (key, r) in zip(axes, [(k, resultados[k]) for k in chaves]):
         for e in ESTRATEGIAS:
             cor, ls, mk, lab = estilo[e]
             ys = [100 * r["estrategias"][e][str(k)]["nucleo"]["media"] for k in KS]
@@ -361,18 +368,20 @@ def figura(resultados) -> None:
                 ax.fill_between(range(len(KS)), lo, hi, color=cor, alpha=0.18, zorder=1)
         ax.set_xticks(range(len(KS))); ax.set_xticklabels([str(k) for k in KS])
         ax.set_xlabel("streets closed (k)"); ax.set_ylim(-3, 103)
-        ax.set_title(f"{r['bairro']} (access flow {r['indicadores']['fluxo_acesso']})", fontsize=12)
+        fl = r['indicadores']['fluxo_acesso']
+        # k = fluxo de acesso: a escala dos k e' logaritmica (indice = log2 k)
+        ax.axvline(math.log2(fl), color="#c0392b", ls=":", lw=1.4, zorder=2,
+                   label="k = access flow")
+        ax.set_title(f"{r['bairro']} (access flow {fl})", fontsize=12)
         ax.grid(alpha=0.25)
-    axes[0].set_ylabel("core intersections that lose every route\nto the external edge (%)")
+    for i in range(0, len(chaves), ncol):
+        axes[i].set_ylabel("core intersections that lose every route\nto the external edge (%)")
     h, l = axes[0].get_legend_handles_labels()
     fig.legend(h, l, loc="lower center", ncol=4, fontsize=10, frameon=False)
-    fig.tight_layout(rect=(0, 0.12, 1, 1))
-    p = os.path.join(OUT, "fig_simulacao.png")
+    fig.tight_layout(rect=(0, 0.06, 1, 1))
+    p = os.path.join(OUT, "fig_simulacao_9.png")
     fig.savefig(p, dpi=140, bbox_inches="tight"); plt.close(fig)
-    figs = os.path.join(os.path.dirname(OUT), "..", "Figures")
-    if os.path.isdir(figs):
-        shutil.copy(p, os.path.join(figs, "fig_simulacao.png"))
-    print("saved:", p)
+    print("saved:", p, "(a copia para Figures e feita na integracao)")
 
 
 # ---------------------------------------------------------------------------
@@ -426,12 +435,24 @@ def escreve(resultados) -> None:
         w.writeheader(); w.writerows(linhas)
 
 
+def junta_com_existente(caminho, novos):
+    """Com --bairros, mantem no JSON os bairros ja calculados e troca so os pedidos."""
+    if "--bairros" in sys.argv and os.path.exists(caminho):
+        with open(caminho, encoding="utf-8") as fh:
+            antigos = json.load(fh)
+        antigos.update(novos)
+        return antigos
+    return novos
+
+
 def main():
     chaves = ["urca", "copacabana", "botafogo"]
     if "--bairros" in sys.argv:
         chaves = sys.argv[sys.argv.index("--bairros") + 1].split(",")
     checar = "--verifica" in sys.argv
     resultados = {k: analisa(k, checar) for k in chaves}
+    resultados = junta_com_existente(
+        os.path.join(OUT, "simulacao_interrupcoes.json"), resultados)
     escreve(resultados)
     if len(chaves) == 3:
         figura(resultados)

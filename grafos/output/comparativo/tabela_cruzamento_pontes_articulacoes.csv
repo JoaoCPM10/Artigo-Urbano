@@ -1,6 +1,6 @@
-categoria,Urca,Copacabana,Botafogo
-Pontes: fraca e forte,6,69,102
-Pontes: só forte,53,147,240
-Pontes: só fraca (fora do núcleo),5,9,12
-Articulações: fraca e forte,8,61,100
-Articulações: só forte,40,118,149
+categoria,Urca,Copacabana,Botafogo,Alto da Boa Vista,Cosme Velho,Leme,Joá,São Conrado,Praça da Bandeira
+Pontes: fraca e forte,6,69,102,80,18,9,7,31,10
+Pontes: só forte,53,147,240,37,8,11,1,71,47
+Pontes: só fraca (fora do núcleo),5,9,12,15,2,6,0,1,15
+Articulações: fraca e forte,8,61,100,70,17,8,10,26,11
+Articulações: só forte,40,118,149,22,4,6,1,63,33

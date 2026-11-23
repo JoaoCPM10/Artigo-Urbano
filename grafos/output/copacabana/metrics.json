@@ -19,12 +19,12 @@
     "maior_scc": 331,
     "fora_da_scc_gigante": 14,
     "ruas_sem_saida": 62,
-    "tempo_ms": 3.65
+    "tempo_ms": 2.73
   },
   "gargalos_estruturais": {
     "articulacoes": 68,
     "pontes": 78,
-    "tempo_ms": 204.79
+    "tempo_ms": 128.63
   },
   "gargalos_estruturais_dirigidos": {
     "nucleo_n": 331,
@@ -36,7 +36,7 @@
     "pontes_so_fraca_fora_do_nucleo": 9,
     "articulacoes_fraca_e_forte": 61,
     "articulacoes_so_forte": 118,
-    "tempo_ms": 4150.47
+    "tempo_ms": 2445.83
   },
   "gargalo_corte_minimo": {
     "origem": 524693757,
@@ -63,7 +63,7 @@
         4804748027
       ]
     ],
-    "tempo_ms": 2.06
+    "tempo_ms": 0.73
   },
   "travessia_interna_polos": {
     "polo1": 4148200541,
@@ -105,24 +105,24 @@
     "frac": 0.2
   },
   "intermediacao": {
-    "max_pct_pares": 27.78,
+    "max_pct_pares": 27.79,
     "no_max": 146377309,
     "n_nucleo": 331
   },
   "rotas_alternativas": {
     "origem": 524693757,
     "destino": 4804748027,
-    "rota_principal_min": 7.24,
+    "rota_principal_min": 7.15,
     "intersecoes_rota": 31,
     "bellman_ford_confere": true,
-    "tempo_dijkstra_ms": 0.77,
-    "tempo_bellman_ford_ms": 2.29,
+    "tempo_dijkstra_ms": 0.51,
+    "tempo_bellman_ford_ms": 1.96,
     "trecho_bloqueado": [
       148824290,
       148824289
     ],
-    "rota_alternativa_min": 7.61,
-    "acrescimo_pct": 5.1,
+    "rota_alternativa_min": 7.45,
+    "acrescimo_pct": 4.2,
     "pontes_na_rota": 4
   },
   "resiliencia": {
@@ -136,10 +136,10 @@
       },
       "binarias": 76,
       "com_desvio_parcial": 140,
-      "n_pares_com_desvio_parcial": 576377,
+      "n_pares_com_desvio_parcial": 572631,
       "acrescimo_min": {
-        "min": 0.0011833203504020655,
-        "mediana": 0.32579813592504553,
+        "min": 0.001252055150298048,
+        "mediana": 0.3035609452311083,
         "max": 3.757273523863197
       }
     },
@@ -151,7 +151,7 @@
         "max": 15389
       }
     },
-    "tempo_ms": 142413.23
+    "tempo_ms": 90195.97
   },
-  "tempo_total_s": 150.4
+  "tempo_total_s": 95.0
 }

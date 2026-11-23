@@ -176,13 +176,13 @@ class Rede:
         d = {"scc": {"dir": set(), "nd": set()}, "qualquer": {"dir": set(), "nd": set()}}
         for u in self.ring:
             for e in G.adj[u]:                          # arco u -> w saindo do anel
-                if e.v not in self.ring and dist.get(e.v, INF) < INF:
+                if e.v not in self.ring:
                     d["qualquer"]["dir"].add(u)
                     if e.v in giant_scc:
                         d["scc"]["dir"].add(u)
         for e in arestas:                               # rua entre anel e fora, sem sentido
             for a, b in ((e[0], e[1]), (e[1], e[0])):
-                if a in self.ring and b not in self.ring and dist.get(b, INF) < INF:
+                if a in self.ring and b not in self.ring:
                     d["qualquer"]["nd"].add(a)
                     if b in giant_nd:
                         d["scc"]["nd"].add(a)
@@ -376,6 +376,16 @@ def escreve(resultados) -> None:
         w.writeheader(); w.writerows(linhas)
 
 
+def junta_com_existente(caminho, novos):
+    """Com --bairros, mantem no JSON os bairros ja calculados e troca so os pedidos."""
+    if "--bairros" in sys.argv and os.path.exists(caminho):
+        with open(caminho, encoding="utf-8") as fh:
+            antigos = json.load(fh)
+        antigos.update(novos)
+        return antigos
+    return novos
+
+
 def main():
     chaves = ["urca", "copacabana", "botafogo"]
     if "--bairros" in sys.argv:
@@ -386,6 +396,8 @@ def main():
         if "--verifica" in sys.argv:
             verifica(objetos[k])
             print(f"{k}: networkx confere (fluxos e componente gigante)")
+    resultados = junta_com_existente(
+        os.path.join(OUT, "conectividade_externa.json"), resultados)
     escreve(resultados)
     print("\nRegressao R=0 (artigo | rede ampliada):")
     for k, r in resultados.items():

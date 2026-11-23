@@ -1,0 +1,112 @@
+{
+  "bairros": {
+    "urca": {
+      "bairro": "Urca",
+      "perimetro_km": 14.1,
+      "pontos": 281,
+      "frac_agua": 0.843,
+      "frac_encosta": 0.05,
+      "frac_agua_ou_encosta": 0.893,
+      "declividade_mediana_perimetro_pct": 25.2,
+      "fluxo_nd": 1,
+      "fluxo_dir": 1
+    },
+    "copacabana": {
+      "bairro": "Copacabana",
+      "perimetro_km": 12.8,
+      "pontos": 255,
+      "frac_agua": 0.341,
+      "frac_encosta": 0.227,
+      "frac_agua_ou_encosta": 0.569,
+      "declividade_mediana_perimetro_pct": 24.3,
+      "fluxo_nd": 18,
+      "fluxo_dir": 8
+    },
+    "botafogo": {
+      "bairro": "Botafogo",
+      "perimetro_km": 12.1,
+      "pontos": 242,
+      "frac_agua": 0.14,
+      "frac_encosta": 0.326,
+      "frac_agua_ou_encosta": 0.467,
+      "declividade_mediana_perimetro_pct": 22.7,
+      "fluxo_nd": 15,
+      "fluxo_dir": 7
+    },
+    "alto_da_boa_vista": {
+      "bairro": "Alto da Boa Vista",
+      "perimetro_km": 43.7,
+      "pontos": 874,
+      "frac_agua": 0.005,
+      "frac_encosta": 0.721,
+      "frac_agua_ou_encosta": 0.725,
+      "declividade_mediana_perimetro_pct": 42.3,
+      "fluxo_nd": 4,
+      "fluxo_dir": 3
+    },
+    "cosme_velho": {
+      "bairro": "Cosme Velho",
+      "perimetro_km": 7.9,
+      "pontos": 157,
+      "frac_agua": 0.0,
+      "frac_encosta": 0.637,
+      "frac_agua_ou_encosta": 0.637,
+      "declividade_mediana_perimetro_pct": 35.8,
+      "fluxo_nd": 6,
+      "fluxo_dir": 5
+    },
+    "leme": {
+      "bairro": "Leme",
+      "perimetro_km": 7.0,
+      "pontos": 140,
+      "frac_agua": 0.643,
+      "frac_encosta": 0.1,
+      "frac_agua_ou_encosta": 0.743,
+      "declividade_mediana_perimetro_pct": 22.8,
+      "fluxo_nd": 1,
+      "fluxo_dir": 1
+    },
+    "joa": {
+      "bairro": "Joá",
+      "perimetro_km": 8.9,
+      "pontos": 177,
+      "frac_agua": 0.621,
+      "frac_encosta": 0.249,
+      "frac_agua_ou_encosta": 0.87,
+      "declividade_mediana_perimetro_pct": 44.0,
+      "fluxo_nd": 3,
+      "fluxo_dir": 3
+    },
+    "sao_conrado": {
+      "bairro": "São Conrado",
+      "perimetro_km": 13.3,
+      "pontos": 265,
+      "frac_agua": 0.343,
+      "frac_encosta": 0.426,
+      "frac_agua_ou_encosta": 0.77,
+      "declividade_mediana_perimetro_pct": 39.8,
+      "fluxo_nd": 11,
+      "fluxo_dir": 7
+    },
+    "praca_da_bandeira": {
+      "bairro": "Praça da Bandeira",
+      "perimetro_km": 4.7,
+      "pontos": 94,
+      "frac_agua": 0.33,
+      "frac_encosta": 0.0,
+      "frac_agua_ou_encosta": 0.33,
+      "declividade_mediana_perimetro_pct": 4.6,
+      "fluxo_nd": 8,
+      "fluxo_dir": 4
+    }
+  },
+  "spearman_fluxo_nd": -0.678,
+  "spearman_fluxo_dir": -0.565,
+  "parametros": {
+    "passo_m": 50.0,
+    "delta_m": 45.0,
+    "limiar_declividade": 0.3,
+    "dist_agua_m": 100.0,
+    "dem": "SRTM 30 m (OpenTopoData)"
+  }
+}

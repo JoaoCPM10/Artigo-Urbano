@@ -1,0 +1,145 @@
+{
+  "rede": {
+    "fonte": "OpenStreetMap (Overpass API)",
+    "bairro": "Alto da Boa Vista, Rio de Janeiro",
+    "bairro_slug": "alto_da_boa_vista",
+    "bbox": "-22.989,-43.302,-22.93,-43.201",
+    "bbox_recortado_por_poligono_oficial": true,
+    "n_removidos_fora_do_poligono": 1509,
+    "pontos_osm": 16153,
+    "vias_osm": 1848,
+    "V_intersecoes": 188,
+    "E_arcos": 390,
+    "trechos": 217
+  },
+  "conectividade": {
+    "componentes": 2,
+    "maior_componente": 181,
+    "scc": 10,
+    "maior_scc": 169,
+    "fora_da_scc_gigante": 19,
+    "ruas_sem_saida": 61,
+    "tempo_ms": 0.93
+  },
+  "gargalos_estruturais": {
+    "articulacoes": 79,
+    "pontes": 95,
+    "tempo_ms": 23.98
+  },
+  "gargalos_estruturais_dirigidos": {
+    "nucleo_n": 169,
+    "pares_nucleo": 195,
+    "pontes_fortes": 117,
+    "articulacoes_fortes": 92,
+    "pontes_fraca_e_forte": 80,
+    "pontes_so_forte": 37,
+    "pontes_so_fraca_fora_do_nucleo": 15,
+    "articulacoes_fraca_e_forte": 70,
+    "articulacoes_so_forte": 22,
+    "tempo_ms": 450.69
+  },
+  "gargalo_corte_minimo": {
+    "origem": 1491436689,
+    "destino": 9437024746,
+    "fluxo_maximo": 1,
+    "corte_minimo": 1,
+    "ruas_do_corte": [
+      [
+        1491436689,
+        329601505
+      ]
+    ],
+    "outros_pontos_unicos_de_falha_na_rota": [
+      [
+        329601505,
+        400692102
+      ],
+      [
+        3077482850,
+        9437024746
+      ]
+    ],
+    "tempo_ms": 0.38
+  },
+  "travessia_interna_polos": {
+    "polo1": 4037581380,
+    "polo2": 3397702657,
+    "fluxo": 2,
+    "corte": 2,
+    "n_origem": 34,
+    "n_destino": 34,
+    "frac": 0.2
+  },
+  "gargalo_acesso_gateway": {
+    "gateways": [
+      329601505,
+      400691792,
+      888585109,
+      1491436689,
+      2124720409,
+      3397702660,
+      3397702674,
+      3427841975,
+      3818904533,
+      3818904542,
+      4280874979,
+      4281069634,
+      7842578158
+    ],
+    "fluxo": 4,
+    "corte": 4,
+    "n_origem": 36,
+    "n_gateways": 13,
+    "frac": 0.2
+  },
+  "intermediacao": {
+    "max_pct_pares": 57.96,
+    "no_max": 837056862,
+    "n_nucleo": 169
+  },
+  "rotas_alternativas": {
+    "origem": 1491436689,
+    "destino": 9437024746,
+    "rota_principal_min": 36.85,
+    "intersecoes_rota": 14,
+    "bellman_ford_confere": true,
+    "tempo_dijkstra_ms": 0.29,
+    "tempo_bellman_ford_ms": 0.95,
+    "trecho_bloqueado": [
+      773790084,
+      2880831894
+    ],
+    "rota_alternativa_min": null,
+    "acrescimo_pct": null,
+    "pontes_na_rota": 3
+  },
+  "resiliencia": {
+    "n_pares_nucleo": 28392,
+    "pontes_fortes": {
+      "n": 117,
+      "pares_desconectados": {
+        "min": 168,
+        "mediana": 336,
+        "max": 8556
+      },
+      "binarias": 95,
+      "com_desvio_parcial": 22,
+      "n_pares_com_desvio_parcial": 43386,
+      "acrescimo_min": {
+        "min": 0.003717443476670231,
+        "mediana": 0.3104378577040857,
+        "max": 13.457170992441261
+      }
+    },
+    "articulacoes_fortes": {
+      "n": 92,
+      "pares_desconectados": {
+        "min": 335,
+        "mediana": 1158.0,
+        "max": 8662
+      }
+    },
+    "tempo_ms": 18700.43
+  },
+  "tempo_total_s": 21.29
+}

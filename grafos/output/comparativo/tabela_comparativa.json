@@ -3,78 +3,156 @@
     "indicador": "Interseções (V)",
     "Urca": 70,
     "Copacabana": 345,
-    "Botafogo": 434
+    "Botafogo": 434,
+    "Alto da Boa Vista": 188,
+    "Cosme Velho": 50,
+    "Leme": 27,
+    "Joá": 20,
+    "São Conrado": 166,
+    "Praça da Bandeira": 102
   },
   {
     "indicador": "Trechos de rua",
     "Urca": 104,
     "Copacabana": 494,
-    "Botafogo": 563
+    "Botafogo": 563,
+    "Alto da Boa Vista": 217,
+    "Cosme Velho": 62,
+    "Leme": 32,
+    "Joá": 24,
+    "São Conrado": 224,
+    "Praça da Bandeira": 128
   },
   {
     "indicador": "Mão única (% dos trechos)",
     "Urca": 91.3,
     "Copacabana": 74.9,
-    "Botafogo": 76.2
+    "Botafogo": 76.2,
+    "Alto da Boa Vista": 20.3,
+    "Cosme Velho": 29.0,
+    "Leme": 62.5,
+    "Joá": 8.3,
+    "São Conrado": 66.5,
+    "Praça da Bandeira": 82.8
   },
   {
     "indicador": "Núcleo fortemente conexo (V)",
     "Urca": 65,
     "Copacabana": 331,
-    "Botafogo": 392
+    "Botafogo": 392,
+    "Alto da Boa Vista": 169,
+    "Cosme Velho": 48,
+    "Leme": 20,
+    "Joá": 19,
+    "São Conrado": 154,
+    "Praça da Bandeira": 59
   },
   {
     "indicador": "Portas de acesso identificadas",
     "Urca": 3,
     "Copacabana": 21,
-    "Botafogo": 31
+    "Botafogo": 31,
+    "Alto da Boa Vista": 13,
+    "Cosme Velho": 6,
+    "Leme": 5,
+    "Joá": 3,
+    "São Conrado": 11,
+    "Praça da Bandeira": 27
   },
   {
     "indicador": "Fluxo de acesso: rotas por ruas distintas do núcleo às portas",
     "Urca": 1,
     "Copacabana": 18,
-    "Botafogo": 15
+    "Botafogo": 15,
+    "Alto da Boa Vista": 4,
+    "Cosme Velho": 6,
+    "Leme": 1,
+    "Joá": 3,
+    "São Conrado": 11,
+    "Praça da Bandeira": 8
   },
   {
     "indicador": "Intermediação máxima (% dos pares)",
     "Urca": 54.24,
-    "Copacabana": 27.78,
-    "Botafogo": 22.37
+    "Copacabana": 27.79,
+    "Botafogo": 20.95,
+    "Alto da Boa Vista": 57.96,
+    "Cosme Velho": 60.04,
+    "Leme": 54.97,
+    "Joá": 59.48,
+    "São Conrado": 39.68,
+    "Praça da Bandeira": 52.75
   },
   {
     "indicador": "Fora da CFC gigante (% de V)",
     "Urca": 7.1,
     "Copacabana": 4.1,
-    "Botafogo": 9.7
+    "Botafogo": 9.7,
+    "Alto da Boa Vista": 10.1,
+    "Cosme Velho": 4.0,
+    "Leme": 25.9,
+    "Joá": 5.0,
+    "São Conrado": 7.2,
+    "Praça da Bandeira": 42.2
   },
   {
     "indicador": "Pontes fracas (% dos trechos)",
     "Urca": 10.6,
     "Copacabana": 15.8,
-    "Botafogo": 20.2
+    "Botafogo": 20.2,
+    "Alto da Boa Vista": 43.8,
+    "Cosme Velho": 32.3,
+    "Leme": 46.9,
+    "Joá": 29.2,
+    "São Conrado": 14.3,
+    "Praça da Bandeira": 19.5
   },
   {
     "indicador": "Pontes fortes (% das ruas do núcleo)",
     "Urca": 61.5,
     "Copacabana": 45.3,
-    "Botafogo": 68.4
+    "Botafogo": 68.4,
+    "Alto da Boa Vista": 60.0,
+    "Cosme Velho": 44.1,
+    "Leme": 83.3,
+    "Joá": 34.8,
+    "São Conrado": 50.2,
+    "Praça da Bandeira": 79.2
   },
   {
     "indicador": "Articulações fortes (% do núcleo)",
     "Urca": 73.8,
     "Copacabana": 54.1,
-    "Botafogo": 63.5
+    "Botafogo": 63.5,
+    "Alto da Boa Vista": 54.4,
+    "Cosme Velho": 43.8,
+    "Leme": 70.0,
+    "Joá": 57.9,
+    "São Conrado": 57.8,
+    "Praça da Bandeira": 74.6
   },
   {
     "indicador": "Mediana de pares desconectados por ponte forte (% do núcleo)",
     "Urca": 6.0,
     "Copacabana": 0.6,
-    "Botafogo": 0.5
+    "Botafogo": 0.5,
+    "Alto da Boa Vista": 1.2,
+    "Cosme Velho": 4.2,
+    "Leme": 24.2,
+    "Joá": 15.2,
+    "São Conrado": 1.3,
+    "Praça da Bandeira": 6.6
   },
   {
     "indicador": "Mediana de pares desconectados por articulação forte (% do núcleo)",
     "Urca": 8.2,
     "Copacabana": 1.2,
-    "Botafogo": 1.5
+    "Botafogo": 1.5,
+    "Alto da Boa Vista": 4.1,
+    "Cosme Velho": 8.1,
+    "Leme": 36.8,
+    "Joá": 24.0,
+    "São Conrado": 2.6,
+    "Praça da Bandeira": 22.2
   }
 ]

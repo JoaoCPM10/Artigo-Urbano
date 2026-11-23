@@ -86,14 +86,24 @@ def analisa(key: str) -> dict:
             "efeito_convergencia_externa": f_cont - f_ext}
         print(f"{key:11s} R={R:4d} portas={len(saidas):2d} continuam={len(continua):2d}  "
               f"fluxo: todas={f_todas} -> continuam={f_cont} -> borda externa={f_ext}", flush=True)
-        assert f_ext <= f_cont <= f_todas, "ordem esperada violada"
+        if not (f_ext <= f_cont <= f_todas):
+            # so' ocorre se as portas da rede ampliada diferem das da rede R=0 (contracao de
+            # grau 2 junto a fronteira, ver regressao_R0 em conectividade_externa.py)
+            print(f"  AVISO: ordem esperada violada em {key} R={R}: {f_ext} <= {f_cont} <= {f_todas}")
+            res["raios"][str(R)]["ordem_violada"] = True
     return res
 
 
 def main():
     chaves = sys.argv[1].split(",") if len(sys.argv) > 1 else ["copacabana", "urca", "botafogo"]
     resultados = {k: analisa(k) for k in chaves}
-    with open(os.path.join(OUT, "portas_sem_continuacao.json"), "w", encoding="utf-8") as fh:
+    caminho = os.path.join(OUT, "portas_sem_continuacao.json")
+    if len(sys.argv) > 1 and os.path.exists(caminho):      # mescla com os bairros ja calculados
+        with open(caminho, encoding="utf-8") as fh:
+            antigos = json.load(fh)
+        antigos.update(resultados)
+        resultados = antigos
+    with open(caminho, "w", encoding="utf-8") as fh:
         json.dump(resultados, fh, ensure_ascii=False, indent=2)
 
 

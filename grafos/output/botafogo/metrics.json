@@ -19,12 +19,12 @@
     "maior_scc": 392,
     "fora_da_scc_gigante": 42,
     "ruas_sem_saida": 96,
-    "tempo_ms": 9.59
+    "tempo_ms": 8.51
   },
   "gargalos_estruturais": {
     "articulacoes": 112,
     "pontes": 114,
-    "tempo_ms": 238.99
+    "tempo_ms": 182.1
   },
   "gargalos_estruturais_dirigidos": {
     "nucleo_n": 392,
@@ -36,7 +36,7 @@
     "pontes_so_fraca_fora_do_nucleo": 12,
     "articulacoes_fraca_e_forte": 100,
     "articulacoes_so_forte": 149,
-    "tempo_ms": 10181.22
+    "tempo_ms": 6942.84
   },
   "gargalo_corte_minimo": {
     "origem": 9217502699,
@@ -75,7 +75,7 @@
         5192513211
       ]
     ],
-    "tempo_ms": 1.44
+    "tempo_ms": 1.19
   },
   "travessia_interna_polos": {
     "polo1": 13277703131,
@@ -127,24 +127,24 @@
     "frac": 0.2
   },
   "intermediacao": {
-    "max_pct_pares": 22.37,
+    "max_pct_pares": 20.95,
     "no_max": 418044506,
     "n_nucleo": 392
   },
   "rotas_alternativas": {
     "origem": 9217502699,
     "destino": 5192513211,
-    "rota_principal_min": 10.58,
-    "intersecoes_rota": 40,
+    "rota_principal_min": 10.26,
+    "intersecoes_rota": 64,
     "bellman_ford_confere": true,
-    "tempo_dijkstra_ms": 0.71,
-    "tempo_bellman_ford_ms": 4.91,
+    "tempo_dijkstra_ms": 0.57,
+    "tempo_bellman_ford_ms": 2.9,
     "trecho_bloqueado": [
-      142778727,
-      142834579
+      142776474,
+      568895099
     ],
-    "rota_alternativa_min": 10.78,
-    "acrescimo_pct": 1.8,
+    "rota_alternativa_min": 10.37,
+    "acrescimo_pct": 1.0,
     "pontes_na_rota": 6
   },
   "resiliencia": {
@@ -158,11 +158,11 @@
       },
       "binarias": 122,
       "com_desvio_parcial": 220,
-      "n_pares_com_desvio_parcial": 1726154,
+      "n_pares_com_desvio_parcial": 1858760,
       "acrescimo_min": {
         "min": 8.312427490106225e-05,
-        "mediana": 0.5363287536231696,
-        "max": 6.278759223160028
+        "mediana": 0.5394065592075392,
+        "max": 6.1900601835320135
       }
     },
     "articulacoes_fortes": {
@@ -173,7 +173,7 @@
         "max": 18256
       }
     },
-    "tempo_ms": 318463.86
+    "tempo_ms": 197072.92
   },
-  "tempo_total_s": 332.71
+  "tempo_total_s": 206.68
 }

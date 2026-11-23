@@ -16,20 +16,21 @@
     "tertiary_link"
   ],
   "velocidade_padrao_kmh": {
-    "motorway": 90,
-    "trunk": 80,
+    "motorway": 80,
+    "trunk": 60,
     "primary": 60,
-    "secondary": 50,
+    "secondary": 60,
     "tertiary": 40,
-    "unclassified": 40,
+    "unclassified": 30,
     "residential": 30,
     "living_street": 20,
     "road": 30,
-    "motorway_link": 60,
-    "trunk_link": 50,
-    "primary_link": 40,
-    "secondary_link": 40,
-    "tertiary_link": 30
+    "motorway_link": 80,
+    "trunk_link": 60,
+    "primary_link": 60,
+    "secondary_link": 60,
+    "tertiary_link": 40,
+    "service": 20
   },
   "bairros": {
     "Urca": {
@@ -67,6 +68,78 @@
       "pares_com_rua_paralela_na_rede_recortada": 4,
       "pct_vias_com_maxspeed": 17.5,
       "pct_cadeias_descartadas": 0.34
+    },
+    "Alto da Boa Vista": {
+      "osm_timestamp": "2026-11-20T15:58:05Z",
+      "overpass": "Overpass API 0.7.62.11 87bfad18",
+      "vias": 1848,
+      "vias_com_maxspeed": 254,
+      "cadeias_mantidas": 2235,
+      "lacos_descartados": 6,
+      "cadeias_mistas_descartadas": 3,
+      "pares_com_rua_paralela_na_rede_recortada": 3,
+      "pct_vias_com_maxspeed": 13.7,
+      "pct_cadeias_descartadas": 0.4
+    },
+    "Cosme Velho": {
+      "osm_timestamp": "2026-11-20T15:50:06Z",
+      "overpass": "Overpass API 0.7.62.11 87bfad18",
+      "vias": 149,
+      "vias_com_maxspeed": 60,
+      "cadeias_mantidas": 143,
+      "lacos_descartados": 0,
+      "cadeias_mistas_descartadas": 0,
+      "pares_com_rua_paralela_na_rede_recortada": 1,
+      "pct_vias_com_maxspeed": 40.3,
+      "pct_cadeias_descartadas": 0.0
+    },
+    "Leme": {
+      "osm_timestamp": "2026-11-21T11:18:03Z",
+      "overpass": "Overpass API 0.7.62.11 87bfad18",
+      "vias": 66,
+      "vias_com_maxspeed": 39,
+      "cadeias_mantidas": 65,
+      "lacos_descartados": 0,
+      "cadeias_mistas_descartadas": 0,
+      "pares_com_rua_paralela_na_rede_recortada": 0,
+      "pct_vias_com_maxspeed": 59.1,
+      "pct_cadeias_descartadas": 0.0
+    },
+    "Joá": {
+      "osm_timestamp": "2026-11-21T11:28:04Z",
+      "overpass": "Overpass API 0.7.62.11 87bfad18",
+      "vias": 122,
+      "vias_com_maxspeed": 36,
+      "cadeias_mantidas": 116,
+      "lacos_descartados": 0,
+      "cadeias_mistas_descartadas": 1,
+      "pares_com_rua_paralela_na_rede_recortada": 1,
+      "pct_vias_com_maxspeed": 29.5,
+      "pct_cadeias_descartadas": 0.85
+    },
+    "São Conrado": {
+      "osm_timestamp": "2026-11-21T11:38:21Z",
+      "overpass": "Overpass API 0.7.62.11 87bfad18",
+      "vias": 271,
+      "vias_com_maxspeed": 66,
+      "cadeias_mantidas": 335,
+      "lacos_descartados": 2,
+      "cadeias_mistas_descartadas": 0,
+      "pares_com_rua_paralela_na_rede_recortada": 3,
+      "pct_vias_com_maxspeed": 24.4,
+      "pct_cadeias_descartadas": 0.59
+    },
+    "Praça da Bandeira": {
+      "osm_timestamp": "2026-11-21T12:06:51Z",
+      "overpass": "Overpass API 0.7.62.11 87bfad18",
+      "vias": 361,
+      "vias_com_maxspeed": 50,
+      "cadeias_mantidas": 357,
+      "lacos_descartados": 1,
+      "cadeias_mistas_descartadas": 5,
+      "pares_com_rua_paralela_na_rede_recortada": 1,
+      "pct_vias_com_maxspeed": 13.9,
+      "pct_cadeias_descartadas": 1.65
     }
   }
 }

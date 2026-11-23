@@ -1,0 +1,147 @@
+{
+  "rede": {
+    "fonte": "OpenStreetMap (Overpass API)",
+    "bairro": "São Conrado, Rio de Janeiro",
+    "bairro_slug": "sao_conrado",
+    "bbox": "-23.032,-43.287,-22.978,-43.248",
+    "bbox_recortado_por_poligono_oficial": true,
+    "n_removidos_fora_do_poligono": 94,
+    "pontos_osm": 3385,
+    "vias_osm": 271,
+    "V_intersecoes": 166,
+    "E_arcos": 299,
+    "trechos": 224
+  },
+  "conectividade": {
+    "componentes": 2,
+    "maior_componente": 165,
+    "scc": 9,
+    "maior_scc": 154,
+    "fora_da_scc_gigante": 12,
+    "ruas_sem_saida": 24,
+    "tempo_ms": 1.71
+  },
+  "gargalos_estruturais": {
+    "articulacoes": 27,
+    "pontes": 32,
+    "tempo_ms": 50.35
+  },
+  "gargalos_estruturais_dirigidos": {
+    "nucleo_n": 154,
+    "pares_nucleo": 203,
+    "pontes_fortes": 102,
+    "articulacoes_fortes": 89,
+    "pontes_fraca_e_forte": 31,
+    "pontes_so_forte": 71,
+    "pontes_so_fraca_fora_do_nucleo": 1,
+    "articulacoes_fraca_e_forte": 26,
+    "articulacoes_so_forte": 63,
+    "tempo_ms": 1066.81
+  },
+  "gargalo_corte_minimo": {
+    "origem": 3405207627,
+    "destino": 1584079813,
+    "fluxo_maximo": 1,
+    "corte_minimo": 1,
+    "ruas_do_corte": [
+      [
+        3405207627,
+        3389900397
+      ]
+    ],
+    "outros_pontos_unicos_de_falha_na_rota": [
+      [
+        3389900397,
+        1160450505
+      ],
+      [
+        400705836,
+        400705839
+      ],
+      [
+        400705839,
+        1584079813
+      ]
+    ],
+    "tempo_ms": 0.99
+  },
+  "travessia_interna_polos": {
+    "polo1": 3405207627,
+    "polo2": 8961998190,
+    "fluxo": 3,
+    "corte": 3,
+    "n_origem": 31,
+    "n_destino": 31,
+    "frac": 0.2
+  },
+  "gargalo_acesso_gateway": {
+    "gateways": [
+      146420071,
+      146420090,
+      326239729,
+      474900901,
+      474900902,
+      474900954,
+      1504204367,
+      1729255681,
+      2362473625,
+      3011392932,
+      3389900397
+    ],
+    "fluxo": 11,
+    "corte": 11,
+    "n_origem": 33,
+    "n_gateways": 11,
+    "frac": 0.2
+  },
+  "intermediacao": {
+    "max_pct_pares": 39.68,
+    "no_max": 3648017599,
+    "n_nucleo": 154
+  },
+  "rotas_alternativas": {
+    "origem": 3405207627,
+    "destino": 1584079813,
+    "rota_principal_min": 14.15,
+    "intersecoes_rota": 43,
+    "bellman_ford_confere": true,
+    "tempo_dijkstra_ms": 0.56,
+    "tempo_bellman_ford_ms": 1.81,
+    "trecho_bloqueado": [
+      3648017599,
+      1578769638
+    ],
+    "rota_alternativa_min": 14.81,
+    "acrescimo_pct": 4.7,
+    "pontes_na_rota": 4
+  },
+  "resiliencia": {
+    "n_pares_nucleo": 23562,
+    "pontes_fortes": {
+      "n": 102,
+      "pares_desconectados": {
+        "min": 153,
+        "mediana": 306.0,
+        "max": 6604
+      },
+      "binarias": 40,
+      "com_desvio_parcial": 62,
+      "n_pares_com_desvio_parcial": 149295,
+      "acrescimo_min": {
+        "min": 1.9069328018872511e-06,
+        "mediana": 0.5064113789815603,
+        "max": 10.88505796326671
+      }
+    },
+    "articulacoes_fortes": {
+      "n": 89,
+      "pares_desconectados": {
+        "min": 305,
+        "mediana": 606,
+        "max": 6604
+      }
+    },
+    "tempo_ms": 20236.09
+  },
+  "tempo_total_s": 23.9
+}

@@ -153,4 +153,54 @@ NEIGHBORHOODS: "dict[str, NeighborhoodConfig]" = {
             "de estrangulamento (controle 'sem gargalo'). Nenhum eixo "
             "geografico privilegiado: O/D por double_sweep."),
     ),
+    # Bairros de encosta (casos adicionais pedidos na revisao do orientador).
+    # bbox = envelope do poligono oficial (Data.Rio/IPP), com folga de ~0,001 grau.
+    "alto_da_boa_vista": NeighborhoodConfig(
+        key="alto_da_boa_vista",
+        display_name="Alto da Boa Vista",
+        bairro_full="Alto da Boa Vista, Rio de Janeiro",
+        bbox="-22.989,-43.302,-22.930,-43.201",
+        mincut_od=double_sweep,
+        altroute_od=double_sweep,
+        rationale="Bairro de encosta no Parque Nacional da Tijuca; O/D por double_sweep."),
+    "cosme_velho": NeighborhoodConfig(
+        key="cosme_velho",
+        display_name="Cosme Velho",
+        bairro_full="Cosme Velho, Rio de Janeiro",
+        bbox="-22.947,-43.209,-22.934,-43.191",
+        mincut_od=double_sweep,
+        altroute_od=double_sweep,
+        rationale="Bairro de vale em encosta, eixo unico (Rua Cosme Velho); O/D por double_sweep."),
+    "leme": NeighborhoodConfig(
+        key="leme",
+        display_name="Leme",
+        bairro_full="Leme, Rio de Janeiro",
+        bbox="-22.968,-43.175,-22.956,-43.146",
+        mincut_od=double_sweep,
+        altroute_od=double_sweep,
+        rationale="Faixa litoral estreita entre o morro e a praia, vizinha de Copacabana; O/D por double_sweep."),
+    "joa": NeighborhoodConfig(
+        key="joa",
+        display_name="Joá",
+        bairro_full="Joá, Rio de Janeiro",
+        bbox="-23.018,-43.298,-23.000,-43.275",
+        mincut_od=double_sweep,
+        altroute_od=double_sweep,
+        rationale="Bairro de encosta entre a Barra da Tijuca e São Conrado; O/D por double_sweep."),
+    "sao_conrado": NeighborhoodConfig(
+        key="sao_conrado",
+        display_name="São Conrado",
+        bairro_full="São Conrado, Rio de Janeiro",
+        bbox="-23.032,-43.287,-22.978,-43.248",
+        mincut_od=double_sweep,
+        altroute_od=double_sweep,
+        rationale="Bairro entre o mar e o maciço da Tijuca, ligado ao resto da cidade por poucos corredores; O/D por double_sweep."),
+    "praca_da_bandeira": NeighborhoodConfig(
+        key="praca_da_bandeira",
+        display_name="Praça da Bandeira",
+        bairro_full="Praça da Bandeira, Rio de Janeiro",
+        bbox="-22.917,-43.221,-22.906,-43.207",
+        mincut_od=double_sweep,
+        altroute_od=double_sweep,
+        rationale="Bairro plano de várzea, nó viário da Zona Norte; O/D por double_sweep."),
 }

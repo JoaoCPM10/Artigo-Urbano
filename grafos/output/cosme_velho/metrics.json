@@ -1,0 +1,154 @@
+{
+  "rede": {
+    "fonte": "OpenStreetMap (Overpass API)",
+    "bairro": "Cosme Velho, Rio de Janeiro",
+    "bairro_slug": "cosme_velho",
+    "bbox": "-22.947,-43.209,-22.934,-43.191",
+    "bbox_recortado_por_poligono_oficial": true,
+    "n_removidos_fora_do_poligono": 72,
+    "pontos_osm": 1984,
+    "vias_osm": 149,
+    "V_intersecoes": 50,
+    "E_arcos": 106,
+    "trechos": 62
+  },
+  "conectividade": {
+    "componentes": 1,
+    "maior_componente": 50,
+    "scc": 3,
+    "maior_scc": 48,
+    "fora_da_scc_gigante": 2,
+    "ruas_sem_saida": 13,
+    "tempo_ms": 0.42
+  },
+  "gargalos_estruturais": {
+    "articulacoes": 17,
+    "pontes": 20,
+    "tempo_ms": 4.54
+  },
+  "gargalos_estruturais_dirigidos": {
+    "nucleo_n": 48,
+    "pares_nucleo": 59,
+    "pontes_fortes": 26,
+    "articulacoes_fortes": 21,
+    "pontes_fraca_e_forte": 18,
+    "pontes_so_forte": 8,
+    "pontes_so_fraca_fora_do_nucleo": 2,
+    "articulacoes_fraca_e_forte": 17,
+    "articulacoes_so_forte": 4,
+    "tempo_ms": 49.18
+  },
+  "gargalo_corte_minimo": {
+    "origem": 14320678273,
+    "destino": 331107829,
+    "fluxo_maximo": 1,
+    "corte_minimo": 1,
+    "ruas_do_corte": [
+      [
+        14320678273,
+        7882752133
+      ]
+    ],
+    "outros_pontos_unicos_de_falha_na_rota": [
+      [
+        7882752133,
+        321231621
+      ],
+      [
+        141961818,
+        331107847
+      ],
+      [
+        331107847,
+        331107860
+      ],
+      [
+        141961822,
+        331107713
+      ],
+      [
+        331107713,
+        331107732
+      ],
+      [
+        331107732,
+        331107829
+      ]
+    ],
+    "tempo_ms": 0.23
+  },
+  "travessia_interna_polos": {
+    "polo1": 321231709,
+    "polo2": 331107829,
+    "fluxo": 1,
+    "corte": 1,
+    "n_origem": 10,
+    "n_destino": 10,
+    "frac": 0.2
+  },
+  "gargalo_acesso_gateway": {
+    "gateways": [
+      141934069,
+      321222763,
+      331107713,
+      1662999721,
+      7882752133,
+      14320678273
+    ],
+    "fluxo": 6,
+    "corte": 6,
+    "n_origem": 10,
+    "n_gateways": 6,
+    "frac": 0.2
+  },
+  "intermediacao": {
+    "max_pct_pares": 60.04,
+    "no_max": 141961818,
+    "n_nucleo": 48
+  },
+  "rotas_alternativas": {
+    "origem": 14320678273,
+    "destino": 331107829,
+    "rota_principal_min": 4.64,
+    "intersecoes_rota": 13,
+    "bellman_ford_confere": true,
+    "tempo_dijkstra_ms": 0.09,
+    "tempo_bellman_ford_ms": 0.17,
+    "trecho_bloqueado": [
+      321231551,
+      141961818
+    ],
+    "rota_alternativa_min": 5.4,
+    "acrescimo_pct": 16.2,
+    "pontes_na_rota": 7
+  },
+  "resiliencia": {
+    "n_pares_nucleo": 2256,
+    "pontes_fortes": {
+      "n": 26,
+      "pares_desconectados": {
+        "min": 47,
+        "mediana": 94.0,
+        "max": 1024
+      },
+      "binarias": 18,
+      "com_desvio_parcial": 8,
+      "n_pares_com_desvio_parcial": 2436,
+      "acrescimo_min": {
+        "min": 0.011562856933222794,
+        "mediana": 0.5992647509377506,
+        "max": 3.2135072026151765
+      }
+    },
+    "articulacoes_fortes": {
+      "n": 21,
+      "pares_desconectados": {
+        "min": 93,
+        "mediana": 182,
+        "max": 1107
+      }
+    },
+    "tempo_ms": 366.99
+  },
+  "tempo_total_s": 1.75
+}

@@ -501,11 +501,11 @@
         "destinos": {
           "scc": {
             "dir": 35,
-            "nd": 53
+            "nd": 55
           },
           "qualquer": {
-            "dir": 35,
-            "nd": 53
+            "dir": 36,
+            "nd": 55
           }
         },
         "fluxo": {
@@ -1516,12 +1516,12 @@
         "ruas_anel": 1073,
         "destinos": {
           "scc": {
-            "dir": 51,
-            "nd": 71
+            "dir": 52,
+            "nd": 72
           },
           "qualquer": {
-            "dir": 51,
-            "nd": 71
+            "dir": 52,
+            "nd": 72
           }
         },
         "fluxo": {
@@ -1729,12 +1729,12 @@
         "ruas_anel": 1663,
         "destinos": {
           "scc": {
-            "dir": 31,
-            "nd": 47
+            "dir": 32,
+            "nd": 52
           },
           "qualquer": {
-            "dir": 32,
-            "nd": 47
+            "dir": 35,
+            "nd": 52
           }
         },
         "fluxo": {
@@ -1994,12 +1994,12 @@
         "ruas_anel": 2434,
         "destinos": {
           "scc": {
-            "dir": 42,
-            "nd": 57
+            "dir": 43,
+            "nd": 60
           },
           "qualquer": {
-            "dir": 42,
-            "nd": 57
+            "dir": 44,
+            "nd": 60
           }
         },
         "fluxo": {
@@ -2305,6 +2305,2606 @@
       "int_dir": {
         "artigo": 6,
         "rede_ampliada": 6
+      }
+    }
+  },
+  "cosme_velho": {
+    "bairro": "Cosme Velho",
+    "origem": 10,
+    "referencia_artigo": {
+      "portas": 6,
+      "ruas_nd": 6,
+      "ruas_dir": 5,
+      "int_nd": 6,
+      "int_dir": 4
+    },
+    "raios": {
+      "0": {
+        "R_m": 0,
+        "nos_anel": 50,
+        "ruas_anel": 62,
+        "destinos": {
+          "scc": {
+            "dir": 4,
+            "nd": 6
+          },
+          "qualquer": {
+            "dir": 6,
+            "nd": 6
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 4,
+            "ruas_nd": 6,
+            "int_dir": 4
+          },
+          "qualquer": {
+            "ruas_dir": 5,
+            "ruas_nd": 6,
+            "int_dir": 4
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 4,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 4,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "ruas_criticas": {
+          "interno": 10,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "ruas_criticas_externas": []
+      },
+      "500": {
+        "R_m": 500,
+        "nos_anel": 153,
+        "ruas_anel": 185,
+        "destinos": {
+          "scc": {
+            "dir": 17,
+            "nd": 21
+          },
+          "qualquer": {
+            "dir": 19,
+            "nd": 21
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 3,
+            "ruas_nd": 5,
+            "int_dir": 3
+          },
+          "qualquer": {
+            "ruas_dir": 4,
+            "ruas_nd": 5,
+            "int_dir": 4
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 2,
+          "fronteira": 1,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 0,
+          "fronteira": 0,
+          "externo": 3
+        },
+        "ruas_criticas": {
+          "interno": 3,
+          "fronteira": 3,
+          "externo": 8
+        },
+        "ruas_criticas_externas": [
+          {
+            "coords": [
+              [
+                -22.93842,
+                -43.19457
+              ],
+              [
+                -22.93848,
+                -43.1944
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.93864,
+                -43.19376
+              ],
+              [
+                -22.93864,
+                -43.19381
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.94844,
+                -43.20196
+              ],
+              [
+                -22.94871,
+                -43.20205
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.93864,
+                -43.19381
+              ],
+              [
+                -22.93848,
+                -43.1944
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.94844,
+                -43.20196
+              ],
+              [
+                -22.94831,
+                -43.20202
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.93864,
+                -43.19376
+              ],
+              [
+                -22.93841,
+                -43.19157
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.94248,
+                -43.20764
+              ],
+              [
+                -22.94176,
+                -43.20844
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.93792,
+                -43.20623
+              ],
+              [
+                -22.94248,
+                -43.20764
+              ]
+            ],
+            "queda": 1
+          }
+        ]
+      },
+      "1000": {
+        "R_m": 1000,
+        "nos_anel": 426,
+        "ruas_anel": 503,
+        "destinos": {
+          "scc": {
+            "dir": 38,
+            "nd": 59
+          },
+          "qualquer": {
+            "dir": 44,
+            "nd": 59
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 3,
+            "ruas_nd": 5,
+            "int_dir": 3
+          },
+          "qualquer": {
+            "ruas_dir": 4,
+            "ruas_nd": 5,
+            "int_dir": 4
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 2,
+          "fronteira": 1,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 0,
+          "fronteira": 0,
+          "externo": 3
+        },
+        "ruas_criticas": {
+          "interno": 3,
+          "fronteira": 3,
+          "externo": 9
+        },
+        "ruas_criticas_externas": [
+          {
+            "coords": [
+              [
+                -22.93842,
+                -43.19457
+              ],
+              [
+                -22.93848,
+                -43.1944
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.93864,
+                -43.19376
+              ],
+              [
+                -22.93864,
+                -43.19381
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.94844,
+                -43.20196
+              ],
+              [
+                -22.94871,
+                -43.20205
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.93864,
+                -43.19381
+              ],
+              [
+                -22.93848,
+                -43.1944
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.94844,
+                -43.20196
+              ],
+              [
+                -22.94831,
+                -43.20202
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.93864,
+                -43.19376
+              ],
+              [
+                -22.93841,
+                -43.19157
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.94248,
+                -43.20764
+              ],
+              [
+                -22.94176,
+                -43.20844
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.94668,
+                -43.21778
+              ],
+              [
+                -22.94871,
+                -43.20205
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.93792,
+                -43.20623
+              ],
+              [
+                -22.94248,
+                -43.20764
+              ]
+            ],
+            "queda": 1
+          }
+        ]
+      },
+      "2000": {
+        "R_m": 2000,
+        "nos_anel": 1512,
+        "ruas_anel": 1940,
+        "destinos": {
+          "scc": {
+            "dir": 70,
+            "nd": 96
+          },
+          "qualquer": {
+            "dir": 72,
+            "nd": 96
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 4,
+            "ruas_nd": 5,
+            "int_dir": 4
+          },
+          "qualquer": {
+            "ruas_dir": 4,
+            "ruas_nd": 5,
+            "int_dir": 4
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 3,
+          "fronteira": 1,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 0,
+          "fronteira": 1,
+          "externo": 3
+        },
+        "ruas_criticas": {
+          "interno": 4,
+          "fronteira": 4,
+          "externo": 9
+        },
+        "ruas_criticas_externas": [
+          {
+            "coords": [
+              [
+                -22.93842,
+                -43.19457
+              ],
+              [
+                -22.9385,
+                -43.19436
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.93864,
+                -43.19376
+              ],
+              [
+                -22.93864,
+                -43.19381
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.94844,
+                -43.20196
+              ],
+              [
+                -22.94871,
+                -43.20205
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.93864,
+                -43.19381
+              ],
+              [
+                -22.9385,
+                -43.19436
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.93864,
+                -43.19376
+              ],
+              [
+                -22.93841,
+                -43.19157
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.94844,
+                -43.20196
+              ],
+              [
+                -22.94831,
+                -43.20202
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.94251,
+                -43.20761
+              ],
+              [
+                -22.94175,
+                -43.20843
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.94668,
+                -43.21778
+              ],
+              [
+                -22.94871,
+                -43.20205
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.93793,
+                -43.20624
+              ],
+              [
+                -22.94251,
+                -43.20761
+              ]
+            ],
+            "queda": 1
+          }
+        ]
+      }
+    },
+    "regressao_R0": {
+      "ruas_nd": {
+        "artigo": 6,
+        "rede_ampliada": 6
+      },
+      "ruas_dir": {
+        "artigo": 5,
+        "rede_ampliada": 5
+      },
+      "int_dir": {
+        "artigo": 4,
+        "rede_ampliada": 4
+      }
+    }
+  },
+  "alto_da_boa_vista": {
+    "bairro": "Alto da Boa Vista",
+    "origem": 36,
+    "referencia_artigo": {
+      "portas": 13,
+      "ruas_nd": 4,
+      "ruas_dir": 3,
+      "int_nd": 4,
+      "int_dir": 3
+    },
+    "raios": {
+      "0": {
+        "R_m": 0,
+        "nos_anel": 188,
+        "ruas_anel": 217,
+        "destinos": {
+          "scc": {
+            "dir": 13,
+            "nd": 14
+          },
+          "qualquer": {
+            "dir": 13,
+            "nd": 14
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 3,
+            "ruas_nd": 4,
+            "int_dir": 3
+          },
+          "qualquer": {
+            "ruas_dir": 3,
+            "ruas_nd": 4,
+            "int_dir": 3
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 3,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 3,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "ruas_criticas": {
+          "interno": 5,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "ruas_criticas_externas": []
+      },
+      "500": {
+        "R_m": 500,
+        "nos_anel": 722,
+        "ruas_anel": 857,
+        "destinos": {
+          "scc": {
+            "dir": 50,
+            "nd": 67
+          },
+          "qualquer": {
+            "dir": 51,
+            "nd": 67
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 3,
+            "ruas_nd": 4,
+            "int_dir": 3
+          },
+          "qualquer": {
+            "ruas_dir": 3,
+            "ruas_nd": 4,
+            "int_dir": 3
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 3,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 2,
+          "fronteira": 0,
+          "externo": 1
+        },
+        "ruas_criticas": {
+          "interno": 5,
+          "fronteira": 0,
+          "externo": 4
+        },
+        "ruas_criticas_externas": [
+          {
+            "coords": [
+              [
+                -22.98242,
+                -43.29554
+              ],
+              [
+                -22.98145,
+                -43.30059
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98056,
+                -43.29261
+              ],
+              [
+                -22.98164,
+                -43.29493
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98217,
+                -43.29536
+              ],
+              [
+                -22.98242,
+                -43.29554
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98217,
+                -43.29536
+              ],
+              [
+                -22.98164,
+                -43.29493
+              ]
+            ],
+            "queda": 1
+          }
+        ]
+      },
+      "1000": {
+        "R_m": 1000,
+        "nos_anel": 1385,
+        "ruas_anel": 1722,
+        "destinos": {
+          "scc": {
+            "dir": 82,
+            "nd": 114
+          },
+          "qualquer": {
+            "dir": 83,
+            "nd": 114
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 3,
+            "ruas_nd": 4,
+            "int_dir": 3
+          },
+          "qualquer": {
+            "ruas_dir": 3,
+            "ruas_nd": 4,
+            "int_dir": 3
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 3,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 2,
+          "fronteira": 0,
+          "externo": 1
+        },
+        "ruas_criticas": {
+          "interno": 5,
+          "fronteira": 0,
+          "externo": 7
+        },
+        "ruas_criticas_externas": [
+          {
+            "coords": [
+              [
+                -22.98467,
+                -43.30023
+              ],
+              [
+                -22.98145,
+                -43.30059
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98242,
+                -43.29554
+              ],
+              [
+                -22.98145,
+                -43.30059
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98056,
+                -43.29261
+              ],
+              [
+                -22.98164,
+                -43.29493
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98686,
+                -43.30182
+              ],
+              [
+                -22.98699,
+                -43.30193
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98217,
+                -43.29536
+              ],
+              [
+                -22.98242,
+                -43.29554
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98686,
+                -43.30182
+              ],
+              [
+                -22.98467,
+                -43.30023
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98217,
+                -43.29536
+              ],
+              [
+                -22.98164,
+                -43.29493
+              ]
+            ],
+            "queda": 1
+          }
+        ]
+      },
+      "2000": {
+        "R_m": 2000,
+        "nos_anel": 3202,
+        "ruas_anel": 4193,
+        "destinos": {
+          "scc": {
+            "dir": 91,
+            "nd": 126
+          },
+          "qualquer": {
+            "dir": 94,
+            "nd": 129
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 3,
+            "ruas_nd": 4,
+            "int_dir": 3
+          },
+          "qualquer": {
+            "ruas_dir": 3,
+            "ruas_nd": 4,
+            "int_dir": 3
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 3,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 2,
+          "fronteira": 0,
+          "externo": 1
+        },
+        "ruas_criticas": {
+          "interno": 5,
+          "fronteira": 0,
+          "externo": 7
+        },
+        "ruas_criticas_externas": [
+          {
+            "coords": [
+              [
+                -22.98467,
+                -43.30023
+              ],
+              [
+                -22.98145,
+                -43.30059
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98242,
+                -43.29554
+              ],
+              [
+                -22.98145,
+                -43.30059
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98056,
+                -43.29261
+              ],
+              [
+                -22.98164,
+                -43.29493
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98686,
+                -43.30182
+              ],
+              [
+                -22.98699,
+                -43.30193
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98217,
+                -43.29536
+              ],
+              [
+                -22.98242,
+                -43.29554
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98686,
+                -43.30182
+              ],
+              [
+                -22.98467,
+                -43.30023
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98217,
+                -43.29536
+              ],
+              [
+                -22.98164,
+                -43.29493
+              ]
+            ],
+            "queda": 1
+          }
+        ]
+      }
+    },
+    "regressao_R0": {
+      "ruas_nd": {
+        "artigo": 4,
+        "rede_ampliada": 4
+      },
+      "ruas_dir": {
+        "artigo": 3,
+        "rede_ampliada": 3
+      },
+      "int_dir": {
+        "artigo": 3,
+        "rede_ampliada": 3
+      }
+    }
+  },
+  "leme": {
+    "bairro": "Leme",
+    "origem": 5,
+    "referencia_artigo": {
+      "portas": 5,
+      "ruas_nd": 1,
+      "ruas_dir": 1,
+      "int_nd": 1,
+      "int_dir": 1
+    },
+    "raios": {
+      "0": {
+        "R_m": 0,
+        "nos_anel": 27,
+        "ruas_anel": 32,
+        "destinos": {
+          "scc": {
+            "dir": 3,
+            "nd": 5
+          },
+          "qualquer": {
+            "dir": 3,
+            "nd": 5
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 1,
+            "ruas_nd": 1,
+            "int_dir": 1
+          },
+          "qualquer": {
+            "ruas_dir": 1,
+            "ruas_nd": 1,
+            "int_dir": 1
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 1,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 1,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "ruas_criticas": {
+          "interno": 4,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "ruas_criticas_externas": []
+      },
+      "500": {
+        "R_m": 500,
+        "nos_anel": 99,
+        "ruas_anel": 133,
+        "destinos": {
+          "scc": {
+            "dir": 12,
+            "nd": 20
+          },
+          "qualquer": {
+            "dir": 12,
+            "nd": 20
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 1,
+            "ruas_nd": 1,
+            "int_dir": 1
+          },
+          "qualquer": {
+            "ruas_dir": 1,
+            "ruas_nd": 1,
+            "int_dir": 1
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 1,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 1,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "ruas_criticas": {
+          "interno": 4,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "ruas_criticas_externas": []
+      },
+      "1000": {
+        "R_m": 1000,
+        "nos_anel": 213,
+        "ruas_anel": 287,
+        "destinos": {
+          "scc": {
+            "dir": 13,
+            "nd": 20
+          },
+          "qualquer": {
+            "dir": 13,
+            "nd": 20
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 1,
+            "ruas_nd": 1,
+            "int_dir": 1
+          },
+          "qualquer": {
+            "ruas_dir": 1,
+            "ruas_nd": 1,
+            "int_dir": 1
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 1,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 1,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "ruas_criticas": {
+          "interno": 4,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "ruas_criticas_externas": []
+      },
+      "2000": {
+        "R_m": 2000,
+        "nos_anel": 604,
+        "ruas_anel": 833,
+        "destinos": {
+          "scc": {
+            "dir": 25,
+            "nd": 40
+          },
+          "qualquer": {
+            "dir": 26,
+            "nd": 40
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 1,
+            "ruas_nd": 1,
+            "int_dir": 1
+          },
+          "qualquer": {
+            "ruas_dir": 1,
+            "ruas_nd": 1,
+            "int_dir": 1
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 1,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 1,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "ruas_criticas": {
+          "interno": 4,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "ruas_criticas_externas": []
+      }
+    },
+    "regressao_R0": {
+      "ruas_nd": {
+        "artigo": 1,
+        "rede_ampliada": 1
+      },
+      "ruas_dir": {
+        "artigo": 1,
+        "rede_ampliada": 1
+      },
+      "int_dir": {
+        "artigo": 1,
+        "rede_ampliada": 1
+      }
+    }
+  },
+  "joa": {
+    "bairro": "Joá",
+    "origem": 4,
+    "referencia_artigo": {
+      "portas": 3,
+      "ruas_nd": 3,
+      "ruas_dir": 3,
+      "int_nd": 3,
+      "int_dir": 3
+    },
+    "raios": {
+      "0": {
+        "R_m": 0,
+        "nos_anel": 20,
+        "ruas_anel": 24,
+        "destinos": {
+          "scc": {
+            "dir": 3,
+            "nd": 4
+          },
+          "qualquer": {
+            "dir": 4,
+            "nd": 4
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 3,
+            "ruas_nd": 3,
+            "int_dir": 3
+          },
+          "qualquer": {
+            "ruas_dir": 3,
+            "ruas_nd": 3,
+            "int_dir": 3
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 3,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 3,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "ruas_criticas": {
+          "interno": 3,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "ruas_criticas_externas": []
+      },
+      "500": {
+        "R_m": 500,
+        "nos_anel": 110,
+        "ruas_anel": 149,
+        "destinos": {
+          "scc": {
+            "dir": 10,
+            "nd": 17
+          },
+          "qualquer": {
+            "dir": 13,
+            "nd": 17
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 3,
+            "ruas_nd": 3,
+            "int_dir": 3
+          },
+          "qualquer": {
+            "ruas_dir": 3,
+            "ruas_nd": 3,
+            "int_dir": 3
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 3,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 0,
+          "fronteira": 2,
+          "externo": 1
+        },
+        "ruas_criticas": {
+          "interno": 6,
+          "fronteira": 3,
+          "externo": 4
+        },
+        "ruas_criticas_externas": [
+          {
+            "coords": [
+              [
+                -23.01201,
+                -43.29382
+              ],
+              [
+                -23.01075,
+                -43.29682
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -23.01064,
+                -43.29686
+              ],
+              [
+                -23.01075,
+                -43.29682
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -23.01227,
+                -43.29367
+              ],
+              [
+                -23.01201,
+                -43.29382
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -23.01064,
+                -43.29686
+              ],
+              [
+                -23.0105,
+                -43.29691
+              ]
+            ],
+            "queda": 1
+          }
+        ]
+      },
+      "1000": {
+        "R_m": 1000,
+        "nos_anel": 218,
+        "ruas_anel": 302,
+        "destinos": {
+          "scc": {
+            "dir": 11,
+            "nd": 21
+          },
+          "qualquer": {
+            "dir": 13,
+            "nd": 21
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 2,
+            "ruas_nd": 3,
+            "int_dir": 2
+          },
+          "qualquer": {
+            "ruas_dir": 2,
+            "ruas_nd": 3,
+            "int_dir": 2
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 1,
+          "fronteira": 0,
+          "externo": 1
+        },
+        "corte_perto_destino": {
+          "interno": 0,
+          "fronteira": 0,
+          "externo": 2
+        },
+        "ruas_criticas": {
+          "interno": 1,
+          "fronteira": 1,
+          "externo": 4
+        },
+        "ruas_criticas_externas": [
+          {
+            "coords": [
+              [
+                -23.00107,
+                -43.27563
+              ],
+              [
+                -23.00077,
+                -43.27486
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -23.00773,
+                -43.30241
+              ],
+              [
+                -23.00683,
+                -43.30292
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -23.00773,
+                -43.30241
+              ],
+              [
+                -23.00871,
+                -43.30082
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -23.00871,
+                -43.30082
+              ],
+              [
+                -23.00879,
+                -43.30048
+              ]
+            ],
+            "queda": 1
+          }
+        ]
+      },
+      "2000": {
+        "R_m": 2000,
+        "nos_anel": 531,
+        "ruas_anel": 742,
+        "destinos": {
+          "scc": {
+            "dir": 17,
+            "nd": 28
+          },
+          "qualquer": {
+            "dir": 18,
+            "nd": 28
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 2,
+            "ruas_nd": 3,
+            "int_dir": 2
+          },
+          "qualquer": {
+            "ruas_dir": 2,
+            "ruas_nd": 3,
+            "int_dir": 2
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 1,
+          "fronteira": 0,
+          "externo": 1
+        },
+        "corte_perto_destino": {
+          "interno": 0,
+          "fronteira": 0,
+          "externo": 2
+        },
+        "ruas_criticas": {
+          "interno": 1,
+          "fronteira": 1,
+          "externo": 5
+        },
+        "ruas_criticas_externas": [
+          {
+            "coords": [
+              [
+                -23.00107,
+                -43.27563
+              ],
+              [
+                -23.00077,
+                -43.27486
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -23.00773,
+                -43.30241
+              ],
+              [
+                -23.00683,
+                -43.30292
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -23.00458,
+                -43.30417
+              ],
+              [
+                -23.00683,
+                -43.30292
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -23.00773,
+                -43.30241
+              ],
+              [
+                -23.00871,
+                -43.30082
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -23.00871,
+                -43.30082
+              ],
+              [
+                -23.00879,
+                -43.30048
+              ]
+            ],
+            "queda": 1
+          }
+        ]
+      }
+    },
+    "regressao_R0": {
+      "ruas_nd": {
+        "artigo": 3,
+        "rede_ampliada": 3
+      },
+      "ruas_dir": {
+        "artigo": 3,
+        "rede_ampliada": 3
+      },
+      "int_dir": {
+        "artigo": 3,
+        "rede_ampliada": 3
+      }
+    }
+  },
+  "sao_conrado": {
+    "bairro": "São Conrado",
+    "origem": 33,
+    "referencia_artigo": {
+      "portas": 11,
+      "ruas_nd": 11,
+      "ruas_dir": 7,
+      "int_nd": 10,
+      "int_dir": 7
+    },
+    "raios": {
+      "0": {
+        "R_m": 0,
+        "nos_anel": 166,
+        "ruas_anel": 224,
+        "destinos": {
+          "scc": {
+            "dir": 9,
+            "nd": 12
+          },
+          "qualquer": {
+            "dir": 10,
+            "nd": 12
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 5,
+            "ruas_nd": 11,
+            "int_dir": 5
+          },
+          "qualquer": {
+            "ruas_dir": 7,
+            "ruas_nd": 11,
+            "int_dir": 7
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 5,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 5,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "ruas_criticas": {
+          "interno": 16,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "ruas_criticas_externas": []
+      },
+      "500": {
+        "R_m": 500,
+        "nos_anel": 244,
+        "ruas_anel": 316,
+        "destinos": {
+          "scc": {
+            "dir": 9,
+            "nd": 13
+          },
+          "qualquer": {
+            "dir": 11,
+            "nd": 14
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 5,
+            "ruas_nd": 10,
+            "int_dir": 5
+          },
+          "qualquer": {
+            "ruas_dir": 7,
+            "ruas_nd": 10,
+            "int_dir": 7
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 5,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 3,
+          "fronteira": 1,
+          "externo": 1
+        },
+        "ruas_criticas": {
+          "interno": 16,
+          "fronteira": 2,
+          "externo": 1
+        },
+        "ruas_criticas_externas": [
+          {
+            "coords": [
+              [
+                -22.98796,
+                -43.248
+              ],
+              [
+                -22.98798,
+                -43.24807
+              ]
+            ],
+            "queda": 1
+          }
+        ]
+      },
+      "1000": {
+        "R_m": 1000,
+        "nos_anel": 311,
+        "ruas_anel": 384,
+        "destinos": {
+          "scc": {
+            "dir": 15,
+            "nd": 17
+          },
+          "qualquer": {
+            "dir": 20,
+            "nd": 22
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 7,
+            "ruas_nd": 10,
+            "int_dir": 7
+          },
+          "qualquer": {
+            "ruas_dir": 7,
+            "ruas_nd": 10,
+            "int_dir": 7
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 7,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 3,
+          "fronteira": 1,
+          "externo": 3
+        },
+        "ruas_criticas": {
+          "interno": 22,
+          "fronteira": 4,
+          "externo": 9
+        },
+        "ruas_criticas_externas": [
+          {
+            "coords": [
+              [
+                -22.98613,
+                -43.24509
+              ],
+              [
+                -22.98568,
+                -43.24378
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98796,
+                -43.248
+              ],
+              [
+                -22.98791,
+                -43.24502
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98796,
+                -43.248
+              ],
+              [
+                -22.98798,
+                -43.24807
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.97713,
+                -43.27811
+              ],
+              [
+                -22.97598,
+                -43.27825
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98568,
+                -43.24378
+              ],
+              [
+                -22.98439,
+                -43.24541
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -23.00856,
+                -43.28763
+              ],
+              [
+                -23.00859,
+                -43.28743
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98791,
+                -43.24502
+              ],
+              [
+                -22.98654,
+                -43.24792
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.97713,
+                -43.27811
+              ],
+              [
+                -22.97917,
+                -43.2764
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98613,
+                -43.24509
+              ],
+              [
+                -22.98654,
+                -43.24792
+              ]
+            ],
+            "queda": 1
+          }
+        ]
+      },
+      "2000": {
+        "R_m": 2000,
+        "nos_anel": 715,
+        "ruas_anel": 897,
+        "destinos": {
+          "scc": {
+            "dir": 26,
+            "nd": 33
+          },
+          "qualquer": {
+            "dir": 27,
+            "nd": 34
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 6,
+            "ruas_nd": 9,
+            "int_dir": 6
+          },
+          "qualquer": {
+            "ruas_dir": 6,
+            "ruas_nd": 9,
+            "int_dir": 6
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 5,
+          "fronteira": 1,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 1,
+          "fronteira": 1,
+          "externo": 4
+        },
+        "ruas_criticas": {
+          "interno": 16,
+          "fronteira": 5,
+          "externo": 34
+        },
+        "ruas_criticas_externas": [
+          {
+            "coords": [
+              [
+                -22.98613,
+                -43.24509
+              ],
+              [
+                -22.98568,
+                -43.24378
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98432,
+                -43.24118
+              ],
+              [
+                -22.98429,
+                -43.24193
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -23.00773,
+                -43.30241
+              ],
+              [
+                -23.00683,
+                -43.30292
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98796,
+                -43.248
+              ],
+              [
+                -22.98791,
+                -43.24502
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98267,
+                -43.23856
+              ],
+              [
+                -22.98243,
+                -43.23826
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.99284,
+                -43.23395
+              ],
+              [
+                -22.9948,
+                -43.23463
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.99284,
+                -43.23395
+              ],
+              [
+                -22.99228,
+                -43.23377
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -23.00943,
+                -43.2906
+              ],
+              [
+                -23.00792,
+                -43.28838
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98267,
+                -43.23856
+              ],
+              [
+                -22.98277,
+                -43.23863
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98796,
+                -43.248
+              ],
+              [
+                -22.98798,
+                -43.24807
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98122,
+                -43.23608
+              ],
+              [
+                -22.98038,
+                -43.23507
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98433,
+                -43.24105
+              ],
+              [
+                -22.98429,
+                -43.24075
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98425,
+                -43.24064
+              ],
+              [
+                -22.98429,
+                -43.24075
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98225,
+                -43.23797
+              ],
+              [
+                -22.98237,
+                -43.23816
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.97713,
+                -43.27811
+              ],
+              [
+                -22.97598,
+                -43.27825
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98568,
+                -43.24378
+              ],
+              [
+                -22.98439,
+                -43.24541
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98122,
+                -43.23608
+              ],
+              [
+                -22.98133,
+                -43.23626
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98425,
+                -43.24064
+              ],
+              [
+                -22.98277,
+                -43.23863
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98432,
+                -43.24118
+              ],
+              [
+                -22.98433,
+                -43.2411
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.9821,
+                -43.23769
+              ],
+              [
+                -22.98199,
+                -43.23749
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.9821,
+                -43.23769
+              ],
+              [
+                -22.98225,
+                -43.23797
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -23.00856,
+                -43.28763
+              ],
+              [
+                -23.00859,
+                -43.28743
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.99228,
+                -43.23377
+              ],
+              [
+                -22.99165,
+                -43.2334
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98791,
+                -43.24502
+              ],
+              [
+                -22.98654,
+                -43.24792
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98439,
+                -43.24541
+              ],
+              [
+                -22.98493,
+                -43.24351
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98196,
+                -43.23742
+              ],
+              [
+                -22.98133,
+                -43.23626
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98433,
+                -43.24105
+              ],
+              [
+                -22.98433,
+                -43.2411
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.97713,
+                -43.27811
+              ],
+              [
+                -22.97917,
+                -43.2764
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -23.00012,
+                -43.24369
+              ],
+              [
+                -22.9948,
+                -43.23463
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98196,
+                -43.23742
+              ],
+              [
+                -22.98199,
+                -43.23749
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -23.00773,
+                -43.30241
+              ],
+              [
+                -23.00871,
+                -43.30082
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -23.00871,
+                -43.30082
+              ],
+              [
+                -23.00879,
+                -43.30048
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98243,
+                -43.23826
+              ],
+              [
+                -22.98237,
+                -43.23816
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.98613,
+                -43.24509
+              ],
+              [
+                -22.98654,
+                -43.24792
+              ]
+            ],
+            "queda": 1
+          }
+        ]
+      }
+    },
+    "regressao_R0": {
+      "ruas_nd": {
+        "artigo": 11,
+        "rede_ampliada": 11
+      },
+      "ruas_dir": {
+        "artigo": 7,
+        "rede_ampliada": 7
+      },
+      "int_dir": {
+        "artigo": 7,
+        "rede_ampliada": 7
+      }
+    }
+  },
+  "praca_da_bandeira": {
+    "bairro": "Praça da Bandeira",
+    "origem": 20,
+    "referencia_artigo": {
+      "portas": 27,
+      "ruas_nd": 8,
+      "ruas_dir": 4,
+      "int_nd": 7,
+      "int_dir": 4
+    },
+    "raios": {
+      "0": {
+        "R_m": 0,
+        "nos_anel": 102,
+        "ruas_anel": 128,
+        "destinos": {
+          "scc": {
+            "dir": 13,
+            "nd": 27
+          },
+          "qualquer": {
+            "dir": 15,
+            "nd": 27
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 4,
+            "ruas_nd": 8,
+            "int_dir": 4
+          },
+          "qualquer": {
+            "ruas_dir": 4,
+            "ruas_nd": 8,
+            "int_dir": 4
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 4,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 4,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "ruas_criticas": {
+          "interno": 13,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "ruas_criticas_externas": []
+      },
+      "500": {
+        "R_m": 500,
+        "nos_anel": 435,
+        "ruas_anel": 592,
+        "destinos": {
+          "scc": {
+            "dir": 42,
+            "nd": 65
+          },
+          "qualquer": {
+            "dir": 47,
+            "nd": 65
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 4,
+            "ruas_nd": 8,
+            "int_dir": 4
+          },
+          "qualquer": {
+            "ruas_dir": 4,
+            "ruas_nd": 8,
+            "int_dir": 4
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 4,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 3,
+          "fronteira": 0,
+          "externo": 1
+        },
+        "ruas_criticas": {
+          "interno": 17,
+          "fronteira": 1,
+          "externo": 2
+        },
+        "ruas_criticas_externas": [
+          {
+            "coords": [
+              [
+                -22.91417,
+                -43.2188
+              ],
+              [
+                -22.91396,
+                -43.21841
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.91396,
+                -43.21841
+              ],
+              [
+                -22.91314,
+                -43.21695
+              ]
+            ],
+            "queda": 1
+          }
+        ]
+      },
+      "1000": {
+        "R_m": 1000,
+        "nos_anel": 866,
+        "ruas_anel": 1171,
+        "destinos": {
+          "scc": {
+            "dir": 46,
+            "nd": 77
+          },
+          "qualquer": {
+            "dir": 51,
+            "nd": 77
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 4,
+            "ruas_nd": 8,
+            "int_dir": 4
+          },
+          "qualquer": {
+            "ruas_dir": 4,
+            "ruas_nd": 8,
+            "int_dir": 4
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 4,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 3,
+          "fronteira": 0,
+          "externo": 1
+        },
+        "ruas_criticas": {
+          "interno": 17,
+          "fronteira": 1,
+          "externo": 2
+        },
+        "ruas_criticas_externas": [
+          {
+            "coords": [
+              [
+                -22.91417,
+                -43.2188
+              ],
+              [
+                -22.91396,
+                -43.21841
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.91396,
+                -43.21841
+              ],
+              [
+                -22.91314,
+                -43.21695
+              ]
+            ],
+            "queda": 1
+          }
+        ]
+      },
+      "2000": {
+        "R_m": 2000,
+        "nos_anel": 1912,
+        "ruas_anel": 2579,
+        "destinos": {
+          "scc": {
+            "dir": 80,
+            "nd": 117
+          },
+          "qualquer": {
+            "dir": 86,
+            "nd": 117
+          }
+        },
+        "fluxo": {
+          "scc": {
+            "ruas_dir": 4,
+            "ruas_nd": 8,
+            "int_dir": 4
+          },
+          "qualquer": {
+            "ruas_dir": 4,
+            "ruas_nd": 8,
+            "int_dir": 4
+          }
+        },
+        "corte_perto_origem": {
+          "interno": 4,
+          "fronteira": 0,
+          "externo": 0
+        },
+        "corte_perto_destino": {
+          "interno": 3,
+          "fronteira": 0,
+          "externo": 1
+        },
+        "ruas_criticas": {
+          "interno": 17,
+          "fronteira": 1,
+          "externo": 2
+        },
+        "ruas_criticas_externas": [
+          {
+            "coords": [
+              [
+                -22.91417,
+                -43.2188
+              ],
+              [
+                -22.91396,
+                -43.21841
+              ]
+            ],
+            "queda": 1
+          },
+          {
+            "coords": [
+              [
+                -22.91396,
+                -43.21841
+              ],
+              [
+                -22.91314,
+                -43.21695
+              ]
+            ],
+            "queda": 1
+          }
+        ]
+      }
+    },
+    "regressao_R0": {
+      "ruas_nd": {
+        "artigo": 8,
+        "rede_ampliada": 8
+      },
+      "ruas_dir": {
+        "artigo": 4,
+        "rede_ampliada": 4
+      },
+      "int_dir": {
+        "artigo": 4,
+        "rede_ampliada": 4
       }
     }
   }

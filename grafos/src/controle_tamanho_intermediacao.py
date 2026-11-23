@@ -130,6 +130,7 @@ def main():
                 "intermediacao_mediana_pct": round(100 * st.median(maxs), 1),
                 "intermediacao_p95_pct": round(100 * sorted(maxs)[max(0, int(0.95 * len(maxs)) - 1)], 1),
                 "frac_intermediacao_ge_urca": round(sum(v >= ref for v in maxs) / len(maxs), 3),
+                "valores_pct": [round(100 * v, 2) for v in maxs],
             }
             print(key, modo, "PAREADO", json.dumps(pareado[modo], ensure_ascii=False))
         res.setdefault("pareado_por_nucleo_forte", {})[key] = pareado

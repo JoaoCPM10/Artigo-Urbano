@@ -1,0 +1,158 @@
+{
+  "rede": {
+    "fonte": "OpenStreetMap (Overpass API)",
+    "bairro": "Praça da Bandeira, Rio de Janeiro",
+    "bairro_slug": "praca_da_bandeira",
+    "bbox": "-22.917,-43.221,-22.906,-43.207",
+    "bbox_recortado_por_poligono_oficial": true,
+    "n_removidos_fora_do_poligono": 180,
+    "pontos_osm": 1581,
+    "vias_osm": 361,
+    "V_intersecoes": 102,
+    "E_arcos": 150,
+    "trechos": 128
+  },
+  "conectividade": {
+    "componentes": 1,
+    "maior_componente": 102,
+    "scc": 39,
+    "maior_scc": 59,
+    "fora_da_scc_gigante": 43,
+    "ruas_sem_saida": 17,
+    "tempo_ms": 2.79
+  },
+  "gargalos_estruturais": {
+    "articulacoes": 25,
+    "pontes": 25,
+    "tempo_ms": 16.78
+  },
+  "gargalos_estruturais_dirigidos": {
+    "nucleo_n": 59,
+    "pares_nucleo": 72,
+    "pontes_fortes": 57,
+    "articulacoes_fortes": 44,
+    "pontes_fraca_e_forte": 10,
+    "pontes_so_forte": 47,
+    "pontes_so_fraca_fora_do_nucleo": 15,
+    "articulacoes_fraca_e_forte": 11,
+    "articulacoes_so_forte": 33,
+    "tempo_ms": 540.05
+  },
+  "gargalo_corte_minimo": {
+    "origem": 642547616,
+    "destino": 186150311,
+    "fluxo_maximo": 3,
+    "corte_minimo": 3,
+    "ruas_do_corte": [
+      [
+        642547616,
+        8000043135
+      ],
+      [
+        642547616,
+        186150311
+      ],
+      [
+        642547616,
+        642547617
+      ]
+    ],
+    "outros_pontos_unicos_de_falha_na_rota": [],
+    "tempo_ms": 0.7
+  },
+  "travessia_interna_polos": {
+    "polo1": 2446773904,
+    "polo2": 2742848009,
+    "fluxo": 2,
+    "corte": 2,
+    "n_origem": 12,
+    "n_destino": 12,
+    "frac": 0.2
+  },
+  "gargalo_acesso_gateway": {
+    "gateways": [
+      146413826,
+      186129246,
+      186144426,
+      186150303,
+      186153582,
+      397638167,
+      642324238,
+      642324273,
+      642324924,
+      642547621,
+      642547672,
+      817648603,
+      819285033,
+      819598885,
+      1425781840,
+      1425781863,
+      1425784970,
+      1482049769,
+      2446755735,
+      2446773904,
+      2580128299,
+      2634037598,
+      2742805959,
+      2742848009,
+      3092247303,
+      3696113300,
+      6380887938
+    ],
+    "fluxo": 8,
+    "corte": 8,
+    "n_origem": 20,
+    "n_gateways": 27,
+    "frac": 0.2
+  },
+  "intermediacao": {
+    "max_pct_pares": 52.75,
+    "no_max": 1071672663,
+    "n_nucleo": 59
+  },
+  "rotas_alternativas": {
+    "origem": 642547616,
+    "destino": 186150311,
+    "rota_principal_min": 1.88,
+    "intersecoes_rota": 16,
+    "bellman_ford_confere": true,
+    "tempo_dijkstra_ms": 0.23,
+    "tempo_bellman_ford_ms": 0.58,
+    "trecho_bloqueado": [
+      819646634,
+      1071672664
+    ],
+    "rota_alternativa_min": null,
+    "acrescimo_pct": null,
+    "pontes_na_rota": 0
+  },
+  "resiliencia": {
+    "n_pares_nucleo": 3422,
+    "pontes_fortes": {
+      "n": 57,
+      "pares_desconectados": {
+        "min": 58,
+        "mediana": 226,
+        "max": 1647
+      },
+      "binarias": 22,
+      "com_desvio_parcial": 35,
+      "n_pares_com_desvio_parcial": 6806,
+      "acrescimo_min": {
+        "min": 0.04213925329844095,
+        "mediana": 0.7564412446914053,
+        "max": 1.8672297115512215
+      }
+    },
+    "articulacoes_fortes": {
+      "n": 44,
+      "pares_desconectados": {
+        "min": 115,
+        "mediana": 761.0,
+        "max": 1752
+      }
+    },
+    "tempo_ms": 1208.54
+  },
+  "tempo_total_s": 3.61
+}

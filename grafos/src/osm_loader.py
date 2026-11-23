@@ -36,14 +36,31 @@ DRIVE = ("motorway|trunk|primary|secondary|tertiary|unclassified|residential|"
          "living_street|road|motorway_link|trunk_link|primary_link|"
          "secondary_link|tertiary_link")
 
-# velocidade default (km/h) por tipo de via, quando o OSM não traz maxspeed
+# velocidade padrao (km/h) por classe de via, quando o OSM nao traz maxspeed.
+# Segue o art. 61, par. 1, I, do Codigo de Transito Brasileiro (vias urbanas sem
+# sinalizacao regulamentadora): transito rapido 80, arteriais 60, coletoras 40,
+# locais 30, com o mapeamento de classes do OSM Wiki ("Default speed limits",
+# Brasil): motorway = transito rapido; trunk, primary e secondary = arterial;
+# tertiary = coletora; unclassified, residential e road = local; as variantes
+# *_link seguem a classe-mae. living_street (20, valor tipico dos limites
+# implicitos em outros paises) e service (20) nao tem valor no CTB.
+# velocidade_ctb.py compara com variantes (trunk a 80; secondary a 40).
 DEFAULT_SPEED = {
-    "motorway": 90, "trunk": 80, "primary": 60, "secondary": 50,
-    "tertiary": 40, "unclassified": 40, "residential": 30,
+    "motorway": 80, "trunk": 60, "primary": 60, "secondary": 60,
+    "tertiary": 40, "unclassified": 30, "residential": 30,
     "living_street": 20, "road": 30,
-    "motorway_link": 60, "trunk_link": 50, "primary_link": 40,
-    "secondary_link": 40, "tertiary_link": 30,
+    "motorway_link": 80, "trunk_link": 60, "primary_link": 60,
+    "secondary_link": 60, "tertiary_link": 40,
+    "service": 20,
 }
+
+# Variante de sensibilidade (M3): variavel de ambiente GRAFOS_SERVICE.
+#   (vazia)    : so' as classes de DRIVE (o que o artigo usa);
+#   "todas"    : acrescenta highway=service;
+#   "publicas" : acrescenta highway=service sem access=private|no.
+# Cada variante usa um cache proprio (sufixo no nome), e o cache do artigo nao muda.
+def _modo_service() -> str:
+    return os.environ.get("GRAFOS_SERVICE", "").strip().lower()
 
 
 # ---------------------------------------------------------------------------
@@ -60,9 +77,15 @@ OVERPASS_MIRRORS = (
 
 def _overpass(bbox: str) -> dict:
     s, w, n, e = bbox.split(",")
-    q = (f"[out:json][timeout:120];"
-         f'way[highway~"^({DRIVE})$"]({s},{w},{n},{e})->.w;'
-         f"(.w; .w >;); out body;")
+    modo = _modo_service()
+    if modo == "todas":
+        sel = f'way[highway~"^({DRIVE}|service)$"]({s},{w},{n},{e})->.w;'
+    elif modo == "publicas":
+        sel = (f'(way[highway~"^({DRIVE})$"]({s},{w},{n},{e});'
+               f'way[highway="service"][access!~"^(private|no)$"]({s},{w},{n},{e});)->.w;')
+    else:
+        sel = f'way[highway~"^({DRIVE})$"]({s},{w},{n},{e})->.w;'
+    q = (f"[out:json][timeout:120];" + sel + f"(.w; .w >;); out body;")
     data = urllib.parse.urlencode({"data": q}).encode()
     last_err = None
     for host in OVERPASS_MIRRORS:
@@ -97,7 +120,9 @@ def cache_path(name: str, bbox: str) -> str:
     que dois retângulos diferentes nunca compartilhem (e sirvam um ao outro)
     o mesmo arquivo. Antes, o nome era só `name`."""
     h = hashlib.md5(bbox.encode()).hexdigest()[:8]
-    return os.path.join(DATA_DIR, f"{name}_{h}.json")
+    modo = _modo_service()
+    suf = f"_svc{modo}" if modo in ("todas", "publicas") else ""
+    return os.path.join(DATA_DIR, f"{name}{suf}_{h}.json")
 
 
 def fetch_osm(name: str, bbox: str, use_cache: bool = True) -> dict:

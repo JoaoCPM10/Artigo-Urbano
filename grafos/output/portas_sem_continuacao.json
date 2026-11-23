@@ -206,5 +206,289 @@
         "efeito_convergencia_externa": 0
       }
     }
+  },
+  "alto_da_boa_vista": {
+    "bairro": "alto_da_boa_vista",
+    "fluxo_portas_todas": 3,
+    "raios": {
+      "500": {
+        "portas_dirigidas_com_saida": 13,
+        "portas_que_continuam": 10,
+        "portas_sem_continuacao": [
+          [
+            -22.97961,
+            -43.2942
+          ],
+          [
+            -22.97911,
+            -43.29541
+          ],
+          [
+            -22.97964,
+            -43.29416
+          ]
+        ],
+        "fluxo_portas_que_continuam": 3,
+        "fluxo_borda_externa": 3,
+        "efeito_portas_sem_continuacao": 0,
+        "efeito_convergencia_externa": 0
+      },
+      "1000": {
+        "portas_dirigidas_com_saida": 13,
+        "portas_que_continuam": 10,
+        "portas_sem_continuacao": [
+          [
+            -22.97961,
+            -43.2942
+          ],
+          [
+            -22.97911,
+            -43.29541
+          ],
+          [
+            -22.97964,
+            -43.29416
+          ]
+        ],
+        "fluxo_portas_que_continuam": 3,
+        "fluxo_borda_externa": 3,
+        "efeito_portas_sem_continuacao": 0,
+        "efeito_convergencia_externa": 0
+      },
+      "2000": {
+        "portas_dirigidas_com_saida": 13,
+        "portas_que_continuam": 10,
+        "portas_sem_continuacao": [
+          [
+            -22.97961,
+            -43.2942
+          ],
+          [
+            -22.97911,
+            -43.29541
+          ],
+          [
+            -22.97964,
+            -43.29416
+          ]
+        ],
+        "fluxo_portas_que_continuam": 3,
+        "fluxo_borda_externa": 3,
+        "efeito_portas_sem_continuacao": 0,
+        "efeito_convergencia_externa": 0
+      }
+    }
+  },
+  "cosme_velho": {
+    "bairro": "cosme_velho",
+    "fluxo_portas_todas": 5,
+    "raios": {
+      "500": {
+        "portas_dirigidas_com_saida": 4,
+        "portas_que_continuam": 3,
+        "portas_sem_continuacao": [
+          [
+            -22.94501,
+            -43.20447
+          ]
+        ],
+        "fluxo_portas_que_continuam": 4,
+        "fluxo_borda_externa": 3,
+        "efeito_portas_sem_continuacao": 1,
+        "efeito_convergencia_externa": 1
+      },
+      "1000": {
+        "portas_dirigidas_com_saida": 5,
+        "portas_que_continuam": 4,
+        "portas_sem_continuacao": [
+          [
+            -22.94501,
+            -43.20447
+          ]
+        ],
+        "fluxo_portas_que_continuam": 4,
+        "fluxo_borda_externa": 3,
+        "efeito_portas_sem_continuacao": 1,
+        "efeito_convergencia_externa": 1
+      },
+      "2000": {
+        "portas_dirigidas_com_saida": 6,
+        "portas_que_continuam": 5,
+        "portas_sem_continuacao": [
+          [
+            -22.94502,
+            -43.20446
+          ]
+        ],
+        "fluxo_portas_que_continuam": 5,
+        "fluxo_borda_externa": 4,
+        "efeito_portas_sem_continuacao": 0,
+        "efeito_convergencia_externa": 1
+      }
+    }
+  },
+  "leme": {
+    "bairro": "leme",
+    "fluxo_portas_todas": 1,
+    "raios": {
+      "500": {
+        "portas_dirigidas_com_saida": 3,
+        "portas_que_continuam": 3,
+        "portas_sem_continuacao": [],
+        "fluxo_portas_que_continuam": 1,
+        "fluxo_borda_externa": 1,
+        "efeito_portas_sem_continuacao": 0,
+        "efeito_convergencia_externa": 0
+      },
+      "1000": {
+        "portas_dirigidas_com_saida": 3,
+        "portas_que_continuam": 3,
+        "portas_sem_continuacao": [],
+        "fluxo_portas_que_continuam": 1,
+        "fluxo_borda_externa": 1,
+        "efeito_portas_sem_continuacao": 0,
+        "efeito_convergencia_externa": 0
+      },
+      "2000": {
+        "portas_dirigidas_com_saida": 3,
+        "portas_que_continuam": 3,
+        "portas_sem_continuacao": [],
+        "fluxo_portas_que_continuam": 1,
+        "fluxo_borda_externa": 1,
+        "efeito_portas_sem_continuacao": 0,
+        "efeito_convergencia_externa": 0
+      }
+    }
+  },
+  "joa": {
+    "bairro": "joa",
+    "fluxo_portas_todas": 3,
+    "raios": {
+      "500": {
+        "portas_dirigidas_com_saida": 4,
+        "portas_que_continuam": 4,
+        "portas_sem_continuacao": [],
+        "fluxo_portas_que_continuam": 3,
+        "fluxo_borda_externa": 3,
+        "efeito_portas_sem_continuacao": 0,
+        "efeito_convergencia_externa": 0
+      },
+      "1000": {
+        "portas_dirigidas_com_saida": 4,
+        "portas_que_continuam": 4,
+        "portas_sem_continuacao": [],
+        "fluxo_portas_que_continuam": 3,
+        "fluxo_borda_externa": 2,
+        "efeito_portas_sem_continuacao": 0,
+        "efeito_convergencia_externa": 1
+      },
+      "2000": {
+        "portas_dirigidas_com_saida": 4,
+        "portas_que_continuam": 4,
+        "portas_sem_continuacao": [],
+        "fluxo_portas_que_continuam": 3,
+        "fluxo_borda_externa": 2,
+        "efeito_portas_sem_continuacao": 0,
+        "efeito_convergencia_externa": 1
+      }
+    }
+  },
+  "sao_conrado": {
+    "bairro": "sao_conrado",
+    "fluxo_portas_todas": 7,
+    "raios": {
+      "500": {
+        "portas_dirigidas_com_saida": 6,
+        "portas_que_continuam": 5,
+        "portas_sem_continuacao": [
+          [
+            -22.99215,
+            -43.25064
+          ]
+        ],
+        "fluxo_portas_que_continuam": 2,
+        "fluxo_borda_externa": 5,
+        "efeito_portas_sem_continuacao": 5,
+        "efeito_convergencia_externa": -3,
+        "ordem_violada": true
+      },
+      "1000": {
+        "portas_dirigidas_com_saida": 8,
+        "portas_que_continuam": 7,
+        "portas_sem_continuacao": [
+          [
+            -22.99215,
+            -43.25064
+          ]
+        ],
+        "fluxo_portas_que_continuam": 4,
+        "fluxo_borda_externa": 7,
+        "efeito_portas_sem_continuacao": 3,
+        "efeito_convergencia_externa": -3,
+        "ordem_violada": true
+      },
+      "2000": {
+        "portas_dirigidas_com_saida": 10,
+        "portas_que_continuam": 9,
+        "portas_sem_continuacao": [
+          [
+            -22.99215,
+            -43.25064
+          ]
+        ],
+        "fluxo_portas_que_continuam": 7,
+        "fluxo_borda_externa": 6,
+        "efeito_portas_sem_continuacao": 0,
+        "efeito_convergencia_externa": 1
+      }
+    }
+  },
+  "praca_da_bandeira": {
+    "bairro": "praca_da_bandeira",
+    "fluxo_portas_todas": 4,
+    "raios": {
+      "500": {
+        "portas_dirigidas_com_saida": 14,
+        "portas_que_continuam": 13,
+        "portas_sem_continuacao": [
+          [
+            -22.91453,
+            -43.21464
+          ]
+        ],
+        "fluxo_portas_que_continuam": 4,
+        "fluxo_borda_externa": 4,
+        "efeito_portas_sem_continuacao": 0,
+        "efeito_convergencia_externa": 0
+      },
+      "1000": {
+        "portas_dirigidas_com_saida": 14,
+        "portas_que_continuam": 13,
+        "portas_sem_continuacao": [
+          [
+            -22.91453,
+            -43.21464
+          ]
+        ],
+        "fluxo_portas_que_continuam": 4,
+        "fluxo_borda_externa": 4,
+        "efeito_portas_sem_continuacao": 0,
+        "efeito_convergencia_externa": 0
+      },
+      "2000": {
+        "portas_dirigidas_com_saida": 14,
+        "portas_que_continuam": 13,
+        "portas_sem_continuacao": [
+          [
+            -22.91453,
+            -43.21464
+          ]
+        ],
+        "fluxo_portas_que_continuam": 4,
+        "fluxo_borda_externa": 4,
+        "efeito_portas_sem_continuacao": 0,
+        "efeito_convergencia_externa": 0
+      }
+    }
   }
 }

@@ -1,0 +1,145 @@
+{
+  "rede": {
+    "fonte": "OpenStreetMap (Overpass API)",
+    "bairro": "Leme, Rio de Janeiro",
+    "bairro_slug": "leme",
+    "bbox": "-22.968,-43.175,-22.956,-43.146",
+    "bbox_recortado_por_poligono_oficial": true,
+    "n_removidos_fora_do_poligono": 26,
+    "pontos_osm": 340,
+    "vias_osm": 66,
+    "V_intersecoes": 27,
+    "E_arcos": 44,
+    "trechos": 32
+  },
+  "conectividade": {
+    "componentes": 1,
+    "maior_componente": 27,
+    "scc": 5,
+    "maior_scc": 20,
+    "fora_da_scc_gigante": 7,
+    "ruas_sem_saida": 9,
+    "tempo_ms": 0.61
+  },
+  "gargalos_estruturais": {
+    "articulacoes": 11,
+    "pontes": 15,
+    "tempo_ms": 1.64
+  },
+  "gargalos_estruturais_dirigidos": {
+    "nucleo_n": 20,
+    "pares_nucleo": 24,
+    "pontes_fortes": 20,
+    "articulacoes_fortes": 14,
+    "pontes_fraca_e_forte": 9,
+    "pontes_so_forte": 11,
+    "pontes_so_fraca_fora_do_nucleo": 6,
+    "articulacoes_fraca_e_forte": 8,
+    "articulacoes_so_forte": 6,
+    "tempo_ms": 14.78
+  },
+  "gargalo_corte_minimo": {
+    "origem": 2838778150,
+    "destino": 12468493362,
+    "fluxo_maximo": 1,
+    "corte_minimo": 1,
+    "ruas_do_corte": [
+      [
+        2838778150,
+        2838778127
+      ]
+    ],
+    "outros_pontos_unicos_de_falha_na_rota": [
+      [
+        2838778127,
+        857630412
+      ],
+      [
+        857630412,
+        857630415
+      ],
+      [
+        857630415,
+        527726642
+      ],
+      [
+        468170388,
+        12468493362
+      ]
+    ],
+    "tempo_ms": 0.1
+  },
+  "travessia_interna_polos": {
+    "polo1": 2838778150,
+    "polo2": 153790232,
+    "fluxo": 1,
+    "corte": 1,
+    "n_origem": 4,
+    "n_destino": 4,
+    "frac": 0.2
+  },
+  "gargalo_acesso_gateway": {
+    "gateways": [
+      153791884,
+      468169885,
+      468170373,
+      1105622649,
+      7931346989
+    ],
+    "fluxo": 1,
+    "corte": 1,
+    "n_origem": 5,
+    "n_gateways": 5,
+    "frac": 0.2
+  },
+  "intermediacao": {
+    "max_pct_pares": 54.97,
+    "no_max": 527726642,
+    "n_nucleo": 20
+  },
+  "rotas_alternativas": {
+    "origem": 2838778150,
+    "destino": 12468493362,
+    "rota_principal_min": 2.34,
+    "intersecoes_rota": 11,
+    "bellman_ford_confere": true,
+    "tempo_dijkstra_ms": 0.02,
+    "tempo_bellman_ford_ms": 0.05,
+    "trecho_bloqueado": [
+      468169835,
+      468169849
+    ],
+    "rota_alternativa_min": 2.74,
+    "acrescimo_pct": 17.1,
+    "pontes_na_rota": 5
+  },
+  "resiliencia": {
+    "n_pares_nucleo": 380,
+    "pontes_fortes": {
+      "n": 20,
+      "pares_desconectados": {
+        "min": 37,
+        "mediana": 92.0,
+        "max": 182
+      },
+      "binarias": 18,
+      "com_desvio_parcial": 2,
+      "n_pares_com_desvio_parcial": 2,
+      "acrescimo_min": {
+        "min": 0.5172694667567491,
+        "mediana": 0.5172694667567491,
+        "max": 0.5172694667567491
+      }
+    },
+    "articulacoes_fortes": {
+      "n": 14,
+      "pares_desconectados": {
+        "min": 37,
+        "mediana": 140.0,
+        "max": 207
+      }
+    },
+    "tempo_ms": 25.91
+  },
+  "tempo_total_s": 1.25
+}

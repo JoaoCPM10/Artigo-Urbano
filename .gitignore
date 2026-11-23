@@ -4,3 +4,11 @@ repo/
 
 __pycache__/
 *.pyc
+
+# Dados do IBGE (Censo 2022): 75 MB, nao versionar
+grafos/data/ibge_censo2022_rj/
+grafos/data/ibge_censo2022_dicionario/
+
+# Caches de agua (OSM) e de elevacao: refeitos pelos scripts
+grafos/data/agua_osm_*
+grafos/data/elevacao_*

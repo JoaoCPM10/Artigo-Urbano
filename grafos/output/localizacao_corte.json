@@ -293,5 +293,96 @@
     ],
     "cortes_de_uma_rua": [],
     "extremos_dos_cortes_sao_as_5_mais_centrais": false
+  },
+  {
+    "bairro": "Leme",
+    "V": 27,
+    "portas": 5,
+    "origem": 5,
+    "fluxo": 1,
+    "corte_edmonds_karp": [
+      {
+        "ruas": [
+          [
+            857630415,
+            527726642
+          ]
+        ],
+        "n_ruas": 1,
+        "nos_lado_origem": 7
+      }
+    ],
+    "cortes_de_uma_rua": [
+      {
+        "rua": [
+          527726642,
+          857630415
+        ],
+        "coords": [
+          [
+            -22.96194,
+            -43.16894
+          ],
+          [
+            -22.96036,
+            -43.16969
+          ]
+        ],
+        "comprimento_m": 296,
+        "nos_lado_origem": 7,
+        "pct_lado_origem": 25.9
+      }
+    ],
+    "extremos_dos_cortes_sao_as_5_mais_centrais": true,
+    "varredura_f": [
+      {
+        "f": 0.05,
+        "n_origem": 1,
+        "cortes_de_uma_rua": 4,
+        "extremos_entre_as_5_mais_centrais": false
+      },
+      {
+        "f": 0.1,
+        "n_origem": 3,
+        "cortes_de_uma_rua": 3,
+        "extremos_entre_as_5_mais_centrais": false
+      },
+      {
+        "f": 0.15,
+        "n_origem": 4,
+        "cortes_de_uma_rua": 2,
+        "extremos_entre_as_5_mais_centrais": false
+      },
+      {
+        "f": 0.2,
+        "n_origem": 5,
+        "cortes_de_uma_rua": 1,
+        "extremos_entre_as_5_mais_centrais": true
+      },
+      {
+        "f": 0.25,
+        "n_origem": 7,
+        "cortes_de_uma_rua": 0,
+        "extremos_entre_as_5_mais_centrais": true
+      },
+      {
+        "f": 0.3,
+        "n_origem": 8,
+        "cortes_de_uma_rua": 0,
+        "extremos_entre_as_5_mais_centrais": true
+      },
+      {
+        "f": 0.4,
+        "n_origem": 11,
+        "cortes_de_uma_rua": 0,
+        "extremos_entre_as_5_mais_centrais": true
+      },
+      {
+        "f": 0.5,
+        "n_origem": 14,
+        "cortes_de_uma_rua": 0,
+        "extremos_entre_as_5_mais_centrais": true
+      }
+    ]
   }
 ]

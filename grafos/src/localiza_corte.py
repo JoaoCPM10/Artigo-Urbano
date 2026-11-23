@@ -10,7 +10,7 @@ perto da regiao de origem (o artefato do corte no-a-no, Secao 4.2)? Aqui:
     portas (cortes de uma rua), com comprimento, posicao e tamanho dos lados;
   - quais interseccoes extremas desses cortes coincidem com as de maior
     intermediacao (betweenness.py);
-  - a mesma enumeracao para f de 0,05 a 0,50 (so' Urca).
+  - a mesma enumeracao para f de 0,05 a 0,50 (Urca e Leme, os bairros de fluxo 1).
 
 Escreve output/localizacao_corte.json e output/fig_cut.png.
 Uso:  py localiza_corte.py
@@ -102,7 +102,7 @@ def analisa(key: str) -> dict:
             for i, lado in cuts],
         "extremos_dos_cortes_sao_as_5_mais_centrais": bool(cuts) and extremos <= top5,
     }
-    if key == "urca":
+    if key in ("urca", "leme"):
         varredura = []
         for f in FRACOES:
             s2 = set(mf.gateway_access_flow(list(uset), data["undirected_edges"], gw,
@@ -156,8 +156,8 @@ def figura(resultados):
 
 
 def main():
-    resultados = [analisa(k) for k in ("urca", "copacabana", "botafogo")]
-    figura(resultados)
+    resultados = [analisa(k) for k in ("urca", "copacabana", "botafogo", "leme")]
+    figura(resultados[:3])   # a Figura 3 mostra os tres primeiros
     for r in resultados:
         r.pop("_objs"); r.pop("_vertices_corte")
         print(json.dumps({k: v for k, v in r.items() if k != "corte_edmonds_karp"},

@@ -1,92 +1,86 @@
 """
-Figura dos controles de tamanho (Secao 4.4 do artigo): distribuicao do
-fluxo de acesso e do maximo de intermediacao em pedacos de tamanho igual ao da
-Urca, sorteados em Copacabana e Botafogo, contra o valor da propria Urca.
+Figura dos controles de tamanho (Secao 4.4 do artigo), em tres paineis.
 
-Le output/nulo_fluxo.json e output/nulo_intermediacao.json (ver nulo_fluxo.py e
-nulo_intermediacao.py) e escreve output/fig_controles.png.
+(a) Fluxo de acesso de pedacos de 70 interseccoes (o tamanho da Urca) sorteados em
+    cinco bairros (output/nulo_fluxo_urca_fontes.json), contra o fluxo da Urca.
+(b) Fluxo de acesso de pedacos de 27 interseccoes (o tamanho do Leme) sorteados em
+    seis bairros (output/nulo_fluxo_leme_fontes.json), contra o fluxo do Leme.
+(c) Intermediacao maxima de pedacos de Copacabana e Botafogo com nucleo forte de
+    65 +- 5 nos (output/controle_tamanho_intermediacao.json, campo "valores_pct"
+    gravado por valores_pareados.py), contra a da Urca.
 
-Uso:  py fig_controles.py [--com-intermediacao]
-
-Por padrao, so' o painel (a): o controle de tamanho da intermediacao saiu do artigo.
-Com --com-intermediacao a figura volta a ter o painel (b).
+Escreve output/fig_controles.png e copia para ../Figures.   Uso:  py fig_controles.py
 """
 
 from __future__ import annotations
 import json
 import os
-import sys
+import shutil
 
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "output")
-COR = {"urca": "#1f77b4", "copacabana": "#ff7f0e", "botafogo": "#2ca02c"}
-NOME = {"copacabana": "Copacabana", "botafogo": "Botafogo"}
-plt.rcParams.update({"font.size": 11})
+COR = {"copacabana": "#4a5568", "botafogo": "#718096", "alto_da_boa_vista": "#2f855a",
+       "sao_conrado": "#b7791f", "praca_da_bandeira": "#319795", "cosme_velho": "#6b46c1"}
+NOME = {"copacabana": "Copacabana", "botafogo": "Botafogo", "alto_da_boa_vista": "Alto da Boa Vista",
+        "sao_conrado": "São Conrado", "praca_da_bandeira": "Praça da Bandeira", "cosme_velho": "Cosme Velho"}
+plt.rcParams.update({"font.size": 10})
+
+
+def painel_fluxo(ax, arq, ref_nome, ref_cor, titulo, xmax):
+    d = json.load(open(os.path.join(OUT, arq), encoding="utf-8"))
+    bins = [x - 0.5 for x in range(0, xmax + 2)]
+    for k, b in d["pedacos"].items():
+        v = b["bola"]["valores_fluxo"] + b["eden"]["valores_fluxo"]
+        ax.hist(v, bins=bins, weights=[100 / len(v)] * len(v), histtype="step", lw=1.8,
+                color=COR[k], label=f"{NOME[k]} (n = {len(v):,})".replace(",", " "))
+    ref = d["referencia"]["fluxo"]
+    ax.axvline(ref, color=ref_cor, lw=2.5)
+    ax.annotate(f"{ref_nome}: {ref}", xy=(ref, 0.92), xycoords=("data", "axes fraction"),
+                xytext=(ref + 0.8, 0.92), textcoords=("data", "axes fraction"),
+                color=ref_cor, fontsize=10, fontweight="bold", va="center",
+                bbox=dict(facecolor="white", alpha=0.9, edgecolor="none", pad=1.5))
+    ax.set_xlim(-0.5, xmax + 0.5)
+    ax.set_xlabel("access flow of a piece (routes)")
+    ax.set_ylabel("share of pieces (%)")
+    ax.set_title(titulo, fontsize=11)
+    ax.legend(loc="upper right", fontsize=7.5, framealpha=0.9)
+    ax.grid(axis="y", alpha=0.3)
 
 
 def main():
-    with open(os.path.join(OUT, "nulo_fluxo.json"), encoding="utf-8") as f:
-        fl = json.load(f)
-    with open(os.path.join(OUT, "nulo_intermediacao.json"), encoding="utf-8") as f:
-        bt = json.load(f)
-
-    com_b = "--com-intermediacao" in sys.argv
-    if com_b:
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 3.7))
-    else:
-        fig, ax1 = plt.subplots(1, 1, figsize=(6.2, 3.7))
-
-
-    # ---- (a) fluxo de acesso dos pedacos de 70 interseccoes ---------------
-    bins = [x - 0.5 for x in range(0, 34)]
-    for k in ("copacabana", "botafogo"):
-        v = fl["pedacos"][k]["bola"]["valores_fluxo"] + fl["pedacos"][k]["eden"]["valores_fluxo"]
-        ax1.hist(v, bins=bins, weights=[100 / len(v)] * len(v), color=COR[k], alpha=0.55,
-                 label=f"{NOME[k]} pieces (n = {len(v):,})".replace(",", " "))
-    urca = fl["referencia_urca"]["fluxo"]
-    ax1.axvline(urca, color=COR["urca"], lw=2.5)
-    ax1.annotate(f"Urca: {urca}", xy=(urca, 0.9), xycoords=("data", "axes fraction"),
-                 xytext=(urca + 1.0, 0.9), textcoords=("data", "axes fraction"),
-                 color=COR["urca"], fontsize=11, fontweight="bold", va="center")
-    ax1.set_xlim(-0.5, 32.5)
-    ax1.set_xlabel("access flow of a piece of 70 intersections (routes)")
-    ax1.set_ylabel("share of pieces (%)")
-    ax1.set_title("(a) Access flow" if com_b else "Access flow", fontsize=12)
-    ax1.legend(loc="upper right", fontsize=9, framealpha=0.9)
-    ax1.grid(axis="y", alpha=0.3)
-
-    # ---- (b) maximo de intermediacao dos pedacos --------------------------
-    if not com_b:
-        fig.tight_layout()
-        p = os.path.join(OUT, "fig_controles.png")
-        fig.savefig(p, dpi=150, bbox_inches="tight"); plt.close(fig)
-        print("saved:", p)
-        return
-    bins2 = [x for x in range(20, 72, 2)]
-    for k in ("copacabana", "botafogo"):
-        v = bt["subamostragem"][f"{k}_bola"]["valores_pct"] + bt["subamostragem"][f"{k}_eden"]["valores_pct"]
-        ax2.hist(v, bins=bins2, weights=[100 / len(v)] * len(v), color=COR[k], alpha=0.55,
-                 label=f"{NOME[k]} pieces (n = {len(v)})")
-    urca_b = bt["escala"]["urca"]["max_pct"]
-    ax2.axvline(urca_b, color=COR["urca"], lw=2.5)
-    ax2.annotate(f"Urca: {urca_b:.1f}%", xy=(urca_b, 0.9), xycoords=("data", "axes fraction"),
-                 xytext=(urca_b + 0.8, 0.9), textcoords=("data", "axes fraction"),
-                 color=COR["urca"], fontsize=11, fontweight="bold", va="center")
-    ax2.set_ylim(0, 28)
-    ax2.set_xlim(20, 70)
-    ax2.set_xlabel("maximum betweenness of a piece (% of pairs)")
-    ax2.set_ylabel("share of pieces (%)")
-    ax2.set_title("(b) Betweenness maximum", fontsize=12)
-    ax2.legend(loc="upper left", fontsize=9, framealpha=0.9)
-    ax2.grid(axis="y", alpha=0.3)
-
+    bt = json.load(open(os.path.join(OUT, "controle_tamanho_intermediacao.json"), encoding="utf-8"))
+    fig, axes = plt.subplots(1, 3, figsize=(15, 3.9))
+    painel_fluxo(axes[0], "nulo_fluxo_urca_fontes.json", "Urca", "#c0392b",
+                 "(a) Pieces of 70 intersections", 31)
+    painel_fluxo(axes[1], "nulo_fluxo_leme_fontes.json", "Leme", "#e67e22",
+                 "(b) Pieces of 27 intersections", 20)
+    ax = axes[2]
+    bins2 = list(range(20, 72, 2))
+    for k, cor in (("copacabana", COR["copacabana"]), ("botafogo", COR["botafogo"])):
+        p = bt["pareado_por_nucleo_forte"][k]
+        v = p["bola"]["valores_pct"] + p["eden"]["valores_pct"]
+        ax.hist(v, bins=bins2, weights=[100 / len(v)] * len(v), histtype="step", lw=1.8, color=cor,
+                label=f"{NOME[k]} (n = {len(v)})")
+    urca_b = bt["referencia_urca"]["intermediacao_maxima_pct"]
+    ax.axvline(urca_b, color="#c0392b", lw=2.5)
+    ax.annotate(f"Urca: {urca_b:.1f}%", xy=(urca_b, 0.92), xycoords=("data", "axes fraction"),
+                xytext=(urca_b + 0.8, 0.92), textcoords=("data", "axes fraction"),
+                color="#c0392b", fontsize=10, fontweight="bold", va="center",
+                bbox=dict(facecolor="white", alpha=0.9, edgecolor="none", pad=1.5))
+    ax.set_xlim(20, 80)
+    ax.set_xlabel("maximum betweenness of a piece (% of pairs)")
+    ax.set_ylabel("share of pieces (%)")
+    ax.set_title("(c) Betweenness, strong core of 65 ± 5", fontsize=11)
+    ax.legend(loc="upper left", fontsize=8, framealpha=0.9)
+    ax.grid(axis="y", alpha=0.3)
     fig.tight_layout()
     p = os.path.join(OUT, "fig_controles.png")
     fig.savefig(p, dpi=150, bbox_inches="tight"); plt.close(fig)
-    print("saved:", p)
+    figs = os.path.join(os.path.dirname(OUT), "..", "Figures")
+    print("saved:", p, "(a copia para Figures e' feita na integracao)")
 
 
 if __name__ == "__main__":

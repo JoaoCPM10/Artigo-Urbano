@@ -214,5 +214,437 @@
     "portas": 31,
     "fluxo": 15,
     "n_origem": 108
+  },
+  {
+    "bairro": "Alto da Boa Vista",
+    "margem_m": 200,
+    "f": 0.15,
+    "portas": 13,
+    "fluxo": 4,
+    "n_origem": 27
+  },
+  {
+    "bairro": "Alto da Boa Vista",
+    "margem_m": 200,
+    "f": 0.2,
+    "portas": 13,
+    "fluxo": 4,
+    "n_origem": 36
+  },
+  {
+    "bairro": "Alto da Boa Vista",
+    "margem_m": 200,
+    "f": 0.25,
+    "portas": 13,
+    "fluxo": 6,
+    "n_origem": 45
+  },
+  {
+    "bairro": "Alto da Boa Vista",
+    "margem_m": 400,
+    "f": 0.15,
+    "portas": 13,
+    "fluxo": 4,
+    "n_origem": 27
+  },
+  {
+    "bairro": "Alto da Boa Vista",
+    "margem_m": 400,
+    "f": 0.2,
+    "portas": 13,
+    "fluxo": 4,
+    "n_origem": 36
+  },
+  {
+    "bairro": "Alto da Boa Vista",
+    "margem_m": 400,
+    "f": 0.25,
+    "portas": 13,
+    "fluxo": 6,
+    "n_origem": 45
+  },
+  {
+    "bairro": "Alto da Boa Vista",
+    "margem_m": 800,
+    "f": 0.15,
+    "portas": 13,
+    "fluxo": 4,
+    "n_origem": 27
+  },
+  {
+    "bairro": "Alto da Boa Vista",
+    "margem_m": 800,
+    "f": 0.2,
+    "portas": 13,
+    "fluxo": 4,
+    "n_origem": 36
+  },
+  {
+    "bairro": "Alto da Boa Vista",
+    "margem_m": 800,
+    "f": 0.25,
+    "portas": 13,
+    "fluxo": 6,
+    "n_origem": 45
+  },
+  {
+    "bairro": "Cosme Velho",
+    "margem_m": 200,
+    "f": 0.15,
+    "portas": 6,
+    "fluxo": 6,
+    "n_origem": 8
+  },
+  {
+    "bairro": "Cosme Velho",
+    "margem_m": 200,
+    "f": 0.2,
+    "portas": 6,
+    "fluxo": 6,
+    "n_origem": 10
+  },
+  {
+    "bairro": "Cosme Velho",
+    "margem_m": 200,
+    "f": 0.25,
+    "portas": 6,
+    "fluxo": 6,
+    "n_origem": 12
+  },
+  {
+    "bairro": "Cosme Velho",
+    "margem_m": 400,
+    "f": 0.15,
+    "portas": 6,
+    "fluxo": 6,
+    "n_origem": 8
+  },
+  {
+    "bairro": "Cosme Velho",
+    "margem_m": 400,
+    "f": 0.2,
+    "portas": 6,
+    "fluxo": 6,
+    "n_origem": 10
+  },
+  {
+    "bairro": "Cosme Velho",
+    "margem_m": 400,
+    "f": 0.25,
+    "portas": 6,
+    "fluxo": 6,
+    "n_origem": 12
+  },
+  {
+    "bairro": "Cosme Velho",
+    "margem_m": 800,
+    "f": 0.15,
+    "portas": 6,
+    "fluxo": 6,
+    "n_origem": 8
+  },
+  {
+    "bairro": "Cosme Velho",
+    "margem_m": 800,
+    "f": 0.2,
+    "portas": 6,
+    "fluxo": 6,
+    "n_origem": 10
+  },
+  {
+    "bairro": "Cosme Velho",
+    "margem_m": 800,
+    "f": 0.25,
+    "portas": 6,
+    "fluxo": 6,
+    "n_origem": 12
+  },
+  {
+    "bairro": "Leme",
+    "margem_m": 200,
+    "f": 0.15,
+    "portas": 5,
+    "fluxo": 1,
+    "n_origem": 4
+  },
+  {
+    "bairro": "Leme",
+    "margem_m": 200,
+    "f": 0.2,
+    "portas": 5,
+    "fluxo": 1,
+    "n_origem": 5
+  },
+  {
+    "bairro": "Leme",
+    "margem_m": 200,
+    "f": 0.25,
+    "portas": 5,
+    "fluxo": 2,
+    "n_origem": 7
+  },
+  {
+    "bairro": "Leme",
+    "margem_m": 400,
+    "f": 0.15,
+    "portas": 5,
+    "fluxo": 1,
+    "n_origem": 4
+  },
+  {
+    "bairro": "Leme",
+    "margem_m": 400,
+    "f": 0.2,
+    "portas": 5,
+    "fluxo": 1,
+    "n_origem": 5
+  },
+  {
+    "bairro": "Leme",
+    "margem_m": 400,
+    "f": 0.25,
+    "portas": 5,
+    "fluxo": 2,
+    "n_origem": 7
+  },
+  {
+    "bairro": "Leme",
+    "margem_m": 800,
+    "f": 0.15,
+    "portas": 5,
+    "fluxo": 1,
+    "n_origem": 4
+  },
+  {
+    "bairro": "Leme",
+    "margem_m": 800,
+    "f": 0.2,
+    "portas": 5,
+    "fluxo": 1,
+    "n_origem": 5
+  },
+  {
+    "bairro": "Leme",
+    "margem_m": 800,
+    "f": 0.25,
+    "portas": 5,
+    "fluxo": 2,
+    "n_origem": 7
+  },
+  {
+    "bairro": "Joá",
+    "margem_m": 200,
+    "f": 0.15,
+    "portas": 3,
+    "fluxo": 3,
+    "n_origem": 3
+  },
+  {
+    "bairro": "Joá",
+    "margem_m": 200,
+    "f": 0.2,
+    "portas": 3,
+    "fluxo": 3,
+    "n_origem": 4
+  },
+  {
+    "bairro": "Joá",
+    "margem_m": 200,
+    "f": 0.25,
+    "portas": 3,
+    "fluxo": 3,
+    "n_origem": 5
+  },
+  {
+    "bairro": "Joá",
+    "margem_m": 400,
+    "f": 0.15,
+    "portas": 3,
+    "fluxo": 3,
+    "n_origem": 3
+  },
+  {
+    "bairro": "Joá",
+    "margem_m": 400,
+    "f": 0.2,
+    "portas": 3,
+    "fluxo": 3,
+    "n_origem": 4
+  },
+  {
+    "bairro": "Joá",
+    "margem_m": 400,
+    "f": 0.25,
+    "portas": 3,
+    "fluxo": 3,
+    "n_origem": 5
+  },
+  {
+    "bairro": "Joá",
+    "margem_m": 800,
+    "f": 0.15,
+    "portas": 3,
+    "fluxo": 3,
+    "n_origem": 3
+  },
+  {
+    "bairro": "Joá",
+    "margem_m": 800,
+    "f": 0.2,
+    "portas": 3,
+    "fluxo": 3,
+    "n_origem": 4
+  },
+  {
+    "bairro": "Joá",
+    "margem_m": 800,
+    "f": 0.25,
+    "portas": 3,
+    "fluxo": 3,
+    "n_origem": 5
+  },
+  {
+    "bairro": "São Conrado",
+    "margem_m": 200,
+    "f": 0.15,
+    "portas": 11,
+    "fluxo": 9,
+    "n_origem": 25
+  },
+  {
+    "bairro": "São Conrado",
+    "margem_m": 200,
+    "f": 0.2,
+    "portas": 11,
+    "fluxo": 11,
+    "n_origem": 33
+  },
+  {
+    "bairro": "São Conrado",
+    "margem_m": 200,
+    "f": 0.25,
+    "portas": 11,
+    "fluxo": 11,
+    "n_origem": 41
+  },
+  {
+    "bairro": "São Conrado",
+    "margem_m": 400,
+    "f": 0.15,
+    "portas": 11,
+    "fluxo": 9,
+    "n_origem": 25
+  },
+  {
+    "bairro": "São Conrado",
+    "margem_m": 400,
+    "f": 0.2,
+    "portas": 11,
+    "fluxo": 11,
+    "n_origem": 33
+  },
+  {
+    "bairro": "São Conrado",
+    "margem_m": 400,
+    "f": 0.25,
+    "portas": 11,
+    "fluxo": 11,
+    "n_origem": 41
+  },
+  {
+    "bairro": "São Conrado",
+    "margem_m": 800,
+    "f": 0.15,
+    "portas": 11,
+    "fluxo": 9,
+    "n_origem": 25
+  },
+  {
+    "bairro": "São Conrado",
+    "margem_m": 800,
+    "f": 0.2,
+    "portas": 11,
+    "fluxo": 11,
+    "n_origem": 33
+  },
+  {
+    "bairro": "São Conrado",
+    "margem_m": 800,
+    "f": 0.25,
+    "portas": 11,
+    "fluxo": 11,
+    "n_origem": 41
+  },
+  {
+    "bairro": "Praça da Bandeira",
+    "margem_m": 200,
+    "f": 0.15,
+    "portas": 27,
+    "fluxo": 7,
+    "n_origem": 15
+  },
+  {
+    "bairro": "Praça da Bandeira",
+    "margem_m": 200,
+    "f": 0.2,
+    "portas": 27,
+    "fluxo": 8,
+    "n_origem": 20
+  },
+  {
+    "bairro": "Praça da Bandeira",
+    "margem_m": 200,
+    "f": 0.25,
+    "portas": 27,
+    "fluxo": 9,
+    "n_origem": 26
+  },
+  {
+    "bairro": "Praça da Bandeira",
+    "margem_m": 400,
+    "f": 0.15,
+    "portas": 27,
+    "fluxo": 7,
+    "n_origem": 15
+  },
+  {
+    "bairro": "Praça da Bandeira",
+    "margem_m": 400,
+    "f": 0.2,
+    "portas": 27,
+    "fluxo": 8,
+    "n_origem": 20
+  },
+  {
+    "bairro": "Praça da Bandeira",
+    "margem_m": 400,
+    "f": 0.25,
+    "portas": 27,
+    "fluxo": 9,
+    "n_origem": 26
+  },
+  {
+    "bairro": "Praça da Bandeira",
+    "margem_m": 800,
+    "f": 0.15,
+    "portas": 27,
+    "fluxo": 7,
+    "n_origem": 15
+  },
+  {
+    "bairro": "Praça da Bandeira",
+    "margem_m": 800,
+    "f": 0.2,
+    "portas": 27,
+    "fluxo": 8,
+    "n_origem": 20
+  },
+  {
+    "bairro": "Praça da Bandeira",
+    "margem_m": 800,
+    "f": 0.25,
+    "portas": 27,
+    "fluxo": 9,
+    "n_origem": 26
   }
 ]

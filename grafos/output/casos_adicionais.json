@@ -1,0 +1,1305 @@
+{
+  "cosme_velho": {
+    "quatro_contagens": {
+      "bairro": "Cosme Velho",
+      "portas": 6,
+      "origem": 10,
+      "fluxo_ruas_referencia_gateway_access_flow": 6,
+      "nao_dirigido": {
+        "ruas": 6,
+        "intersecoes": 6,
+        "corte_ruas": [
+          [
+            321222686,
+            2876768399
+          ],
+          [
+            1662945355,
+            141934069
+          ],
+          [
+            141961822,
+            331107713
+          ],
+          [
+            321231621,
+            7882752133
+          ],
+          [
+            1662999695,
+            321231691
+          ],
+          [
+            141936637,
+            1662999721
+          ]
+        ],
+        "corte_intersecoes": [
+          {
+            "no": 141936637,
+            "coords": [
+              -22.93969,
+              -43.20234
+            ]
+          },
+          {
+            "no": 141961822,
+            "coords": [
+              -22.94048,
+              -43.19805
+            ]
+          },
+          {
+            "no": 321222686,
+            "coords": [
+              -22.94168,
+              -43.20476
+            ]
+          },
+          {
+            "no": 321231621,
+            "coords": [
+              -22.94475,
+              -43.20412
+            ]
+          },
+          {
+            "no": 1662945355,
+            "coords": [
+              -22.93976,
+              -43.20208
+            ]
+          },
+          {
+            "no": 1662999695,
+            "coords": [
+              -22.9398,
+              -43.2031
+            ]
+          }
+        ]
+      },
+      "dirigido": {
+        "ruas": 5,
+        "intersecoes": 4,
+        "corte_ruas": [
+          [
+            1578566174,
+            1578566179
+          ],
+          [
+            141961818,
+            141961814
+          ],
+          [
+            141961822,
+            331107713
+          ],
+          [
+            321231551,
+            321231539
+          ],
+          [
+            7822538645,
+            2136519513
+          ]
+        ],
+        "corte_intersecoes": [
+          {
+            "no": 141961822,
+            "coords": [
+              -22.94048,
+              -43.19805
+            ]
+          },
+          {
+            "no": 321222686,
+            "coords": [
+              -22.94168,
+              -43.20476
+            ]
+          },
+          {
+            "no": 321231621,
+            "coords": [
+              -22.94475,
+              -43.20412
+            ]
+          },
+          {
+            "no": 1662945355,
+            "coords": [
+              -22.93976,
+              -43.20208
+            ]
+          }
+        ]
+      }
+    },
+    "localizacao_corte": {
+      "bairro": "Cosme Velho",
+      "V": 50,
+      "portas": 6,
+      "origem": 10,
+      "fluxo": 6,
+      "corte_edmonds_karp": [
+        {
+          "ruas": [
+            [
+              321222686,
+              2876768399
+            ],
+            [
+              1662945355,
+              141934069
+            ],
+            [
+              141961822,
+              331107713
+            ],
+            [
+              321231621,
+              7882752133
+            ],
+            [
+              1662999695,
+              321231691
+            ],
+            [
+              141936637,
+              1662999721
+            ]
+          ],
+          "n_ruas": 6,
+          "nos_lado_origem": 33
+        }
+      ],
+      "cortes_de_uma_rua": [],
+      "extremos_dos_cortes_sao_as_5_mais_centrais": false
+    },
+    "desempate": {
+      "bairro": "Cosme Velho",
+      "k": 10,
+      "n_componente": 50,
+      "portas": 6,
+      "dist_corte": 3,
+      "empatados_na_dist_corte": 14,
+      "acima_da_dist_corte": 9,
+      "vagas_no_empate": 1,
+      "n_sorteios": 200,
+      "nucleos_distintos": 14,
+      "valor_artigo": {
+        "nao_dirigido_ruas": 6,
+        "nao_dirigido_intersecoes": 6,
+        "dirigido_ruas": 5,
+        "dirigido_intersecoes": 4
+      },
+      "distribuicao": {
+        "nao_dirigido_ruas": {
+          "6": 200
+        },
+        "nao_dirigido_intersecoes": {
+          "6": 200
+        },
+        "dirigido_ruas": {
+          "5": 200
+        },
+        "dirigido_intersecoes": {
+          "4": 150,
+          "5": 50
+        }
+      },
+      "min_max": {
+        "nao_dirigido_ruas": [
+          6,
+          6
+        ],
+        "nao_dirigido_intersecoes": [
+          6,
+          6
+        ],
+        "dirigido_ruas": [
+          5,
+          5
+        ],
+        "dirigido_intersecoes": [
+          4,
+          5
+        ]
+      }
+    }
+  },
+  "alto_da_boa_vista": {
+    "quatro_contagens": {
+      "bairro": "Alto da Boa Vista",
+      "portas": 13,
+      "origem": 36,
+      "fluxo_ruas_referencia_gateway_access_flow": 4,
+      "nao_dirigido": {
+        "ruas": 4,
+        "intersecoes": 4,
+        "corte_ruas": [
+          [
+            819808645,
+            819809265
+          ],
+          [
+            773756710,
+            3087911801
+          ],
+          [
+            400691819,
+            400691750
+          ],
+          [
+            4041113320,
+            400692149
+          ]
+        ],
+        "corte_intersecoes": [
+          {
+            "no": 400691819,
+            "coords": [
+              -22.9746,
+              -43.28633
+            ]
+          },
+          {
+            "no": 773756710,
+            "coords": [
+              -22.96257,
+              -43.28917
+            ]
+          },
+          {
+            "no": 819808645,
+            "coords": [
+              -22.9562,
+              -43.2805
+            ]
+          },
+          {
+            "no": 4041113320,
+            "coords": [
+              -22.97089,
+              -43.28277
+            ]
+          }
+        ]
+      },
+      "dirigido": {
+        "ruas": 3,
+        "intersecoes": 3,
+        "corte_ruas": [
+          [
+            773756710,
+            3087911801
+          ],
+          [
+            400691819,
+            400691750
+          ],
+          [
+            4041113320,
+            400692149
+          ]
+        ],
+        "corte_intersecoes": [
+          {
+            "no": 400691819,
+            "coords": [
+              -22.9746,
+              -43.28633
+            ]
+          },
+          {
+            "no": 773756710,
+            "coords": [
+              -22.96257,
+              -43.28917
+            ]
+          },
+          {
+            "no": 4041113320,
+            "coords": [
+              -22.97089,
+              -43.28277
+            ]
+          }
+        ]
+      }
+    },
+    "localizacao_corte": {
+      "bairro": "Alto da Boa Vista",
+      "V": 181,
+      "portas": 13,
+      "origem": 36,
+      "fluxo": 4,
+      "corte_edmonds_karp": [
+        {
+          "ruas": [
+            [
+              819808645,
+              819809265
+            ],
+            [
+              773756710,
+              3087911801
+            ],
+            [
+              400691819,
+              400691750
+            ],
+            [
+              4041113320,
+              400692149
+            ]
+          ],
+          "n_ruas": 4,
+          "nos_lado_origem": 82
+        }
+      ],
+      "cortes_de_uma_rua": [],
+      "extremos_dos_cortes_sao_as_5_mais_centrais": false
+    },
+    "desempate": {
+      "bairro": "Alto da Boa Vista",
+      "k": 36,
+      "n_componente": 181,
+      "portas": 13,
+      "dist_corte": 8,
+      "empatados_na_dist_corte": 14,
+      "acima_da_dist_corte": 33,
+      "vagas_no_empate": 3,
+      "n_sorteios": 200,
+      "nucleos_distintos": 162,
+      "valor_artigo": {
+        "nao_dirigido_ruas": 4,
+        "nao_dirigido_intersecoes": 4,
+        "dirigido_ruas": 3,
+        "dirigido_intersecoes": 3
+      },
+      "distribuicao": {
+        "nao_dirigido_ruas": {
+          "4": 130,
+          "6": 70
+        },
+        "nao_dirigido_intersecoes": {
+          "4": 130,
+          "6": 70
+        },
+        "dirigido_ruas": {
+          "3": 130,
+          "5": 70
+        },
+        "dirigido_intersecoes": {
+          "3": 130,
+          "5": 70
+        }
+      },
+      "min_max": {
+        "nao_dirigido_ruas": [
+          4,
+          6
+        ],
+        "nao_dirigido_intersecoes": [
+          4,
+          6
+        ],
+        "dirigido_ruas": [
+          3,
+          5
+        ],
+        "dirigido_intersecoes": [
+          3,
+          5
+        ]
+      }
+    }
+  },
+  "leme": {
+    "quatro_contagens": {
+      "bairro": "Leme",
+      "portas": 5,
+      "origem": 5,
+      "fluxo_ruas_referencia_gateway_access_flow": 1,
+      "nao_dirigido": {
+        "ruas": 1,
+        "intersecoes": 1,
+        "corte_ruas": [
+          [
+            857630415,
+            527726642
+          ]
+        ],
+        "corte_intersecoes": [
+          {
+            "no": 857630415,
+            "coords": [
+              -22.96036,
+              -43.16969
+            ]
+          }
+        ]
+      },
+      "dirigido": {
+        "ruas": 1,
+        "intersecoes": 1,
+        "corte_ruas": [
+          [
+            857630415,
+            527726642
+          ]
+        ],
+        "corte_intersecoes": [
+          {
+            "no": 857630415,
+            "coords": [
+              -22.96036,
+              -43.16969
+            ]
+          }
+        ]
+      }
+    },
+    "localizacao_corte": {
+      "bairro": "Leme",
+      "V": 27,
+      "portas": 5,
+      "origem": 5,
+      "fluxo": 1,
+      "corte_edmonds_karp": [
+        {
+          "ruas": [
+            [
+              857630415,
+              527726642
+            ]
+          ],
+          "n_ruas": 1,
+          "nos_lado_origem": 7
+        }
+      ],
+      "cortes_de_uma_rua": [
+        {
+          "rua": [
+            527726642,
+            857630415
+          ],
+          "coords": [
+            [
+              -22.96194,
+              -43.16894
+            ],
+            [
+              -22.96036,
+              -43.16969
+            ]
+          ],
+          "comprimento_m": 296,
+          "nos_lado_origem": 7,
+          "pct_lado_origem": 25.9
+        }
+      ],
+      "extremos_dos_cortes_sao_as_5_mais_centrais": true
+    },
+    "desempate": {
+      "bairro": "Leme",
+      "k": 5,
+      "n_componente": 27,
+      "portas": 5,
+      "dist_corte": 5,
+      "empatados_na_dist_corte": 2,
+      "acima_da_dist_corte": 4,
+      "vagas_no_empate": 1,
+      "n_sorteios": 200,
+      "nucleos_distintos": 2,
+      "valor_artigo": {
+        "nao_dirigido_ruas": 1,
+        "nao_dirigido_intersecoes": 1,
+        "dirigido_ruas": 1,
+        "dirigido_intersecoes": 1
+      },
+      "distribuicao": {
+        "nao_dirigido_ruas": {
+          "1": 200
+        },
+        "nao_dirigido_intersecoes": {
+          "1": 200
+        },
+        "dirigido_ruas": {
+          "1": 200
+        },
+        "dirigido_intersecoes": {
+          "1": 200
+        }
+      },
+      "min_max": {
+        "nao_dirigido_ruas": [
+          1,
+          1
+        ],
+        "nao_dirigido_intersecoes": [
+          1,
+          1
+        ],
+        "dirigido_ruas": [
+          1,
+          1
+        ],
+        "dirigido_intersecoes": [
+          1,
+          1
+        ]
+      }
+    }
+  },
+  "joa": {
+    "quatro_contagens": {
+      "bairro": "Joá",
+      "portas": 3,
+      "origem": 4,
+      "fluxo_ruas_referencia_gateway_access_flow": 3,
+      "nao_dirigido": {
+        "ruas": 3,
+        "intersecoes": 3,
+        "corte_ruas": [
+          [
+            7904892677,
+            13264257213
+          ],
+          [
+            1098479842,
+            3759568315
+          ],
+          [
+            1098479909,
+            1098479882
+          ]
+        ],
+        "corte_intersecoes": [
+          {
+            "no": 1098479842,
+            "coords": [
+              -23.0097,
+              -43.29312
+            ]
+          },
+          {
+            "no": 1098479882,
+            "coords": [
+              -23.01028,
+              -43.2906
+            ]
+          },
+          {
+            "no": 7904892677,
+            "coords": [
+              -23.01462,
+              -43.28843
+            ]
+          }
+        ]
+      },
+      "dirigido": {
+        "ruas": 3,
+        "intersecoes": 3,
+        "corte_ruas": [
+          [
+            7904892677,
+            13264257213
+          ],
+          [
+            1098479842,
+            3759568315
+          ],
+          [
+            1098479909,
+            1098479882
+          ]
+        ],
+        "corte_intersecoes": [
+          {
+            "no": 1098479842,
+            "coords": [
+              -23.0097,
+              -43.29312
+            ]
+          },
+          {
+            "no": 1098479882,
+            "coords": [
+              -23.01028,
+              -43.2906
+            ]
+          },
+          {
+            "no": 7904892677,
+            "coords": [
+              -23.01462,
+              -43.28843
+            ]
+          }
+        ]
+      }
+    },
+    "localizacao_corte": {
+      "bairro": "Joá",
+      "V": 19,
+      "portas": 3,
+      "origem": 4,
+      "fluxo": 3,
+      "corte_edmonds_karp": [
+        {
+          "ruas": [
+            [
+              7904892677,
+              13264257213
+            ],
+            [
+              1098479842,
+              3759568315
+            ],
+            [
+              1098479909,
+              1098479882
+            ]
+          ],
+          "n_ruas": 3,
+          "nos_lado_origem": 7
+        }
+      ],
+      "cortes_de_uma_rua": [],
+      "extremos_dos_cortes_sao_as_5_mais_centrais": false
+    },
+    "desempate": {
+      "bairro": "Joá",
+      "k": 4,
+      "n_componente": 19,
+      "portas": 3,
+      "dist_corte": 3,
+      "empatados_na_dist_corte": 4,
+      "acima_da_dist_corte": 1,
+      "vagas_no_empate": 3,
+      "n_sorteios": 200,
+      "nucleos_distintos": 4,
+      "valor_artigo": {
+        "nao_dirigido_ruas": 3,
+        "nao_dirigido_intersecoes": 3,
+        "dirigido_ruas": 3,
+        "dirigido_intersecoes": 3
+      },
+      "distribuicao": {
+        "nao_dirigido_ruas": {
+          "3": 200
+        },
+        "nao_dirigido_intersecoes": {
+          "3": 200
+        },
+        "dirigido_ruas": {
+          "3": 200
+        },
+        "dirigido_intersecoes": {
+          "3": 200
+        }
+      },
+      "min_max": {
+        "nao_dirigido_ruas": [
+          3,
+          3
+        ],
+        "nao_dirigido_intersecoes": [
+          3,
+          3
+        ],
+        "dirigido_ruas": [
+          3,
+          3
+        ],
+        "dirigido_intersecoes": [
+          3,
+          3
+        ]
+      }
+    }
+  },
+  "sao_conrado": {
+    "quatro_contagens": {
+      "bairro": "São Conrado",
+      "portas": 11,
+      "origem": 33,
+      "fluxo_ruas_referencia_gateway_access_flow": 11,
+      "nao_dirigido": {
+        "ruas": 11,
+        "intersecoes": 10,
+        "corte_ruas": [
+          [
+            401621564,
+            400705692
+          ],
+          [
+            1578749386,
+            1504204367
+          ],
+          [
+            1584075774,
+            3428640450
+          ],
+          [
+            1578749382,
+            400705689
+          ],
+          [
+            1578749380,
+            400705692
+          ],
+          [
+            1584075943,
+            1584076006
+          ],
+          [
+            329668831,
+            3011392932
+          ],
+          [
+            1584076002,
+            146418153
+          ],
+          [
+            7931169029,
+            7931169034
+          ],
+          [
+            1160445796,
+            146420071
+          ],
+          [
+            7931204567,
+            146420090
+          ]
+        ],
+        "corte_intersecoes": [
+          {
+            "no": 329668831,
+            "coords": [
+              -22.99849,
+              -43.25547
+            ]
+          },
+          {
+            "no": 400705692,
+            "coords": [
+              -22.99233,
+              -43.25433
+            ]
+          },
+          {
+            "no": 1160445796,
+            "coords": [
+              -22.99934,
+              -43.27117
+            ]
+          },
+          {
+            "no": 1578749382,
+            "coords": [
+              -22.99325,
+              -43.2534
+            ]
+          },
+          {
+            "no": 1578749386,
+            "coords": [
+              -22.99384,
+              -43.25531
+            ]
+          },
+          {
+            "no": 1584075774,
+            "coords": [
+              -22.99551,
+              -43.26993
+            ]
+          },
+          {
+            "no": 1584075943,
+            "coords": [
+              -22.99865,
+              -43.27024
+            ]
+          },
+          {
+            "no": 1584076002,
+            "coords": [
+              -22.99898,
+              -43.27001
+            ]
+          },
+          {
+            "no": 7931169029,
+            "coords": [
+              -22.99343,
+              -43.2532
+            ]
+          },
+          {
+            "no": 7931204567,
+            "coords": [
+              -22.99497,
+              -43.2576
+            ]
+          }
+        ]
+      },
+      "dirigido": {
+        "ruas": 7,
+        "intersecoes": 7,
+        "corte_ruas": [
+          [
+            1578749458,
+            1578749457
+          ],
+          [
+            1584075774,
+            3428640450
+          ],
+          [
+            1578749382,
+            400705689
+          ],
+          [
+            1584075943,
+            1584076006
+          ],
+          [
+            1584076002,
+            146418153
+          ],
+          [
+            7931204567,
+            146420090
+          ],
+          [
+            12555779991,
+            1578749383
+          ]
+        ],
+        "corte_intersecoes": [
+          {
+            "no": 1578749382,
+            "coords": [
+              -22.99325,
+              -43.2534
+            ]
+          },
+          {
+            "no": 1578749458,
+            "coords": [
+              -22.99864,
+              -43.25759
+            ]
+          },
+          {
+            "no": 1584075774,
+            "coords": [
+              -22.99551,
+              -43.26993
+            ]
+          },
+          {
+            "no": 1584075943,
+            "coords": [
+              -22.99865,
+              -43.27024
+            ]
+          },
+          {
+            "no": 1584076002,
+            "coords": [
+              -22.99898,
+              -43.27001
+            ]
+          },
+          {
+            "no": 7931204567,
+            "coords": [
+              -22.99497,
+              -43.2576
+            ]
+          },
+          {
+            "no": 8961998198,
+            "coords": [
+              -22.99633,
+              -43.25627
+            ]
+          }
+        ]
+      }
+    },
+    "localizacao_corte": {
+      "bairro": "São Conrado",
+      "V": 165,
+      "portas": 11,
+      "origem": 33,
+      "fluxo": 11,
+      "corte_edmonds_karp": [
+        {
+          "ruas": [
+            [
+              401621564,
+              400705692
+            ],
+            [
+              1578749386,
+              1504204367
+            ],
+            [
+              1584075774,
+              3428640450
+            ],
+            [
+              1578749382,
+              400705689
+            ],
+            [
+              1578749380,
+              400705692
+            ],
+            [
+              1584075943,
+              1584076006
+            ],
+            [
+              329668831,
+              3011392932
+            ],
+            [
+              1584076002,
+              146418153
+            ],
+            [
+              7931169029,
+              7931169034
+            ],
+            [
+              1160445796,
+              146420071
+            ],
+            [
+              7931204567,
+              146420090
+            ]
+          ],
+          "n_ruas": 11,
+          "nos_lado_origem": 118
+        }
+      ],
+      "cortes_de_uma_rua": [],
+      "extremos_dos_cortes_sao_as_5_mais_centrais": false
+    },
+    "desempate": {
+      "bairro": "São Conrado",
+      "k": 33,
+      "n_componente": 165,
+      "portas": 11,
+      "dist_corte": 6,
+      "empatados_na_dist_corte": 19,
+      "acima_da_dist_corte": 19,
+      "vagas_no_empate": 14,
+      "n_sorteios": 200,
+      "nucleos_distintos": 199,
+      "valor_artigo": {
+        "nao_dirigido_ruas": 11,
+        "nao_dirigido_intersecoes": 10,
+        "dirigido_ruas": 7,
+        "dirigido_intersecoes": 7
+      },
+      "distribuicao": {
+        "nao_dirigido_ruas": {
+          "11": 200
+        },
+        "nao_dirigido_intersecoes": {
+          "10": 200
+        },
+        "dirigido_ruas": {
+          "6": 4,
+          "7": 196
+        },
+        "dirigido_intersecoes": {
+          "6": 4,
+          "7": 196
+        }
+      },
+      "min_max": {
+        "nao_dirigido_ruas": [
+          11,
+          11
+        ],
+        "nao_dirigido_intersecoes": [
+          10,
+          10
+        ],
+        "dirigido_ruas": [
+          6,
+          7
+        ],
+        "dirigido_intersecoes": [
+          6,
+          7
+        ]
+      }
+    }
+  },
+  "praca_da_bandeira": {
+    "quatro_contagens": {
+      "bairro": "Praça da Bandeira",
+      "portas": 27,
+      "origem": 20,
+      "fluxo_ruas_referencia_gateway_access_flow": 8,
+      "nao_dirigido": {
+        "ruas": 8,
+        "intersecoes": 7,
+        "corte_ruas": [
+          [
+            2446756914,
+            819646838
+          ],
+          [
+            642547620,
+            8815226001
+          ],
+          [
+            12468673773,
+            819646662
+          ],
+          [
+            12468647113,
+            8001962910
+          ],
+          [
+            12468647117,
+            12468647118
+          ],
+          [
+            12468673791,
+            12468673794
+          ],
+          [
+            1071672663,
+            642547617
+          ],
+          [
+            642547680,
+            1071672662
+          ]
+        ],
+        "corte_intersecoes": [
+          {
+            "no": 642547620,
+            "coords": [
+              -22.91459,
+              -43.21105
+            ]
+          },
+          {
+            "no": 819598879,
+            "coords": [
+              -22.91274,
+              -43.2101
+            ]
+          },
+          {
+            "no": 819646838,
+            "coords": [
+              -22.91298,
+              -43.21435
+            ]
+          },
+          {
+            "no": 1071672662,
+            "coords": [
+              -22.91119,
+              -43.21367
+            ]
+          },
+          {
+            "no": 1071672663,
+            "coords": [
+              -22.91147,
+              -43.21221
+            ]
+          },
+          {
+            "no": 12468647118,
+            "coords": [
+              -22.91145,
+              -43.21017
+            ]
+          },
+          {
+            "no": 12468673773,
+            "coords": [
+              -22.91356,
+              -43.21305
+            ]
+          }
+        ]
+      },
+      "dirigido": {
+        "ruas": 4,
+        "intersecoes": 4,
+        "corte_ruas": [
+          [
+            8001962910,
+            819598879
+          ],
+          [
+            819598886,
+            642547672
+          ],
+          [
+            2446756914,
+            819646838
+          ],
+          [
+            642547618,
+            1071672663
+          ]
+        ],
+        "corte_intersecoes": [
+          {
+            "no": 819598886,
+            "coords": [
+              -22.91601,
+              -43.21238
+            ]
+          },
+          {
+            "no": 819646838,
+            "coords": [
+              -22.91298,
+              -43.21435
+            ]
+          },
+          {
+            "no": 1071672663,
+            "coords": [
+              -22.91147,
+              -43.21221
+            ]
+          },
+          {
+            "no": 8001962910,
+            "coords": [
+              -22.91187,
+              -43.2099
+            ]
+          }
+        ]
+      }
+    },
+    "localizacao_corte": {
+      "bairro": "Praça da Bandeira",
+      "V": 102,
+      "portas": 27,
+      "origem": 20,
+      "fluxo": 8,
+      "corte_edmonds_karp": [
+        {
+          "ruas": [
+            [
+              2446756914,
+              819646838
+            ],
+            [
+              642547620,
+              8815226001
+            ],
+            [
+              12468673773,
+              819646662
+            ],
+            [
+              12468647113,
+              8001962910
+            ],
+            [
+              12468647117,
+              12468647118
+            ],
+            [
+              12468673791,
+              12468673794
+            ],
+            [
+              1071672663,
+              642547617
+            ],
+            [
+              642547680,
+              1071672662
+            ]
+          ],
+          "n_ruas": 8,
+          "nos_lado_origem": 25
+        }
+      ],
+      "cortes_de_uma_rua": [],
+      "extremos_dos_cortes_sao_as_5_mais_centrais": false
+    },
+    "desempate": {
+      "bairro": "Praça da Bandeira",
+      "k": 20,
+      "n_componente": 102,
+      "portas": 27,
+      "dist_corte": 4,
+      "empatados_na_dist_corte": 13,
+      "acima_da_dist_corte": 16,
+      "vagas_no_empate": 4,
+      "n_sorteios": 200,
+      "nucleos_distintos": 177,
+      "valor_artigo": {
+        "nao_dirigido_ruas": 8,
+        "nao_dirigido_intersecoes": 7,
+        "dirigido_ruas": 4,
+        "dirigido_intersecoes": 4
+      },
+      "distribuicao": {
+        "nao_dirigido_ruas": {
+          "7": 15,
+          "8": 148,
+          "9": 37
+        },
+        "nao_dirigido_intersecoes": {
+          "7": 27,
+          "8": 173
+        },
+        "dirigido_ruas": {
+          "4": 200
+        },
+        "dirigido_intersecoes": {
+          "4": 200
+        }
+      },
+      "min_max": {
+        "nao_dirigido_ruas": [
+          7,
+          9
+        ],
+        "nao_dirigido_intersecoes": [
+          7,
+          8
+        ],
+        "dirigido_ruas": [
+          4,
+          4
+        ],
+        "dirigido_intersecoes": [
+          4,
+          4
+        ]
+      }
+    }
+  }
+}

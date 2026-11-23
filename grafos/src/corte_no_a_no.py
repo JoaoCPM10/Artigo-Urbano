@@ -55,6 +55,10 @@ def _resumo(vals, limitado):
 
 def nao_dirigido(G, ue):
     comp = sorted(max(cc.connected_components(G.nodes(), [(e[0], e[1]) for e in ue]), key=len))
+    # so' as arestas do maior componente (bairros com outras componentes, como os de
+    # encosta, teriam arestas fora de `comp` e o Edmonds-Karp falharia)
+    cs = set(comp)
+    ue = [e for e in ue if e[0] in cs and e[1] in cs]
     cap = mf.unit_capacity_network(ue)
     grau = {}
     for (u, _v), c in cap.items():
@@ -100,7 +104,14 @@ def verifica(nome, tipo, entrada):
 def main():
     checar = "--verifica" in sys.argv
     res = {"metodo": "todos os pares", "bairros": {}}
-    for key, cfg in NEIGHBORHOODS.items():
+    chaves = list(NEIGHBORHOODS)
+    if "--bairros" in sys.argv:
+        chaves = sys.argv[sys.argv.index("--bairros") + 1].split(",")
+        antigo = os.path.join(OUT, "corte_no_a_no.json")
+        if os.path.exists(antigo):
+            res = json.load(open(antigo, encoding="utf-8"))
+    for key in chaves:
+        cfg = NEIGHBORHOODS[key]
         t0 = time.time()
         data, _ = load_network(cfg)
         G = data["graph"]
