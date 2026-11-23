@@ -1,6 +1,6 @@
 """
 Confere as implementacoes proprias (sem bibliotecas de grafos) contra o
-networkx, usado SO' aqui, como verificacao independente. Nas tres redes:
+networkx, usado SO' aqui, como verificacao independente. Em todos os bairros:
 
   - componentes conexas e fortemente conexas;
   - pontes e pontos de articulacao (fracos), com ruas paralelas contadas como
@@ -146,7 +146,7 @@ def main():
         print(f"\n{len(FALHAS)} falha(s).")
         sys.exit(1)
     print("\nOK: componentes, pontes/articulacoes, Dijkstra, fluxo maximo e "
-          "pontes/articulacoes fortes conferem com o networkx nas tres redes.")
+          "pontes/articulacoes fortes conferem com o networkx em todos os bairros.")
 
 
 if __name__ == "__main__":

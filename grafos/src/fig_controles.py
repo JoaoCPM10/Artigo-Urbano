@@ -21,6 +21,7 @@ import shutil
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator
 
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "output")
 COR = {"copacabana": "#4a5568", "botafogo": "#718096", "alto_da_boa_vista": "#2f855a",
@@ -38,9 +39,11 @@ def painel_fluxo(ax, arq, ref_nome, ref_cor, titulo, xmax):
         ax.hist(v, bins=bins, weights=[100 / len(v)] * len(v), histtype="step", lw=1.8,
                 color=COR[k], label=f"{NOME[k]} (n = {len(v):,})".replace(",", " "))
     ref = d["referencia"]["fluxo"]
+    ax.set_ylim(top=ax.get_ylim()[1] * 1.18)   # a etiqueta da referencia fica acima das curvas
+    ax.xaxis.set_major_locator(MaxNLocator(integer=True))
     ax.axvline(ref, color=ref_cor, lw=2.5)
-    ax.annotate(f"{ref_nome}: {ref}", xy=(ref, 0.92), xycoords=("data", "axes fraction"),
-                xytext=(ref + 0.8, 0.92), textcoords=("data", "axes fraction"),
+    ax.annotate(f"{ref_nome}: {ref}", xy=(ref, 0.94), xycoords=("data", "axes fraction"),
+                xytext=(ref + 0.8, 0.94), textcoords=("data", "axes fraction"),
                 color=ref_cor, fontsize=10, fontweight="bold", va="center",
                 bbox=dict(facecolor="white", alpha=0.9, edgecolor="none", pad=1.5))
     ax.set_xlim(-0.5, xmax + 0.5)
@@ -51,33 +54,45 @@ def painel_fluxo(ax, arq, ref_nome, ref_cor, titulo, xmax):
     ax.grid(axis="y", alpha=0.3)
 
 
+def painel_intermediacao(ax, pareado, ref_pct, ref_nome, ref_cor, titulo, fontes, xlim):
+    """Intermediacao maxima de pedacos pareados pelo nucleo forte do bairro de referencia."""
+    bins = list(range(xlim[0], xlim[1] + 2, 2))
+    for k in fontes:
+        p = pareado[k]
+        v = p["bola"]["valores_pct"] + p["eden"]["valores_pct"]
+        ax.hist(v, bins=bins, weights=[100 / len(v)] * len(v), histtype="step", lw=1.8, color=COR[k],
+                label=f"{NOME[k]} (n = {len(v)})")
+    ax.axvline(ref_pct, color=ref_cor, lw=2.5)
+    ax.annotate(_num(f"{ref_nome}: {ref_pct:.1f}%"), xy=(ref_pct, 0.92), xycoords=("data", "axes fraction"),
+                xytext=(ref_pct + 0.8, 0.92), textcoords=("data", "axes fraction"),
+                color=ref_cor, fontsize=10, fontweight="bold", va="center",
+                bbox=dict(facecolor="white", alpha=0.9, edgecolor="none", pad=1.5))
+    ax.set_xlim(*xlim)
+    ax.set_xlabel(_t("maximum betweenness of a piece (% of pairs)", "intermediação máxima do pedaço (% dos pares)"))
+    ax.set_ylabel(_t("share of pieces (%)", "parcela dos pedaços (%)"))
+    ax.set_title(titulo, fontsize=11)
+    ax.legend(loc="upper left", fontsize=8, framealpha=0.9)
+    ax.set_ylim(top=ax.get_ylim()[1] * 1.7)   # a legenda fica acima das curvas
+    ax.grid(axis="y", alpha=0.3)
+
+
 def main():
     bt = json.load(open(os.path.join(OUT, "controle_tamanho_intermediacao.json"), encoding="utf-8"))
-    fig, axes = plt.subplots(1, 3, figsize=(15, 3.9))
+    fig, axes = plt.subplots(2, 2, figsize=(12.5, 8.2))
+    axes = axes.ravel()
     painel_fluxo(axes[0], "nulo_fluxo_urca_fontes.json", "Urca", "#c0392b",
                  _t("(a) Pieces of 70 intersections", "(a) Pedaços de 70 interseções"), 31)
     painel_fluxo(axes[1], "nulo_fluxo_leme_fontes.json", "Leme", "#e67e22",
                  _t("(b) Pieces of 27 intersections", "(b) Pedaços de 27 interseções"), 20)
-    ax = axes[2]
-    bins2 = list(range(20, 72, 2))
-    for k, cor in ((k, COR[k]) for k in ("copacabana", "botafogo", "alto_da_boa_vista", "sao_conrado")):
-        p = bt["pareado_por_nucleo_forte"][k]
-        v = p["bola"]["valores_pct"] + p["eden"]["valores_pct"]
-        ax.hist(v, bins=bins2, weights=[100 / len(v)] * len(v), histtype="step", lw=1.8, color=cor,
-                label=f"{NOME[k]} (n = {len(v)})")
-    urca_b = bt["referencia_urca"]["intermediacao_maxima_pct"]
-    ax.axvline(urca_b, color="#c0392b", lw=2.5)
-    ax.annotate(_num(f"Urca: {urca_b:.1f}%"), xy=(urca_b, 0.92), xycoords=("data", "axes fraction"),
-                xytext=(urca_b + 0.8, 0.92), textcoords=("data", "axes fraction"),
-                color="#c0392b", fontsize=10, fontweight="bold", va="center",
-                bbox=dict(facecolor="white", alpha=0.9, edgecolor="none", pad=1.5))
-    ax.set_xlim(20, 80)
-    ax.set_xlabel(_t("maximum betweenness of a piece (% of pairs)", "intermediação máxima do pedaço (% dos pares)"))
-    ax.set_ylabel(_t("share of pieces (%)", "parcela dos pedaços (%)"))
-    ax.set_title(_t("(c) Betweenness, strong core of 65 ± 5", "(c) Intermediação, núcleo forte de 65 ± 5"), fontsize=11)
-    ax.legend(loc="upper left", fontsize=8, framealpha=0.9)
-    ax.set_ylim(top=ax.get_ylim()[1] * 1.3)   # folga para a legenda de quatro bairros
-    ax.grid(axis="y", alpha=0.3)
+    painel_intermediacao(axes[2], bt["pareado_por_nucleo_forte"], bt["referencia_urca"]["intermediacao_maxima_pct"],
+                         "Urca", "#c0392b",
+                         _t("(c) Betweenness, strong core of 65 ± 5", "(c) Intermediação, núcleo forte de 65 ± 5"),
+                         ("copacabana", "botafogo", "alto_da_boa_vista", "sao_conrado"), (20, 80))
+    painel_intermediacao(axes[3], bt["pareado_por_nucleo_forte_leme"], bt["referencia_leme"]["intermediacao_maxima_pct"],
+                         "Leme", "#e67e22",
+                         _t("(d) Betweenness, strong core of 20 ± 5", "(d) Intermediação, núcleo forte de 20 ± 5"),
+                         ("copacabana", "botafogo", "alto_da_boa_vista", "sao_conrado", "praca_da_bandeira", "cosme_velho"),
+                         (20, 90))
     fig.tight_layout()
     p = os.path.join(OUT, "fig_controles.png")
     fig.savefig(p, dpi=150, bbox_inches="tight"); plt.close(fig)

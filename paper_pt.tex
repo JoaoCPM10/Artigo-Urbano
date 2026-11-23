@@ -177,31 +177,32 @@ como unidade de análise ou medem a acessibilidade a locais, sem contar as
 rotas independentes que ligam uma região específica ao exterior.
 
 Fluxo máximo e corte mínimo, ligados pelo teorema de Ford e
-Fulkerson~\cite{ford1956maximal}, são os instrumentos mais próximos dos
-que usamos e têm sido aplicados a redes viárias para estudar interceptação
-de rotas, gestão de desastres, evacuação e isolamento. Barnett et
-al.~\cite{barnett2007maxflow} procuram o menor conjunto de trechos que
-bloqueia as rotas de entrada em um círculo ao redor de Times Square, na rede
-viária da região metropolitana de Nova York, e Cuellar-Hengartner et
-al.~\cite{cuellar2015checkpoints} fazem o mesmo com fluxo máximo em um anel
-ao redor das 50 maiores áreas urbanas dos EUA, variando a largura do anel.
-Sipos et al.~\cite{sipos2023disaster} identificam, com fluxo máximo e
-caminhos mínimos, os elementos mais críticos da rede viária de Budapeste do
-ponto de vista da gestão de desastres, e Behrooz e
-Ilbeigi~\cite{behrooz2025adaptive} ajustam a direção das ruas para ampliar o
-fluxo máximo de uma evacuação, de zonas perigosas a zonas seguras. Sugiura e
-Kurauchi~\cite{sugiura2023isolation} definem um índice de vulnerabilidade de
-isolamento como a solução de um problema de fluxo máximo entre bases de apoio
-e de recepção e propõem um método para encontrar todos os conjuntos de elos
-que geram isolamento. Otsuki et al.~\cite{otsuki2016improved} tratam falhas
-geográficas modeladas como discos circulares. Seguimos essa dualidade, com a
-região de origem e o sumidouro definidos pelo próprio bairro: seu núcleo e as
-ruas que cruzam sua fronteira oficial. A variação da largura do anel na
-Seção~\ref{sec:external-conn} segue a de Cuellar-Hengartner et al., aqui em
-escala de bairro. Nos trabalhos revistos, não encontramos a contagem de
-rotas disjuntas entre o núcleo de um bairro e suas saídas, nem a comparação
-dessa contagem entre bairros de geografia distinta, com controle de tamanho
-e contra indicadores convencionais sob falhas simuladas.
+Fulkerson~\cite{ford1956maximal}, são os instrumentos mais próximos dos que
+usamos e têm sido aplicados a redes viárias para estudar interceptação de
+rotas, gestão de desastres, evacuação e isolamento. Barnett et
+al.~\cite{barnett2007maxflow} procuram o menor conjunto de trechos que bloqueia
+as rotas de entrada em um círculo ao redor de Times Square, na rede viária da
+região metropolitana de Nova York, e Cuellar-Hengartner et
+al.~\cite{cuellar2015checkpoints} fazem o mesmo com fluxo máximo em um anel ao
+redor das 50 maiores áreas urbanas dos EUA, variando a largura do anel. Sipos
+et al.~\cite{sipos2023disaster} identificam, com fluxo máximo e caminhos
+mínimos, os elementos mais críticos da rede viária de Budapeste do ponto de
+vista da gestão de desastres, e Behrooz e Ilbeigi~\cite{behrooz2025adaptive}
+ajustam a direção das ruas para ampliar o fluxo máximo de uma evacuação, de
+zonas perigosas a zonas seguras. Sugiura e Kurauchi~\cite{sugiura2023isolation}
+definem um índice de vulnerabilidade de isolamento como a solução de um
+problema de fluxo máximo entre bases de apoio e de recepção e propõem um método
+para encontrar todos os conjuntos de elos que geram isolamento. Otsuki et
+al.~\cite{otsuki2016improved} tratam falhas geográficas modeladas como discos
+circulares. Seguimos essa dualidade, com a região de origem e o sumidouro
+definidos pelo próprio bairro: seu núcleo e as ruas que cruzam sua fronteira
+oficial. A variação da largura do anel na Seção~\ref{sec:external-conn} segue a
+de Cuellar-Hengartner et al., aqui em escala de bairro. Em relação a esses
+trabalhos, o fluxo de acesso muda a origem e o destino do fluxo máximo, que
+passam a ser o núcleo do bairro e suas saídas administrativas. Com isso, a
+contagem de rotas disjuntas pode ser comparada entre bairros de geografia
+distinta, com controle de tamanho e contra indicadores convencionais sob falhas
+simuladas.
 
 % =====================================================================
 \section{Metodologia}
@@ -459,7 +460,7 @@ vias, tomamos todos os pares do maior componente não dirigido de cada rede. Com
 o sentido, tomamos todos os pares ordenados do núcleo forte, e então o corte de
 $s$ a $t$ pode diferir do de $t$ a $s$.
 
-Conferimos as implementações contra o \texttt{networkx} nas três redes.
+Conferimos as implementações contra o \texttt{networkx} nos nove bairros.
 Componentes, CFC, pontes e articulações fracas, caminhos mínimos, fluxo
 máximo e intermediação conferem. Pontes e articulações fortes, que o
 \texttt{networkx} não calcula, conferem com uma recontagem independente
@@ -932,7 +933,8 @@ igualada ou superada por 9,0\% a 12,3\% dos pedaços de Copacabana, 6,0\% a
 11,3\% dos de São Conrado, 38,0\% a 40,3\% dos de Botafogo e 58,0\% a 60,3\%
 dos do Alto da Boa Vista (Figura~\ref{fig:controles}c). Para o Leme, com núcleo
 forte de 20 $\pm$ 5 interseções, a intermediação máxima de 55,0\% é igualada ou
-superada por 31,0\% a 91,7\% dos pedaços de cada um dos seis bairros.
+superada por 31,0\% a 91,7\% dos pedaços de cada um dos seis bairros (Figura~
+ef{fig:controles}d).
 
 Os moldes com a forma da Urca dão resultado semelhante. Em 4.882 posições sobre
 os cinco bairros, só 4 chegam a fluxo 1, todas no Alto da Boa Vista (4 de 882),
@@ -967,7 +969,8 @@ crescimento em cada um), com a Urca em 1. (b)~Fluxo de acesso de pedaços de 27
 interseções em seis bairros, com o Leme em 1. (c)~Intermediação máxima de
 pedaços de Copacabana, Botafogo, Alto da Boa Vista e São Conrado com núcleo
 forte de 65 $\pm$ 5 interseções
-(300 por tipo de crescimento em cada bairro), com a Urca em 54,2\%.}
+(300 por tipo de crescimento em cada bairro), com a Urca em 54,2\%. (d)~O mesmo com núcleo
+forte de 20 $\pm$ 5 interseções, em seis bairros, com o Leme em 55,0\%.}
 \label{fig:controles}
 \end{figure}
 
@@ -1404,12 +1407,13 @@ perda que ruas sorteadas na maioria dos bairros, mas o fluxo de acesso não
 encontra as ruas de maior dano isolado, o que indica informação complementar
 entre os indicadores.
 
-Com nove casos escolhidos por tipo de geografia e uma análise topológica, sem
-dados de capacidade, demanda nem condições de circulação, os resultados são
-ilustrativos e não bastam para avaliar acessibilidade operacional ou evacuação.
-A população atrás do corte dá uma ideia da exposição, com 2,2 a 3,2 mil
-moradores na Urca e 2,7 mil no Leme atrás de uma única rua, mas conta só
-residentes. Os próximos passos são ampliar a comparação a mais bairros e
+Os nove bairros foram escolhidos por tipo de geografia, como num estudo de
+casos, e a análise mede só a estrutura da rede, sem dados de capacidade,
+demanda nem condições de circulação. O método aponta onde o acesso depende de
+poucas ruas, e avaliar a acessibilidade operacional ou uma evacuação exige
+esses dados. A população atrás do corte dá uma ideia da exposição, com 2,2 a
+3,2 mil moradores na Urca e 2,7 mil no Leme atrás de uma única rua, mas conta
+só residentes. Os próximos passos são ampliar a comparação a mais bairros e
 incorporar capacidade e demanda das vias. Para o planejamento, a contagem de
 rotas pode sinalizar bairros com uma só saída, desde que se confira se as
 saídas administrativas continuam para a cidade.
