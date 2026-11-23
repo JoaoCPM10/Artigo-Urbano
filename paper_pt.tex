@@ -17,13 +17,18 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{placeins} % \FloatBarrier: evita que figuras pendentes sejam
                        % empurradas para depois das Referências
+% figuras altas ganham pagina propria perto da citacao (opcao p) em vez de esperar o fim
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.7}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.7}
 
 \begin{document}
 
 % --- Autoria identificada (ver nota acima sobre revisão duplo-cega) ---
-\title{Uma Análise por Fluxo de Acesso em Redes Viárias Dirigidas: um Estudo em Grafos de Nove Bairros do Rio de Janeiro}
+\title{Redundância do Acesso Viário em Escala de Bairro: Fluxo Máximo em Nove Bairros do Rio de Janeiro}
 
-\titlerunning{Fluxo de Acesso e Gargalos em Redes Viárias}
+\titlerunning{Redundância do Acesso Viário em Escala de Bairro}
 
 \author{Fernando Augusto Esteves Falcão Marques Ildefonso\inst{1} \and
 João Carlos Pereira de Melo\inst{1}}
@@ -37,15 +42,15 @@ João Carlos Pereira de Melo\inst{1}}
 \maketitle
 
 % =====================================================================
-\begin{abstract} Modelamos as redes viárias de nove bairros do Rio de Janeiro
-como grafos dirigidos do OpenStreetMap e propomos uma forma de medir a
-redundância do acesso, o fluxo de acesso, que é o número de rotas disjuntas do
-núcleo do bairro até suas portas. Perguntamos se indicadores convencionais ou o
-fluxo de acesso identificam um bairro com uma única rota de saída, e se isso
-reflete a geografia ou o tamanho. Pontes e articulações fortes não ordenam os
-bairros, o corte mínimo entre dois nós os separa pouco e a intermediação
-máxima, que destaca a Urca, é igualada por parte dos pedaços de mesmo tamanho.
-O fluxo de acesso por ruas, sem o sentido das vias, vai de uma rota disjunta na
+\begin{abstract} Modelamos as redes viárias de nove bairros do Rio de Janeiro como grafos
+dirigidos do OpenStreetMap e propomos uma forma de medir a redundância do
+acesso, o fluxo de acesso, que é o número de rotas disjuntas do núcleo do
+bairro até suas portas. Perguntamos se indicadores convencionais ou o fluxo de
+acesso identificam um bairro com uma única rota de saída, e se isso reflete a
+geografia ou o tamanho. Pontes e articulações fortes não ordenam os bairros, o
+corte mínimo entre dois nós os separa pouco e a intermediação máxima, que
+destaca a Urca e o Leme, é igualada por parte dos pedaços de mesmo tamanho. O
+fluxo de acesso por ruas, sem o sentido das vias, vai de uma rota disjunta na
 Urca e no Leme a dezoito em Copacabana, e com o sentido vai de uma a oito. Nos
 dois bairros de rota única o corte é uma única rua, que localiza o gargalo; nos
 demais é um grupo de ruas. Pedaços das malhas abertas do tamanho e da forma da
@@ -57,8 +62,8 @@ o fluxo e os indicadores convencionais se complementam. A contagem pode ajudar
 o planejamento e a defesa civil a sinalizar bairros com uma só saída, desde que
 se confira se as saídas administrativas continuam para a cidade.
 
-\keywords{Fluxo máximo \and Mobilidade urbana \and Grafos dirigidos
-\and Corte mínimo \and Redes viárias.}
+\keywords{Redundância do acesso \and Fluxo máximo \and Mobilidade urbana
+\and Grafos dirigidos \and Corte mínimo \and Redes viárias.}
 \end{abstract}
 
 % =====================================================================
@@ -101,19 +106,20 @@ Nenhuma delas conta as rotas independentes que ligam um bairro ao exterior.
 Por isso não se sabe se identificam um bairro que se alcança por uma única
 rota, e é isso que testamos aqui.
 
-Para medir essas rotas, usamos o fluxo máximo~\cite{edmonds1972theoretical}
-do núcleo de cada bairro até suas portas de acesso, os pontos em que uma rua
-cruza a fronteira, e o chamamos de fluxo de acesso. Propomos uma definição
-operacional do núcleo e das portas (Seção~\ref{sec:access-flow}). Pelo teorema
-do fluxo máximo e corte mínimo~\cite{ford1956maximal}, esse fluxo é o menor
-número de ruas cujo fechamento isola o núcleo do bairro, e, quando vale 1, o
-corte é uma única rua e localiza o gargalo. Um valor baixo aponta bairros
-cujo acesso depende de poucas ruas. Um valor alto indica que muitas ruas
-precisam falhar ao mesmo tempo para isolar o núcleo inteiro, mas uma única rua
-ainda pode isolar parte dele. Portanto, a Defesa Civil e o COR poderiam usá-lo
-para priorizar rotas alternativas, posicionar equipes com antecedência e
-monitorar esses bairros. O indicador é topológico e não prevê a interrupção nem
-mede capacidade.
+Para medir essas rotas, usamos o fluxo máximo~\cite{edmonds1972theoretical} do
+núcleo de cada bairro até suas portas de acesso, os pontos em que uma rua cruza
+a fronteira, e o chamamos de fluxo de acesso. Esse número de rotas disjuntas
+mede a redundância do acesso do bairro, isto é, quantas rotas alternativas
+restam quando uma falha. Propomos uma definição operacional do núcleo e das
+portas (Seção~\ref{sec:access-flow}). Pelo teorema do fluxo máximo e corte
+mínimo~\cite{ford1956maximal}, esse fluxo é o menor número de ruas cujo
+fechamento isola o núcleo do bairro, e, quando vale 1, o corte é uma única rua
+e localiza o gargalo. Um valor baixo aponta bairros cujo acesso depende de
+poucas ruas. Um valor alto indica que muitas ruas precisam falhar ao mesmo
+tempo para isolar o núcleo inteiro, mas uma única rua ainda pode isolar parte
+dele. Portanto, a Defesa Civil e o COR poderiam usá-lo para priorizar rotas
+alternativas, posicionar equipes com antecedência e monitorar esses bairros. O
+indicador é topológico e não prevê a interrupção nem mede capacidade.
 
 Para testar se o fluxo de acesso e os indicadores convencionais (pontes e
 articulações fortes, intermediação e o corte mínimo entre dois nós)
@@ -235,7 +241,7 @@ das vias conforme o bairro, ou, na falta dela, do padrão da classe de via
 (Tabela~\ref{tab:tags}). A Figura~\ref{fig:construction} ilustra a conversão
 do mapa para o grafo dirigido.
 
-\begin{table}[t]
+\begin{table}[tbp]
 \centering
 \caption{\emph{Tags} do OpenStreetMap usadas na construção do grafo, com as
 definições do OpenStreetMap Wiki~\cite{osmwiki}. Quando a via não tem
@@ -286,7 +292,7 @@ em outros países~\cite{osmwiki}.}
 \end{tabular}
 \end{table}
 
-\begin{figure}[t]
+\begin{figure}[tbp]
 \centering
 \includegraphics[width=0.8\textwidth]{Figures/fig_construction.png}
 \caption{Do mapa ao grafo dirigido: interseções tornam-se vértices e
@@ -304,7 +310,7 @@ são cortadas ali e servem apenas para identificar as portas de acesso
 (Seção~\ref{sec:access-flow}). A Tabela~\ref{tab:redes} e a
 Figura~\ref{fig:networks} descrevem as redes resultantes.
 
-\begin{table}[t]
+\begin{table}[tbp]
 \centering
 \caption{Redes após a simplificação topológica (OpenStreetMap), recortadas
 pelo polígono administrativo oficial. Trechos são as arestas do grafo, e Ruas
@@ -332,7 +338,7 @@ Praça da Bandeira & 102 & 128 & 127 & 82,8 &  59 & 42,2 \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[t]
+\begin{figure}[tbp]
 \centering
 \includegraphics[width=\textwidth]{Figures/fig_networks.png}
 \caption{As redes dos nove bairros após a simplificação topológica e o
@@ -618,7 +624,7 @@ A intermediação de aresta e a alcançabilidade conferem com o
 \texttt{networkx}, e as proporções de pontes reproduzem a
 Tabela~\ref{tab:estrutural}.
 
-\begin{table}[t]
+\begin{table}[tbp]
 \centering
 \caption{Estratégias de escolha das $k$ ruas fechadas na simulação de
 interrupções, em três grupos.}
@@ -677,7 +683,7 @@ portas, e Copacabana e Botafogo têm 21 e 31 portas. O fluxo não acompanha o
 número de portas, pois o Joá tem 3 rotas para 3 portas, enquanto a Praça da
 Bandeira tem 8 para 27.
 
-\begin{table}[t]
+\begin{table}[tbp]
 \centering
 \caption{Fluxo de acesso por portas, em rotas disjuntas do núcleo de cada
 bairro até suas portas de acesso administrativas, contadas por ruas e por
@@ -731,7 +737,7 @@ $f=0{,}4$), de 1 a 4 no Leme, de 1 a 5 no Joá e de 1 a 6 no Cosme Velho
 um núcleo de poucas interseções, e o fluxo cai para 1 mesmo no Joá e no Cosme
 Velho, que não são de rota única.
 
-\begin{figure}[t]
+\begin{figure}[tbp]
 \centering
 \includegraphics[width=0.85\textwidth]{Figures/fig_fluxo_f.png}
 \caption{Fluxo de acesso por ruas, sem o sentido das vias, em função da
@@ -769,7 +775,7 @@ Boa Vista chegam a 60,0\%, 59,5\% e 58,0\%, com fluxos de 6, 3 e 4. Além disso,
 parte dos pedaços de mesmo tamanho iguala ou supera a da Urca e a do Leme
 (Seção~\ref{sec:res-controls}).
 
-\begin{table}[t]
+\begin{table}[tbp]
 \centering
 \caption{Indicadores estruturais dirigidos e intermediação máxima, com as
 redes recortadas pelo polígono oficial. Valores maiores nas quatro primeiras
@@ -808,7 +814,7 @@ iguais a 1, a parcela devida a uma interseção de grau 1 é a menor na Urca
 corte é quase sempre 1 (de 76,2\% no Cosme Velho a 98,4\% no Leme), e a Urca
 (95,6\%) quase não se distingue do Leme, da Praça da Bandeira e de Botafogo.
 
-\begin{table}[t]
+\begin{table}[tbp]
 \centering
 \caption{Corte mínimo entre dois nós em todos os pares de interseções. Sem o
 sentido das vias, os pares são do maior componente não dirigido, e Grau 1
@@ -868,7 +874,7 @@ rota, com 2,2 mil na Urca e 2,7 mil no Leme contra 2,7 mil em Botafogo e 3,8
 mil em Copacabana, não distinguem os bairros de rota única, e o que os separa é
 o número de rotas, 1 contra 3 a 18.
 
-\begin{figure}[t]
+\begin{figure}[tbp]
 \centering
 \includegraphics[width=\textwidth]{Figures/fig_cut.png}
 \caption{Onde está o corte de acesso na Urca e no Leme ($f=0{,}2$), sobre o
@@ -881,7 +887,7 @@ tracejado é a fronteira oficial.}
 \label{fig:cut}
 \end{figure}
 
-\begin{table}[t]
+\begin{table}[tbp]
 \centering
 \caption{População residente atrás do corte mínimo (Censo 2022). O lado da
 origem reúne as interseções que o corte separa das portas, e pessoas por rota é
@@ -960,7 +966,7 @@ interseções atrás de uma rua de 296\,m. Na Urca, ao contrário, o lado da
 origem de cada corte tem de 23 a 33 interseções, e nenhum pedaço de 70
 interseções reproduz isso.
 
-\begin{figure}[t]
+\begin{figure}[tbp]
 \centering
 \includegraphics[width=\textwidth]{Figures/fig_controles.png}
 \caption{Controles de tamanho em pedaços de outros bairros. (a)~Fluxo de
@@ -994,7 +1000,7 @@ Copacabana vai de 18 nas portas para 14 a 500\,m e 12 a 1\,km e a 2\,km, São
 Conrado de 11 para 10, 10 e 9 e o Cosme Velho de 6 para 5, enquanto os demais
 bairros não mudam.
 
-\begin{table}[t]
+\begin{table}[tbp]
 \centering
 \caption{Fluxo de acesso por ruas, com e sem o sentido das vias, do mesmo
 núcleo ($f=0{,}2$) até as portas administrativas e até a borda externa da rede
@@ -1034,7 +1040,7 @@ que continuam. São Conrado a 500\,m e a 1\,km é a exceção, pois a borda
 externa (5 e 7) supera as portas que continuam (2 e 4), o que sugere que ruas
 externas ligam partes do bairro, hipótese que não verificamos.
 
-\begin{table}[t]
+\begin{table}[tbp]
 \centering
 \caption{Portas com saída para fora do bairro, portas que não continuam a
 1\,km e ruas externas críticas a 1\,km. As definições de porta sem continuação
@@ -1070,7 +1076,7 @@ Copacabana, 6 ruas internas e 6 externas limitam o fluxo ao mesmo valor. As
 ruas externas críticas a 1\,km vão de 0 no Leme a 26 em Copacabana
 (Tabela~\ref{tab:portas}).
 
-\begin{figure}[t]
+\begin{figure}[tbp]
 \centering
 \includegraphics[width=\textwidth]{Figures/fig_externa.png}
 \caption{Conectividade externa a 1\,km (ruas, com o sentido das vias), com um
@@ -1113,7 +1119,7 @@ com $k=4$ em Copacabana e Botafogo, bem acima de todos os indicadores. Como a
 perda se mede sobre núcleos que vão de 4 interseções no Joá a 87 em Botafogo,
 cada interseção pesa mais nos bairros pequenos.
 
-\begin{figure}[t]
+\begin{figure}[tbp]
 \centering
 \includegraphics[width=\textwidth]{Figures/fig_simulacao.png}
 \caption{Perda de alcançabilidade do núcleo ao fechar $k$ ruas do bairro, em
@@ -1147,7 +1153,7 @@ ruas de corte da Seção~\ref{sec:res-cut}, que ignora o sentido das vias, e as
 três estão entre as 10. A única rua do corte mínimo dirigido também está entre
 as 10, mas não é uma das três.
 
-\begin{table}[t]
+\begin{table}[tbp]
 \centering
 \caption{Ruas que, fechadas sozinhas, reduzem a alcançabilidade do núcleo, e
 quantas delas cada indicador recupera, em acertos sobre o número de ruas que
@@ -1209,7 +1215,7 @@ da Bandeira, os 33,0\% de água vêm do Rio Maracanã e de dois canais do
 OpenStreetMap, que podem ser cruzados por pontes e tendem a restringir as ruas
 menos que o mar.
 
-\begin{table}[t]
+\begin{table}[tbp]
 \centering
 \caption{Fração do perímetro do polígono oficial ocupada por água, por encosta
 (declividade de 30\% ou mais) e pelas duas, em porcentagem, e fluxo de acesso
@@ -1239,6 +1245,7 @@ Praça da Bandeira &  4,7 & 33,0 &  0,0 & 33,0 &  8 & 4 \\
 \end{table}
 
 % =====================================================================
+\FloatBarrier
 \section{Discussão}
 \label{sec:discussion}
 
