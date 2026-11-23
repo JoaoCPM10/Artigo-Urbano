@@ -19,12 +19,12 @@
     "maior_scc": 169,
     "fora_da_scc_gigante": 19,
     "ruas_sem_saida": 61,
-    "tempo_ms": 1.15
+    "tempo_ms": 0.88
   },
   "gargalos_estruturais": {
     "articulacoes": 79,
     "pontes": 95,
-    "tempo_ms": 30.7
+    "tempo_ms": 25.24
   },
   "gargalos_estruturais_dirigidos": {
     "nucleo_n": 169,
@@ -36,7 +36,7 @@
     "pontes_so_fraca_fora_do_nucleo": 15,
     "articulacoes_fraca_e_forte": 70,
     "articulacoes_so_forte": 22,
-    "tempo_ms": 442.6
+    "tempo_ms": 503.54
   },
   "gargalo_acesso_gateway": {
     "gateways": [
@@ -65,5 +65,5 @@
     "no_max": 837056862,
     "n_nucleo": 169
   },
-  "tempo_total_s": 1.55
+  "tempo_total_s": 1.74
 }

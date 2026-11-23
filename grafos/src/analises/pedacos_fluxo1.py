@@ -17,16 +17,15 @@ import random
 import statistics as st
 import sys
 
-from analises import nulo_fluxo as nf
+from caminhos import OUT
 from nucleo import maxflow as mf
+from nucleo import pedacos as nf
 
 
 def main():
     ref = sys.argv[1]
     fontes = sys.argv[2].split(",")
-    guardado = json.load(
-        open(os.path.join(nf.OUT, f"nulo_fluxo_{ref}_fontes.json"), encoding="utf-8")
-    )
+    guardado = json.load(open(os.path.join(OUT, f"nulo_fluxo_{ref}_fontes.json"), encoding="utf-8"))
     m = guardado["referencia"]["n"]
     linhas, resumo = [], {}
     for key in fontes:
@@ -100,7 +99,7 @@ def main():
             "resumo": est,
             "pedacos": linhas,
         },
-        open(os.path.join(nf.OUT, f"pedacos_fluxo1_{ref}_fontes.json"), "w", encoding="utf-8"),
+        open(os.path.join(OUT, f"pedacos_fluxo1_{ref}_fontes.json"), "w", encoding="utf-8"),
         ensure_ascii=False,
         indent=1,
     )

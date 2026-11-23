@@ -18,6 +18,7 @@ import sys
 
 from analises import localiza_corte as lc
 from analises import ruas_vs_intersecoes as ri
+from caminhos import OUT
 from nucleo import connectivity as cc
 from nucleo.neighborhoods import NEIGHBORHOODS
 from nucleo.network import load_network
@@ -26,7 +27,7 @@ from nucleo.network import load_network
 def main():
     modo = os.environ.get("GRAFOS_SERVICE", "").strip().lower() or "artigo"
     chaves = sys.argv[1:] or list(NEIGHBORHOODS)
-    caminho = os.path.join(ri.OUT, f"service_{modo}.json")
+    caminho = os.path.join(OUT, f"service_{modo}.json")
     saida = json.load(open(caminho, encoding="utf-8")) if os.path.exists(caminho) else {}
     for k in chaves:
         data, _ = load_network(NEIGHBORHOODS[k])

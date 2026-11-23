@@ -17,6 +17,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 from analises import conectividade_externa as ce
+from caminhos import OUT
 from figuras import fig_conectividade_externa as fe
 from figuras import mapa_contexto as mc
 from nucleo.neighborhoods import ORDEM_FIGURAS
@@ -90,7 +91,7 @@ def main():
     ]
     fig.legend(handles=h, loc="lower center", ncol=4, fontsize=10, frameon=False)
     fig.tight_layout(rect=(0, 0.04, 1, 1))
-    p = os.path.join(ce.OUT, "fig_externa.png")
+    p = os.path.join(OUT, "fig_externa.png")
     fig.savefig(p, dpi=100, bbox_inches="tight")
     plt.close(fig)
     print("saved:", p)

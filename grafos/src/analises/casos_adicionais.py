@@ -20,8 +20,7 @@ import sys
 from analises import localiza_corte as lc
 from analises import robustez_desempate as rd
 from analises import ruas_vs_intersecoes as ri
-
-OUT = ri.OUT
+from caminhos import OUT
 
 
 def main():

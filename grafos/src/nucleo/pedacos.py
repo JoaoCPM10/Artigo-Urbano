@@ -1,35 +1,28 @@
 """
-CONTROLE DE TAMANHO para o fluxo de acesso: um valor de 1, como o da Urca, e'
-so' efeito de a rede ser pequena (70 interseccoes)?
+Pedacos sorteados de uma rede, tratados como bairros (controles de tamanho e de forma,
+Secao 4.4 do artigo).
 
-Sorteamos, dentro de Copacabana e de Botafogo, sub-redes conexas com o MESMO
-numero de interseccoes da Urca (70), as tratamos como bairros e medimos o fluxo
-de acesso ate a fronteira de cada uma:
+`Rede(chave)` carrega um bairro e oferece:
+  - `bola` e `eden`: pedacos conexos de m interseccoes, por crescimento em largura (BFS)
+    e por crescimento aleatorio do tipo Eden;
+  - `fluxo`: o fluxo de acesso de um pedaco, exatamente como no artigo
+    (maxflow.gateway_access_flow, f = 0,2, capacidade 1 por rua, rede nao dirigida). As
+    portas do pedaco sao as interseccoes com ao menos uma rua para um no fora dele, na rede
+    COMPLETA (margem de 400 m, inclusive fora do poligono, para que as ruas que saem do
+    bairro tambem contem);
+  - `adversaria`: busca de subida de encosta que parte dos pedacos sorteados de MENOR fluxo e
+    troca uma interseccao por vez (aceita se o fluxo nao aumenta), para tentar reduzi-lo.
 
-  - portas do pedaco = interseccoes do pedaco com pelo menos uma rua para um no
-    fora dele, na rede COMPLETA (com margem de 400 m, inclusive fora do
-    poligono, para que ruas que saem do bairro tambem contem);
-  - regiao de origem e fluxo exatamente como no artigo (maxflow.gateway_access_flow,
-    f = 0,2, capacidade 1 por rua, rede nao dirigida).
-
-Tres geradores de pedacos: bola por BFS, crescimento aleatorio (do tipo Eden) e uma
-BUSCA ADVERSARIA: subida de encosta que parte dos N_INICIOS pedacos sorteados de
-MENOR fluxo e troca uma interseccao por vez (aceita se o fluxo nao aumenta), para
-tentar reduzi-lo. O menor fluxo que ela encontra e' um limite superior do minimo
-possivel; o menor valor ja' observado nos sorteios tambem e' registrado.
-
-Escreve output/nulo_fluxo.json.  Uso:  python -m analises.nulo_fluxo
+As constantes SEED, N_PIECES, N_INICIOS e N_ITERS fixam o sorteio. Os scripts que usam esta
+biblioteca sao nulo_fluxo_referencia, pedacos_fluxo1, controle_forma,
+controle_tamanho_intermediacao e intermediacao_pareada_fontes.
 """
 
 from __future__ import annotations
 
-import json
-import os
-import random
 import statistics as st
 from collections import deque
 
-from caminhos import OUT
 from nucleo import connectivity as cc
 from nucleo import maxflow as mf
 from nucleo.neighborhoods import NEIGHBORHOODS
@@ -146,50 +139,3 @@ def resumo(vals):
         "p95": v[int(0.95 * len(v)) - 1],
         "max": v[-1],
     }
-
-
-def main():
-    urca = Rede("urca")
-    m = len(urca.inside)
-    f_urca, g_urca = urca.fluxo(urca.inside)
-    res = {"referencia_urca": {"n": m, "fluxo": f_urca, "portas": g_urca}, "pedacos": {}}
-    for key in ("copacabana", "botafogo"):
-        rede = Rede(key)
-        rng = random.Random(SEED)
-        bloco = {}
-        sorteados = []  # (fluxo, pedaco) de todos os sorteios
-        for nome, gera in (("bola", rede.bola), ("eden", rede.eden)):
-            fl, gw = [], []
-            for _ in range(N_PIECES):
-                S = gera(m, rng)
-                f, g = rede.fluxo(S)
-                fl.append(f)
-                gw.append(g)
-                sorteados.append((f, S))
-            bloco[nome] = {
-                "fluxo": resumo(fl),
-                "portas": resumo(gw),
-                "valores_fluxo": fl,
-                "frac_fluxo_le_3": round(sum(x <= 3 for x in fl) / len(fl), 3),
-                "frac_fluxo_le_1": round(sum(x <= 1 for x in fl) / len(fl), 3),
-            }
-        sorteados.sort(key=lambda x: x[0])
-        f_min, g_min, S_min = rede.adversaria(sorteados[:N_INICIOS], rng)
-        bloco["adversaria"] = {
-            "menor_fluxo": f_min,
-            "portas_do_pedaco": g_min,
-            "n_nos": len(S_min),
-            "menor_fluxo_nos_sorteios": sorteados[0][0],
-            "n_pedacos_com_o_menor_fluxo": sum(f == sorteados[0][0] for f, _ in sorteados),
-            "n_inicios": N_INICIOS,
-            "n_iteracoes": N_ITERS,
-        }
-        res["pedacos"][key] = bloco
-        print(key, json.dumps(bloco, ensure_ascii=False))
-    print("Urca:", res["referencia_urca"])
-    with open(os.path.join(OUT, "nulo_fluxo.json"), "w", encoding="utf-8") as f:
-        json.dump(res, f, indent=2, ensure_ascii=False)
-
-
-if __name__ == "__main__":
-    main()

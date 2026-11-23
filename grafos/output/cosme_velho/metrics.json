@@ -19,12 +19,12 @@
     "maior_scc": 48,
     "fora_da_scc_gigante": 2,
     "ruas_sem_saida": 13,
-    "tempo_ms": 0.15
+    "tempo_ms": 0.17
   },
   "gargalos_estruturais": {
     "articulacoes": 17,
     "pontes": 20,
-    "tempo_ms": 1.71
+    "tempo_ms": 1.89
   },
   "gargalos_estruturais_dirigidos": {
     "nucleo_n": 48,
@@ -36,7 +36,7 @@
     "pontes_so_fraca_fora_do_nucleo": 2,
     "articulacoes_fraca_e_forte": 17,
     "articulacoes_so_forte": 4,
-    "tempo_ms": 18.22
+    "tempo_ms": 19.18
   },
   "gargalo_acesso_gateway": {
     "gateways": [

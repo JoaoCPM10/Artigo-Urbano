@@ -1,6 +1,6 @@
 """
 Controle de tamanho do fluxo de acesso para um bairro de referencia qualquer
-(mesmo metodo de nulo_fluxo.py, que usa a Urca): pedacos conexos com o mesmo
+(mesmo metodo de nucleo/pedacos.py, que usa a Urca): pedacos conexos com o mesmo
 numero de interseccoes do bairro de referencia, sorteados em Copacabana e
 Botafogo por bola (BFS) e por crescimento aleatorio (Eden), mais a busca
 adversaria de subida de encosta partindo dos 25 pedacos de menor fluxo.
@@ -19,7 +19,8 @@ import os
 import random
 import sys
 
-from analises import nulo_fluxo as nf
+from caminhos import OUT
+from nucleo import pedacos as nf
 
 
 def main():
@@ -73,7 +74,7 @@ def main():
             key, {k: (v["fluxo"] if k != "adversaria" else v) for k, v in bloco.items()}, flush=True
         )
     print("Referencia:", res["referencia"])
-    with open(os.path.join(nf.OUT, f"nulo_fluxo_{ref}{sufixo}.json"), "w", encoding="utf-8") as fh:
+    with open(os.path.join(OUT, f"nulo_fluxo_{ref}{sufixo}.json"), "w", encoding="utf-8") as fh:
         json.dump(res, fh, indent=2, ensure_ascii=False)
 
 

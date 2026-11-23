@@ -23,6 +23,7 @@ import sys
 from collections import Counter, deque
 
 from analises import ruas_vs_intersecoes as ri
+from caminhos import OUT
 from nucleo import connectivity as cc
 from nucleo.neighborhoods import NEIGHBORHOODS
 from nucleo.network import gateway_nodes, load_network
@@ -135,8 +136,8 @@ def main():
         )
         for nome, (lo, hi) in r["min_max"].items():
             print(f"  {nome:<26} artigo={r['valor_artigo'][nome]:>3}  sorteios: min={lo} max={hi}")
-    os.makedirs(ri.OUT, exist_ok=True)
-    with open(os.path.join(ri.OUT, "robustez_desempate.json"), "w", encoding="utf-8") as fh:
+    os.makedirs(OUT, exist_ok=True)
+    with open(os.path.join(OUT, "robustez_desempate.json"), "w", encoding="utf-8") as fh:
         json.dump(saida, fh, ensure_ascii=False, indent=2)
 
 

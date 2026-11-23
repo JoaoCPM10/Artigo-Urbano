@@ -32,14 +32,14 @@ from shapely import affinity
 from shapely.geometry import shape
 
 from analises import conectividade_externa as ce
-from analises import nulo_fluxo as nf
+from caminhos import OUT
 from nucleo import maxflow as mf
+from nucleo import pedacos as nf
 from nucleo import polygons as pg
 from nucleo.neighborhoods import NEIGHBORHOODS
 
 UTM = "EPSG:31983"
 SEED = 11
-OUT = nf.OUT
 
 
 def poligono_utm(nome):

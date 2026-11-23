@@ -39,11 +39,11 @@ import sys
 from collections import deque
 
 from analises import conectividade_externa as ce
+from caminhos import OUT
 from nucleo import betweenness as bt
 from nucleo import connectivity as cc
 from nucleo.neighborhoods import NEIGHBORHOODS, ORDEM_FIGURAS
 
-OUT = ce.OUT
 RAIO_M = 1000
 KS = (1, 2, 4, 8, 16)
 SORTEIOS = 200
@@ -558,8 +558,7 @@ def main():
     resultados = {k: analisa(k, checar) for k in chaves}
     resultados = junta_com_existente(os.path.join(OUT, "simulacao_interrupcoes.json"), resultados)
     escreve(resultados)
-    if len(chaves) == 3:
-        figura(resultados)
+    figura(resultados)
 
 
 if __name__ == "__main__":

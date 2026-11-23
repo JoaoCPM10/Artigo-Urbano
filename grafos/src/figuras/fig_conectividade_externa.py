@@ -16,12 +16,10 @@ from figuras.rotulos import t as _t
 matplotlib.use("Agg")
 from matplotlib.collections import LineCollection
 
-from analises import conectividade_externa as ce
 from figuras import visualize as viz
 from nucleo import polygons as pg
 from nucleo.neighborhoods import NEIGHBORHOODS
 
-OUT = ce.OUT
 RAIO_M = 1000
 COR = {"origem": "#c0392b", "destino": "#6b46c1", "externa": "#e67e22"}
 

@@ -26,8 +26,8 @@ import sys
 from collections import deque
 
 from analises import conectividade_externa as ce
+from caminhos import OUT
 
-OUT = ce.OUT
 RAIOS = (500, 1000, 2000)
 
 

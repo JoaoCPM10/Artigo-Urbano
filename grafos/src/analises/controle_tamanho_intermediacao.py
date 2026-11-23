@@ -2,12 +2,12 @@
 CONTROLE DE TAMANHO, fluxo de acesso x intermediacao maxima, nos MESMOS pedacos
 (Secao 4.4 do artigo).
 
-nulo_fluxo.py sorteia, dentro de Copacabana e de Botafogo, pedacos conexos com o
+nucleo/pedacos.py sorteia, dentro de Copacabana e de Botafogo, pedacos conexos com o
 mesmo numero de intersecoes da Urca (70), por crescimento em bola (BFS) e por
 crescimento aleatorio (Eden). Este script regenera EXATAMENTE esses pedacos
 (mesma semente e mesma ordem de sorteio) e mede, em cada um, duas coisas:
 
-  - o fluxo de acesso (o mesmo valor de nulo_fluxo.py, conferido);
+  - o fluxo de acesso (o mesmo valor de nucleo/pedacos.py, conferido);
   - o maximo da intermediacao dirigida no maior componente fortemente conexo do
     pedaco (betweenness.py), para comparar com o da Urca (nucleo de 65 nos).
 
@@ -32,13 +32,13 @@ import statistics as st
 
 import networkx as nx
 
-from analises import nulo_fluxo as nf
+from caminhos import OUT
 from nucleo import betweenness as bt
 from nucleo import connectivity as cc
+from nucleo import pedacos as nf
 from nucleo.neighborhoods import NEIGHBORHOODS
 from nucleo.network import load_network
 
-OUT = nf.OUT
 TOL_NUCLEO = 5  # pareamento: nucleo forte do pedaco = nucleo da Urca +- 5
 N_PAREADOS = 300  # pedacos pareados por bairro e por modo de crescimento
 TENTATIVAS = 200  # no maximo TENTATIVAS * N_PAREADOS sorteios por modo

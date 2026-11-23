@@ -5,56 +5,6 @@
     "intermediacao_maxima_pct": 54.24,
     "fluxo": 1
   },
-  "pedacos": {
-    "copacabana": {
-      "bola": {
-        "n_pedacos": 500,
-        "fluxo_minimo": 2,
-        "intermediacao_mediana_pct": 41.1,
-        "intermediacao_p95_pct": 57.1,
-        "nucleo_forte_mediana": 54.0,
-        "frac_intermediacao_ge_urca": 0.116,
-        "n_com_nucleo_ge_60": 26,
-        "frac_intermediacao_ge_urca_nucleo_ge_60": 0.0,
-        "frac_fluxo_le_1": 0.0
-      },
-      "eden": {
-        "n_pedacos": 500,
-        "fluxo_minimo": 2,
-        "intermediacao_mediana_pct": 49.2,
-        "intermediacao_p95_pct": 63.2,
-        "nucleo_forte_mediana": 39.0,
-        "frac_intermediacao_ge_urca": 0.258,
-        "n_com_nucleo_ge_60": 8,
-        "frac_intermediacao_ge_urca_nucleo_ge_60": 0.25,
-        "frac_fluxo_le_1": 0.0
-      }
-    },
-    "botafogo": {
-      "bola": {
-        "n_pedacos": 500,
-        "fluxo_minimo": 4,
-        "intermediacao_mediana_pct": 57.1,
-        "intermediacao_p95_pct": 67.3,
-        "nucleo_forte_mediana": 42.0,
-        "frac_intermediacao_ge_urca": 0.658,
-        "n_com_nucleo_ge_60": 15,
-        "frac_intermediacao_ge_urca_nucleo_ge_60": 0.267,
-        "frac_fluxo_le_1": 0.0
-      },
-      "eden": {
-        "n_pedacos": 500,
-        "fluxo_minimo": 3,
-        "intermediacao_mediana_pct": 57.9,
-        "intermediacao_p95_pct": 70.1,
-        "nucleo_forte_mediana": 24.0,
-        "frac_intermediacao_ge_urca": 0.658,
-        "n_com_nucleo_ge_60": 1,
-        "frac_intermediacao_ge_urca_nucleo_ge_60": 0.0,
-        "frac_fluxo_le_1": 0.0
-      }
-    }
-  },
   "pareado_por_nucleo_forte": {
     "copacabana": {
       "bola": {
@@ -66,7 +16,7 @@
         ],
         "intermediacao_mediana_pct": 40.8,
         "intermediacao_p95_pct": 56.8,
-        "frac_intermediacao_ge_urca": 0.09,
+        "frac_intermediacao_ge_ref": 0.09,
         "valores_pct": [
           50.33,
           50.23,
@@ -368,7 +318,8 @@
           38.85,
           48.87,
           49.38
-        ]
+        ],
+        "frac_intermediacao_ge_urca": 0.09
       },
       "eden": {
         "n_pedacos": 300,
@@ -379,7 +330,7 @@
         ],
         "intermediacao_mediana_pct": 42.2,
         "intermediacao_p95_pct": 58.5,
-        "frac_intermediacao_ge_urca": 0.123,
+        "frac_intermediacao_ge_ref": 0.123,
         "valores_pct": [
           54.43,
           38.47,
@@ -681,7 +632,8 @@
           37.61,
           36.81,
           48.34
-        ]
+        ],
+        "frac_intermediacao_ge_urca": 0.123
       }
     },
     "botafogo": {
@@ -694,7 +646,7 @@
         ],
         "intermediacao_mediana_pct": 52.7,
         "intermediacao_p95_pct": 64.4,
-        "frac_intermediacao_ge_urca": 0.38,
+        "frac_intermediacao_ge_ref": 0.38,
         "valores_pct": [
           46.17,
           63.97,
@@ -996,7 +948,8 @@
           64.12,
           52.25,
           44.14
-        ]
+        ],
+        "frac_intermediacao_ge_urca": 0.38
       },
       "eden": {
         "n_pedacos": 300,
@@ -1007,7 +960,7 @@
         ],
         "intermediacao_mediana_pct": 52.7,
         "intermediacao_p95_pct": 64.1,
-        "frac_intermediacao_ge_urca": 0.403,
+        "frac_intermediacao_ge_ref": 0.403,
         "valores_pct": [
           54.34,
           41.75,
@@ -1309,7 +1262,8 @@
           53.88,
           50.7,
           53.59
-        ]
+        ],
+        "frac_intermediacao_ge_urca": 0.403
       }
     },
     "alto_da_boa_vista": {
@@ -1322,7 +1276,7 @@
         ],
         "intermediacao_mediana_pct": 55.8,
         "intermediacao_p95_pct": 66.2,
-        "frac_intermediacao_ge_urca": 0.58,
+        "frac_intermediacao_ge_ref": 0.58,
         "valores_pct": [
           59.67,
           52.12,
@@ -1624,7 +1578,8 @@
           58.85,
           51.98,
           63.7
-        ]
+        ],
+        "frac_intermediacao_ge_urca": 0.58
       },
       "eden": {
         "n_pedacos": 300,
@@ -1635,7 +1590,7 @@
         ],
         "intermediacao_mediana_pct": 56.2,
         "intermediacao_p95_pct": 65.9,
-        "frac_intermediacao_ge_urca": 0.603,
+        "frac_intermediacao_ge_ref": 0.603,
         "valores_pct": [
           55.2,
           52.79,
@@ -1937,7 +1892,8 @@
           58.17,
           66.01,
           51.47
-        ]
+        ],
+        "frac_intermediacao_ge_urca": 0.603
       }
     },
     "sao_conrado": {
@@ -1950,7 +1906,7 @@
         ],
         "intermediacao_mediana_pct": 44.1,
         "intermediacao_p95_pct": 54.8,
-        "frac_intermediacao_ge_urca": 0.06,
+        "frac_intermediacao_ge_ref": 0.06,
         "valores_pct": [
           45.66,
           43.97,
@@ -2252,7 +2208,8 @@
           37.15,
           37.6,
           44.39
-        ]
+        ],
+        "frac_intermediacao_ge_urca": 0.06
       },
       "eden": {
         "n_pedacos": 300,
@@ -2263,7 +2220,7 @@
         ],
         "intermediacao_mediana_pct": 44.4,
         "intermediacao_p95_pct": 56.8,
-        "frac_intermediacao_ge_urca": 0.113,
+        "frac_intermediacao_ge_ref": 0.113,
         "valores_pct": [
           43.61,
           40.78,
@@ -2565,7 +2522,8 @@
           44.21,
           43.5,
           41.0
-        ]
+        ],
+        "frac_intermediacao_ge_urca": 0.113
       }
     },
     "praca_da_bandeira": {
@@ -2575,8 +2533,9 @@
         "nucleo_forte_min_max": null,
         "intermediacao_mediana_pct": null,
         "intermediacao_p95_pct": null,
-        "frac_intermediacao_ge_urca": null,
-        "valores_pct": []
+        "frac_intermediacao_ge_ref": null,
+        "valores_pct": [],
+        "frac_intermediacao_ge_urca": null
       },
       "eden": {
         "n_pedacos": 0,
@@ -2584,8 +2543,9 @@
         "nucleo_forte_min_max": null,
         "intermediacao_mediana_pct": null,
         "intermediacao_p95_pct": null,
-        "frac_intermediacao_ge_urca": null,
-        "valores_pct": []
+        "frac_intermediacao_ge_ref": null,
+        "valores_pct": [],
+        "frac_intermediacao_ge_urca": null
       }
     }
   },

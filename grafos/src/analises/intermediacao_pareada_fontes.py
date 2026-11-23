@@ -29,9 +29,10 @@ import statistics as st
 import sys
 
 from analises import controle_tamanho_intermediacao as ct
-from analises import nulo_fluxo as nf
+from caminhos import OUT
 from nucleo import betweenness as bt
 from nucleo import connectivity as cc
+from nucleo import pedacos as nf
 from nucleo.neighborhoods import NEIGHBORHOODS
 from nucleo.network import load_network
 
@@ -51,7 +52,7 @@ FONTES = {
 def main():
     ref_nome = sys.argv[1] if len(sys.argv) > 1 else "urca"
     fontes = tuple(sys.argv[2].split(",")) if len(sys.argv) > 2 else FONTES[ref_nome]
-    caminho = os.path.join(ct.OUT, "controle_tamanho_intermediacao.json")
+    caminho = os.path.join(OUT, "controle_tamanho_intermediacao.json")
     res = json.load(open(caminho, encoding="utf-8"))
     G_r = load_network(NEIGHBORHOODS[ref_nome])[0]["graph"]
     core_r = set(max(cc.strongly_connected_components(G_r), key=len))
