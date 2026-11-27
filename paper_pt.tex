@@ -2,6 +2,8 @@
 % Versão em português — ICITS'27 / Springer LNNS.
 % Classe: llncs. Autoria identificada (não anonimizada); para submissão em
 % revisão duplo-cega, usar uma cópia sem \author/\institute.
+% O link do repositório aparece com \cegofalse (versão da banca) e é omitido
+% com \cegotrue (revisão duplo-cega); a chave fica antes de \begin{document}.
 % Tradução da versão em inglês (paper.tex), norma culta.
 % =====================================================================
 \documentclass[runningheads]{llncs}
@@ -22,6 +24,11 @@
 \renewcommand{\bottomfraction}{0.7}
 \renewcommand{\textfraction}{0.1}
 \renewcommand{\floatpagefraction}{0.7}
+
+% Chave da versão. \cegofalse mostra o link do repositório (banca) e
+% \cegotrue o omite (submissão duplo-cega).
+\newif\ifcego
+\cegofalse
 
 \begin{document}
 
@@ -70,41 +77,44 @@ se confira se as saídas administrativas continuam para a cidade.
 \section{Introdução}
 \label{sec:intro}
 
-Redes viárias são comumente modeladas como grafos, cujos vértices são
-interseções e cujas arestas são trechos de rua~\cite{boeing}. Nesses grafos, o
-sentido das vias importa, pois, com a mão única, é possível chegar a uma
-interseção e não haver caminho para sair dela. Saber por quantas rotas
-independentes um bairro se liga ao restante da cidade interessa ao
-planejamento e à gestão de crises.
+Redes viárias costumam ser modeladas como grafos, nos quais as interseções são
+vértices e os trechos de rua são arestas~\cite{boeing}. Nesses grafos, o sentido
+das vias é relevante, pois, com a mão única, pode-se chegar a uma interseção sem
+que exista caminho para sair dela. Nesse contexto, saber por quantas rotas
+independentes um bairro se liga ao restante da cidade, respeitado o sentido das
+vias, interessa ao planejamento e à gestão de crises.
 
-Essa preocupação aparece na gestão de crises do Rio de Janeiro. O Centro de
-Operações e Resiliência (COR) mantém cinco estágios operacionais da cidade,
-definidos a partir das informações do sistema Alerta Rio, para comunicar às
-equipes de infraestrutura e logística urbana e aos cidadãos se a rotina segue
-normal ou está sendo afetada por um ou mais
-eventos~\cite{rio_plano_contingencia}. O plano de contingência da Defesa Civil para 2025/2026 prioriza as chuvas pela
-recorrência e pelo histórico de vítimas, levanta os alagamentos de maior
-impacto na mobilidade, mantém um protocolo de interdição de vias e usa os
-registros do COR para definir previamente rotas principais e alternativas para
-as equipes~\cite{rio_plano_contingencia}. Interdições desse tipo já atingiram
+No Rio de Janeiro, a gestão de crises já trata do deslocamento das equipes em
+situações de risco. O Centro de Operações e Resiliência (COR) mantém cinco
+estágios operacionais da cidade, definidos a partir das informações do sistema
+Alerta Rio, que informam às equipes e aos cidadãos se a rotina segue normal ou
+está afetada por algum evento~\cite{rio_plano_contingencia}. O plano de
+contingência da Defesa Civil para 2025/2026 prioriza as chuvas pela recorrência
+e pelo histórico de vítimas, mantém um protocolo de interdição de vias e usa os
+registros do COR para definir previamente as rotas principais e alternativas
+das equipes~\cite{rio_plano_contingencia}. Fechamentos de vias já atingiram
 acessos importantes da cidade. Em março de 2013, durante uma chuva forte, os
 acessos à Praça da Bandeira ficaram fechados por cerca de duas horas, e o Túnel
-Rebouças foi fechado preventivamente no sentido Catumbi para que os motoristas
+Rebouças foi fechado preventivamente no sentido Catumbi, para que os motoristas
 não ficassem presos nas galerias~\cite{g1_2013}. Em outubro de 2007,
 deslizamentos no Cosme Velho bloquearam o mesmo túnel, a principal ligação
 entre as Zonas Norte e Sul, e a prefeitura estimou uma semana para desbloquear
-uma das galerias~\cite{g1_2007}. O plano prevê rotas alternativas para as
-equipes, mas não menciona túneis nem o isolamento de bairros, e a pergunta de
-quantas rotas ligam cada bairro ao restante da cidade fica sem medida.
+uma das galerias~\cite{g1_2007}. O plano, porém, trata de pontos e vias
+específicos, como os pontos de alagamento e as vias sujeitas à interdição, e
+não menciona túneis nem o isolamento de bairros. Falta uma medida em escala de
+bairro, que diga por quantas rotas cada um se liga ao restante da cidade. Essa
+medida complementa o plano ao mostrar em quais bairros uma única via fechada
+isola parte deles.
 
-Os métodos usuais de conectividade não respondem a essa pergunta. Eles
-localizam pontos críticos em redes viárias por meio de pontes e pontos de
-articulação~\cite{tarjan1972depth}, estendidos a grafos
-dirigidos~\cite{italiano2012finding}, e as medidas de centralidade o fazem por
-meio de escores por vértice~\cite{alatristasalas2019,kirkley2018betweenness}.
-Nenhuma delas conta as rotas independentes que ligam um bairro ao exterior.
-Por isso não se sabe se identificam um bairro que se alcança por uma única
-rota, e é isso que testamos aqui.
+Os métodos usuais de conectividade, contudo, não fornecem essa medida. Para
+localizar pontos críticos em redes viárias, comumente recorre-se a pontes e
+pontos de articulação~\cite{tarjan1972depth}, estendidos a grafos
+dirigidos~\cite{italiano2012finding}, ou a medidas de centralidade, que
+atribuem um escore a cada
+vértice~\cite{alatristasalas2019,kirkley2018betweenness}. Nenhuma delas,
+entretanto, conta as rotas independentes que ligam um bairro ao exterior. Por
+isso, não se sabe se elas identificam um bairro alcançável por uma única rota,
+e é isso que testamos neste trabalho.
 
 Para medir essas rotas, usamos o fluxo máximo~\cite{edmonds1972theoretical} do
 núcleo de cada bairro até suas portas de acesso, os pontos em que uma rua cruza
@@ -117,9 +127,10 @@ fechamento isola o núcleo do bairro, e, quando vale 1, o corte é uma única ru
 e localiza o gargalo. Um valor baixo aponta bairros cujo acesso depende de
 poucas ruas. Um valor alto indica que muitas ruas precisam falhar ao mesmo
 tempo para isolar o núcleo inteiro, mas uma única rua ainda pode isolar parte
-dele. Portanto, a Defesa Civil e o COR poderiam usá-lo para priorizar rotas
-alternativas, posicionar equipes com antecedência e monitorar esses bairros. O
-indicador é topológico e não prevê a interrupção nem mede capacidade.
+dele. Portanto, a Defesa Civil e o COR poderiam usá-lo, em complemento às rotas
+definidas para pontos específicos, para priorizar rotas alternativas,
+posicionar equipes com antecedência e monitorar esses bairros. O indicador é
+topológico e não prevê a interrupção nem mede capacidade.
 
 Para testar se o fluxo de acesso e os indicadores convencionais (pontes e
 articulações fortes, intermediação e o corte mínimo entre dois nós)
@@ -132,14 +143,15 @@ e três malhas abertas, duas densas de orla e uma plana (Copacabana, Botafogo e
 Praça da Bandeira).
 
 Portanto, este estudo exploratório pergunta se o fluxo de acesso ou os
-indicadores convencionais identificam um bairro de rota única, e se o
-resultado se deve à geografia ou ao tamanho. Como validação, verificamos
-ainda o fluxo além da fronteira administrativa e por simulação de
-interrupções. O artigo contribui, também, com um \emph{pipeline} reprodutível que
-constrói grafos viários dirigidos e ponderados a partir do OpenStreetMap,
-recortados pelo polígono administrativo oficial, com os algoritmos verificados
-contra o \texttt{networkx}. As Seções~\ref{sec:related} a~\ref{sec:conclusion}
-trazem a literatura, o método, os resultados, a discussão e a conclusão.
+indicadores convencionais identificam um bairro de rota única, e se o resultado
+se deve à geografia ou ao tamanho. Como validação, verificamos ainda o fluxo
+além da fronteira administrativa e por simulação de interrupções. O artigo
+contribui, também, com um \emph{pipeline} reprodutível que constrói grafos
+viários dirigidos e ponderados a partir do OpenStreetMap, recortados pelo
+polígono administrativo oficial, com os algoritmos verificados contra o
+\texttt{networkx}. As Seções~\ref{sec:related} a~\ref{sec:conclusion} trazem,
+respectivamente, a literatura, o método, os resultados, a discussão e a
+conclusão.
 
 % =====================================================================
 \section{Trabalhos Relacionados}
@@ -467,13 +479,12 @@ o sentido, tomamos todos os pares ordenados do núcleo forte, e então o corte d
 $s$ a $t$ pode diferir do de $t$ a $s$.
 
 Conferimos as implementações contra o \texttt{networkx} nos nove bairros.
-Componentes, CFC, pontes e articulações fracas, caminhos mínimos, fluxo
-máximo e intermediação conferem. Pontes e articulações fortes, que o
-\texttt{networkx} não calcula, conferem com uma recontagem independente
-das CFC após cada remoção.
-O mesmo vale para os fluxos e a componente gigante da
-Seção~\ref{sec:external-conn} e para a intermediação de aresta e a
-alcançabilidade da Seção~\ref{sec:sim-method}.
+Componentes, CFC, pontes e articulações fracas, caminhos mínimos, fluxo máximo
+e intermediação conferem. Pontes e articulações fortes, que o \texttt{networkx}
+não calcula, conferem com uma recontagem independente das CFC após cada
+remoção. O mesmo vale para os fluxos e a componente gigante
+(Seção~\ref{sec:external-conn}) e para a intermediação de aresta e a
+alcançabilidade (Seção~\ref{sec:sim-method}).
 
 \subsection{Controles e análises de sensibilidade}
 \label{sec:controls}
@@ -549,7 +560,9 @@ a maioria dessas vias não traz a \emph{tag} \texttt{access}, a segunda
 variante não equivale a vias de uso público.
 
 Todos os procedimentos aleatórios usam sementes fixas, e o README do
-repositório (omitido para a revisão) lista o script de cada tabela e figura.
+repositório \ifcego (omitido para a revisão)\else
+(\url{https://github.com/JoaoCPM10/Artigo-Urbano})\fi{} lista o script de cada
+tabela e figura.
 
 \subsection{Conectividade externa}
 \label{sec:external-conn}
@@ -678,9 +691,9 @@ rota.
 Sem o sentido das vias, o fluxo de acesso em rotas disjuntas por ruas é 1 na
 Urca e no Leme, 3 no Joá, 4 no Alto da Boa Vista, 6 no Cosme Velho, 8 na Praça
 da Bandeira, 11 em São Conrado, 15 em Botafogo e 18 em Copacabana
-(Tabela~\ref{tab:acesso}). A Urca e o Leme têm uma única rota para 3 e 5
-portas, e Copacabana e Botafogo têm 21 e 31 portas. O fluxo não acompanha o
-número de portas, pois o Joá tem 3 rotas para 3 portas, enquanto a Praça da
+(Tabela~\ref{tab:acesso}). A Urca tem uma única rota para 3 portas e o Leme
+para 5, enquanto Copacabana tem 21 portas e Botafogo, 31. O fluxo não acompanha
+o número de portas, pois o Joá tem 3 rotas para 3 portas, enquanto a Praça da
 Bandeira tem 8 para 27.
 
 \begin{table}[tbp]
@@ -1425,9 +1438,10 @@ incorporar capacidade e demanda das vias. Para o planejamento, a contagem de
 rotas pode sinalizar bairros com uma só saída, desde que se confira se as
 saídas administrativas continuam para a cidade.
 
-\subsubsection*{Reprodutibilidade.} O código está aberto e os dados vêm de fontes públicas
-(OpenStreetMap, IBGE e SRTM), com as extrações do OpenStreetMap incluídas no repositório
-(omitido para a revisão duplo-cega).
+\subsubsection*{Reprodutibilidade.} O código está aberto e os dados vêm de
+fontes públicas (OpenStreetMap, IBGE e SRTM), com as extrações do OpenStreetMap
+incluídas no repositório \ifcego (omitido para a revisão duplo-cega)\else
+(\url{https://github.com/JoaoCPM10/Artigo-Urbano})\fi{}.
 
 % =====================================================================
 \bibliographystyle{splncs04}
