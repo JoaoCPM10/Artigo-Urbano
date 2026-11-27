@@ -1,7 +1,7 @@
 # Redundância do acesso viário em escala de bairro
 
-Código, dados e texto do estudo "Redundância do Acesso Viário em Escala de Bairro: Fluxo Máximo
-em Nove Bairros do Rio de Janeiro".
+Código, dados e figuras do estudo "Redundância do Acesso Viário em Escala de Bairro: Fluxo
+Máximo em Nove Bairros do Rio de Janeiro".
 
 O estudo modela as redes viárias do OpenStreetMap como grafos dirigidos e mede o fluxo de
 acesso de cada bairro, isto é, o número de rotas disjuntas do núcleo do bairro até as suas
@@ -13,9 +13,7 @@ Alto da Boa Vista, Cosme Velho, Joá, São Conrado, Copacabana, Botafogo e Praç
 | Caminho | O que é |
 |---|---|
 | `grafos/` | Código, dados e saídas. O `grafos/README.md` traz a instalação, o tutorial e o mapa de cada tabela e figura do artigo. |
-| `paper_pt.tex` e `references.bib` | Texto do artigo em português e as referências. |
-| `Figures/` | Figuras do artigo. |
-| `paper.tex` | Rascunho em inglês, ainda não atualizado. |
+| `Figures/` | Figuras do artigo, geradas pelo código. |
 
 ## Como reproduzir
 
